@@ -1815,6 +1815,25 @@ body {
     opacity: 1;
 }
 
+/* Strava Attribution - Compliant with Strava Brand Guidelines */
+.strava-attribution {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.strava-logo {
+    height: 40px;
+    width: auto;
+    max-width: 176px;
+    opacity: 0.8;
+    /* No animations, no modifications - compliant with Strava guidelines */
+    /* Logo must be separate and not more prominent than app branding */
+}
+
 /* Floating 3D Objects with Icon Theme */
 .floating-3d-shape {
     position: absolute;
