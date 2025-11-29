@@ -96,14 +96,59 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // Ensure image loads
                 modalImg.onload = function() {
-                    console.log('Image loaded successfully');
+                    console.log('=== IMAGE LOADED SUCCESSFULLY ===');
+                    console.log('Image natural width:', this.naturalWidth);
+                    console.log('Image natural height:', this.naturalHeight);
+                    console.log('Image client width:', this.clientWidth);
+                    console.log('Image client height:', this.clientHeight);
+                    console.log('Image offset width:', this.offsetWidth);
+                    console.log('Image offset height:', this.offsetHeight);
+                    console.log('Image src:', this.src);
+                    
+                    const computedStyle = window.getComputedStyle(this);
+                    console.log('Computed display:', computedStyle.display);
+                    console.log('Computed visibility:', computedStyle.visibility);
+                    console.log('Computed opacity:', computedStyle.opacity);
+                    console.log('Computed width:', computedStyle.width);
+                    console.log('Computed height:', computedStyle.height);
+                    console.log('Computed max-width:', computedStyle.maxWidth);
+                    console.log('Computed max-height:', computedStyle.maxHeight);
+                    console.log('Computed position:', computedStyle.position);
+                    console.log('Computed z-index:', computedStyle.zIndex);
+                    
+                    const container = this.parentElement;
+                    if (container) {
+                        console.log('=== CONTAINER INFO ===');
+                        console.log('Container:', container);
+                        const containerStyle = window.getComputedStyle(container);
+                        console.log('Container display:', containerStyle.display);
+                        console.log('Container width:', containerStyle.width);
+                        console.log('Container height:', containerStyle.height);
+                        console.log('Container client width:', container.clientWidth);
+                        console.log('Container client height:', container.clientHeight);
+                        console.log('Container flex:', containerStyle.display);
+                    }
+                    
+                    const modalEl = document.getElementById('screenshot-modal');
+                    if (modalEl) {
+                        console.log('=== MODAL INFO ===');
+                        const modalStyle = window.getComputedStyle(modalEl);
+                        console.log('Modal display:', modalStyle.display);
+                        console.log('Modal width:', modalStyle.width);
+                        console.log('Modal height:', modalStyle.height);
+                        console.log('Modal has show class:', modalEl.classList.contains('show'));
+                    }
+                    
                     this.style.display = 'block';
                     this.style.visibility = 'visible';
                     this.style.opacity = '1';
+                    console.log('=== FORCED STYLES APPLIED ===');
                 };
                 
                 modalImg.onerror = function() {
+                    console.error('=== IMAGE LOAD ERROR ===');
                     console.error('Failed to load image:', screenshotSrc);
+                    console.error('Image src attribute:', this.src);
                     this.alt = 'Image failed to load: ' + screenshotSrc;
                     this.style.display = 'block';
                     this.style.visibility = 'visible';
@@ -131,7 +176,41 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // Show modal
                 modal.classList.add('show');
+                console.log('=== MODAL SHOW ===');
                 console.log('Modal show class added');
+                console.log('Modal element:', modal);
+                console.log('Modal classes:', modal.className);
+                
+                // Wait a bit then check dimensions
+                setTimeout(() => {
+                    console.log('=== AFTER MODAL SHOW (100ms delay) ===');
+                    const modalStyle = window.getComputedStyle(modal);
+                    console.log('Modal display:', modalStyle.display);
+                    console.log('Modal width:', modalStyle.width);
+                    console.log('Modal height:', modalStyle.height);
+                    console.log('Modal position:', modalStyle.position);
+                    
+                    const container = document.querySelector('.screenshot-modal-container');
+                    if (container) {
+                        const containerStyle = window.getComputedStyle(container);
+                        console.log('Container display:', containerStyle.display);
+                        console.log('Container width:', containerStyle.width);
+                        console.log('Container height:', containerStyle.height);
+                        console.log('Container flex:', containerStyle.flex);
+                    }
+                    
+                    if (modalImg) {
+                        const imgStyle = window.getComputedStyle(modalImg);
+                        console.log('Image display:', imgStyle.display);
+                        console.log('Image width:', imgStyle.width);
+                        console.log('Image height:', imgStyle.height);
+                        console.log('Image visibility:', imgStyle.visibility);
+                        console.log('Image opacity:', imgStyle.opacity);
+                        console.log('Image natural dimensions:', modalImg.naturalWidth, 'x', modalImg.naturalHeight);
+                        console.log('Image actual dimensions:', modalImg.offsetWidth, 'x', modalImg.offsetHeight);
+                    }
+                }, 100);
+                
                 document.body.style.overflow = 'hidden'; // Prevent background scrolling
                 
                 // Force a reflow to ensure display
