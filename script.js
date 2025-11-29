@@ -225,22 +225,53 @@ document.addEventListener('DOMContentLoaded', () => {
                         modalImg.style.setProperty('max-height', maxImgHeight + 'px', 'important');
                         modalImg.style.setProperty('width', 'auto', 'important');
                         modalImg.style.setProperty('height', 'auto', 'important');
-                        modalImg.style.setProperty('top', '50%', 'important');
-                        modalImg.style.setProperty('left', '50%', 'important');
-                        modalImg.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-                        modalImg.style.setProperty('-webkit-transform', 'translate(-50%, -50%)', 'important');
                         modalImg.style.setProperty('object-fit', 'contain', 'important');
                         console.log('Set max-width to:', maxImgWidth, 'max-height to:', maxImgHeight);
                         
-                        // Also fix container
+                        // Also fix container - ensure it's properly sized
                         const container = modalImg.parentElement;
                         if (container) {
-                            container.style.setProperty('overflow', 'visible', 'important');
+                            container.style.setProperty('overflow', 'hidden', 'important');
                             container.style.setProperty('transform', 'none', 'important');
                             container.style.setProperty('-webkit-transform', 'none', 'important');
                             container.style.setProperty('position', 'relative', 'important');
+                            container.style.setProperty('width', '100%', 'important');
+                            container.style.setProperty('height', '100%', 'important');
+                            container.style.setProperty('max-width', '100vw', 'important');
+                            container.style.setProperty('max-height', '100vh', 'important');
                             container.scrollTop = 0;
                             container.scrollLeft = 0;
+                            
+                            // Wait for image to load and calculate proper position
+                            setTimeout(() => {
+                                const containerRect = container.getBoundingClientRect();
+                                const imgRect = modalImg.getBoundingClientRect();
+                                const imgHeight = imgRect.height || modalImg.offsetHeight;
+                                const imgWidth = imgRect.width || modalImg.offsetWidth;
+                                
+                                console.log('Container rect:', containerRect);
+                                console.log('Image rect before fix:', imgRect);
+                                console.log('Image dimensions:', imgWidth, 'x', imgHeight);
+                                
+                                // Calculate center position based on container
+                                const centerX = containerRect.left + (containerRect.width / 2);
+                                const centerY = containerRect.top + (containerRect.height / 2);
+                                
+                                // Set position using pixels instead of percentage
+                                const topPos = centerY - (imgHeight / 2);
+                                const leftPos = centerX - (imgWidth / 2);
+                                
+                                console.log('Calculated center position:', leftPos, topPos);
+                                
+                                modalImg.style.setProperty('position', 'fixed', 'important');
+                                modalImg.style.setProperty('top', topPos + 'px', 'important');
+                                modalImg.style.setProperty('left', leftPos + 'px', 'important');
+                                modalImg.style.setProperty('transform', 'none', 'important');
+                                modalImg.style.setProperty('-webkit-transform', 'none', 'important');
+                                
+                                const finalRect = modalImg.getBoundingClientRect();
+                                console.log('Image rect after fix:', finalRect);
+                            }, 150);
                         }
                         
                         console.log('=== FORCED VISIBLE STYLES WITH RED BACKGROUND AND YELLOW BORDER ===');
