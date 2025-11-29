@@ -227,13 +227,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         modalImg.style.setProperty('display', 'block', 'important');
                         modalImg.style.setProperty('visibility', 'visible', 'important');
                         modalImg.style.setProperty('opacity', '1', 'important');
-                        modalImg.style.setProperty('position', 'absolute', 'important');
+                        modalImg.style.setProperty('position', 'static', 'important');
                         modalImg.style.setProperty('z-index', '10002', 'important');
                         modalImg.style.setProperty('max-width', maxImgWidth + 'px', 'important');
                         modalImg.style.setProperty('max-height', maxImgHeight + 'px', 'important');
                         modalImg.style.setProperty('width', 'auto', 'important');
                         modalImg.style.setProperty('height', 'auto', 'important');
                         modalImg.style.setProperty('object-fit', 'contain', 'important');
+                        modalImg.style.setProperty('margin', 'auto', 'important');
                         console.log('Set max-width to:', maxImgWidth, 'max-height to:', maxImgHeight);
                         
                         // Also fix container - ensure it's properly sized
@@ -262,10 +263,20 @@ document.addEventListener('DOMContentLoaded', () => {
                                 modalImg.style.removeProperty('-webkit-transform');
                                 
                                 // Use static positioning and let flexbox handle centering
+                                modalImg.style.removeProperty('position');
+                                modalImg.style.removeProperty('top');
+                                modalImg.style.removeProperty('left');
+                                modalImg.style.removeProperty('right');
+                                modalImg.style.removeProperty('bottom');
+                                modalImg.style.removeProperty('transform');
+                                modalImg.style.removeProperty('-webkit-transform');
+                                
                                 modalImg.style.setProperty('position', 'static', 'important');
                                 modalImg.style.setProperty('display', 'block', 'important');
                                 modalImg.style.setProperty('margin', 'auto', 'important');
                                 modalImg.style.setProperty('vertical-align', 'middle', 'important');
+                                modalImg.style.setProperty('max-width', '90vw', 'important');
+                                modalImg.style.setProperty('max-height', 'calc(100vh - 200px)', 'important');
                                 
                                 // Ensure container is properly set up for flexbox
                                 container.style.setProperty('display', '-webkit-box', 'important');
@@ -353,6 +364,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }, 100);
                 
+                // Prevent body scroll and lock position
+                const scrollY = window.scrollY;
+                document.body.style.position = 'fixed';
+                document.body.style.top = `-${scrollY}px`;
+                document.body.style.width = '100%';
                 document.body.style.overflow = 'hidden'; // Prevent background scrolling
                 
                 // Force a reflow to ensure display
@@ -368,7 +384,15 @@ document.addEventListener('DOMContentLoaded', () => {
         closeBtn.addEventListener('click', (e) => {
             e.stopPropagation(); // Prevent event bubbling
             modal.classList.remove('show');
+            // Restore body scroll
+            const scrollY = document.body.style.top;
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
             document.body.style.overflow = ''; // Restore scrolling
+            if (scrollY) {
+                window.scrollTo(0, parseInt(scrollY || '0') * -1);
+            }
         });
     }
 
@@ -377,7 +401,15 @@ document.addEventListener('DOMContentLoaded', () => {
         modalImg.addEventListener('click', (e) => {
             e.stopPropagation(); // Prevent event from bubbling to modal
             modal.classList.remove('show');
+            // Restore body scroll
+            const scrollY = document.body.style.top;
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
             document.body.style.overflow = ''; // Restore scrolling
+            if (scrollY) {
+                window.scrollTo(0, parseInt(scrollY || '0') * -1);
+            }
         });
     }
     
@@ -386,7 +418,15 @@ document.addEventListener('DOMContentLoaded', () => {
         // Close if clicking on modal background or container (but not on image or topbar)
         if (e.target === modal || e.target.classList.contains('screenshot-modal-container')) {
             modal.classList.remove('show');
+            // Restore body scroll
+            const scrollY = document.body.style.top;
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
             document.body.style.overflow = ''; // Restore scrolling
+            if (scrollY) {
+                window.scrollTo(0, parseInt(scrollY || '0') * -1);
+            }
         }
     });
     
@@ -402,7 +442,15 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modal.classList.contains('show')) {
             modal.classList.remove('show');
+            // Restore body scroll
+            const scrollY = document.body.style.top;
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
             document.body.style.overflow = ''; // Restore scrolling
+            if (scrollY) {
+                window.scrollTo(0, parseInt(scrollY || '0') * -1);
+            }
         }
     });
 
