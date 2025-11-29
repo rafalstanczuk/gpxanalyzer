@@ -1632,8 +1632,8 @@ body {
     font-size: 0.9rem;
     line-height: 1.4;
     text-align: center;
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 0;
+    transform: translateY(20px);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: none;
     z-index: 3;
@@ -2886,6 +2886,13 @@ body {
     .screenshot-description {
         font-size: 0.8rem;
         padding: 1rem 0.75rem 0.75rem;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .screenshot-item:hover .screenshot-description {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
