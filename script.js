@@ -210,22 +210,27 @@ document.addEventListener('DOMContentLoaded', () => {
                         console.log('Image actual dimensions:', modalImg.offsetWidth, 'x', modalImg.offsetHeight);
                         console.log('Image getBoundingClientRect:', modalImg.getBoundingClientRect());
                         
-                        // Force image to be visible with very obvious styling
+                        // Force image to be properly sized and visible
+                        const viewportWidth = window.innerWidth;
+                        const viewportHeight = window.innerHeight;
+                        const maxImgWidth = Math.min(viewportWidth * 0.9, 1440);
+                        const maxImgHeight = Math.min((viewportHeight - 200) * 0.9, 2880);
+                        
                         modalImg.style.setProperty('display', 'block', 'important');
                         modalImg.style.setProperty('visibility', 'visible', 'important');
                         modalImg.style.setProperty('opacity', '1', 'important');
-                        modalImg.style.setProperty('position', 'static', 'important');
+                        modalImg.style.setProperty('position', 'absolute', 'important');
                         modalImg.style.setProperty('z-index', '10002', 'important');
-                        modalImg.style.setProperty('background', 'rgba(255, 0, 0, 0.3)', 'important');
-                        modalImg.style.setProperty('border', '5px solid yellow', 'important');
-                        modalImg.style.setProperty('box-shadow', '0 0 50px rgba(255, 255, 0, 0.8)', 'important');
-                        modalImg.style.setProperty('transform', 'none', 'important');
-                        modalImg.style.setProperty('-webkit-transform', 'none', 'important');
-                        modalImg.style.setProperty('top', 'auto', 'important');
-                        modalImg.style.setProperty('left', 'auto', 'important');
-                        modalImg.style.setProperty('right', 'auto', 'important');
-                        modalImg.style.setProperty('bottom', 'auto', 'important');
-                        modalImg.style.setProperty('margin', '0 auto', 'important');
+                        modalImg.style.setProperty('max-width', maxImgWidth + 'px', 'important');
+                        modalImg.style.setProperty('max-height', maxImgHeight + 'px', 'important');
+                        modalImg.style.setProperty('width', 'auto', 'important');
+                        modalImg.style.setProperty('height', 'auto', 'important');
+                        modalImg.style.setProperty('top', '50%', 'important');
+                        modalImg.style.setProperty('left', '50%', 'important');
+                        modalImg.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+                        modalImg.style.setProperty('-webkit-transform', 'translate(-50%, -50%)', 'important');
+                        modalImg.style.setProperty('object-fit', 'contain', 'important');
+                        console.log('Set max-width to:', maxImgWidth, 'max-height to:', maxImgHeight);
                         
                         // Also fix container
                         const container = modalImg.parentElement;
