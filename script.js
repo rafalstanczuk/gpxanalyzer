@@ -208,6 +208,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         console.log('Image opacity:', imgStyle.opacity);
                         console.log('Image natural dimensions:', modalImg.naturalWidth, 'x', modalImg.naturalHeight);
                         console.log('Image actual dimensions:', modalImg.offsetWidth, 'x', modalImg.offsetHeight);
+                        console.log('Image getBoundingClientRect:', modalImg.getBoundingClientRect());
+                        
+                        // Force image to be visible with very obvious styling
+                        modalImg.style.setProperty('display', 'block', 'important');
+                        modalImg.style.setProperty('visibility', 'visible', 'important');
+                        modalImg.style.setProperty('opacity', '1', 'important');
+                        modalImg.style.setProperty('position', 'relative', 'important');
+                        modalImg.style.setProperty('z-index', '10002', 'important');
+                        modalImg.style.setProperty('background', 'rgba(255, 0, 0, 0.3)', 'important');
+                        modalImg.style.setProperty('border', '5px solid yellow', 'important');
+                        modalImg.style.setProperty('box-shadow', '0 0 50px rgba(255, 255, 0, 0.8)', 'important');
+                        console.log('=== FORCED VISIBLE STYLES WITH RED BACKGROUND AND YELLOW BORDER ===');
                     }
                 }, 100);
                 

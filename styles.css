@@ -1769,29 +1769,29 @@ body {
 
 /* Modal Container for Centered Image */
 .screenshot-modal-container {
-    flex: 1 1 0%;
+    flex: 1 1 0% !important;
     display: -webkit-box !important;
     display: -webkit-flex !important;
     display: -ms-flexbox !important;
     display: flex !important;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
+    -webkit-box-align: center !important;
+    -webkit-align-items: center !important;
+    -ms-flex-align: center !important;
+    align-items: center !important;
+    -webkit-box-pack: center !important;
+    -webkit-justify-content: center !important;
+    -ms-flex-pack: center !important;
+    justify-content: center !important;
     overflow: auto;
     padding: 2rem;
-    width: 100%;
+    width: 100% !important;
     min-height: 0;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    position: relative;
+    position: relative !important;
     -webkit-overflow-scrolling: touch;
-    z-index: 10001;
-    background: transparent;
+    z-index: 10001 !important;
+    background: rgba(0, 0, 0, 0.3) !important;
     -webkit-box-flex: 1;
     -webkit-flex-grow: 1;
     -ms-flex-positive: 1;
@@ -1822,9 +1822,14 @@ body {
     flex-shrink: 0;
     margin: auto;
     vertical-align: middle;
-    position: relative;
-    z-index: 10002;
-    background: rgba(255, 255, 255, 0.05);
+    position: relative !important;
+    z-index: 10002 !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
 }
 
 @-webkit-keyframes zoomIn {
