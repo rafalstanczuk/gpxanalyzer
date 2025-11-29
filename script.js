@@ -197,10 +197,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // Show modal
                 modal.classList.add('show');
+                console.log('Modal shown, class added');
                 
                 // Wait for modal to render, then set up image
                 requestAnimationFrame(() => {
                     requestAnimationFrame(() => {
+                        console.log('Setting up image after modal render');
+                        
                         // Get viewport dimensions
                         const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
                         const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
@@ -208,9 +211,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         const topbarHeight = topbar ? (topbar.offsetHeight || topbar.clientHeight) : 100;
                         const availableHeight = viewportHeight - topbarHeight - 40;
                         
+                        console.log('Viewport:', viewportWidth, 'x', viewportHeight);
+                        console.log('Topbar height:', topbarHeight);
+                        console.log('Available height:', availableHeight);
+                        
                         // Set image constraints
                         const maxImgWidth = Math.min(viewportWidth * 0.9, 1440);
                         const maxImgHeight = Math.min(availableHeight * 0.95, 2880);
+                        
+                        console.log('Max image size:', maxImgWidth, 'x', maxImgHeight);
                         
                         // Reset all image styles to defaults
                         modalImg.style.cssText = '';
@@ -227,13 +236,28 @@ document.addEventListener('DOMContentLoaded', () => {
                         modalImg.style.objectFit = 'contain';
                         modalImg.style.margin = 'auto';
                         
+                        console.log('Image styles applied');
+                        
                         // Ensure container is set up for flexbox
                         if (container) {
                             container.style.overflow = 'hidden';
                             container.style.position = 'relative';
                             container.scrollTop = 0;
                             container.scrollLeft = 0;
+                            console.log('Container configured');
                         }
+                        
+                        // Check final position
+                        setTimeout(() => {
+                            const rect = modalImg.getBoundingClientRect();
+                            console.log('Final image position:', {
+                                top: rect.top,
+                                left: rect.left,
+                                width: rect.width,
+                                height: rect.height,
+                                visible: rect.top >= 0 && rect.top < viewportHeight && rect.left >= 0 && rect.left < viewportWidth
+                            });
+                        }, 100);
                     });
                 });
                 
