@@ -1,0 +1,13 @@
+New Features:
+• Strava OAuth now launches in your default browser with an automatic WebView fallback for devices without a compatible browser.
+• Added an App Link settings helper that guides users directly to Android’s “Open supported links” screen for quick Strava redirect fixes.
+
+Bug Fixes:
+• Resolved Strava login failures caused by missing HTTPS auto-verification and unverified deep links.
+• Fixed authentication errors on devices where Strava rejects embedded WebViews by applying the required compatibility settings.
+
+Improvements:
+• Updated Strava OAuth documentation and in-app guidance with redirect URI setup and troubleshooting steps for Play Store compliance.
+• Hardened manifest and WebView configuration (cookies, user agent, safe browsing) to improve reliability on Android 14–16.
+
+

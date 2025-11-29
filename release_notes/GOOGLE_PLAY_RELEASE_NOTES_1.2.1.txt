@@ -1,0 +1,13 @@
+Bug Fixes:
+• Fixed button state management in file selector - buttons now correctly show loading and progress states.
+• Improved file picker handling for local file selection.
+• Fixed button text updates during file processing operations.
+• Resolved issues with button states not resetting after operations complete.
+
+Improvements:
+• Enhanced file selector with better progress feedback during file processing.
+• Improved button text updates to show current operation status (loading, geocoding, generating miniatures, etc.).
+• Better separation of file processing operations for improved reliability.
+• Optimized file cache management for faster file list loading.
+• Improved code architecture for better maintainability and performance.
+

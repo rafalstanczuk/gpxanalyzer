@@ -247,5 +247,250 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
+
+    // Discover release notes files dynamically
+    async function discoverReleaseNotesFiles() {
+        // First, try to load an index file if it exists
+        try {
+            const indexResponse = await fetch('release_notes/index.txt');
+            if (indexResponse.ok) {
+                const indexContent = await indexResponse.text();
+                const files = indexContent.split('\n')
+                    .map(line => line.trim())
+                    .filter(line => line.length > 0 && line.endsWith('.txt'))
+                    .map(line => line.startsWith('release_notes/') ? line : `release_notes/${line}`);
+                console.log(`Found ${files.length} files from index.txt`);
+                return files;
+            }
+        } catch (error) {
+            console.log('No index.txt found, trying version discovery...');
+        }
+
+        // Fallback: Try to discover files by attempting version patterns
+        // Optimized: Start from higher versions (more likely) and work backwards
+        const basePath = 'release_notes/GOOGLE_PLAY_RELEASE_NOTES_';
+        const discoveredFiles = [];
+        
+        console.log('Discovering release notes files...');
+        
+        // Try a reasonable range: major 0-5, minor 0-9, patch 0-9
+        // This covers versions 0.0.0 to 5.9.9 (600 combinations instead of 1000)
+        // Start from higher versions first (more likely to exist)
+        const maxMajor = 6;
+        const maxMinor = 10;
+        const maxPatch = 10;
+        const batchSize = 50; // Process in batches to avoid too many simultaneous requests
+        
+        // Generate version combinations, starting from higher versions
+        const allVersions = [];
+        for (let major = maxMajor - 1; major >= 0; major--) {
+            for (let minor = maxMinor - 1; minor >= 0; minor--) {
+                for (let patch = maxPatch - 1; patch >= 0; patch--) {
+                    allVersions.push(`${major}.${minor}.${patch}`);
+                }
+            }
+        }
+        
+        // Process in batches
+        for (let i = 0; i < allVersions.length; i += batchSize) {
+            const batch = allVersions.slice(i, i + batchSize);
+            const batchPromises = batch.map(async (version) => {
+                const filePath = `${basePath}${version}.txt`;
+                try {
+                    const response = await fetch(filePath, { 
+                        method: 'GET',
+                        cache: 'no-cache' // Prevent caching issues during discovery
+                    });
+                    if (response.ok) {
+                        // Fetch content during discovery to avoid second request
+                        const content = await response.text();
+                        const versionMatch = filePath.match(/(\d+\.\d+\.\d+)/);
+                        const version = versionMatch ? versionMatch[1] : 'Unknown';
+                        return { version, content, filePath };
+                    }
+                } catch (error) {
+                    // File doesn't exist, ignore
+                }
+                return null;
+            });
+            
+            const batchResults = await Promise.all(batchPromises);
+            const found = batchResults.filter(note => note !== null);
+            discoveredFiles.push(...found);
+        }
+        
+        console.log(`Discovered ${discoveredFiles.length} release notes files`);
+        return discoveredFiles;
+    }
+
+    // Load and display release notes
+    async function loadReleaseNotes() {
+        const container = document.getElementById('release-notes-container');
+        if (!container) {
+            console.warn('Release notes container not found');
+            return;
+        }
+
+        try {
+            // Discover and fetch release notes files dynamically
+            const releaseNotesFiles = await discoverReleaseNotesFiles();
+
+            if (releaseNotesFiles.length === 0) {
+                container.innerHTML = '<div class="release-notes-loading">No release notes found.</div>';
+                return;
+            }
+
+            // Fetch all release notes (if discovery returned file paths, fetch content)
+            // If discovery already returned content, use it directly
+            const releaseNotesPromises = releaseNotesFiles.map(async (filePathOrNote) => {
+                // Check if it's already a note object with content
+                if (typeof filePathOrNote === 'object' && filePathOrNote.content) {
+                    return filePathOrNote;
+                }
+                
+                // Otherwise, it's a file path - fetch the content
+                const filePath = filePathOrNote;
+                try {
+                    const response = await fetch(filePath);
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
+                    const content = await response.text();
+                    
+                    // Extract version from filename
+                    const versionMatch = filePath.match(/(\d+\.\d+\.\d+)/);
+                    const version = versionMatch ? versionMatch[1] : 'Unknown';
+                    
+                    return { version, content, filePath };
+                } catch (error) {
+                    console.error(`Error loading ${filePath}:`, error);
+                    return null;
+                }
+            });
+
+            const releaseNotes = (await Promise.all(releaseNotesPromises))
+                .filter(note => note !== null);
+
+            if (releaseNotes.length === 0) {
+                container.innerHTML = '<div class="release-notes-loading">No release notes found.</div>';
+                return;
+            }
+
+            // Sort by version (newest first)
+            releaseNotes.sort((a, b) => {
+                const aParts = a.version.split('.').map(Number);
+                const bParts = b.version.split('.').map(Number);
+                for (let i = 0; i < Math.max(aParts.length, bParts.length); i++) {
+                    const aVal = aParts[i] || 0;
+                    const bVal = bParts[i] || 0;
+                    if (bVal !== aVal) return bVal - aVal;
+                }
+                return 0;
+            });
+
+            // Parse and render release notes
+            container.innerHTML = releaseNotes.map(note => {
+                const parsed = parseReleaseNote(note.content, note.version);
+                return renderReleaseNote(parsed, note.version);
+            }).join('');
+
+            // Animate release notes on scroll
+            const releaseNoteItems = document.querySelectorAll('.release-note-item');
+            releaseNoteItems.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+                observer.observe(el);
+            });
+
+        } catch (error) {
+            console.error('Error loading release notes:', error);
+            container.innerHTML = '<div class="release-notes-loading">Error loading release notes. Please view via web server.</div>';
+        }
+    }
+
+    // Parse release note content into structured format
+    function parseReleaseNote(content, version) {
+        const lines = content.split('\n').map(line => line.trim()).filter(line => line.length > 0);
+        const sections = {
+            'New Features': [],
+            'Bug Fixes': [],
+            'Improvements': []
+        };
+        
+        let currentSection = null;
+        
+        for (const line of lines) {
+            if (line === 'New Features:') {
+                currentSection = 'New Features';
+            } else if (line === 'Bug Fixes:') {
+                currentSection = 'Bug Fixes';
+            } else if (line === 'Improvements:') {
+                currentSection = 'Improvements';
+            } else if (currentSection && line.startsWith('•')) {
+                sections[currentSection].push(line.substring(1).trim());
+            } else if (currentSection && line.length > 0) {
+                // Handle multi-line items
+                if (sections[currentSection].length > 0) {
+                    sections[currentSection][sections[currentSection].length - 1] += ' ' + line;
+                }
+            }
+        }
+        
+        return sections;
+    }
+
+    // Render a release note item
+    function renderReleaseNote(sections, version) {
+        const hasContent = Object.values(sections).some(arr => arr.length > 0);
+        if (!hasContent) return '';
+
+        const sectionOrder = ['New Features', 'Bug Fixes', 'Improvements'];
+        const sectionTitles = {
+            'New Features': 'New Features',
+            'Bug Fixes': 'Bug Fixes',
+            'Improvements': 'Improvements'
+        };
+
+        let html = `<div class="release-note-item">`;
+        html += `<div class="release-note-header">`;
+        html += `<div class="release-note-version">Version ${version}</div>`;
+        html += `</div>`;
+        html += `<div class="release-note-content">`;
+
+        sectionOrder.forEach(sectionKey => {
+            const items = sections[sectionKey];
+            if (items.length > 0) {
+                const sectionClass = sectionKey.toLowerCase().replace(/\s+/g, '-');
+                html += `<h4 data-section="${sectionClass}">${sectionTitles[sectionKey]}</h4>`;
+                html += `<ul>`;
+                items.forEach(item => {
+                    html += `<li>${escapeHtml(item)}</li>`;
+                });
+                html += `</ul>`;
+            }
+        });
+
+        html += `</div>`;
+        html += `</div>`;
+        
+        return html;
+    }
+
+    // Escape HTML to prevent XSS
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    // Load release notes when DOM is ready
+    loadReleaseNotes().catch(error => {
+        console.error('Fatal error loading release notes:', error);
+        const container = document.getElementById('release-notes-container');
+        if (container) {
+            container.innerHTML = '<div class="release-notes-loading">Error loading release notes. Please view via web server.</div>';
+        }
+    });
 });
 
