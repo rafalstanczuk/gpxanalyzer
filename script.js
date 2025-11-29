@@ -214,12 +214,32 @@ document.addEventListener('DOMContentLoaded', () => {
                         modalImg.style.setProperty('display', 'block', 'important');
                         modalImg.style.setProperty('visibility', 'visible', 'important');
                         modalImg.style.setProperty('opacity', '1', 'important');
-                        modalImg.style.setProperty('position', 'relative', 'important');
+                        modalImg.style.setProperty('position', 'static', 'important');
                         modalImg.style.setProperty('z-index', '10002', 'important');
                         modalImg.style.setProperty('background', 'rgba(255, 0, 0, 0.3)', 'important');
                         modalImg.style.setProperty('border', '5px solid yellow', 'important');
                         modalImg.style.setProperty('box-shadow', '0 0 50px rgba(255, 255, 0, 0.8)', 'important');
+                        modalImg.style.setProperty('transform', 'none', 'important');
+                        modalImg.style.setProperty('-webkit-transform', 'none', 'important');
+                        modalImg.style.setProperty('top', 'auto', 'important');
+                        modalImg.style.setProperty('left', 'auto', 'important');
+                        modalImg.style.setProperty('right', 'auto', 'important');
+                        modalImg.style.setProperty('bottom', 'auto', 'important');
+                        modalImg.style.setProperty('margin', '0 auto', 'important');
+                        
+                        // Also fix container
+                        const container = modalImg.parentElement;
+                        if (container) {
+                            container.style.setProperty('overflow', 'visible', 'important');
+                            container.style.setProperty('transform', 'none', 'important');
+                            container.style.setProperty('-webkit-transform', 'none', 'important');
+                            container.style.setProperty('position', 'relative', 'important');
+                            container.scrollTop = 0;
+                            container.scrollLeft = 0;
+                        }
+                        
                         console.log('=== FORCED VISIBLE STYLES WITH RED BACKGROUND AND YELLOW BORDER ===');
+                        console.log('After fix - getBoundingClientRect:', modalImg.getBoundingClientRect());
                     }
                 }, 100);
                 

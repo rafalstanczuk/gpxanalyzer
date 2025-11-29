@@ -1659,18 +1659,20 @@ body {
 /* Screenshot Lightbox Modal */
 .screenshot-modal {
     display: none;
-    position: fixed;
+    position: fixed !important;
     z-index: 10000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
     overflow: hidden;
     background-color: rgba(0, 0, 0, 0.95);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     animation: fadeIn 0.3s ease;
     flex-direction: column;
+    transform: none !important;
+    -webkit-transform: none !important;
 }
 
 .screenshot-modal.show {
@@ -1782,7 +1784,7 @@ body {
     -webkit-justify-content: center !important;
     -ms-flex-pack: center !important;
     justify-content: center !important;
-    overflow: auto;
+    overflow: visible !important;
     padding: 2rem;
     width: 100% !important;
     height: 100% !important;
@@ -1790,7 +1792,6 @@ body {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     position: relative !important;
-    -webkit-overflow-scrolling: touch;
     z-index: 10001 !important;
     background: rgba(0, 0, 0, 0.3) !important;
     -webkit-box-flex: 1;
@@ -1799,6 +1800,8 @@ body {
     flex-grow: 1;
     top: 0 !important;
     left: 0 !important;
+    transform: none !important;
+    -webkit-transform: none !important;
 }
 
 .screenshot-modal-content {
@@ -1823,17 +1826,18 @@ body {
     -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
     flex-shrink: 0;
-    margin: 0 auto !important;
+    margin: auto !important;
     vertical-align: middle;
-    position: static !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: translate(-50%, -50%) !important;
+    -webkit-transform: translate(-50%, -50%) !important;
     z-index: 10002 !important;
     background: rgba(255, 255, 255, 0.1) !important;
     border: 2px solid rgba(255, 255, 255, 0.3) !important;
-    top: auto !important;
-    left: auto !important;
-    right: auto !important;
-    bottom: auto !important;
-    transform: none !important;
 }
 
 @-webkit-keyframes zoomIn {
