@@ -174,6 +174,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
                 
+                // Reset modal and container scroll positions BEFORE showing
+                const container = document.querySelector('.screenshot-modal-container');
+                if (container) {
+                    container.scrollTop = 0;
+                    container.scrollLeft = 0;
+                }
+                
+                // Reset modal scroll
+                modal.scrollTop = 0;
+                modal.scrollLeft = 0;
+                
                 // Show modal
                 modal.classList.add('show');
                 console.log('=== MODAL SHOW ===');
@@ -335,25 +346,57 @@ document.addEventListener('DOMContentLoaded', () => {
                                         console.log('Viewport center:', viewportCenterX, viewportCenterY);
                                         console.log('Calculated fallback position:', leftPos, topPos);
                                         
+                                        // Reset container scroll FIRST
+                                        const container = modalImg.closest('.screenshot-modal-container');
+                                        if (container) {
+                                            container.scrollTop = 0;
+                                            container.scrollLeft = 0;
+                                            container.style.setProperty('overflow', 'hidden', 'important');
+                                        }
+                                        
+                                        // Reset modal scroll
+                                        const modal = modalImg.closest('.screenshot-modal');
+                                        if (modal) {
+                                            modal.scrollTop = 0;
+                                            modal.scrollLeft = 0;
+                                        }
+                                        
                                         // Remove all conflicting styles first
                                         modalImg.style.removeProperty('margin');
                                         modalImg.style.removeProperty('vertical-align');
+                                        modalImg.style.removeProperty('position');
+                                        modalImg.style.removeProperty('top');
+                                        modalImg.style.removeProperty('left');
+                                        modalImg.style.removeProperty('right');
+                                        modalImg.style.removeProperty('bottom');
+                                        modalImg.style.removeProperty('transform');
+                                        modalImg.style.removeProperty('-webkit-transform');
                                         
+                                        // Use fixed positioning relative to viewport
                                         modalImg.style.setProperty('position', 'fixed', 'important');
-                                        modalImg.style.setProperty('top', topPos + 'px', 'important');
-                                        modalImg.style.setProperty('left', leftPos + 'px', 'important');
+                                        modalImg.style.setProperty('top', Math.max(actualTopbarHeight + 10, topPos) + 'px', 'important');
+                                        modalImg.style.setProperty('left', Math.max(10, leftPos) + 'px', 'important');
                                         modalImg.style.setProperty('right', 'auto', 'important');
                                         modalImg.style.setProperty('bottom', 'auto', 'important');
                                         modalImg.style.setProperty('transform', 'none', 'important');
                                         modalImg.style.setProperty('-webkit-transform', 'none', 'important');
                                         modalImg.style.setProperty('margin', '0', 'important');
+                                        modalImg.style.setProperty('z-index', '10003', 'important');
                                         
                                         // Force reflow
                                         void modalImg.offsetHeight;
+                                        void container?.offsetHeight;
                                         
                                         const finalRect2 = modalImg.getBoundingClientRect();
                                         console.log('Image rect after fixed positioning fallback:', finalRect2);
                                         console.log('Final position check - top:', finalRect2.top, 'should be between', actualTopbarHeight, 'and', actualViewportHeight);
+                                        
+                                        // If still wrong, force it to viewport center
+                                        if (finalRect2.top < actualTopbarHeight || finalRect2.top > actualViewportHeight || finalRect2.top < 0) {
+                                            const forcedTop = actualTopbarHeight + ((actualViewportHeight - actualTopbarHeight) / 2) - (imgHeight / 2);
+                                            modalImg.style.setProperty('top', Math.max(actualTopbarHeight + 10, forcedTop) + 'px', 'important');
+                                            console.log('Forced position to:', Math.max(actualTopbarHeight + 10, forcedTop));
+                                        }
                                     }
                                 }, 100);
                             }, 200);
@@ -364,12 +407,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }, 100);
                 
-                // Prevent body scroll and lock position
-                const scrollY = window.scrollY;
+                // Prevent body scroll and lock position - do this FIRST before showing modal
+                const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
                 document.body.style.position = 'fixed';
                 document.body.style.top = `-${scrollY}px`;
                 document.body.style.width = '100%';
                 document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                
+                // Also ensure html doesn't scroll
+                document.documentElement.style.overflow = 'hidden';
+                document.documentElement.style.position = 'fixed';
+                document.documentElement.style.top = `-${scrollY}px`;
+                document.documentElement.style.width = '100%';
                 
                 // Force a reflow to ensure display
                 void modal.offsetHeight;
@@ -390,8 +439,16 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.style.top = '';
             document.body.style.width = '';
             document.body.style.overflow = ''; // Restore scrolling
+            
+            // Restore html scroll
+            document.documentElement.style.overflow = '';
+            document.documentElement.style.position = '';
+            document.documentElement.style.top = '';
+            document.documentElement.style.width = '';
+            
             if (scrollY) {
-                window.scrollTo(0, parseInt(scrollY || '0') * -1);
+                const scrollValue = parseInt(scrollY.replace('px', '').replace('-', '') || '0');
+                window.scrollTo(0, scrollValue);
             }
         });
     }
@@ -407,8 +464,16 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.style.top = '';
             document.body.style.width = '';
             document.body.style.overflow = ''; // Restore scrolling
+            
+            // Restore html scroll
+            document.documentElement.style.overflow = '';
+            document.documentElement.style.position = '';
+            document.documentElement.style.top = '';
+            document.documentElement.style.width = '';
+            
             if (scrollY) {
-                window.scrollTo(0, parseInt(scrollY || '0') * -1);
+                const scrollValue = parseInt(scrollY.replace('px', '').replace('-', '') || '0');
+                window.scrollTo(0, scrollValue);
             }
         });
     }
@@ -424,8 +489,16 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.style.top = '';
             document.body.style.width = '';
             document.body.style.overflow = ''; // Restore scrolling
+            
+            // Restore html scroll
+            document.documentElement.style.overflow = '';
+            document.documentElement.style.position = '';
+            document.documentElement.style.top = '';
+            document.documentElement.style.width = '';
+            
             if (scrollY) {
-                window.scrollTo(0, parseInt(scrollY || '0') * -1);
+                const scrollValue = parseInt(scrollY.replace('px', '').replace('-', '') || '0');
+                window.scrollTo(0, scrollValue);
             }
         }
     });
@@ -448,8 +521,16 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.style.top = '';
             document.body.style.width = '';
             document.body.style.overflow = ''; // Restore scrolling
+            
+            // Restore html scroll
+            document.documentElement.style.overflow = '';
+            document.documentElement.style.position = '';
+            document.documentElement.style.top = '';
+            document.documentElement.style.width = '';
+            
             if (scrollY) {
-                window.scrollTo(0, parseInt(scrollY || '0') * -1);
+                const scrollValue = parseInt(scrollY.replace('px', '').replace('-', '') || '0');
+                window.scrollTo(0, scrollValue);
             }
         }
     });
