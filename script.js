@@ -242,35 +242,36 @@ document.addEventListener('DOMContentLoaded', () => {
                             container.scrollTop = 0;
                             container.scrollLeft = 0;
                             
-                            // Wait for image to load and calculate proper position
+                            // Wait for image to load and calculate proper position based on viewport
                             setTimeout(() => {
-                                const containerRect = container.getBoundingClientRect();
-                                const imgRect = modalImg.getBoundingClientRect();
-                                const imgHeight = imgRect.height || modalImg.offsetHeight;
-                                const imgWidth = imgRect.width || modalImg.offsetWidth;
+                                const imgHeight = modalImg.offsetHeight || modalImg.clientHeight;
+                                const imgWidth = modalImg.offsetWidth || modalImg.clientWidth;
                                 
-                                console.log('Container rect:', containerRect);
-                                console.log('Image rect before fix:', imgRect);
+                                // Get topbar height
+                                const topbar = document.querySelector('.screenshot-modal-topbar');
+                                const topbarHeight = topbar ? topbar.offsetHeight : 100;
+                                
+                                // Calculate center based on viewport, not container
+                                const viewportCenterX = viewportWidth / 2;
+                                const viewportCenterY = (viewportHeight / 2) + (topbarHeight / 2);
+                                
+                                // Set position using pixels - center in viewport
+                                const topPos = viewportCenterY - (imgHeight / 2);
+                                const leftPos = viewportCenterX - (imgWidth / 2);
+                                
+                                console.log('Viewport center:', viewportCenterX, viewportCenterY);
                                 console.log('Image dimensions:', imgWidth, 'x', imgHeight);
-                                
-                                // Calculate center position based on container
-                                const centerX = containerRect.left + (containerRect.width / 2);
-                                const centerY = containerRect.top + (containerRect.height / 2);
-                                
-                                // Set position using pixels instead of percentage
-                                const topPos = centerY - (imgHeight / 2);
-                                const leftPos = centerX - (imgWidth / 2);
-                                
-                                console.log('Calculated center position:', leftPos, topPos);
+                                console.log('Calculated position:', leftPos, topPos);
                                 
                                 modalImg.style.setProperty('position', 'fixed', 'important');
-                                modalImg.style.setProperty('top', topPos + 'px', 'important');
-                                modalImg.style.setProperty('left', leftPos + 'px', 'important');
+                                modalImg.style.setProperty('top', Math.max(100, topPos) + 'px', 'important');
+                                modalImg.style.setProperty('left', Math.max(0, leftPos) + 'px', 'important');
                                 modalImg.style.setProperty('transform', 'none', 'important');
                                 modalImg.style.setProperty('-webkit-transform', 'none', 'important');
                                 
                                 const finalRect = modalImg.getBoundingClientRect();
                                 console.log('Image rect after fix:', finalRect);
+                                console.log('Image should be visible at y:', finalRect.top, '(should be > 0 and <', viewportHeight, ')');
                             }, 150);
                         }
                         
