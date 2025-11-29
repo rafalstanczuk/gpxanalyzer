@@ -261,19 +261,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 });
                 
-                // Prevent body scroll and lock position - do this FIRST before showing modal
-                const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
-                document.body.style.position = 'fixed';
-                document.body.style.top = `-${scrollY}px`;
-                document.body.style.width = '100%';
-                document.body.style.overflow = 'hidden'; // Prevent background scrolling
-                
-                // Also ensure html doesn't scroll
-                document.documentElement.style.overflow = 'hidden';
-                document.documentElement.style.position = 'fixed';
-                document.documentElement.style.top = `-${scrollY}px`;
-                document.documentElement.style.width = '100%';
-                
                 // Force a reflow to ensure display
                 void modal.offsetHeight;
             } else {
