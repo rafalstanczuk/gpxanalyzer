@@ -315,15 +315,17 @@
     <div id="screenshot-modal" class="screenshot-modal">
         <div class="screenshot-modal-topbar">
             <div class="screenshot-modal-description" id="screenshot-modal-description"></div>
-            <span class="screenshot-modal-close">&times;</span>
+            <button class="screenshot-modal-close" aria-label="Close">
+                <img src="icons/ic_close.svg" alt="Close" class="screenshot-modal-close-icon">
+            </button>
         </div>
         <div class="screenshot-modal-container">
             <button class="screenshot-modal-nav screenshot-modal-nav-left" id="screenshot-modal-prev" aria-label="Previous screenshot">
-                <span>&#8249;</span>
+                <img src="icons/arrow_back.svg" alt="Previous" class="screenshot-modal-nav-icon">
             </button>
             <img class="screenshot-modal-content" id="screenshot-modal-img" alt="Screenshot" style="display: block; visibility: visible; opacity: 1;">
             <button class="screenshot-modal-nav screenshot-modal-nav-right" id="screenshot-modal-next" aria-label="Next screenshot">
-                <span>&#8250;</span>
+                <img src="icons/arrow_forward.svg" alt="Next" class="screenshot-modal-nav-icon">
             </button>
         </div>
     </div>

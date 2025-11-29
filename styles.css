@@ -1752,8 +1752,6 @@ body {
 
 .screenshot-modal-close {
     color: var(--text-primary);
-    font-size: 2.5rem;
-    font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
     line-height: 1;
@@ -1769,15 +1767,28 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.2);
     flex-shrink: 0;
     user-select: none;
+    padding: 0;
+    margin: 0;
+}
+
+.screenshot-modal-close-icon {
+    width: 24px;
+    height: 24px;
+    display: block;
+    transition: all 0.3s ease;
 }
 
 .screenshot-modal-close:hover,
 .screenshot-modal-close:focus {
-    color: #fff;
     background: rgba(239, 68, 68, 0.8);
     border-color: rgba(239, 68, 68, 0.5);
     transform: scale(1.1) rotate(90deg);
     box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+}
+
+.screenshot-modal-close:hover .screenshot-modal-close-icon,
+.screenshot-modal-close:focus .screenshot-modal-close-icon {
+    filter: brightness(1.2);
 }
 
 .screenshot-modal-close:active {
@@ -1919,9 +1930,16 @@ body {
     right: 20px;
 }
 
-.screenshot-modal-nav span {
-    line-height: 1;
+.screenshot-modal-nav-icon {
+    width: 24px;
+    height: 24px;
     display: block;
+    transition: all 0.3s ease;
+    filter: brightness(0) invert(1); /* Make icon white */
+}
+
+.screenshot-modal-nav:hover .screenshot-modal-nav-icon {
+    filter: brightness(0) invert(1) brightness(1.2);
 }
 
 /* Hide navigation buttons on very small screens */
@@ -1978,9 +1996,13 @@ body {
     }
     
     .screenshot-modal-close {
-        font-size: 2rem;
         width: 40px;
         height: 40px;
+    }
+    
+    .screenshot-modal-close-icon {
+        width: 20px;
+        height: 20px;
     }
     
     .screenshot-modal-container {
