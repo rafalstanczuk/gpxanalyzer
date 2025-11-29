@@ -64,15 +64,39 @@ document.addEventListener('DOMContentLoaded', () => {
     screenshotItems.forEach(item => {
         item.addEventListener('click', () => {
             const screenshotSrc = item.getAttribute('data-screenshot');
-            if (screenshotSrc && modalImg) {
-                // Set image source and ensure it's visible
+            console.log('Screenshot clicked, src:', screenshotSrc);
+            console.log('Modal:', modal);
+            console.log('ModalImg:', modalImg);
+            
+            if (!modal) {
+                console.error('Modal element not found!');
+                return;
+            }
+            
+            if (!modalImg) {
+                console.error('Modal image element not found!');
+                return;
+            }
+            
+            if (screenshotSrc) {
+                // Reset image first
+                modalImg.src = '';
+                modalImg.style.display = 'none';
+                
+                // Set image source
                 modalImg.src = screenshotSrc;
+                console.log('Setting image src to:', screenshotSrc);
+                
+                // Force visibility
                 modalImg.style.display = 'block';
                 modalImg.style.visibility = 'visible';
                 modalImg.style.opacity = '1';
+                modalImg.style.width = 'auto';
+                modalImg.style.height = 'auto';
                 
                 // Ensure image loads
                 modalImg.onload = function() {
+                    console.log('Image loaded successfully');
                     this.style.display = 'block';
                     this.style.visibility = 'visible';
                     this.style.opacity = '1';
@@ -80,7 +104,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 modalImg.onerror = function() {
                     console.error('Failed to load image:', screenshotSrc);
-                    this.alt = 'Image failed to load';
+                    this.alt = 'Image failed to load: ' + screenshotSrc;
+                    this.style.display = 'block';
+                    this.style.visibility = 'visible';
+                    this.style.opacity = '1';
+                    this.style.border = '2px solid red';
+                    this.style.padding = '20px';
+                    this.style.backgroundColor = 'rgba(255, 0, 0, 0.1)';
                 };
                 
                 // Get description from the screenshot item
@@ -99,8 +129,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
                 
+                // Show modal
                 modal.classList.add('show');
+                console.log('Modal show class added');
                 document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                
+                // Force a reflow to ensure display
+                void modal.offsetHeight;
+            } else {
+                console.error('No screenshot source found');
             }
         });
     });
