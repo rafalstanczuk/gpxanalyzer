@@ -56,7 +56,7 @@ body {
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
     width: 100%;
-    overflow-x: hidden;
+    overflow: visible;
 }
 
 .nav-content {
@@ -75,7 +75,8 @@ body {
     padding: 1rem 0;
     gap: 1rem;
     -webkit-gap: 1rem; /* Safari */
-    min-width: 0;
+    min-width: -webkit-min-content;
+    min-width: min-content;
     width: 100%;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -205,7 +206,8 @@ body {
     -webkit-flex: 1 1 auto;
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
-    min-width: 0;
+    min-width: -webkit-min-content;
+    min-width: min-content;
     overflow: visible;
     white-space: nowrap;
     -webkit-box-pack: center;
@@ -225,12 +227,14 @@ body {
     transition: color 0.3s ease, font-size 0.3s ease;
     white-space: nowrap;
     padding: 0.25rem 0;
-    -webkit-flex-shrink: 1;
-    -ms-flex-negative: 1;
-    flex-shrink: 1;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
     -webkit-flex-basis: auto;
     -ms-flex-preferred-size: auto;
     flex-basis: auto;
+    min-width: -webkit-fit-content;
+    min-width: fit-content;
 }
 
 .nav-links a:hover {
@@ -1628,8 +1632,8 @@ body {
     font-size: 0.9rem;
     line-height: 1.4;
     text-align: center;
-    opacity: 0;
-    transform: translateY(20px);
+    opacity: 1;
+    transform: translateY(0);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: none;
     z-index: 3;
@@ -1649,6 +1653,7 @@ body {
 .screenshot-item:hover .screenshot-description {
     opacity: 1;
     transform: translateY(0);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.8) 70%, transparent 100%);
 }
 
 /* Screenshot Lightbox Modal */
@@ -2746,20 +2751,6 @@ body {
 /* Responsive Design */
 @media (max-width: 1200px) {
     .nav-links {
-        gap: 1rem;
-        -webkit-gap: 1rem; /* Safari */
-        -webkit-flex-wrap: nowrap;
-        -ms-flex-wrap: nowrap;
-        flex-wrap: nowrap;
-    }
-    
-    .nav-links a {
-        font-size: 0.95rem;
-    }
-}
-
-@media (max-width: 1024px) {
-    .nav-links {
         gap: 0.875rem;
         -webkit-gap: 0.875rem; /* Safari */
         -webkit-flex-wrap: nowrap;
@@ -2771,13 +2762,42 @@ body {
         font-size: 0.9rem;
     }
     
+    .nav-content {
+        gap: 0.75rem;
+        -webkit-gap: 0.75rem; /* Safari */
+    }
+}
+
+@media (max-width: 1024px) {
+    .nav-links {
+        gap: 0.75rem;
+        -webkit-gap: 0.75rem; /* Safari */
+        -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    }
+    
+    .nav-links a {
+        font-size: 0.875rem;
+    }
+    
     .logo {
-        font-size: 1.35rem;
+        font-size: 1.3rem;
     }
     
     .logo-icon-img {
-        width: 36px;
-        height: 36px;
+        width: 34px;
+        height: 34px;
+    }
+    
+    .nav-content {
+        gap: 0.625rem;
+        -webkit-gap: 0.625rem; /* Safari */
+    }
+    
+    .donation-links {
+        gap: 0.5rem;
+        -webkit-gap: 0.5rem; /* Safari */
     }
 }
 
