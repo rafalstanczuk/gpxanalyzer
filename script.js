@@ -58,10 +58,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalImg = document.getElementById('screenshot-modal-img');
     const modalDescription = document.getElementById('screenshot-modal-description');
     const closeBtn = document.querySelector('.screenshot-modal-close');
+    const prevBtn = document.getElementById('screenshot-modal-prev');
+    const nextBtn = document.getElementById('screenshot-modal-next');
     const screenshotItems = document.querySelectorAll('.screenshot-item');
     
     // Store screenshot section position for scrolling back after close
     let screenshotSectionPosition = null;
+    
+    // Track current screenshot index
+    let currentScreenshotIndex = -1;
     
     // Function to close modal and scroll back to screenshot section
     function closeModalAndScrollBack() {
@@ -90,10 +95,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Open modal when screenshot is clicked
-    screenshotItems.forEach(item => {
-        item.addEventListener('click', () => {
-            const screenshotSrc = item.getAttribute('data-screenshot');
+    // Function to open modal with a specific screenshot
+    function openScreenshotModal(index) {
+        if (index < 0 || index >= screenshotItems.length) return;
+        
+        const item = screenshotItems[index];
+        currentScreenshotIndex = index;
+        
+        const screenshotSrc = item.getAttribute('data-screenshot');
+        console.log('Opening screenshot', index, 'src:', screenshotSrc);
             console.log('Screenshot clicked, src:', screenshotSrc);
             console.log('Modal:', modal);
             console.log('ModalImg:', modalImg);
@@ -239,6 +249,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 modal.classList.add('show');
                 console.log('Modal shown, class added');
                 
+                // Update navigation buttons
+                updateNavigationButtons();
+                
                 // Wait for modal to render, then set up image
                 requestAnimationFrame(() => {
                     requestAnimationFrame(() => {
@@ -357,6 +370,35 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 console.error('No screenshot source found');
             }
+    }
+    
+    // Navigation functions
+    function showNextScreenshot() {
+        if (currentScreenshotIndex < screenshotItems.length - 1) {
+            openScreenshotModal(currentScreenshotIndex + 1);
+        }
+    }
+    
+    function showPreviousScreenshot() {
+        if (currentScreenshotIndex > 0) {
+            openScreenshotModal(currentScreenshotIndex - 1);
+        }
+    }
+    
+    // Update navigation button visibility
+    function updateNavigationButtons() {
+        if (prevBtn) {
+            prevBtn.style.display = currentScreenshotIndex > 0 ? 'flex' : 'none';
+        }
+        if (nextBtn) {
+            nextBtn.style.display = currentScreenshotIndex < screenshotItems.length - 1 ? 'flex' : 'none';
+        }
+    }
+    
+    // Open modal when screenshot is clicked
+    screenshotItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            openScreenshotModal(index);
         });
     });
 
@@ -368,9 +410,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Close modal when clicking on the image
+    // Close modal when clicking on the image (but not on navigation buttons)
     if (modalImg) {
         modalImg.addEventListener('click', (e) => {
+            // Don't close if clicking on navigation buttons
+            if (e.target.closest('.screenshot-modal-nav')) {
+                return;
+            }
             e.stopPropagation(); // Prevent event from bubbling to modal
             closeModalAndScrollBack();
         });
@@ -392,10 +438,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Close modal with Escape key
+    // Navigation button handlers
+    if (prevBtn) {
+        prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showPreviousScreenshot();
+        });
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showNextScreenshot();
+        });
+    }
+    
+    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('show')) {
+        if (!modal.classList.contains('show')) return;
+        
+        if (e.key === 'Escape') {
             closeModalAndScrollBack();
+        } else if (e.key === 'ArrowLeft') {
+            showPreviousScreenshot();
+        } else if (e.key === 'ArrowRight') {
+            showNextScreenshot();
         }
     });
 
