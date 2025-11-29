@@ -1674,7 +1674,18 @@ body {
 }
 
 .screenshot-modal.show {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
     align-items: stretch;
 }
 
@@ -1756,7 +1767,7 @@ body {
 
 /* Modal Container for Centered Image */
 .screenshot-modal-container {
-    flex: 1 1 0%;
+    flex: 1 1 auto;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -1776,14 +1787,15 @@ body {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     position: relative;
+    -webkit-overflow-scrolling: touch;
 }
 
 .screenshot-modal-content {
     display: block;
     max-width: 90vw;
     max-width: -webkit-calc(90vw);
-    max-height: calc(100vh - 200px);
-    max-height: -webkit-calc(100vh - 200px);
+    max-height: calc(100vh - 180px);
+    max-height: -webkit-calc(100vh - 180px);
     width: auto;
     height: auto;
     -o-object-fit: contain;
@@ -1796,8 +1808,8 @@ body {
     -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
     flex-shrink: 0;
-    /* Ensure image is centered both horizontally and vertically */
-    margin: auto;
+    margin: 0 auto;
+    vertical-align: middle;
 }
 
 @-webkit-keyframes zoomIn {
@@ -1847,15 +1859,20 @@ body {
         min-height: 0;
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
+        -webkit-box-flex: 1;
+        -webkit-flex: 1 1 auto;
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
     }
     
     .screenshot-modal-content {
         max-width: 95vw;
         max-width: -webkit-calc(95vw);
-        max-height: calc(100vh - 160px);
-        max-height: -webkit-calc(100vh - 160px);
+        max-height: calc(100vh - 140px);
+        max-height: -webkit-calc(100vh - 140px);
         width: auto;
         height: auto;
+        margin: 0 auto;
         margin: auto;
     }
 }
