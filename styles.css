@@ -1537,6 +1537,7 @@ body {
     height: 100%;
     overflow: hidden;
     background-color: rgba(0, 0, 0, 0.95);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     animation: fadeIn 0.3s ease;
     flex-direction: column;
@@ -1545,6 +1546,15 @@ body {
 .screenshot-modal.show {
     display: flex;
     align-items: stretch;
+}
+
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes fadeIn {
@@ -1594,6 +1604,7 @@ body {
     justify-content: center;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     flex-shrink: 0;
@@ -1615,41 +1626,71 @@ body {
 
 /* Modal Container for Centered Image */
 .screenshot-modal-container {
-    flex: 1;
+    flex: 1 1 0%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
     justify-content: center;
     overflow: auto;
     padding: 2rem;
     width: 100%;
     min-height: 0;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     position: relative;
-    /* Ensure container takes remaining space and centers content */
-    flex-basis: auto;
 }
 
 .screenshot-modal-content {
     display: block;
     max-width: 90vw;
-    max-height: 85vh;
+    max-width: -webkit-calc(90vw);
+    max-height: calc(100vh - 200px);
+    max-height: -webkit-calc(100vh - 200px);
     width: auto;
     height: auto;
+    -o-object-fit: contain;
     object-fit: contain;
     border-radius: 0.5rem;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
     animation: zoomIn 0.3s ease;
+    -webkit-animation: zoomIn 0.3s ease;
     cursor: pointer;
-    /* Center the image - flexbox parent handles this */
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
     flex-shrink: 0;
+    /* Ensure image is centered both horizontally and vertically */
+    margin: auto;
 }
 
-@keyframes zoomIn {
+@-webkit-keyframes zoomIn {
     from {
+        -webkit-transform: scale(0.8);
         transform: scale(0.8);
         opacity: 0;
     }
     to {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        -webkit-transform: scale(0.8);
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: scale(1);
         transform: scale(1);
         opacity: 1;
     }
@@ -1674,15 +1715,18 @@ body {
     .screenshot-modal-container {
         padding: 1rem;
         min-height: 0;
+        -webkit-box-sizing: border-box;
         box-sizing: border-box;
-        flex-basis: auto;
     }
     
     .screenshot-modal-content {
         max-width: 95vw;
-        max-height: 80vh;
+        max-width: -webkit-calc(95vw);
+        max-height: calc(100vh - 160px);
+        max-height: -webkit-calc(100vh - 160px);
         width: auto;
         height: auto;
+        margin: auto;
     }
 }
 
