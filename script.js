@@ -210,11 +210,19 @@ document.addEventListener('DOMContentLoaded', () => {
                         console.log('Image actual dimensions:', modalImg.offsetWidth, 'x', modalImg.offsetHeight);
                         console.log('Image getBoundingClientRect:', modalImg.getBoundingClientRect());
                         
-                        // Force image to be properly sized and visible
-                        const viewportWidth = window.innerWidth;
-                        const viewportHeight = window.innerHeight;
+                        // Force image to be properly sized and visible - use actual viewport, not page
+                        const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+                        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+                        const topbar = document.querySelector('.screenshot-modal-topbar');
+                        const topbarHeight = topbar ? (topbar.offsetHeight || topbar.clientHeight) : 100;
+                        const availableHeight = viewportHeight - topbarHeight - 40; // 40px for padding
                         const maxImgWidth = Math.min(viewportWidth * 0.9, 1440);
-                        const maxImgHeight = Math.min((viewportHeight - 200) * 0.9, 2880);
+                        const maxImgHeight = Math.min(availableHeight * 0.95, 2880);
+                        
+                        console.log('Viewport:', viewportWidth, 'x', viewportHeight);
+                        console.log('Topbar height:', topbarHeight);
+                        console.log('Available height:', availableHeight);
+                        console.log('Max image size:', maxImgWidth, 'x', maxImgHeight);
                         
                         modalImg.style.setProperty('display', 'block', 'important');
                         modalImg.style.setProperty('visibility', 'visible', 'important');
@@ -290,27 +298,51 @@ document.addEventListener('DOMContentLoaded', () => {
                                     console.log('Image should be visible at y:', finalRect.top, '(should be > 0 and <', viewportHeight, ')');
                                     
                                     // If still not visible, use fixed positioning as fallback
-                                    if (finalRect.top < 0 || finalRect.top > viewportHeight || finalRect.top === 0) {
+                                    if (finalRect.top < 0 || finalRect.top > viewportHeight || finalRect.top === 0 || isNaN(finalRect.top)) {
                                         console.log('Flexbox failed, using fixed positioning fallback...');
-                                        const imgHeight = modalImg.offsetHeight || modalImg.clientHeight;
-                                        const imgWidth = modalImg.offsetWidth || modalImg.clientWidth;
-                                        const topbar = document.querySelector('.screenshot-modal-topbar');
-                                        const topbarHeight = topbar ? (topbar.offsetHeight || topbar.clientHeight) : 100;
-                                        const viewportCenterX = window.innerWidth / 2;
-                                        const viewportCenterY = (window.innerHeight / 2) + (topbarHeight / 2);
-                                        const topPos = Math.max(topbarHeight + 20, viewportCenterY - (imgHeight / 2));
-                                        const leftPos = Math.max(20, viewportCenterX - (imgWidth / 2));
                                         
-                                        console.log('Fallback position:', leftPos, topPos);
+                                        // Get actual viewport dimensions
+                                        const actualViewportWidth = window.innerWidth || document.documentElement.clientWidth;
+                                        const actualViewportHeight = window.innerHeight || document.documentElement.clientHeight;
+                                        const actualTopbar = document.querySelector('.screenshot-modal-topbar');
+                                        const actualTopbarHeight = actualTopbar ? (actualTopbar.offsetHeight || actualTopbar.clientHeight) : 100;
+                                        
+                                        const imgHeight = modalImg.offsetHeight || modalImg.clientHeight || 640;
+                                        const imgWidth = modalImg.offsetWidth || modalImg.clientWidth || 320;
+                                        
+                                        // Calculate center of visible viewport
+                                        const viewportCenterX = actualViewportWidth / 2;
+                                        const viewportCenterY = actualTopbarHeight + ((actualViewportHeight - actualTopbarHeight) / 2);
+                                        
+                                        // Position image in center of visible area
+                                        const topPos = viewportCenterY - (imgHeight / 2);
+                                        const leftPos = viewportCenterX - (imgWidth / 2);
+                                        
+                                        console.log('Actual viewport:', actualViewportWidth, 'x', actualViewportHeight);
+                                        console.log('Topbar height:', actualTopbarHeight);
+                                        console.log('Image size:', imgWidth, 'x', imgHeight);
+                                        console.log('Viewport center:', viewportCenterX, viewportCenterY);
+                                        console.log('Calculated fallback position:', leftPos, topPos);
+                                        
+                                        // Remove all conflicting styles first
+                                        modalImg.style.removeProperty('margin');
+                                        modalImg.style.removeProperty('vertical-align');
                                         
                                         modalImg.style.setProperty('position', 'fixed', 'important');
                                         modalImg.style.setProperty('top', topPos + 'px', 'important');
                                         modalImg.style.setProperty('left', leftPos + 'px', 'important');
+                                        modalImg.style.setProperty('right', 'auto', 'important');
+                                        modalImg.style.setProperty('bottom', 'auto', 'important');
                                         modalImg.style.setProperty('transform', 'none', 'important');
                                         modalImg.style.setProperty('-webkit-transform', 'none', 'important');
+                                        modalImg.style.setProperty('margin', '0', 'important');
+                                        
+                                        // Force reflow
+                                        void modalImg.offsetHeight;
                                         
                                         const finalRect2 = modalImg.getBoundingClientRect();
                                         console.log('Image rect after fixed positioning fallback:', finalRect2);
+                                        console.log('Final position check - top:', finalRect2.top, 'should be between', actualTopbarHeight, 'and', actualViewportHeight);
                                     }
                                 }, 100);
                             }, 200);
