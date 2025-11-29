@@ -1785,6 +1785,7 @@ body {
     overflow: auto;
     padding: 2rem;
     width: 100% !important;
+    height: 100% !important;
     min-height: 0;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -1796,6 +1797,8 @@ body {
     -webkit-flex-grow: 1;
     -ms-flex-positive: 1;
     flex-grow: 1;
+    top: 0 !important;
+    left: 0 !important;
 }
 
 .screenshot-modal-content {
@@ -1820,9 +1823,9 @@ body {
     -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
     flex-shrink: 0;
-    margin: auto;
+    margin: 0 auto !important;
     vertical-align: middle;
-    position: relative !important;
+    position: static !important;
     z-index: 10002 !important;
     background: rgba(255, 255, 255, 0.1) !important;
     border: 2px solid rgba(255, 255, 255, 0.3) !important;
@@ -1830,6 +1833,7 @@ body {
     left: auto !important;
     right: auto !important;
     bottom: auto !important;
+    transform: none !important;
 }
 
 @-webkit-keyframes zoomIn {
