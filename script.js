@@ -174,238 +174,68 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
                 
-                // Reset modal and container scroll positions BEFORE showing
+                // Prevent body scroll FIRST - before showing modal
+                const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+                document.body.style.position = 'fixed';
+                document.body.style.top = `-${scrollY}px`;
+                document.body.style.width = '100%';
+                document.body.style.overflow = 'hidden';
+                document.documentElement.style.overflow = 'hidden';
+                document.documentElement.style.position = 'fixed';
+                document.documentElement.style.top = `-${scrollY}px`;
+                document.documentElement.style.width = '100%';
+                
+                // Reset ALL scroll positions BEFORE showing modal
                 const container = document.querySelector('.screenshot-modal-container');
                 if (container) {
                     container.scrollTop = 0;
                     container.scrollLeft = 0;
                 }
-                
-                // Reset modal scroll
                 modal.scrollTop = 0;
                 modal.scrollLeft = 0;
+                window.scrollTo(0, 0);
                 
                 // Show modal
                 modal.classList.add('show');
-                console.log('=== MODAL SHOW ===');
-                console.log('Modal show class added');
-                console.log('Modal element:', modal);
-                console.log('Modal classes:', modal.className);
                 
-                // Wait a bit then check dimensions
-                setTimeout(() => {
-                    console.log('=== AFTER MODAL SHOW (100ms delay) ===');
-                    const modalStyle = window.getComputedStyle(modal);
-                    console.log('Modal display:', modalStyle.display);
-                    console.log('Modal width:', modalStyle.width);
-                    console.log('Modal height:', modalStyle.height);
-                    console.log('Modal position:', modalStyle.position);
-                    
-                    const container = document.querySelector('.screenshot-modal-container');
-                    if (container) {
-                        const containerStyle = window.getComputedStyle(container);
-                        console.log('Container display:', containerStyle.display);
-                        console.log('Container width:', containerStyle.width);
-                        console.log('Container height:', containerStyle.height);
-                        console.log('Container flex:', containerStyle.flex);
-                    }
-                    
-                    if (modalImg) {
-                        const imgStyle = window.getComputedStyle(modalImg);
-                        console.log('Image display:', imgStyle.display);
-                        console.log('Image width:', imgStyle.width);
-                        console.log('Image height:', imgStyle.height);
-                        console.log('Image visibility:', imgStyle.visibility);
-                        console.log('Image opacity:', imgStyle.opacity);
-                        console.log('Image natural dimensions:', modalImg.naturalWidth, 'x', modalImg.naturalHeight);
-                        console.log('Image actual dimensions:', modalImg.offsetWidth, 'x', modalImg.offsetHeight);
-                        console.log('Image getBoundingClientRect:', modalImg.getBoundingClientRect());
-                        
-                        // Force image to be properly sized and visible - use actual viewport, not page
+                // Wait for modal to render, then set up image
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        // Get viewport dimensions
                         const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
                         const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
                         const topbar = document.querySelector('.screenshot-modal-topbar');
                         const topbarHeight = topbar ? (topbar.offsetHeight || topbar.clientHeight) : 100;
-                        const availableHeight = viewportHeight - topbarHeight - 40; // 40px for padding
+                        const availableHeight = viewportHeight - topbarHeight - 40;
+                        
+                        // Set image constraints
                         const maxImgWidth = Math.min(viewportWidth * 0.9, 1440);
                         const maxImgHeight = Math.min(availableHeight * 0.95, 2880);
                         
-                        console.log('Viewport:', viewportWidth, 'x', viewportHeight);
-                        console.log('Topbar height:', topbarHeight);
-                        console.log('Available height:', availableHeight);
-                        console.log('Max image size:', maxImgWidth, 'x', maxImgHeight);
+                        // Reset all image styles to defaults
+                        modalImg.style.cssText = '';
                         
-                        modalImg.style.setProperty('display', 'block', 'important');
-                        modalImg.style.setProperty('visibility', 'visible', 'important');
-                        modalImg.style.setProperty('opacity', '1', 'important');
-                        modalImg.style.setProperty('position', 'static', 'important');
-                        modalImg.style.setProperty('z-index', '10002', 'important');
-                        modalImg.style.setProperty('max-width', maxImgWidth + 'px', 'important');
-                        modalImg.style.setProperty('max-height', maxImgHeight + 'px', 'important');
-                        modalImg.style.setProperty('width', 'auto', 'important');
-                        modalImg.style.setProperty('height', 'auto', 'important');
-                        modalImg.style.setProperty('object-fit', 'contain', 'important');
-                        modalImg.style.setProperty('margin', 'auto', 'important');
-                        console.log('Set max-width to:', maxImgWidth, 'max-height to:', maxImgHeight);
+                        // Apply clean styles for flexbox centering
+                        modalImg.style.display = 'block';
+                        modalImg.style.visibility = 'visible';
+                        modalImg.style.opacity = '1';
+                        modalImg.style.position = 'static';
+                        modalImg.style.maxWidth = maxImgWidth + 'px';
+                        modalImg.style.maxHeight = maxImgHeight + 'px';
+                        modalImg.style.width = 'auto';
+                        modalImg.style.height = 'auto';
+                        modalImg.style.objectFit = 'contain';
+                        modalImg.style.margin = 'auto';
                         
-                        // Also fix container - ensure it's properly sized
-                        const container = modalImg.parentElement;
+                        // Ensure container is set up for flexbox
                         if (container) {
-                            container.style.setProperty('overflow', 'hidden', 'important');
-                            container.style.setProperty('transform', 'none', 'important');
-                            container.style.setProperty('-webkit-transform', 'none', 'important');
-                            container.style.setProperty('position', 'relative', 'important');
-                            container.style.setProperty('width', '100%', 'important');
-                            container.style.setProperty('height', '100%', 'important');
-                            container.style.setProperty('max-width', '100vw', 'important');
-                            container.style.setProperty('max-height', '100vh', 'important');
+                            container.style.overflow = 'hidden';
+                            container.style.position = 'relative';
                             container.scrollTop = 0;
                             container.scrollLeft = 0;
-                            
-                            // Wait for image to load and ensure flexbox centering works
-                            setTimeout(() => {
-                                // Clear any problematic inline styles first
-                                modalImg.style.removeProperty('position');
-                                modalImg.style.removeProperty('top');
-                                modalImg.style.removeProperty('left');
-                                modalImg.style.removeProperty('right');
-                                modalImg.style.removeProperty('bottom');
-                                modalImg.style.removeProperty('transform');
-                                modalImg.style.removeProperty('-webkit-transform');
-                                
-                                // Use static positioning and let flexbox handle centering
-                                modalImg.style.removeProperty('position');
-                                modalImg.style.removeProperty('top');
-                                modalImg.style.removeProperty('left');
-                                modalImg.style.removeProperty('right');
-                                modalImg.style.removeProperty('bottom');
-                                modalImg.style.removeProperty('transform');
-                                modalImg.style.removeProperty('-webkit-transform');
-                                
-                                modalImg.style.setProperty('position', 'static', 'important');
-                                modalImg.style.setProperty('display', 'block', 'important');
-                                modalImg.style.setProperty('margin', 'auto', 'important');
-                                modalImg.style.setProperty('vertical-align', 'middle', 'important');
-                                modalImg.style.setProperty('max-width', '90vw', 'important');
-                                modalImg.style.setProperty('max-height', 'calc(100vh - 200px)', 'important');
-                                
-                                // Ensure container is properly set up for flexbox
-                                container.style.setProperty('display', '-webkit-box', 'important');
-                                container.style.setProperty('display', '-webkit-flex', 'important');
-                                container.style.setProperty('display', '-ms-flexbox', 'important');
-                                container.style.setProperty('display', 'flex', 'important');
-                                container.style.setProperty('-webkit-box-align', 'center', 'important');
-                                container.style.setProperty('-webkit-align-items', 'center', 'important');
-                                container.style.setProperty('-ms-flex-align', 'center', 'important');
-                                container.style.setProperty('align-items', 'center', 'important');
-                                container.style.setProperty('-webkit-box-pack', 'center', 'important');
-                                container.style.setProperty('-webkit-justify-content', 'center', 'important');
-                                container.style.setProperty('-ms-flex-pack', 'center', 'important');
-                                container.style.setProperty('justify-content', 'center', 'important');
-                                container.style.setProperty('position', 'relative', 'important');
-                                container.style.setProperty('overflow', 'auto', 'important');
-                                
-                                // Reset scroll position
-                                container.scrollTop = 0;
-                                container.scrollLeft = 0;
-                                
-                                // Force multiple reflows to ensure rendering
-                                void container.offsetHeight;
-                                void modalImg.offsetHeight;
-                                
-                                // Check after a brief delay
-                                setTimeout(() => {
-                                    const finalRect = modalImg.getBoundingClientRect();
-                                    console.log('Image rect after flexbox fix:', finalRect);
-                                    console.log('Image should be visible at y:', finalRect.top, '(should be > 0 and <', viewportHeight, ')');
-                                    
-                                    // If still not visible, use fixed positioning as fallback
-                                    if (finalRect.top < 0 || finalRect.top > viewportHeight || finalRect.top === 0 || isNaN(finalRect.top)) {
-                                        console.log('Flexbox failed, using fixed positioning fallback...');
-                                        
-                                        // Get actual viewport dimensions
-                                        const actualViewportWidth = window.innerWidth || document.documentElement.clientWidth;
-                                        const actualViewportHeight = window.innerHeight || document.documentElement.clientHeight;
-                                        const actualTopbar = document.querySelector('.screenshot-modal-topbar');
-                                        const actualTopbarHeight = actualTopbar ? (actualTopbar.offsetHeight || actualTopbar.clientHeight) : 100;
-                                        
-                                        const imgHeight = modalImg.offsetHeight || modalImg.clientHeight || 640;
-                                        const imgWidth = modalImg.offsetWidth || modalImg.clientWidth || 320;
-                                        
-                                        // Calculate center of visible viewport
-                                        const viewportCenterX = actualViewportWidth / 2;
-                                        const viewportCenterY = actualTopbarHeight + ((actualViewportHeight - actualTopbarHeight) / 2);
-                                        
-                                        // Position image in center of visible area
-                                        const topPos = viewportCenterY - (imgHeight / 2);
-                                        const leftPos = viewportCenterX - (imgWidth / 2);
-                                        
-                                        console.log('Actual viewport:', actualViewportWidth, 'x', actualViewportHeight);
-                                        console.log('Topbar height:', actualTopbarHeight);
-                                        console.log('Image size:', imgWidth, 'x', imgHeight);
-                                        console.log('Viewport center:', viewportCenterX, viewportCenterY);
-                                        console.log('Calculated fallback position:', leftPos, topPos);
-                                        
-                                        // Reset container scroll FIRST
-                                        const container = modalImg.closest('.screenshot-modal-container');
-                                        if (container) {
-                                            container.scrollTop = 0;
-                                            container.scrollLeft = 0;
-                                            container.style.setProperty('overflow', 'hidden', 'important');
-                                        }
-                                        
-                                        // Reset modal scroll
-                                        const modal = modalImg.closest('.screenshot-modal');
-                                        if (modal) {
-                                            modal.scrollTop = 0;
-                                            modal.scrollLeft = 0;
-                                        }
-                                        
-                                        // Remove all conflicting styles first
-                                        modalImg.style.removeProperty('margin');
-                                        modalImg.style.removeProperty('vertical-align');
-                                        modalImg.style.removeProperty('position');
-                                        modalImg.style.removeProperty('top');
-                                        modalImg.style.removeProperty('left');
-                                        modalImg.style.removeProperty('right');
-                                        modalImg.style.removeProperty('bottom');
-                                        modalImg.style.removeProperty('transform');
-                                        modalImg.style.removeProperty('-webkit-transform');
-                                        
-                                        // Use fixed positioning relative to viewport
-                                        modalImg.style.setProperty('position', 'fixed', 'important');
-                                        modalImg.style.setProperty('top', Math.max(actualTopbarHeight + 10, topPos) + 'px', 'important');
-                                        modalImg.style.setProperty('left', Math.max(10, leftPos) + 'px', 'important');
-                                        modalImg.style.setProperty('right', 'auto', 'important');
-                                        modalImg.style.setProperty('bottom', 'auto', 'important');
-                                        modalImg.style.setProperty('transform', 'none', 'important');
-                                        modalImg.style.setProperty('-webkit-transform', 'none', 'important');
-                                        modalImg.style.setProperty('margin', '0', 'important');
-                                        modalImg.style.setProperty('z-index', '10003', 'important');
-                                        
-                                        // Force reflow
-                                        void modalImg.offsetHeight;
-                                        void container?.offsetHeight;
-                                        
-                                        const finalRect2 = modalImg.getBoundingClientRect();
-                                        console.log('Image rect after fixed positioning fallback:', finalRect2);
-                                        console.log('Final position check - top:', finalRect2.top, 'should be between', actualTopbarHeight, 'and', actualViewportHeight);
-                                        
-                                        // If still wrong, force it to viewport center
-                                        if (finalRect2.top < actualTopbarHeight || finalRect2.top > actualViewportHeight || finalRect2.top < 0) {
-                                            const forcedTop = actualTopbarHeight + ((actualViewportHeight - actualTopbarHeight) / 2) - (imgHeight / 2);
-                                            modalImg.style.setProperty('top', Math.max(actualTopbarHeight + 10, forcedTop) + 'px', 'important');
-                                            console.log('Forced position to:', Math.max(actualTopbarHeight + 10, forcedTop));
-                                        }
-                                    }
-                                }, 100);
-                            }, 200);
                         }
-                        
-                        console.log('=== FORCED VISIBLE STYLES WITH RED BACKGROUND AND YELLOW BORDER ===');
-                        console.log('After fix - getBoundingClientRect:', modalImg.getBoundingClientRect());
-                    }
-                }, 100);
+                    });
+                });
                 
                 // Prevent body scroll and lock position - do this FIRST before showing modal
                 const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;

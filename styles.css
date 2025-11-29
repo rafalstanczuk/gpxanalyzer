@@ -1828,6 +1828,8 @@ body {
 
 .screenshot-modal-content {
     display: block !important;
+    position: static !important;
+    margin: auto !important;
     visibility: visible !important;
     opacity: 1 !important;
     max-width: 90vw !important;
