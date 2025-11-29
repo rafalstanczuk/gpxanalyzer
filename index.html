@@ -176,23 +176,37 @@
             <h2 class="section-title">See It In Action</h2>
             <p class="section-subtitle">Explore your GPS tracks with beautiful visualizations</p>
             <div class="screenshots-grid">
-                <div class="screenshot-placeholder">
-                    <div class="screenshot-content">
-                        <span class="screenshot-icon">📊</span>
-                        <p>Interactive Charts</p>
-                    </div>
+                <div class="screenshot-item" data-screenshot="screenshots/Screenshot_20251124_224522.png" data-description-md="screenshots/Screenshot_20251124_224522.md">
+                    <img src="screenshots/Screenshot_20251124_224522.png" alt="GpxAnalyzer Screenshot - Interactive Charts" class="screenshot-img">
+                    <div class="screenshot-description">Loading description...</div>
                 </div>
-                <div class="screenshot-placeholder">
-                    <div class="screenshot-content">
-                        <span class="screenshot-icon">🗺️</span>
-                        <p>Map Visualization</p>
-                    </div>
+                <div class="screenshot-item" data-screenshot="screenshots/Screenshot_20251124_224547.png" data-description-md="screenshots/Screenshot_20251124_224547.md">
+                    <img src="screenshots/Screenshot_20251124_224547.png" alt="GpxAnalyzer Screenshot - Map Visualization" class="screenshot-img">
+                    <div class="screenshot-description">Loading description...</div>
                 </div>
-                <div class="screenshot-placeholder">
-                    <div class="screenshot-content">
-                        <span class="screenshot-icon">📈</span>
-                        <p>Data Analysis</p>
-                    </div>
+                <div class="screenshot-item" data-screenshot="screenshots/Screenshot_20251124_224603.png" data-description-md="screenshots/Screenshot_20251124_224603.md">
+                    <img src="screenshots/Screenshot_20251124_224603.png" alt="GpxAnalyzer Screenshot - Data Analysis" class="screenshot-img">
+                    <div class="screenshot-description">Loading description...</div>
+                </div>
+                <div class="screenshot-item" data-screenshot="screenshots/Screenshot_20251124_224621.png" data-description-md="screenshots/Screenshot_20251124_224621.md">
+                    <img src="screenshots/Screenshot_20251124_224621.png" alt="GpxAnalyzer Screenshot - Track Analysis" class="screenshot-img">
+                    <div class="screenshot-description">Loading description...</div>
+                </div>
+                <div class="screenshot-item" data-screenshot="screenshots/Screenshot_20251124_224702.png" data-description-md="screenshots/Screenshot_20251124_224702.md">
+                    <img src="screenshots/Screenshot_20251124_224702.png" alt="GpxAnalyzer Screenshot - Statistics" class="screenshot-img">
+                    <div class="screenshot-description">Loading description...</div>
+                </div>
+                <div class="screenshot-item" data-screenshot="screenshots/Screenshot_20251124_224719.png" data-description-md="screenshots/Screenshot_20251124_224719.md">
+                    <img src="screenshots/Screenshot_20251124_224719.png" alt="GpxAnalyzer Screenshot - Route Details" class="screenshot-img">
+                    <div class="screenshot-description">Loading description...</div>
+                </div>
+                <div class="screenshot-item" data-screenshot="screenshots/Screenshot_20251124_224731.png" data-description-md="screenshots/Screenshot_20251124_224731.md">
+                    <img src="screenshots/Screenshot_20251124_224731.png" alt="GpxAnalyzer Screenshot - Performance Metrics" class="screenshot-img">
+                    <div class="screenshot-description">Loading description...</div>
+                </div>
+                <div class="screenshot-item" data-screenshot="screenshots/Screenshot_20251124_225215.png" data-description-md="screenshots/Screenshot_20251124_225215.md">
+                    <img src="screenshots/Screenshot_20251124_225215.png" alt="GpxAnalyzer Screenshot - Activity Overview" class="screenshot-img">
+                    <div class="screenshot-description">Loading description...</div>
                 </div>
             </div>
         </div>
@@ -277,8 +291,7 @@
                 <div class="footer-section">
                     <h4>Legal</h4>
                     <ul>
-                        <li><a href="https://github.com/rafalstanczuk/gpxanalyzer-android/blob/master/privacy_policy.md" target="_blank" rel="noopener">Privacy Policy</a></li>
-                        <li><a href="https://github.com/rafalstanczuk/gpxanalyzer-android/blob/master/LICENSE" target="_blank" rel="noopener">License</a></li>
+                        <li><a href="privacy_policy.md" target="_blank" rel="noopener">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div class="footer-section" id="contact">
@@ -301,6 +314,17 @@
             </div>
         </div>
     </footer>
+
+    <!-- Screenshot Lightbox Modal -->
+    <div id="screenshot-modal" class="screenshot-modal">
+        <div class="screenshot-modal-topbar">
+            <div class="screenshot-modal-description" id="screenshot-modal-description"></div>
+            <span class="screenshot-modal-close">&times;</span>
+        </div>
+        <div class="screenshot-modal-container">
+            <img class="screenshot-modal-content" id="screenshot-modal-img" alt="Screenshot">
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

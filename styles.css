@@ -1433,7 +1433,7 @@ body {
     margin-top: 3rem;
 }
 
-.screenshot-placeholder {
+.screenshot-item {
     background: var(--bg-secondary);
     border-radius: 1rem;
     aspect-ratio: 9/16;
@@ -1448,26 +1448,7 @@ body {
     overflow: hidden;
 }
 
-.screenshot-placeholder::before {
-    content: '';
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 32px;
-    height: 32px;
-    background: url('icons/map.svg') no-repeat center;
-    background-size: contain;
-    opacity: 0.2;
-    filter: drop-shadow(0 0 8px rgba(232, 234, 237, 0.2));
-    transition: all 0.4s ease;
-}
-
-.screenshot-placeholder:hover::before {
-    opacity: 0.5;
-    transform: scale(1.2) rotate(5deg);
-}
-
-.screenshot-placeholder::before {
+.screenshot-item::before {
     content: '';
     position: absolute;
     top: -50%;
@@ -1478,39 +1459,234 @@ body {
     opacity: 0;
     transition: opacity 0.4s ease;
     transform: translateZ(-10px);
+    z-index: 1;
 }
 
-.screenshot-placeholder:hover {
+.screenshot-item:hover {
     border-color: var(--primary-color);
     box-shadow: 0 20px 60px rgba(96, 165, 250, 0.4), 0 5px 15px rgba(0, 0, 0, 0.5);
     transform: translateY(-8px) translateZ(25px) rotateY(5deg);
 }
 
-.screenshot-placeholder:hover::before {
+.screenshot-item:hover::before {
     opacity: 1;
 }
 
-.screenshot-content {
+.screenshot-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 2;
+}
+
+.screenshot-item:hover .screenshot-img {
+    transform: scale(1.05) translateZ(15px);
+    filter: brightness(1.1);
+}
+
+.screenshot-item {
+    cursor: pointer;
+    position: relative;
+}
+
+.screenshot-description {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 70%, transparent 100%);
+    color: var(--text-primary);
+    padding: 1.5rem 1rem 1rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
     text-align: center;
-    color: var(--text-secondary);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    z-index: 3;
+    border-radius: 0 0 1rem 1rem;
 }
 
-.screenshot-icon {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-    display: block;
-    filter: drop-shadow(0 0 15px rgba(232, 234, 237, 0.4));
-    transition: all 0.4s ease;
+.screenshot-description:empty {
+    font-style: italic;
+    opacity: 0.6;
 }
 
-.screenshot-placeholder:hover .screenshot-icon {
-    transform: scale(1.1) translateZ(15px);
-    filter: drop-shadow(0 0 25px rgba(96, 165, 250, 0.6));
+.screenshot-description.loading {
+    font-style: italic;
+    opacity: 0.6;
 }
 
-.screenshot-content p {
+.screenshot-item:hover .screenshot-description {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Screenshot Lightbox Modal */
+.screenshot-modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    animation: fadeIn 0.3s ease;
+    flex-direction: column;
+}
+
+.screenshot-modal.show {
+    display: flex;
+    align-items: stretch;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Modal Topbar */
+.screenshot-modal-topbar {
+    position: relative;
+    width: 100%;
+    padding: 1.5rem 2rem;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.8) 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    z-index: 10001;
+    flex-shrink: 0;
+}
+
+.screenshot-modal-description {
+    flex: 1;
+    color: var(--text-primary);
     font-size: 1.125rem;
-    font-weight: 500;
+    line-height: 1.6;
+    text-align: left;
+    padding-right: 2rem;
+}
+
+.screenshot-modal-close {
+    color: var(--text-primary);
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    line-height: 1;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    flex-shrink: 0;
+    user-select: none;
+}
+
+.screenshot-modal-close:hover,
+.screenshot-modal-close:focus {
+    color: #fff;
+    background: rgba(239, 68, 68, 0.8);
+    border-color: rgba(239, 68, 68, 0.5);
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+}
+
+.screenshot-modal-close:active {
+    transform: scale(0.95) rotate(90deg);
+}
+
+/* Modal Container for Centered Image */
+.screenshot-modal-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+    padding: 2rem;
+    width: 100%;
+    min-height: 0; /* Important for flex centering */
+    box-sizing: border-box;
+    /* Ensure container takes remaining space after topbar */
+    position: relative;
+    /* Use all available vertical space */
+    flex-basis: 0;
+}
+
+.screenshot-modal-content {
+    display: block;
+    max-width: 90vw;
+    max-height: calc(100vh - 200px);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 0.5rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+    animation: zoomIn 0.3s ease;
+    cursor: pointer;
+    /* Center the image - flexbox parent handles this */
+    flex-shrink: 0;
+    /* Ensure image is centered when smaller than container */
+    margin: auto;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .screenshot-modal-topbar {
+        padding: 1rem 1.5rem;
+    }
+    
+    .screenshot-modal-description {
+        font-size: 0.95rem;
+        padding-right: 1rem;
+    }
+    
+    .screenshot-modal-close {
+        font-size: 2rem;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .screenshot-modal-container {
+        padding: 1rem;
+        min-height: 0;
+        box-sizing: border-box;
+        flex-basis: 0;
+    }
+    
+    .screenshot-modal-content {
+        max-width: 95vw;
+        max-height: calc(100vh - 140px); /* Account for topbar and padding on mobile */
+        width: auto;
+        height: auto;
+    }
 }
 
 /* Download Section */
@@ -2288,6 +2464,11 @@ body {
     .floating-3d-pyramid {
         opacity: 0.3;
         transform: scale(0.7);
+    }
+
+    .screenshot-description {
+        font-size: 0.8rem;
+        padding: 1rem 0.75rem 0.75rem;
     }
 }
 
