@@ -64,8 +64,24 @@ document.addEventListener('DOMContentLoaded', () => {
     screenshotItems.forEach(item => {
         item.addEventListener('click', () => {
             const screenshotSrc = item.getAttribute('data-screenshot');
-            if (screenshotSrc) {
+            if (screenshotSrc && modalImg) {
+                // Set image source and ensure it's visible
                 modalImg.src = screenshotSrc;
+                modalImg.style.display = 'block';
+                modalImg.style.visibility = 'visible';
+                modalImg.style.opacity = '1';
+                
+                // Ensure image loads
+                modalImg.onload = function() {
+                    this.style.display = 'block';
+                    this.style.visibility = 'visible';
+                    this.style.opacity = '1';
+                };
+                
+                modalImg.onerror = function() {
+                    console.error('Failed to load image:', screenshotSrc);
+                    this.alt = 'Image failed to load';
+                };
                 
                 // Get description from the screenshot item
                 const descriptionDiv = item.querySelector('.screenshot-description');
