@@ -59,6 +59,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalDescription = document.getElementById('screenshot-modal-description');
     const closeBtn = document.querySelector('.screenshot-modal-close');
     const screenshotItems = document.querySelectorAll('.screenshot-item');
+    
+    // Store screenshot section position for scrolling back after close
+    let screenshotSectionPosition = null;
+    
+    // Function to close modal and scroll back to screenshot section
+    function closeModalAndScrollBack() {
+        modal.classList.remove('show');
+        
+        // Restore body scroll
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+        document.documentElement.style.position = '';
+        document.documentElement.style.top = '';
+        document.documentElement.style.width = '';
+        
+        // Scroll back to screenshot section if we have the position stored
+        if (screenshotSectionPosition !== null) {
+            // Use requestAnimationFrame to ensure DOM is updated
+            requestAnimationFrame(() => {
+                window.scrollTo({
+                    top: screenshotSectionPosition,
+                    behavior: 'smooth'
+                });
+                screenshotSectionPosition = null; // Reset after scrolling
+            });
+        }
+    }
 
     // Open modal when screenshot is clicked
     screenshotItems.forEach(item => {
@@ -174,15 +204,26 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
                 
-                // Prevent body scroll FIRST - before showing modal
+                // Store screenshot section position BEFORE scrolling
+                const screenshotSection = document.getElementById('screenshots');
+                if (screenshotSection) {
+                    screenshotSectionPosition = screenshotSection.getBoundingClientRect().top + window.scrollY;
+                }
+                
+                // SCROLL TO TOP FIRST - this is critical!
+                window.scrollTo(0, 0);
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
+                
+                // Prevent body scroll AFTER scrolling to top
                 const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
                 document.body.style.position = 'fixed';
-                document.body.style.top = `-${scrollY}px`;
+                document.body.style.top = '0px'; // Always 0 since we scrolled to top
                 document.body.style.width = '100%';
                 document.body.style.overflow = 'hidden';
                 document.documentElement.style.overflow = 'hidden';
                 document.documentElement.style.position = 'fixed';
-                document.documentElement.style.top = `-${scrollY}px`;
+                document.documentElement.style.top = '0px'; // Always 0 since we scrolled to top
                 document.documentElement.style.width = '100%';
                 
                 // Reset ALL scroll positions BEFORE showing modal
@@ -193,7 +234,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 modal.scrollTop = 0;
                 modal.scrollLeft = 0;
-                window.scrollTo(0, 0);
                 
                 // Show modal
                 modal.classList.add('show');
@@ -244,12 +284,29 @@ document.addEventListener('DOMContentLoaded', () => {
                             container.style.position = 'relative';
                             container.scrollTop = 0;
                             container.scrollLeft = 0;
+                            // Force container to be at viewport top
+                            container.style.top = '0';
+                            container.style.left = '0';
                             console.log('Container configured');
                         }
                         
-                        // Check final position
+                        // Ensure modal is at viewport top
+                        modal.style.top = '0';
+                        modal.style.left = '0';
+                        modal.scrollTop = 0;
+                        modal.scrollLeft = 0;
+                        
+                        // Force a reflow
+                        void modal.offsetHeight;
+                        void container?.offsetHeight;
+                        void modalImg.offsetHeight;
+                        
+                        // Check final position after reflow
                         setTimeout(() => {
                             const rect = modalImg.getBoundingClientRect();
+                            const containerRect = container?.getBoundingClientRect();
+                            const modalRect = modal.getBoundingClientRect();
+                            
                             console.log('Final image position:', {
                                 top: rect.top,
                                 left: rect.left,
@@ -257,7 +314,41 @@ document.addEventListener('DOMContentLoaded', () => {
                                 height: rect.height,
                                 visible: rect.top >= 0 && rect.top < viewportHeight && rect.left >= 0 && rect.left < viewportWidth
                             });
-                        }, 100);
+                            
+                            console.log('Container position:', {
+                                top: containerRect?.top,
+                                left: containerRect?.left,
+                                width: containerRect?.width,
+                                height: containerRect?.height
+                            });
+                            
+                            console.log('Modal position:', {
+                                top: modalRect.top,
+                                left: modalRect.left,
+                                width: modalRect.width,
+                                height: modalRect.height
+                            });
+                            
+                            // If image is still off-screen, force it to center using fixed positioning
+                            if (rect.top < 0 || rect.top > viewportHeight || !rect.visible) {
+                                console.warn('Image is off-screen, using fixed positioning fallback');
+                                const imgWidth = rect.width || modalImg.offsetWidth;
+                                const imgHeight = rect.height || modalImg.offsetHeight;
+                                const centerX = viewportWidth / 2;
+                                const centerY = topbarHeight + (availableHeight / 2);
+                                
+                                modalImg.style.position = 'fixed';
+                                modalImg.style.top = (centerY - imgHeight / 2) + 'px';
+                                modalImg.style.left = (centerX - imgWidth / 2) + 'px';
+                                modalImg.style.margin = '0';
+                                modalImg.style.zIndex = '10003';
+                                
+                                console.log('Fixed position applied:', {
+                                    top: modalImg.style.top,
+                                    left: modalImg.style.left
+                                });
+                            }
+                        }, 200);
                     });
                 });
                 
@@ -273,24 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (closeBtn) {
         closeBtn.addEventListener('click', (e) => {
             e.stopPropagation(); // Prevent event bubbling
-            modal.classList.remove('show');
-            // Restore body scroll
-            const scrollY = document.body.style.top;
-            document.body.style.position = '';
-            document.body.style.top = '';
-            document.body.style.width = '';
-            document.body.style.overflow = ''; // Restore scrolling
-            
-            // Restore html scroll
-            document.documentElement.style.overflow = '';
-            document.documentElement.style.position = '';
-            document.documentElement.style.top = '';
-            document.documentElement.style.width = '';
-            
-            if (scrollY) {
-                const scrollValue = parseInt(scrollY.replace('px', '').replace('-', '') || '0');
-                window.scrollTo(0, scrollValue);
-            }
+            closeModalAndScrollBack();
         });
     }
 
@@ -298,24 +372,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (modalImg) {
         modalImg.addEventListener('click', (e) => {
             e.stopPropagation(); // Prevent event from bubbling to modal
-            modal.classList.remove('show');
-            // Restore body scroll
-            const scrollY = document.body.style.top;
-            document.body.style.position = '';
-            document.body.style.top = '';
-            document.body.style.width = '';
-            document.body.style.overflow = ''; // Restore scrolling
-            
-            // Restore html scroll
-            document.documentElement.style.overflow = '';
-            document.documentElement.style.position = '';
-            document.documentElement.style.top = '';
-            document.documentElement.style.width = '';
-            
-            if (scrollY) {
-                const scrollValue = parseInt(scrollY.replace('px', '').replace('-', '') || '0');
-                window.scrollTo(0, scrollValue);
-            }
+            closeModalAndScrollBack();
         });
     }
     
@@ -323,24 +380,7 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.addEventListener('click', (e) => {
         // Close if clicking on modal background or container (but not on image or topbar)
         if (e.target === modal || e.target.classList.contains('screenshot-modal-container')) {
-            modal.classList.remove('show');
-            // Restore body scroll
-            const scrollY = document.body.style.top;
-            document.body.style.position = '';
-            document.body.style.top = '';
-            document.body.style.width = '';
-            document.body.style.overflow = ''; // Restore scrolling
-            
-            // Restore html scroll
-            document.documentElement.style.overflow = '';
-            document.documentElement.style.position = '';
-            document.documentElement.style.top = '';
-            document.documentElement.style.width = '';
-            
-            if (scrollY) {
-                const scrollValue = parseInt(scrollY.replace('px', '').replace('-', '') || '0');
-                window.scrollTo(0, scrollValue);
-            }
+            closeModalAndScrollBack();
         }
     });
     
@@ -355,24 +395,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Close modal with Escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modal.classList.contains('show')) {
-            modal.classList.remove('show');
-            // Restore body scroll
-            const scrollY = document.body.style.top;
-            document.body.style.position = '';
-            document.body.style.top = '';
-            document.body.style.width = '';
-            document.body.style.overflow = ''; // Restore scrolling
-            
-            // Restore html scroll
-            document.documentElement.style.overflow = '';
-            document.documentElement.style.position = '';
-            document.documentElement.style.top = '';
-            document.documentElement.style.width = '';
-            
-            if (scrollY) {
-                const scrollValue = parseInt(scrollY.replace('px', '').replace('-', '') || '0');
-                window.scrollTo(0, scrollValue);
-            }
+            closeModalAndScrollBack();
         }
     });
 
