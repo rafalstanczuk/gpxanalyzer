@@ -2918,6 +2918,10 @@ body {
         flex-direction: column;
         gap: 1rem;
         -webkit-gap: 1rem; /* Safari */
+        -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        width: 100%;
     }
 
     .nav-links {
@@ -2930,10 +2934,14 @@ body {
         justify-content: center;
         gap: 0.5rem;
         -webkit-gap: 0.5rem; /* Safari */
+        white-space: normal; /* Allow wrapping */
+        width: 100%;
+        max-width: 100%;
     }
     
     .nav-links a {
         font-size: 0.85rem;
+        white-space: nowrap; /* Keep individual links on one line */
     }
 }
 
