@@ -1,6 +1,6 @@
 # Privacy Policy
 
-**Effective Date:** October 27, 2025
+**Effective Date:** November 30, 2025
 
 **Developer:** Rafał Stańczuk
 
