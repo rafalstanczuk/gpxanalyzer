@@ -119,7 +119,7 @@
             <ul>
                 <li>Strava API integration (when used)</li>
                 <li>OpenStreetMap tile downloads for map display</li>
-                <li>Fetching privacy policy updates and application version information</li>
+                <li>Fetching privacy policy updates and minimum supported application version information (both encrypted)</li>
             </ul>
         </li>
         <li><strong>Why:</strong> To fetch Strava activities, display map tiles, and ensure you have the latest privacy policy</li>
@@ -142,6 +142,7 @@
         <li><strong>Local Processing:</strong> All GPX data processing occurs locally on your device</li>
         <li><strong>No Server Transmission:</strong> GPX file data is never transmitted to external servers</li>
         <li><strong>Encrypted Communication:</strong> When connecting to Strava API, all communication uses HTTPS (TLS encryption)</li>
+        <li><strong>Encrypted Version Information:</strong> Privacy policy version information and minimum supported app version data are fetched as encrypted JSON files using AES-256-GCM encryption. This ensures the integrity and authenticity of version requirements and policy updates.</li>
         <li><strong>Secure Token Storage:</strong> OAuth tokens are stored securely on your device using Android's secure storage mechanisms</li>
         <li><strong>No Data Collection:</strong> The App does not collect analytics, usage statistics, or personal information</li>
     </ul>
@@ -164,6 +165,38 @@
             </ul>
         </li>
         <li><strong>Revoke Strava Access:</strong> You can revoke Strava access at any time through Strava settings, which will invalidate stored OAuth tokens</li>
+    </ul>
+
+    <h2>App Updates and Version Management</h2>
+    
+    <h3>Minimum Supported Version Requirements</h3>
+    <p>The App includes a version management system that may require you to update to a minimum supported version before continuing to use the App. This feature ensures compatibility, security, and stability.</p>
+    
+    <div class="important-box">
+        <strong>Why Updates Are Required:</strong> The App is currently under intensive development to improve functionality, security, and user experience. When a minimum supported version is enforced, it is done to ensure:
+        <ul style="margin-top: 10px; margin-bottom: 0;">
+            <li><strong>Data Protection:</strong> Your data remains safe and unaffected during updates</li>
+            <li><strong>App Stability:</strong> Critical fixes and improvements are applied to prevent data loss or corruption</li>
+            <li><strong>Security:</strong> Security vulnerabilities are addressed promptly</li>
+            <li><strong>Compatibility:</strong> The App remains compatible with required services and APIs</li>
+        </ul>
+    </div>
+    
+    <h3>How Version Checking Works</h3>
+    <ul>
+        <li><strong>Automatic Checks:</strong> On app startup, the App checks online for the minimum supported version requirement</li>
+        <li><strong>Encrypted Data:</strong> Version information is fetched as encrypted JSON using AES-256-GCM encryption to ensure authenticity</li>
+        <li><strong>Offline Support:</strong> If no network connection is available, the App uses cached version information when available</li>
+        <li><strong>Update Prompt:</strong> If your app version is below the minimum required version, you will be prompted to update via the Play Store</li>
+        <li><strong>No Personal Data:</strong> Only your app version number is compared; no personal information is transmitted during version checks</li>
+    </ul>
+    
+    <h3>Privacy Policy Version Management</h3>
+    <ul>
+        <li><strong>Version Tracking:</strong> The App checks for privacy policy updates using encrypted JSON version information</li>
+        <li><strong>Encrypted Communication:</strong> Privacy policy version data is encrypted using AES-256-GCM encryption, ensuring the integrity and authenticity of policy updates</li>
+        <li><strong>User Consent:</strong> When a new privacy policy version is available, you will be prompted to review and accept it before continuing to use the App</li>
+        <li><strong>Transparency:</strong> All privacy policy versions are publicly available and accessible for your review</li>
     </ul>
 
     <h2>Third-Party Services</h2>
