@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - GpxAnalyzer</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+        }
+        h1 { color: #1a73e8; border-bottom: 2px solid #1a73e8; padding-bottom: 10px; margin-bottom: 20px; }
+        h2 { color: #1a73e8; margin-top: 30px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        h3 { color: #444; margin-top: 25px; }
+        h4 { color: #555; font-weight: 600; margin-top: 20px; }
+        p { margin-bottom: 15px; }
+        ul { padding-left: 20px; margin-bottom: 15px; }
+        li { margin-bottom: 8px; }
+        strong { color: #000; font-weight: 600; }
+        a { color: #1a73e8; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        hr { border: 0; border-top: 1px solid #eee; margin: 30px 0; }
+        .meta-info { background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 30px; border-left: 4px solid #1a73e8; }
+        .important-box { background: #e8f0fe; padding: 15px; border-radius: 8px; margin: 20px 0; color: #174ea6; }
+        
+        @media (prefers-color-scheme: dark) {
+            body { background-color: #121212; color: #e0e0e0; }
+            h1, h2, a { color: #8ab4f8; }
+            h1 { border-bottom-color: #8ab4f8; }
+            h2 { border-bottom-color: #333; }
+            h3 { color: #ccc; }
+            h4 { color: #bbb; }
+            strong { color: #fff; }
+            .meta-info { background: #1e1e1e; border-left-color: #8ab4f8; }
+            .important-box { background: #174ea6; color: #e8f0fe; }
+            hr { border-top-color: #333; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Privacy Policy</h1>
+
+    <div class="meta-info">
+        <p><strong>Effective Date:</strong> December 12, 2025</p>
+        <p><strong>Developer:</strong> Rafał Stańczuk</p>
+        <p><strong>Contact:</strong> <a href="mailto:anddev0110@gmail.com">anddev0110@gmail.com</a></p>
+    </div>
+
+    <h2>Introduction</h2>
+    <p>GpxAnalyzer ("the App") is a post-processing tool designed to analyze and visualize GPS data from GPX files. This privacy policy explains how the App handles user data in compliance with Google Play Developer Program policies and applicable privacy laws.</p>
+    
+    <div class="important-box">
+        <strong>Important:</strong> This App does NOT track your current location. It only processes historical GPS data from GPX files that you choose to load.
+    </div>
+
+    <h2>Data Collection and Usage</h2>
+
+    <h3>Overview</h3>
+    <p>GpxAnalyzer is designed with privacy in mind. The App operates primarily locally on your device and does not collect personal information for tracking or advertising purposes.</p>
+
+    <h3>Types of Data Accessed</h3>
+
+    <h4>1. File Storage Data</h4>
+    <ul>
+        <li><strong>What:</strong> GPX files stored on your device</li>
+        <li><strong>Why:</strong> To read and process GPS track data for visualization and analysis</li>
+        <li><strong>How:</strong> Through Android storage permissions (READ_EXTERNAL_STORAGE, READ_MEDIA_IMAGES/VIDEO/AUDIO, or MANAGE_EXTERNAL_STORAGE depending on Android version)</li>
+        <li><strong>Storage:</strong> Files are read from your device storage</li>
+        <li><strong>Sharing:</strong> No data is shared with third parties</li>
+        <li><strong>Retention:</strong> Data is processed in memory and not permanently stored by the App</li>
+    </ul>
+
+    <h4>2. Historical Location Data (from GPX files)</h4>
+    <ul>
+        <li><strong>What:</strong> GPS coordinates, timestamps, and elevation data contained in GPX files</li>
+        <li><strong>Why:</strong> To visualize routes on maps and generate charts (altitude, velocity)</li>
+        <li><strong>How:</strong> Extracted from GPX files you select</li>
+        <li><strong>Storage:</strong> Processed locally on your device, cached temporarily in device memory</li>
+        <li><strong>Sharing:</strong> Never shared with third parties</li>
+        <li><strong>Retention:</strong> Cached data is cleared when the App is closed or when you load a different file</li>
+    </ul>
+
+    <h4>3. Strava Activity Data (Optional)</h4>
+    <ul>
+        <li><strong>What:</strong> Activity data from your Strava account (location, time, elevation, activity metadata)</li>
+        <li><strong>Why:</strong> To import and analyze your Strava activities</li>
+        <li><strong>How:</strong> Through OAuth 2.0 authentication with Strava API</li>
+        <li><strong>Storage:</strong>
+            <ul>
+                <li>OAuth tokens stored securely on your device</li>
+                <li>Activity data fetched and converted to GPX format, processed locally</li>
+            </ul>
+        </li>
+        <li><strong>Sharing:</strong>
+            <ul>
+                <li>Data is fetched from Strava API (subject to Strava's privacy policy)</li>
+                <li>Data is never shared with third parties beyond what is necessary for Strava API functionality</li>
+                <li>Data is only displayed to you (the authenticated user)</li>
+            </ul>
+        </li>
+        <li><strong>Retention:</strong>
+            <ul>
+                <li>OAuth tokens stored until you revoke access</li>
+                <li>Activity data cached temporarily in device memory</li>
+            </ul>
+        </li>
+        <li><strong>Control:</strong> You can revoke access anytime through Strava settings</li>
+    </ul>
+
+    <h4>4. Network Data</h4>
+    <ul>
+        <li><strong>What:</strong> Internet connection required for:
+            <ul>
+                <li>Strava API integration (when used)</li>
+                <li>OpenStreetMap tile downloads for map display</li>
+                <li>Fetching privacy policy updates and minimum supported application version information (both encrypted)</li>
+            </ul>
+        </li>
+        <li><strong>Why:</strong> To fetch Strava activities, display map tiles, and ensure you have the latest privacy policy</li>
+        <li><strong>How:</strong> Through INTERNET permission</li>
+        <li><strong>Storage:</strong> Map tiles cached locally by the map library</li>
+        <li><strong>Sharing:</strong>
+            <ul>
+                <li>Strava API requests subject to Strava's privacy policy</li>
+                <li>OpenStreetMap tile requests subject to OpenStreetMap Foundation privacy policy</li>
+                <li>Policy update checks are made to GitHub Pages (subject to GitHub's privacy statement)</li>
+            </ul>
+        </li>
+        <li><strong>Retention:</strong> Map tiles cached temporarily by the map library</li>
+    </ul>
+
+    <h2>Data Handling and Security</h2>
+
+    <h3>Secure Data Handling</h3>
+    <ul>
+        <li><strong>Local Processing:</strong> All GPX data processing occurs locally on your device</li>
+        <li><strong>No Server Transmission:</strong> GPX file data is never transmitted to external servers</li>
+        <li><strong>Encrypted Communication:</strong> When connecting to Strava API, all communication uses HTTPS (TLS encryption)</li>
+        <li><strong>Encrypted Version Information:</strong> Privacy policy version information and minimum supported app version data are fetched as encrypted JSON files using AES-256-GCM encryption. This ensures the integrity and authenticity of version requirements and policy updates.</li>
+        <li><strong>Secure Token Storage:</strong> OAuth tokens are stored securely on your device using Android's secure storage mechanisms</li>
+        <li><strong>No Data Collection:</strong> The App does not collect analytics, usage statistics, or personal information</li>
+    </ul>
+
+    <h3>Data Retention</h3>
+    <ul>
+        <li><strong>GPX File Data:</strong> Processed in memory only, cleared when App is closed or new file is loaded</li>
+        <li><strong>Strava Data:</strong> Cached temporarily in device memory, cleared when App is closed</li>
+        <li><strong>OAuth Tokens:</strong> Stored on device until you revoke access through Strava settings</li>
+        <li><strong>Map Tiles:</strong> Cached by the map library, subject to library's cache management</li>
+    </ul>
+
+    <h3>Data Deletion</h3>
+    <ul>
+        <li><strong>No Account Required:</strong> The App does not require account creation, so there is no account data to delete</li>
+        <li><strong>Clear App Data:</strong> You can delete all App data at any time by:
+            <ul>
+                <li>Uninstalling the App (removes all local data including OAuth tokens)</li>
+                <li>Clearing App data through Android Settings</li>
+            </ul>
+        </li>
+        <li><strong>Revoke Strava Access:</strong> You can revoke Strava access at any time through Strava settings, which will invalidate stored OAuth tokens</li>
+    </ul>
+
+    <h2>App Updates and Version Management</h2>
+    
+    <h3>Minimum Supported Version Requirements</h3>
+    <p>The App includes a version management system that may require you to update to a minimum supported version before continuing to use the App. This feature ensures compatibility, security, and stability.</p>
+    
+    <div class="important-box">
+        <strong>Why Updates Are Required:</strong> The App is currently under intensive development to improve functionality, security, and user experience. When a minimum supported version is enforced, it is done to ensure:
+        <ul style="margin-top: 10px; margin-bottom: 0;">
+            <li><strong>Data Protection:</strong> Your data remains safe and unaffected during updates</li>
+            <li><strong>App Stability:</strong> Critical fixes and improvements are applied to prevent data loss or corruption</li>
+            <li><strong>Security:</strong> Security vulnerabilities are addressed promptly</li>
+            <li><strong>Compatibility:</strong> The App remains compatible with required services and APIs</li>
+        </ul>
+    </div>
+    
+    <h3>How Version Checking Works</h3>
+    <ul>
+        <li><strong>Automatic Checks:</strong> On app startup, the App checks online for the minimum supported version requirement</li>
+        <li><strong>Encrypted Data:</strong> Version information is fetched as encrypted JSON using AES-256-GCM encryption to ensure authenticity</li>
+        <li><strong>Offline Support:</strong> If no network connection is available, the App uses cached version information when available</li>
+        <li><strong>Update Prompt:</strong> If your app version is below the minimum required version, you will be prompted to update via the Play Store</li>
+        <li><strong>No Personal Data:</strong> Only your app version number is compared; no personal information is transmitted during version checks</li>
+    </ul>
+    
+    <h3>Privacy Policy Version Management</h3>
+    <ul>
+        <li><strong>Version Tracking:</strong> The App checks for privacy policy updates using encrypted JSON version information</li>
+        <li><strong>Encrypted Communication:</strong> Privacy policy version data is encrypted using AES-256-GCM encryption, ensuring the integrity and authenticity of policy updates</li>
+        <li><strong>User Consent:</strong> When a new privacy policy version is available, you will be prompted to review and accept it before continuing to use the App</li>
+        <li><strong>Transparency:</strong> All privacy policy versions are publicly available and accessible for your review</li>
+    </ul>
+
+    <h2>Third-Party Services</h2>
+
+    <h3>OpenStreetMap</h3>
+    <ul>
+        <li><strong>Purpose:</strong> Map tile display</li>
+        <li><strong>Data Shared:</strong> Map tile requests (your IP address may be visible to OpenStreetMap servers)</li>
+        <li><strong>Privacy Policy:</strong> <a href="https://wiki.osmfoundation.org/wiki/Privacy_Policy" target="_blank">OpenStreetMap Foundation Privacy Policy</a></li>
+    </ul>
+
+    <h3>Strava API</h3>
+    <ul>
+        <li><strong>Purpose:</strong> Import activity data (optional feature)</li>
+        <li><strong>Data Shared:</strong> OAuth authentication and activity data requests (subject to Strava API Agreement)</li>
+        <li><strong>Privacy Policy:</strong> <a href="https://www.strava.com/legal/privacy" target="_blank">Strava Privacy Policy</a></li>
+        <li><strong>API Agreement:</strong> <a href="https://www.strava.com/legal/api" target="_blank">Strava API Agreement</a></li>
+        <li><strong>Note:</strong> If Strava data originates from Garmin devices, attribution to Garmin may be required per Strava's terms.</li>
+    </ul>
+
+    <h2>Permissions Used</h2>
+    <p>The App requests the following permissions:</p>
+
+    <ol>
+        <li><strong>Storage Permissions</strong> (varies by Android version):
+            <ul>
+                <li>Android 13+: READ_MEDIA_IMAGES, READ_MEDIA_VIDEO, READ_MEDIA_AUDIO, MANAGE_EXTERNAL_STORAGE</li>
+                <li>Android 11-12: READ_EXTERNAL_STORAGE, MANAGE_EXTERNAL_STORAGE</li>
+                <li>Android 10 and below: READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE</li>
+                <li><strong>Purpose:</strong> To read GPX files from device storage</li>
+            </ul>
+        </li>
+        <li><strong>Internet Permission:</strong>
+            <ul>
+                <li><strong>Purpose:</strong> To connect to Strava API (when used), download OpenStreetMap tiles, and fetch privacy policy updates</li>
+            </ul>
+        </li>
+    </ol>
+    <p><strong>Note:</strong> The App does NOT request location permissions. It does not track your current location. It only processes historical GPS data from GPX files you choose to load.</p>
+
+    <h2>Your Rights</h2>
+    <ul>
+        <li><strong>Full Control:</strong> You have full control over your data</li>
+        <li><strong>No Tracking:</strong> The App does not track you or collect personal information</li>
+        <li><strong>No Account Required:</strong> No registration or account creation needed</li>
+        <li><strong>Delete Anytime:</strong> You can delete the App and all associated data at any time</li>
+        <li><strong>Revoke Access:</strong> You can revoke Strava access at any time through Strava settings</li>
+    </ul>
+
+    <h2>Children's Privacy</h2>
+    <p>The App is not directed to children under the age of 13. The App does not knowingly collect personal information from children.</p>
+
+    <h2>Changes to This Privacy Policy</h2>
+    <p>This privacy policy may be updated periodically to reflect changes in the App's functionality or legal requirements. The effective date will be updated accordingly. Continued use of the App after changes constitutes acceptance of the updated policy.</p>
+
+    <h2>Contact</h2>
+    <p>If you have questions about this privacy policy or how the App handles your data, please contact:</p>
+    <p>
+        <strong>Developer:</strong> Rafał Stańczuk<br>
+        <strong>Email:</strong> <a href="mailto:anddev0110@gmail.com">anddev0110@gmail.com</a>
+    </p>
+    <p>You can also contact through the App repository or distribution platform where you obtained the App.</p>
+
+    <h2>Compliance</h2>
+    <p>This privacy policy complies with:</p>
+    <ul>
+        <li>Google Play Developer Program Policies (<a href="https://support.google.com/googleplay/android-developer/answer/10144311" target="_blank">User Data Policy</a>)</li>
+        <li>Applicable privacy and data protection laws</li>
+        <li>Strava API Agreement requirements</li>
+    </ul>
+
+    <hr>
+    <p style="text-align: center; color: #666; font-size: 0.9em;"><em>Last Updated: December 12, 2025</em></p>
+
+</body>
+</html>
+

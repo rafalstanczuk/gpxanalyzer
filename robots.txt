@@ -1,0 +1,227 @@
+# robots.txt - Prevent AI training and web scraping
+# © 2023-2025 Rafał Stańczuk. All Rights Reserved.
+# Unauthorized scraping, cloning, or use for AI training is prohibited.
+
+# Block all crawlers by default
+User-agent: *
+Disallow: /
+Crawl-delay: 86400
+
+# Specifically block AI training bots
+User-agent: GPTBot
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: ChatGPT-User
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: CCBot
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: anthropic-ai
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: Claude-Web
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: PerplexityBot
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: Applebot-Extended
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: Omgilibot
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: FacebookBot
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: Bytespider
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: Diffbot
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: dataforseo
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: AhrefsBot
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: SemrushBot
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: Baiduspider
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: YandexBot
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: ia_archiver
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: archive.org_bot
+Disallow: /
+Crawl-delay: 86400
+
+# Additional AI/ML bots
+User-agent: Google-Extended
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: GoogleOther
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: anthropic-ai
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: ClaudeBot
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: GPTBot
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: ChatGPT-User
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: CCBot
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: PerplexityBot
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: Applebot-Extended
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: Omgilibot
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: FacebookBot
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: Bytespider
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: Diffbot
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: dataforseo
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: AhrefsBot
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: SemrushBot
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: Baiduspider
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: YandexBot
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: ia_archiver
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: archive.org_bot
+Disallow: /
+Crawl-delay: 86400
+
+# Scraping bots
+User-agent: Scrapy
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: Scraper
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: wget
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: curl
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: python-requests
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: PostmanRuntime
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: HTTPie
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: Go-http-client
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: Java
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: node-fetch
+Disallow: /
+Crawl-delay: 86400
+
+User-agent: axios
+Disallow: /
+Crawl-delay: 86400
+
+# Allow search engines with strict limits (if needed for SEO)
+# Note: Even allowed bots should respect noai, noimageai directives
+User-agent: Googlebot
+Disallow: /icons/
+Disallow: /screenshots/
+Disallow: /release_notes/
+Crawl-delay: 3600
+
+User-agent: Bingbot
+Disallow: /icons/
+Disallow: /screenshots/
+Disallow: /release_notes/
+Crawl-delay: 3600
+
+# Block all other bots
+User-agent: *
+Disallow: /
+Crawl-delay: 86400
+

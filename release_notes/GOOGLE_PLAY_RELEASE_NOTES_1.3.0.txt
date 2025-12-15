@@ -1,0 +1,10 @@
+New Features:
+• Added mandatory Privacy Policy acceptance flow on app startup to ensure users are always up to date.
+• Implemented automatic privacy policy updates with version tracking and offline support.
+
+Improvements:
+• Enhanced "About" screen with collapsible sections for Privacy Policy, Licenses, and Data usage.
+• Added official website and YouTube tutorial links to the App Info screen for quick access to documentation.
+• Improved dark mode support for formatted text content using dynamic theme injection.
+• Optimized network connectivity checks for better battery performance and reliability.
+
