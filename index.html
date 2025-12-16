@@ -1,4 +1,23 @@
 <!DOCTYPE html>
+<!--
+  COPYRIGHT NOTICE
+  © 2023-2025 Rafał Stańczuk. All Rights Reserved.
+  
+  This file and all contents are protected by copyright law.
+  Unauthorized copying, distribution, modification, or use is strictly prohibited.
+  
+  PROHIBITED ACTIVITIES:
+  - Automated scraping or crawling
+  - AI training data collection
+  - Unauthorized cloning or forking
+  - Reverse engineering
+  - Commercial use without license
+  
+  For licensing inquiries: anddev0110@gmail.com
+  For copyright violations: anddev0110@gmail.com
+  
+  This repository is actively monitored and protected by DMCA procedures.
+-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,9 +25,58 @@
     <meta name="description" content="GpxAnalyzer - Advanced GPS track analysis with interactive charts and maps. Analyze your hiking, cycling, running, and skiing activities.">
     <title>GpxAnalyzer - Professional GPS Track Analysis</title>
     
+    <!-- Search Engine and AI Directives -->
+    <!-- Allow indexing for SEO while still disallowing AI training/derivative use -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1, noai, noimageai">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1, noai, noimageai">
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1, noai, noimageai">
+    <meta name="GPTBot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="ChatGPT-User" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="CCBot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="anthropic-ai" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="Claude-Web" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="PerplexityBot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="Applebot-Extended" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="Omgilibot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="FacebookBot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="Bytespider" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="Diffbot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="dataforseo" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="AhrefsBot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="SemrushBot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="Baiduspider" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="YandexBot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="ia_archiver" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="archive.org_bot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="Google-Extended" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="GoogleOther" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="ClaudeBot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="Scrapy" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="Scraper" content="noindex, nofollow, noarchive, nosnippet">
+    <meta property="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1, noai, noimageai">
+    <!-- X-Robots-Tag should ideally be sent as an HTTP header; kept minimal here for static hosting -->
+    <meta name="X-Robots-Tag" content="index, follow, noai, noimageai">
+    
+    <!-- Copyright Protection -->
+    <meta name="copyright" content="© 2023-2025 Rafał Stańczuk. All Rights Reserved.">
+    <meta name="author" content="Rafał Stańczuk">
+    <meta name="owner" content="Rafał Stańczuk">
+    <meta name="reply-to" content="anddev0110@gmail.com">
+    
+    <!-- Additional Meta Signals (note: real security headers should be configured at the HTTP server level) -->
+    <meta name="rating" content="general">
+    
+    <!-- Copyright and Legal Protection -->
+    <meta name="dcterms.rightsHolder" content="Rafał Stańczuk">
+    <meta name="dcterms.rights" content="© 2023-2025 Rafał Stańczuk. All Rights Reserved.">
+    <meta name="dcterms.license" content="Proprietary - All Rights Reserved">
+    <meta name="dcterms.accessRights" content="Restricted">
+    
     <!-- Favicon and App Icons -->
     <link rel="icon" type="image/png" href="icons/ic_launcher-playstore.png">
     <link rel="apple-touch-icon" href="icons/ic_launcher-playstore.png">
+    <link rel="canonical" href="https://rafalstanczuk.github.io/github_gpxanalyzer_page/">
+    <meta name="keywords" content="GpxAnalyzer, GPX analyzer, GPS track analysis, Android app, Strava integration, hiking GPX, cycling GPX, running GPX, skiing GPX, interactive maps, elevation charts, speed analysis, GPS signal processing">
     
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
@@ -36,7 +104,10 @@
                     <img src="icons/ic_launcher-playstore.png" alt="GpxAnalyzer" class="logo-icon-img">
                     <span class="logo-text">GpxAnalyzer</span>
                 </div>
-                <div class="nav-links">
+                <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+                    <span class="nav-toggle-bar"></span>
+                </button>
+                <div class="nav-links" id="nav-menu">
                     <a href="#features">Features</a>
                     <a href="#screenshots">Screenshots</a>
                     <a href="#download">Download</a>
@@ -54,6 +125,7 @@
                     </a>
                 </div>
             </div>
+            <div class="nav-overlay" aria-hidden="true"></div>
         </div>
     </nav>
 
@@ -144,6 +216,20 @@
                     <p>All data processed locally on your device. Secure Strava integration with automatic authentication that keeps you connected. GDPR-compliant privacy policy. No tracking, no data collection, full transparency about how your data is handled.</p>
                 </div>
             </div>
+            <div class="strava-program-inline">
+                <div class="strava-program-inline-text">
+                    <h3>Strava Developer Program</h3>
+                    <p>GpxAnalyzer is an officially registered Strava Developer integration, built with secure OAuth, minimized API usage, and transparent data handling.</p>
+                    <div class="strava-program-pills">
+                        <span class="strava-program-pill">Secure OAuth</span>
+                        <span class="strava-program-pill">Optimized API usage</span>
+                        <span class="strava-program-pill">Transparent data flow</span>
+                    </div>
+                </div>
+                <div class="strava-program-image">
+                    <img src="other/StravaDevelopmentProgram.png" alt="Strava Development Program badge" loading="lazy">
+                </div>
+            </div>
             <div style="text-align: center; margin-top: 3rem;">
                 <a href="https://youtube.com/playlist?list=PLEoWUezHpM18GE4oh7LQ3NHar2RsD0XLB&si=zSvlQHUSoUNxTkK-" class="btn btn-secondary" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.5rem;">
                     <span>📺 Watch Tutorial Videos</span>
@@ -186,22 +272,7 @@
             <h2 class="section-title">See It In Action</h2>
             <p class="section-subtitle">Explore your GPS tracks with beautiful visualizations</p>
             <div class="screenshots-grid">
-                <div class="screenshot-item" data-screenshot="screenshots/Screenshot_20251124_224522.png" data-description-md="screenshots/Screenshot_20251124_224522.md">
-                    <img src="screenshots/Screenshot_20251124_224522.png" alt="GpxAnalyzer Screenshot - Interactive Charts" class="screenshot-img">
-                    <div class="screenshot-description">Loading description...</div>
-                </div>
-                <div class="screenshot-item" data-screenshot="screenshots/Screenshot_20251124_224547.png" data-description-md="screenshots/Screenshot_20251124_224547.md">
-                    <img src="screenshots/Screenshot_20251124_224547.png" alt="GpxAnalyzer Screenshot - Map Visualization" class="screenshot-img">
-                    <div class="screenshot-description">Loading description...</div>
-                </div>
-                <div class="screenshot-item" data-screenshot="screenshots/Screenshot_20251124_224603.png" data-description-md="screenshots/Screenshot_20251124_224603.md">
-                    <img src="screenshots/Screenshot_20251124_224603.png" alt="GpxAnalyzer Screenshot - Data Analysis" class="screenshot-img">
-                    <div class="screenshot-description">Loading description...</div>
-                </div>
-                <div class="screenshot-item" data-screenshot="screenshots/Screenshot_20251124_225215.png" data-description-md="screenshots/Screenshot_20251124_225215.md">
-                    <img src="screenshots/Screenshot_20251124_225215.png" alt="GpxAnalyzer Screenshot - Activity Overview" class="screenshot-img">
-                    <div class="screenshot-description">Loading description...</div>
-                </div>
+                <!-- Screenshots are dynamically loaded from screenshots/index.txt -->
             </div>
             <div style="text-align: center; margin-top: 3rem;">
                 <p style="color: var(--text-secondary); margin-bottom: 1rem;">Want to see these features in action?</p>

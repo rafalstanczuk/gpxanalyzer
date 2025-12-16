@@ -15,6 +15,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Add scroll effect to navbar
 let lastScroll = 0;
 const navbar = document.querySelector('.navbar');
+const navToggle = document.querySelector('.nav-toggle');
+const navLinksContainer = document.querySelector('.nav-links');
+const navOverlay = document.querySelector('.nav-overlay');
 
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
@@ -27,6 +30,81 @@ window.addEventListener('scroll', () => {
     
     lastScroll = currentScroll;
 });
+
+if (navToggle && navLinksContainer) {
+    const closeMenu = () => {
+        navLinksContainer.classList.remove('open');
+        navToggle.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('menu-open');
+        navToggle.focus({ preventScroll: true });
+    };
+
+    const openMenu = () => {
+        navLinksContainer.classList.add('open');
+        navToggle.classList.add('open');
+        navToggle.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('menu-open');
+        const firstLink = navLinksContainer.querySelector('a');
+        if (firstLink) {
+            firstLink.focus({ preventScroll: true });
+        }
+    };
+
+    navToggle.addEventListener('click', () => {
+        const isOpen = navLinksContainer.classList.contains('open');
+        if (isOpen) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    });
+
+    navLinksContainer.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (navLinksContainer.classList.contains('open')) {
+                closeMenu();
+            }
+        });
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!navLinksContainer.contains(event.target) && !navToggle.contains(event.target) && navLinksContainer.classList.contains('open')) {
+            closeMenu();
+        }
+    });
+
+    if (navOverlay) {
+        navOverlay.addEventListener('click', closeMenu);
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && navLinksContainer.classList.contains('open')) {
+            closeMenu();
+        }
+
+        if (event.key === 'Tab' && navLinksContainer.classList.contains('open')) {
+            const focusable = navLinksContainer.querySelectorAll('a');
+            if (focusable.length === 0) return;
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+            }
+        }
+    });
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 1024 && navLinksContainer.classList.contains('open')) {
+            closeMenu();
+        }
+    });
+}
 
 // Add fade-in animation on scroll
 const observerOptions = {
@@ -44,8 +122,71 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Observe feature cards and screenshots
-document.addEventListener('DOMContentLoaded', () => {
-    const animatedElements = document.querySelectorAll('.feature-card, .screenshot-item');
+document.addEventListener('DOMContentLoaded', async () => {
+    // Helper: build screenshot items from index.txt so adding new screenshots
+    // only requires dropping files + updating the index
+    async function buildScreenshotsFromIndex() {
+        const grid = document.querySelector('.screenshots-grid');
+        if (!grid) return Array.from(document.querySelectorAll('.screenshot-item'));
+
+        try {
+            const resp = await fetch('screenshots/index.txt', { cache: 'default' });
+            if (!resp.ok) {
+                // Fallback to existing static markup
+                return Array.from(document.querySelectorAll('.screenshot-item'));
+            }
+
+            const text = await resp.text();
+            const basenames = text
+                .split('\n')
+                .map(line => line.trim())
+                .filter(line => line.length > 0);
+
+            if (basenames.length === 0) {
+                return Array.from(document.querySelectorAll('.screenshot-item'));
+            }
+
+            // Rebuild grid from index
+            grid.innerHTML = '';
+
+            basenames.forEach(name => {
+                const pngPath = `screenshots/${name}.png`;
+                const mdPath = `screenshots/${name}.md`;
+
+                const item = document.createElement('div');
+                item.className = 'screenshot-item';
+                item.dataset.screenshot = pngPath;
+                item.dataset.descriptionMd = mdPath;
+
+                const img = document.createElement('img');
+                img.src = pngPath;
+                img.alt = 'GpxAnalyzer Screenshot';
+                img.className = 'screenshot-img';
+
+                const desc = document.createElement('div');
+                desc.className = 'screenshot-description';
+                desc.textContent = 'Loading description...';
+
+                item.appendChild(img);
+                item.appendChild(desc);
+                grid.appendChild(item);
+            });
+
+            return Array.from(grid.querySelectorAll('.screenshot-item'));
+        } catch (e) {
+            // Network or file:// error – fall back to existing DOM
+            return Array.from(document.querySelectorAll('.screenshot-item'));
+        }
+    }
+
+    // Build screenshots from index (if available)
+    const screenshotItems = await buildScreenshotsFromIndex();
+
+    // Animate feature cards + screenshots
+    const animatedElements = [
+        ...document.querySelectorAll('.feature-card'),
+        ...screenshotItems,
+    ];
     animatedElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
@@ -60,7 +201,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.querySelector('.screenshot-modal-close');
     const prevBtn = document.getElementById('screenshot-modal-prev');
     const nextBtn = document.getElementById('screenshot-modal-next');
-    const screenshotItems = document.querySelectorAll('.screenshot-item');
     
     // Store screenshot section position for scrolling back after close
     let screenshotSectionPosition = null;
@@ -103,100 +243,39 @@ document.addEventListener('DOMContentLoaded', () => {
         currentScreenshotIndex = index;
         
         const screenshotSrc = item.getAttribute('data-screenshot');
-        console.log('Opening screenshot', index, 'src:', screenshotSrc);
-            console.log('Screenshot clicked, src:', screenshotSrc);
-            console.log('Modal:', modal);
-            console.log('ModalImg:', modalImg);
+        
+        if (!modal || !modalImg) {
+            return;
+        }
+        
+        if (screenshotSrc) {
+            // Reset image first
+            modalImg.src = '';
+            modalImg.style.display = 'none';
             
-            if (!modal) {
-                console.error('Modal element not found!');
-                return;
-            }
+            // Set image source
+            modalImg.src = screenshotSrc;
             
-            if (!modalImg) {
-                console.error('Modal image element not found!');
-                return;
-            }
+            // Force visibility
+            modalImg.style.display = 'block';
+            modalImg.style.visibility = 'visible';
+            modalImg.style.opacity = '1';
+            modalImg.style.width = 'auto';
+            modalImg.style.height = 'auto';
             
-            if (screenshotSrc) {
-                // Reset image first
-                modalImg.src = '';
-                modalImg.style.display = 'none';
-                
-                // Set image source
-                modalImg.src = screenshotSrc;
-                console.log('Setting image src to:', screenshotSrc);
-                
-                // Force visibility
-                modalImg.style.display = 'block';
-                modalImg.style.visibility = 'visible';
-                modalImg.style.opacity = '1';
-                modalImg.style.width = 'auto';
-                modalImg.style.height = 'auto';
-                
-                // Ensure image loads
-                modalImg.onload = function() {
-                    console.log('=== IMAGE LOADED SUCCESSFULLY ===');
-                    console.log('Image natural width:', this.naturalWidth);
-                    console.log('Image natural height:', this.naturalHeight);
-                    console.log('Image client width:', this.clientWidth);
-                    console.log('Image client height:', this.clientHeight);
-                    console.log('Image offset width:', this.offsetWidth);
-                    console.log('Image offset height:', this.offsetHeight);
-                    console.log('Image src:', this.src);
-                    
-                    const computedStyle = window.getComputedStyle(this);
-                    console.log('Computed display:', computedStyle.display);
-                    console.log('Computed visibility:', computedStyle.visibility);
-                    console.log('Computed opacity:', computedStyle.opacity);
-                    console.log('Computed width:', computedStyle.width);
-                    console.log('Computed height:', computedStyle.height);
-                    console.log('Computed max-width:', computedStyle.maxWidth);
-                    console.log('Computed max-height:', computedStyle.maxHeight);
-                    console.log('Computed position:', computedStyle.position);
-                    console.log('Computed z-index:', computedStyle.zIndex);
-                    
-                    const container = this.parentElement;
-                    if (container) {
-                        console.log('=== CONTAINER INFO ===');
-                        console.log('Container:', container);
-                        const containerStyle = window.getComputedStyle(container);
-                        console.log('Container display:', containerStyle.display);
-                        console.log('Container width:', containerStyle.width);
-                        console.log('Container height:', containerStyle.height);
-                        console.log('Container client width:', container.clientWidth);
-                        console.log('Container client height:', container.clientHeight);
-                        console.log('Container flex:', containerStyle.display);
-                    }
-                    
-                    const modalEl = document.getElementById('screenshot-modal');
-                    if (modalEl) {
-                        console.log('=== MODAL INFO ===');
-                        const modalStyle = window.getComputedStyle(modalEl);
-                        console.log('Modal display:', modalStyle.display);
-                        console.log('Modal width:', modalStyle.width);
-                        console.log('Modal height:', modalStyle.height);
-                        console.log('Modal has show class:', modalEl.classList.contains('show'));
-                    }
-                    
-                    this.style.display = 'block';
-                    this.style.visibility = 'visible';
-                    this.style.opacity = '1';
-                    console.log('=== FORCED STYLES APPLIED ===');
-                };
-                
-                modalImg.onerror = function() {
-                    console.error('=== IMAGE LOAD ERROR ===');
-                    console.error('Failed to load image:', screenshotSrc);
-                    console.error('Image src attribute:', this.src);
-                    this.alt = 'Image failed to load: ' + screenshotSrc;
-                    this.style.display = 'block';
-                    this.style.visibility = 'visible';
-                    this.style.opacity = '1';
-                    this.style.border = '2px solid red';
-                    this.style.padding = '20px';
-                    this.style.backgroundColor = 'rgba(255, 0, 0, 0.1)';
-                };
+            // Ensure image loads
+            modalImg.onload = function() {
+                this.style.display = 'block';
+                this.style.visibility = 'visible';
+                this.style.opacity = '1';
+            };
+            
+            modalImg.onerror = function() {
+                this.alt = 'Image failed to load: ' + screenshotSrc;
+                this.style.display = 'block';
+                this.style.visibility = 'visible';
+                this.style.opacity = '1';
+            };
                 
                 // Get description from the screenshot item
                 const descriptionDiv = item.querySelector('.screenshot-description');
@@ -247,7 +326,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // Show modal
                 modal.classList.add('show');
-                console.log('Modal shown, class added');
                 
                 // Update navigation buttons
                 updateNavigationButtons();
@@ -255,8 +333,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Wait for modal to render, then set up image
                 requestAnimationFrame(() => {
                     requestAnimationFrame(() => {
-                        console.log('Setting up image after modal render');
-                        
                         // Get viewport dimensions
                         const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
                         const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
@@ -264,15 +340,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         const topbarHeight = topbar ? (topbar.offsetHeight || topbar.clientHeight) : 100;
                         const availableHeight = viewportHeight - topbarHeight - 40;
                         
-                        console.log('Viewport:', viewportWidth, 'x', viewportHeight);
-                        console.log('Topbar height:', topbarHeight);
-                        console.log('Available height:', availableHeight);
-                        
                         // Set image constraints
                         const maxImgWidth = Math.min(viewportWidth * 0.9, 1440);
                         const maxImgHeight = Math.min(availableHeight * 0.95, 2880);
-                        
-                        console.log('Max image size:', maxImgWidth, 'x', maxImgHeight);
                         
                         // Reset all image styles to defaults
                         modalImg.style.cssText = '';
@@ -289,8 +359,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         modalImg.style.objectFit = 'contain';
                         modalImg.style.margin = 'auto';
                         
-                        console.log('Image styles applied');
-                        
                         // Ensure container is set up for flexbox
                         if (container) {
                             container.style.overflow = 'hidden';
@@ -300,7 +368,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             // Force container to be at viewport top
                             container.style.top = '0';
                             container.style.left = '0';
-                            console.log('Container configured');
                         }
                         
                         // Ensure modal is at viewport top
@@ -320,31 +387,16 @@ document.addEventListener('DOMContentLoaded', () => {
                             const containerRect = container?.getBoundingClientRect();
                             const modalRect = modal.getBoundingClientRect();
                             
-                            console.log('Final image position:', {
-                                top: rect.top,
-                                left: rect.left,
-                                width: rect.width,
-                                height: rect.height,
-                                visible: rect.top >= 0 && rect.top < viewportHeight && rect.left >= 0 && rect.left < viewportWidth
-                            });
-                            
-                            console.log('Container position:', {
-                                top: containerRect?.top,
-                                left: containerRect?.left,
-                                width: containerRect?.width,
-                                height: containerRect?.height
-                            });
-                            
-                            console.log('Modal position:', {
-                                top: modalRect.top,
-                                left: modalRect.left,
-                                width: modalRect.width,
-                                height: modalRect.height
-                            });
+                            // Determine if the image is within the viewport
+                            const rectVisible = (
+                                rect.top >= 0 &&
+                                rect.left >= 0 &&
+                                rect.bottom <= viewportHeight &&
+                                rect.right <= viewportWidth
+                            );
                             
                             // If image is still off-screen, force it to center using fixed positioning
-                            if (rect.top < 0 || rect.top > viewportHeight || !rect.visible) {
-                                console.warn('Image is off-screen, using fixed positioning fallback');
+                            if (rect.top < 0 || rect.top > viewportHeight || !rectVisible) {
                                 const imgWidth = rect.width || modalImg.offsetWidth;
                                 const imgHeight = rect.height || modalImg.offsetHeight;
                                 const centerX = viewportWidth / 2;
@@ -355,11 +407,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                 modalImg.style.left = (centerX - imgWidth / 2) + 'px';
                                 modalImg.style.margin = '0';
                                 modalImg.style.zIndex = '10003';
-                                
-                                console.log('Fixed position applied:', {
-                                    top: modalImg.style.top,
-                                    left: modalImg.style.left
-                                });
                             }
                         }, 200);
                     });
@@ -582,11 +629,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Discover release notes files dynamically
+    // Cache for release notes to avoid re-discovery
+    let releaseNotesCache = null;
+    
+    // Discover release notes files dynamically with optimized approach
     async function discoverReleaseNotesFiles() {
+        // Return cached result if available
+        if (releaseNotesCache) {
+            console.log(`Using cached release notes (${releaseNotesCache.length} files)`);
+            return releaseNotesCache;
+        }
+        
         // First, try to load an index file if it exists
         try {
-            const indexResponse = await fetch('release_notes/index.txt');
+            const indexResponse = await fetch('release_notes/index.txt', {
+                cache: 'default'
+            });
             if (indexResponse.ok) {
                 const indexContent = await indexResponse.text();
                 const files = indexContent.split('\n')
@@ -594,30 +652,31 @@ document.addEventListener('DOMContentLoaded', () => {
                     .filter(line => line.length > 0 && line.endsWith('.txt'))
                     .map(line => line.startsWith('release_notes/') ? line : `release_notes/${line}`);
                 console.log(`Found ${files.length} files from index.txt`);
+                releaseNotesCache = files;
                 return files;
             }
         } catch (error) {
-            console.log('No index.txt found, trying version discovery...');
+            console.log('No index.txt found, using smart discovery...');
         }
 
-        // Fallback: Try to discover files by attempting version patterns
-        // Optimized: Start from higher versions (more likely) and work backwards
+        // Smart discovery: Binary search approach starting from likely versions
         const basePath = 'release_notes/GOOGLE_PLAY_RELEASE_NOTES_';
         const discoveredFiles = [];
         
-        console.log('Discovering release notes files...');
+        console.log('Discovering release notes files (optimized)...');
         
-        // Try a reasonable range: major 0-5, minor 0-9, patch 0-9
-        // This covers versions 0.0.0 to 5.9.9 (600 combinations instead of 1000)
-        // Start from higher versions first (more likely to exist)
-        const maxMajor = 6;
-        const maxMinor = 10;
-        const maxPatch = 10;
-        const batchSize = 50; // Process in batches to avoid too many simultaneous requests
+        // Strategy: Start from a reasonable high version and work backwards
+        // Stop early when we find no files in a range
+        const startMajor = 5; // Start from version 5.x.x
+        const maxMinor = 20;
+        const maxPatch = 20;
+        const batchSize = 10; // Smaller batches for faster early termination
+        let consecutiveEmptyBatches = 0;
+        const maxEmptyBatches = 3; // Stop after 3 empty batches
         
-        // Generate version combinations, starting from higher versions
+        // Generate versions starting from highest, working backwards
         const allVersions = [];
-        for (let major = maxMajor - 1; major >= 0; major--) {
+        for (let major = startMajor; major >= 0; major--) {
             for (let minor = maxMinor - 1; minor >= 0; minor--) {
                 for (let patch = maxPatch - 1; patch >= 0; patch--) {
                     allVersions.push(`${major}.${minor}.${patch}`);
@@ -625,22 +684,31 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         
-        // Process in batches
+        // Process in smaller batches with early termination
         for (let i = 0; i < allVersions.length; i += batchSize) {
+            // Early termination if we've found files and hit empty batches
+            if (discoveredFiles.length > 0 && consecutiveEmptyBatches >= maxEmptyBatches) {
+                console.log(`Early termination: Found ${discoveredFiles.length} files, stopping after ${consecutiveEmptyBatches} empty batches`);
+                break;
+            }
+            
             const batch = allVersions.slice(i, i + batchSize);
             const batchPromises = batch.map(async (version) => {
                 const filePath = `${basePath}${version}.txt`;
                 try {
                     const response = await fetch(filePath, { 
-                        method: 'GET',
-                        cache: 'no-cache' // Prevent caching issues during discovery
+                        method: 'HEAD', // Use HEAD request first (lighter)
+                        cache: 'default'
                     });
                     if (response.ok) {
-                        // Fetch content during discovery to avoid second request
-                        const content = await response.text();
-                        const versionMatch = filePath.match(/(\d+\.\d+\.\d+)/);
-                        const version = versionMatch ? versionMatch[1] : 'Unknown';
-                        return { version, content, filePath };
+                        // Only fetch content if file exists
+                        const contentResponse = await fetch(filePath, { cache: 'default' });
+                        if (contentResponse.ok) {
+                            const content = await contentResponse.text();
+                            const versionMatch = filePath.match(/(\d+\.\d+\.\d+)/);
+                            const version = versionMatch ? versionMatch[1] : 'Unknown';
+                            return { version, content, filePath };
+                        }
                     }
                 } catch (error) {
                     // File doesn't exist, ignore
@@ -650,18 +718,30 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const batchResults = await Promise.all(batchPromises);
             const found = batchResults.filter(note => note !== null);
-            discoveredFiles.push(...found);
+            
+            if (found.length > 0) {
+                discoveredFiles.push(...found);
+                consecutiveEmptyBatches = 0; // Reset counter when we find files
+            } else {
+                consecutiveEmptyBatches++;
+            }
         }
         
         console.log(`Discovered ${discoveredFiles.length} release notes files`);
+        releaseNotesCache = discoveredFiles;
         return discoveredFiles;
     }
 
-    // Load and display release notes
+    // Load and display release notes (lazy loaded when section is visible)
     async function loadReleaseNotes() {
         const container = document.getElementById('release-notes-container');
         if (!container) {
             console.warn('Release notes container not found');
+            return;
+        }
+
+        // Check if already loaded
+        if (container.dataset.loaded === 'true') {
             return;
         }
 
@@ -728,6 +808,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 return renderReleaseNote(parsed, note.version);
             }).join('');
 
+            // Mark as loaded
+            container.dataset.loaded = 'true';
+
             // Animate release notes on scroll
             const releaseNoteItems = document.querySelectorAll('.release-note-item');
             releaseNoteItems.forEach((el, index) => {
@@ -741,6 +824,28 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error loading release notes:', error);
             container.innerHTML = '<div class="release-notes-loading">Error loading release notes. Please view via web server.</div>';
         }
+    }
+    
+    // Lazy load release notes when section becomes visible
+    const releaseNotesSection = document.getElementById('release-notes');
+    if (releaseNotesSection) {
+        const releaseNotesObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    loadReleaseNotes().catch(error => {
+                        console.error('Error in lazy loading release notes:', error);
+                    });
+                    releaseNotesObserver.unobserve(entry.target); // Load only once
+                }
+            });
+        }, {
+            rootMargin: '100px' // Start loading 100px before section is visible
+        });
+        
+        releaseNotesObserver.observe(releaseNotesSection);
+    } else {
+        // Fallback: Load immediately if section not found (shouldn't happen)
+        loadReleaseNotes();
     }
 
     // Parse release note content into structured format
@@ -818,13 +923,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return div.innerHTML;
     }
 
-    // Load release notes when DOM is ready
-    loadReleaseNotes().catch(error => {
-        console.error('Fatal error loading release notes:', error);
-        const container = document.getElementById('release-notes-container');
-        if (container) {
-            container.innerHTML = '<div class="release-notes-loading">Error loading release notes. Please view via web server.</div>';
-        }
-    });
+    // Release notes are now lazy-loaded via Intersection Observer (see above)
 });
 
