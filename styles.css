@@ -2771,7 +2771,7 @@ body.menu-open {
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--border-color);
     gap: 1rem;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 /* YouTube Logo for Release Notes */
@@ -2894,24 +2894,23 @@ body.menu-open {
     }
 
     .release-note-header {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-wrap: nowrap;
         gap: 0.75rem;
     }
 
     .release-note-header .youtube-logo-link-release-notes {
-        width: 100%;
-        display: flex;
-        justify-content: flex-start;
+        flex-shrink: 0;
     }
 
     .release-note-header .youtube-logo-release-notes {
-        width: 120px;
-        max-width: 120px;
+        width: 100px;
+        max-width: 100px;
     }
-
+    
     .release-note-version {
         font-size: 1.25rem;
+        flex-shrink: 1;
+        min-width: 0;
     }
 
     .release-note-content h4 {

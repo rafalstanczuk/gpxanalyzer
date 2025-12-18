@@ -1,3 +1,2 @@
 Bug Fixes:
-• Fixed 16 KB Google Play compatibility requirement.
-
+• Fixed 16 KB Google Play compatibility requirement

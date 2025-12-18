@@ -1,10 +1,10 @@
 New Features:
-• Automatic version checking for app compatibility.
-• Encrypted version requirement updates.
+• Automatic version checking for app compatibility
+• Encrypted version requirement updates
 
 Improvements:
-• Theme-aware update dialogs.
-• Offline support with cached requirements.
+• Theme-aware update dialogs
+• Offline support with cached requirements
 
 Bug Fixes:
-• Fixed dialog display issues.
+• Fixed dialog display issues

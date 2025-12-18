@@ -1,13 +1,13 @@
 New Features:
-• Dynamic Strava rate limit management with online configuration updates.
-• Smart queue system that automatically waits when rate limits are reached.
-• Two-step sync confirmation with clear information about sync operations.
+• Dynamic Strava rate limit management with online configuration
+• Smart queue system that automatically waits when rate limits are reached
+• Two-step sync confirmation with clear operation information
 
 Improvements:
-• Better user feedback with toast notifications for cancelled operations.
-• All configuration values moved to XML for easier updates.
-• Improved error handling and thread safety for Strava operations.
+• Better user feedback with toast notifications
+• All configuration values moved to XML for easier updates
+• Improved error handling and thread safety
 
 Bug Fixes:
-• Fixed app crashes related to database access on main thread.
-• Resolved threading issues in Strava sync operations.
+• Fixed app crashes related to database access on main thread
+• Resolved threading issues in Strava sync operations

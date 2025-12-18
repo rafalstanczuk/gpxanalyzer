@@ -1,13 +1,12 @@
 New Features:
-• Maps now automatically adapt to dark mode for better visibility
+• Maps now automatically adapt to dark mode
 
 Bug Fixes:
 • Fixed day/night mode theme switching issues
 • Resolved icon visibility problems in dark mode
-• Fixed content overlapping with status bar, navigation bar, and device notches
+• Fixed content overlapping with status bar and device notches
 
 Improvements:
 • Enhanced night mode with improved blue color scheme
 • Improved file selection and permissions handling
 • Better error messages and user feedback
-

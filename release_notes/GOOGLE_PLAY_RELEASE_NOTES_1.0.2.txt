@@ -2,12 +2,7 @@ Bug Fixes:
 • Fixed Strava authentication and mobile browser compatibility
 • Resolved app crashes when viewing/sorting GPX files
 • Fixed missing location data after app restart
-• Improved GPX file parsing and app stability
 
 Improvements:
 • Updated Strava OAuth to official mobile authentication flow
 • Enhanced connection reliability
-
-
-
-
