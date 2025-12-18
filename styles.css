@@ -1388,6 +1388,7 @@ body.menu-open {
     display: flex;
     gap: 1rem;
     justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
 }
 
@@ -1463,6 +1464,140 @@ body.menu-open {
 .btn-icon {
     margin-right: 0.5rem;
     font-size: 1.25rem;
+}
+
+/* Google Play Badge */
+.google-play-badge-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    line-height: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.google-play-badge-link:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.google-play-badge-link:active {
+    transform: translateY(0);
+}
+
+.google-play-badge {
+    height: auto;
+    width: 200px; /* Explicit width for proper display */
+    max-width: 200px;
+    min-width: 129px; /* Minimum size per Google Play guidelines for screen */
+    display: block;
+    margin: 0 auto;
+}
+
+/* Clear space: one-quarter of badge height (approximately 8-12px for typical badge) */
+.hero-buttons .google-play-badge-link,
+.download-buttons .google-play-badge-link {
+    padding: 0.75rem; /* Clear space around badge */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .google-play-badge {
+        max-width: 180px;
+        min-width: 129px;
+    }
+    
+    .hero-buttons .google-play-badge-link,
+    .download-buttons .google-play-badge-link {
+        padding: 0.5rem;
+    }
+}
+
+/* YouTube Logo */
+.youtube-logo-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    line-height: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    background: transparent;
+    padding: 0;
+    border: none;
+    position: relative;
+    height: fit-content;
+}
+
+.youtube-logo-link:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.youtube-logo-link:active {
+    transform: translateY(0);
+}
+
+.youtube-logo {
+    height: auto;
+    width: 200px; /* Match Google Play badge width */
+    max-width: 200px;
+    display: block;
+    margin: 0;
+    object-fit: contain;
+    /* SVG acts as border - no additional styling to the shape */
+}
+
+.hero-buttons .youtube-logo-link {
+    padding: 0;
+}
+
+@media (max-width: 768px) {
+    .youtube-logo {
+        max-width: 180px;
+        width: 180px;
+    }
+    
+    .hero-buttons .youtube-logo-link {
+        padding: 0;
+    }
+    
+    .youtube-logo-link {
+        padding: 0;
+    }
+}
+
+/* YouTube Logo Footer */
+.youtube-logo-link-footer {
+    display: inline-block;
+    text-decoration: none;
+    line-height: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    background: transparent;
+    padding: 0;
+    border: none;
+}
+
+.youtube-logo-link-footer:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.youtube-logo-footer {
+    height: auto;
+    width: 120px; /* Smaller size for footer */
+    max-width: 120px;
+    display: block;
+    margin: 0;
+    /* SVG acts as border - no additional styling to the shape */
+}
+
+@media (max-width: 768px) {
+    .youtube-logo-footer {
+        max-width: 100px;
+        width: 100px;
+    }
 }
 
 /* Features Section */
@@ -2513,6 +2648,9 @@ body.menu-open {
 
 .download-buttons {
     margin: 2.5rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .download-info {
@@ -2632,6 +2770,40 @@ body.menu-open {
     margin-bottom: 1.5rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--border-color);
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* YouTube Logo for Release Notes */
+.youtube-logo-link-release-notes {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    line-height: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    background: transparent;
+    padding: 0;
+    border: none;
+}
+
+.youtube-logo-link-release-notes:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.youtube-logo-link-release-notes:active {
+    transform: translateY(0);
+}
+
+.youtube-logo-release-notes {
+    height: auto;
+    width: 140px; /* Appropriate size for release notes header */
+    max-width: 140px;
+    display: block;
+    margin: 0;
+    object-fit: contain;
+    /* SVG acts as border - no additional styling to the shape */
 }
 
 .release-note-version {
@@ -2724,7 +2896,18 @@ body.menu-open {
     .release-note-header {
         flex-direction: column;
         align-items: flex-start;
-        gap: 0.5rem;
+        gap: 0.75rem;
+    }
+
+    .release-note-header .youtube-logo-link-release-notes {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .release-note-header .youtube-logo-release-notes {
+        width: 120px;
+        max-width: 120px;
     }
 
     .release-note-version {
@@ -3443,6 +3626,29 @@ body.menu-open {
 
     .hero-buttons {
         flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-buttons .google-play-badge-link {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .hero-buttons .google-play-badge {
+        width: 100%;
+        max-width: 200px;
+    }
+    
+    .hero-buttons .youtube-logo-link {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .hero-buttons .youtube-logo {
+        width: 100%;
+        max-width: 200px;
     }
 
     .btn {

@@ -802,10 +802,39 @@ document.addEventListener('DOMContentLoaded', async () => {
                 return 0;
             });
 
+            // Check for YouTube tutorial link files for each version
+            const releaseNotesWithYoutube = await Promise.all(releaseNotes.map(async (note) => {
+                const version = note.version;
+                // Try both release_notes/ and local/release_notes/ paths
+                const youtubePaths = [
+                    `release_notes/Youtube_Tutorial_Link_${version}.txt`,
+                    `local/release_notes/Youtube_Tutorial_Link_${version}.txt`
+                ];
+                
+                let youtubeLink = null;
+                for (const youtubePath of youtubePaths) {
+                    try {
+                        const response = await fetch(youtubePath);
+                        if (response.ok) {
+                            const content = await response.text();
+                            const link = content.trim();
+                            if (link.length > 0) {
+                                youtubeLink = link;
+                                break;
+                            }
+                        }
+                    } catch (error) {
+                        // File doesn't exist at this path, try next
+                    }
+                }
+                
+                return { ...note, youtubeLink };
+            }));
+
             // Parse and render release notes
-            container.innerHTML = releaseNotes.map(note => {
+            container.innerHTML = releaseNotesWithYoutube.map(note => {
                 const parsed = parseReleaseNote(note.content, note.version);
-                return renderReleaseNote(parsed, note.version);
+                return renderReleaseNote(parsed, note.version, note.youtubeLink);
             }).join('');
 
             // Mark as loaded
@@ -880,7 +909,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Render a release note item
-    function renderReleaseNote(sections, version) {
+    function renderReleaseNote(sections, version, youtubeLink = null) {
         const hasContent = Object.values(sections).some(arr => arr.length > 0);
         if (!hasContent) return '';
 
@@ -894,6 +923,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         let html = `<div class="release-note-item">`;
         html += `<div class="release-note-header">`;
         html += `<div class="release-note-version">Version ${version}</div>`;
+        if (youtubeLink) {
+            html += `<a href="${escapeHtml(youtubeLink)}" class="youtube-logo-link-release-notes" target="_blank" rel="noopener noreferrer" aria-label="Watch Tutorial on YouTube">`;
+            html += `<img src="icons/WatchonYouTube-black-SVG.svg" alt="Watch Tutorial on YouTube" class="youtube-logo-release-notes">`;
+            html += `</a>`;
+        }
         html += `</div>`;
         html += `<div class="release-note-content">`;
 
