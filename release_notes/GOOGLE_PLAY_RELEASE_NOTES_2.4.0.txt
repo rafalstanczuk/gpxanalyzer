@@ -1,0 +1,7 @@
+New Features:
+• Resizable map and chart layout - drag the divider to adjust the split between map and charts to your preference.
+• Split ratio preferences are saved per view mode and screen orientation, so your layout preferences are remembered.
+• Optimized layouts for tablets and large screens with better use of available space.
+
+Improvements:
+• Better responsive design that adapts to different screen sizes and orientations.
