@@ -1,0 +1,5 @@
+Improvements:
+• Better performance with optimized build configuration and memory management.
+
+Bug Fixes:
+• Resolved threading issues in chart item adapter updates for smoother UI interactions.

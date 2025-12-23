@@ -1,0 +1,5 @@
+Improvements:
+• Enhanced layout state management with transactional state coordination for better reliability.
+
+Bug Fixes:
+• Fixed display issues when updating chart items in the list.
