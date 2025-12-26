@@ -1,0 +1,7 @@
+Improvements:
+• Chart X-axis labels now only appear when viewing a single chart for a cleaner display.
+• Improved marker direction accuracy and animation performance.
+
+Bug Fixes:
+• Fixed marker animation memory leaks and direction inconsistencies at different zoom levels.
+

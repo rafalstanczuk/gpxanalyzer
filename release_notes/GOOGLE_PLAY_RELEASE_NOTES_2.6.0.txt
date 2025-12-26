@@ -1,0 +1,7 @@
+New Features:
+• Tap on the map to highlight the nearest point on your track - the selected point automatically syncs with your charts for easy route exploration.
+
+Improvements:
+• Enhanced map visualization with improved polyline appearance and better marker visibility.
+• Performance improvements by removing unnecessary animations for smoother chart rendering.
+
