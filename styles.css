@@ -1825,6 +1825,25 @@ body.menu-open {
     line-height: 1.7;
 }
 
+.feature-card ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+.feature-card ul li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.5em;
+    text-indent: -1.5em;
+}
+
+.feature-card ul li:last-child {
+    margin-bottom: 0;
+}
+
 /* Strava Developer Program */
 .strava-program {
     padding: 5rem 0;
@@ -1970,6 +1989,24 @@ body.menu-open {
     color: var(--text-secondary);
     line-height: 1.65;
     margin: 0;
+}
+
+.strava-program-inline-text ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0 0 1rem 0;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+.strava-program-inline-text ul li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5em;
+    text-indent: -1.5em;
+}
+
+.strava-program-inline-text ul li:last-child {
+    margin-bottom: 0;
 }
 
 .strava-program-inline .strava-program-pills {
