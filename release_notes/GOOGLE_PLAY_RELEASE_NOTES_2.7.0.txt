@@ -1,0 +1,10 @@
+New Features:
+• Tap on map markers to see detailed distance information - shows accumulated distance from start and segment details.
+• Chart markers now display distance information alongside altitude and speed data for better context.
+• Automatic distance formatting - distances automatically convert to kilometers when over 1000 meters for easier reading.
+
+Improvements:
+• Enhanced marker info windows with better layout and theme support for improved visibility.
+• Improved distance calculations with optimized performance for large tracks.
+• Better distance display consistency across map markers and chart tooltips.
+
