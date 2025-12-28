@@ -47,7 +47,7 @@
     <h1>Privacy Policy</h1>
 
     <div class="meta-info">
-        <p><strong>Effective Date:</strong> December 12, 2025</p>
+        <p><strong>Effective Date:</strong> December 27, 2025</p>
         <p><strong>Developer:</strong> Rafał Stańczuk</p>
         <p><strong>Contact:</strong> <a href="mailto:anddev0110@gmail.com">anddev0110@gmail.com</a></p>
     </div>
@@ -70,7 +70,14 @@
     <ul>
         <li><strong>What:</strong> GPX files stored on your device</li>
         <li><strong>Why:</strong> To read and process GPS track data for visualization and analysis</li>
-        <li><strong>How:</strong> Through Android storage permissions (READ_EXTERNAL_STORAGE, READ_MEDIA_IMAGES/VIDEO/AUDIO, or MANAGE_EXTERNAL_STORAGE depending on Android version)</li>
+        <li><strong>How:</strong> Through Android storage permissions (varies by Android version):
+            <ul>
+                <li>Android 13+: READ_MEDIA_IMAGES, READ_MEDIA_VIDEO, READ_MEDIA_AUDIO</li>
+                <li>Android 11-12: READ_EXTERNAL_STORAGE</li>
+                <li>Android 10: READ_EXTERNAL_STORAGE</li>
+                <li>Android 7.0-9.0: READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE</li>
+            </ul>
+        </li>
         <li><strong>Storage:</strong> Files are read from your device storage</li>
         <li><strong>Sharing:</strong> No data is shared with third parties</li>
         <li><strong>Retention:</strong> Data is processed in memory and not permanently stored by the App</li>
@@ -122,14 +129,14 @@
                 <li>Fetching privacy policy updates and minimum supported application version information (both encrypted)</li>
             </ul>
         </li>
-        <li><strong>Why:</strong> To fetch Strava activities, display map tiles, and ensure you have the latest privacy policy</li>
-        <li><strong>How:</strong> Through INTERNET permission</li>
+        <li><strong>Why:</strong> To fetch Strava activities, display map tiles, check for privacy policy updates, and verify minimum supported app version requirements</li>
+        <li><strong>How:</strong> Through INTERNET and ACCESS_NETWORK_STATE permissions</li>
         <li><strong>Storage:</strong> Map tiles cached locally by the map library</li>
         <li><strong>Sharing:</strong>
             <ul>
                 <li>Strava API requests subject to Strava's privacy policy</li>
                 <li>OpenStreetMap tile requests subject to OpenStreetMap Foundation privacy policy</li>
-                <li>Policy update checks are made to GitHub Pages (subject to GitHub's privacy statement)</li>
+                <li>Privacy policy version checks and minimum supported app version checks are made to GitHub Pages (subject to GitHub's privacy statement). These checks use encrypted JSON files to ensure data integrity and authenticity.</li>
             </ul>
         </li>
         <li><strong>Retention:</strong> Map tiles cached temporarily by the map library</li>
@@ -217,21 +224,35 @@
         <li><strong>Note:</strong> If Strava data originates from Garmin devices, attribution to Garmin may be required per Strava's terms.</li>
     </ul>
 
+    <h3>GitHub Pages</h3>
+    <ul>
+        <li><strong>Purpose:</strong> Hosting encrypted privacy policy version information and minimum supported app version data</li>
+        <li><strong>Data Shared:</strong> Requests for encrypted JSON files containing version information (your IP address may be visible to GitHub servers)</li>
+        <li><strong>Privacy Policy:</strong> <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank">GitHub Privacy Statement</a></li>
+        <li><strong>Note:</strong> All version data is encrypted using AES-256-GCM encryption before transmission. Only encrypted JSON files are fetched; no personal user data is transmitted.</li>
+    </ul>
+
     <h2>Permissions Used</h2>
     <p>The App requests the following permissions:</p>
 
     <ol>
         <li><strong>Storage Permissions</strong> (varies by Android version):
             <ul>
-                <li>Android 13+: READ_MEDIA_IMAGES, READ_MEDIA_VIDEO, READ_MEDIA_AUDIO, MANAGE_EXTERNAL_STORAGE</li>
-                <li>Android 11-12: READ_EXTERNAL_STORAGE, MANAGE_EXTERNAL_STORAGE</li>
-                <li>Android 10 and below: READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE</li>
-                <li><strong>Purpose:</strong> To read GPX files from device storage</li>
+                <li><strong>Android 13+ (API 33+):</strong> READ_MEDIA_IMAGES, READ_MEDIA_VIDEO, READ_MEDIA_AUDIO</li>
+                <li><strong>Android 11-12 (API 30-32):</strong> READ_EXTERNAL_STORAGE</li>
+                <li><strong>Android 10 (API 29):</strong> READ_EXTERNAL_STORAGE</li>
+                <li><strong>Android 7.0-9.0 (API 24-28):</strong> READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE</li>
+                <li><strong>Purpose:</strong> To read GPX files from device storage. The App uses standard Android storage permissions appropriate for each Android version.</li>
             </ul>
         </li>
-        <li><strong>Internet Permission:</strong>
+        <li><strong>Internet Permission (INTERNET):</strong>
             <ul>
-                <li><strong>Purpose:</strong> To connect to Strava API (when used), download OpenStreetMap tiles, and fetch privacy policy updates</li>
+                <li><strong>Purpose:</strong> To connect to Strava API (when used), download OpenStreetMap tiles, and fetch encrypted privacy policy version and minimum supported app version information from GitHub Pages</li>
+            </ul>
+        </li>
+        <li><strong>Network State Permission (ACCESS_NETWORK_STATE):</strong>
+            <ul>
+                <li><strong>Purpose:</strong> To check network connectivity status before making network requests, ensuring efficient operation and proper error handling when the device is offline</li>
             </ul>
         </li>
     </ol>
@@ -269,7 +290,7 @@
     </ul>
 
     <hr>
-    <p style="text-align: center; color: #666; font-size: 0.9em;"><em>Last Updated: December 12, 2025</em></p>
+    <p style="text-align: center; color: #666; font-size: 0.9em;"><em>Last Updated: December 27, 2025</em></p>
 
 </body>
 </html>
