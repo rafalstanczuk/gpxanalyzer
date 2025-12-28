@@ -1600,6 +1600,100 @@ body.menu-open {
     }
 }
 
+/* LinkedIn Logo Footer */
+.linkedin-logo-link-footer {
+    display: inline-block;
+    text-decoration: none;
+    line-height: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    background: transparent;
+    padding: 0;
+    border: none;
+    color: transparent !important;
+    opacity: 1 !important;
+}
+
+.linkedin-logo-link-footer::before {
+    display: none !important;
+}
+
+.linkedin-logo-link-footer:hover {
+    transform: translateY(-2px);
+    opacity: 0.9 !important;
+    color: transparent !important;
+}
+
+.linkedin-logo-link-footer:hover::before {
+    display: none !important;
+}
+
+.linkedin-logo-link-footer:active {
+    transform: translateY(0);
+}
+
+.linkedin-logo-footer {
+    height: auto;
+    width: 120px; /* Smaller size for footer */
+    max-width: 120px;
+    display: block;
+    margin: 0;
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .linkedin-logo-footer {
+        max-width: 100px;
+        width: 100px;
+    }
+}
+
+/* GitHub Logo Footer */
+.github-logo-link-footer {
+    display: inline-block;
+    text-decoration: none;
+    line-height: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    background: transparent;
+    padding: 0;
+    border: none;
+    color: transparent !important;
+    opacity: 1 !important;
+}
+
+.github-logo-link-footer::before {
+    display: none !important;
+}
+
+.github-logo-link-footer:hover {
+    transform: translateY(-2px);
+    opacity: 0.9 !important;
+    color: transparent !important;
+}
+
+.github-logo-link-footer:hover::before {
+    display: none !important;
+}
+
+.github-logo-link-footer:active {
+    transform: translateY(0);
+}
+
+.github-logo-footer {
+    height: auto;
+    width: 120px; /* Smaller size for footer */
+    max-width: 120px;
+    display: block;
+    margin: 0;
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .github-logo-footer {
+        max-width: 100px;
+        width: 100px;
+    }
+}
+
 /* Features Section */
 .features {
     padding: 5rem 0;
@@ -1827,21 +1921,43 @@ body.menu-open {
 
 .feature-card ul {
     list-style: none;
-    padding-left: 0;
-    margin: 0;
+    padding: 0;
+    margin: 1rem 0 1.5rem 0;
     color: var(--text-secondary);
-    line-height: 1.8;
+    line-height: 1.7;
 }
 
 .feature-card ul li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.875rem;
+    padding-left: 1.5rem;
     position: relative;
-    padding-left: 1.5em;
-    text-indent: -1.5em;
+    line-height: 1.7;
+    transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .feature-card ul li:last-child {
     margin-bottom: 0;
+}
+
+.feature-card ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+    top: 0.1em;
+}
+
+.feature-card:hover ul li::before {
+    transform: translateX(3px);
+    color: var(--accent-color);
+}
+
+.feature-card ul li strong {
+    color: var(--text-primary);
+    font-weight: 600;
 }
 
 /* Strava Developer Program */
