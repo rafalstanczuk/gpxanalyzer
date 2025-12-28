@@ -1,3 +1,7 @@
+2.7.0 First production version, available for everyone on Google Play.
+• The plan is to add new geospatial features and focus on users' needs.
+• Please get in touch if you would like to propose a new feature or report a bug ;)
+
 New Features:
 • Tap on map markers to see detailed distance information - shows accumulated distance from start and segment details.
 • Chart markers now display distance information alongside altitude and speed data for better context.
@@ -8,16 +12,3 @@ Improvements:
 • Improved distance calculations with optimized performance for large tracks.
 • Better distance display consistency across map markers and chart tooltips.
 
-
-<en-US>
-2.7.0 First production version, available for everyone on Google Play.
-Full info:
-https://rafalstanczuk.github.io/gpxanalyzer/
-
-The plan is to add new geospatial features and focus on users' needs.
-Please get in touch if you would like to propose a new feature or report a bug ;)
-
-2.7.0 New Features:
-• Tap on map markers to see detailed distance information - shows accumulated distance from start and segment details.
-• Chart markers now display distance informationt.
-</en-US>
