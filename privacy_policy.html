@@ -98,10 +98,57 @@
         <li><strong>What:</strong> Activity data from your Strava account (location, time, elevation, activity metadata)</li>
         <li><strong>Why:</strong> To import and analyze your Strava activities</li>
         <li><strong>How:</strong> Through OAuth 2.0 authentication with Strava API</li>
+        <li><strong>OAuth Scopes Requested:</strong>
+            <ul>
+                <li><code>read</code>: Access to your public profile information</li>
+                <li><code>activity:read</code>: Access to read your activity data</li>
+            </ul>
+        </li>
+        <li><strong>Data Fetched:</strong>
+            <ul>
+                <li>Activity list (activities from the last 30 days by default, configurable)</li>
+                <li>Activity streams (GPS coordinates, altitude, timestamps)</li>
+                <li>Activity metadata (type, distance, duration, elevation gain)</li>
+                <li>Only activities with GPS data are processed</li>
+            </ul>
+        </li>
+        <li><strong>API Rate Limits:</strong>
+            <ul>
+                <li>The App respects Strava API rate limits to ensure fair usage</li>
+                <li><strong>Current Rate Limits (as of December 27, 2025):</strong>
+                    <ul>
+                        <li>15-minute window: 25 requests overall, 15 read requests</li>
+                        <li>Daily window: 40 requests overall, 30 read requests</li>
+                    </ul>
+                </li>
+                <li><strong>Rate Limit Structure:</strong>
+                    <ul>
+                        <li><strong>15-minute Overall Limit:</strong> Maximum 25 total API requests per 15-minute rolling window</li>
+                        <li><strong>15-minute Read Limit:</strong> Maximum 15 read-type API requests per 15-minute rolling window</li>
+                        <li><strong>Daily Overall Limit:</strong> Maximum 40 total API requests per 24-hour rolling window</li>
+                        <li><strong>Daily Read Limit:</strong> Maximum 30 read-type API requests per 24-hour rolling window</li>
+                    </ul>
+                </li>
+                <li>Rate limits are fetched from an encrypted online source and may be updated to reflect current Strava API policies</li>
+                <li>If the online source is unavailable, the App uses fallback default limits (30/80 overall, 20/60 read)</li>
+                <li>The App tracks API usage locally and automatically waits when limits are approached or exceeded</li>
+                <li>When rate limits are reached, the App will:
+                    <ul>
+                        <li>Display a notification informing you of the wait time</li>
+                        <li>Automatically wait for the rate limit window to reset before making additional requests</li>
+                        <li>Prevent further API calls until the limit window resets (15 minutes or 24 hours depending on the limit)</li>
+                    </ul>
+                </li>
+                <li>Each sync operation uses at least 1 API request, plus additional requests for downloading activity streams</li>
+                <li>You will be informed of current API usage before starting a sync operation</li>
+            </ul>
+        </li>
         <li><strong>Storage:</strong>
             <ul>
-                <li>OAuth tokens stored securely on your device</li>
+                <li>OAuth tokens stored securely on your device (access tokens expire every 6 hours and are automatically refreshed)</li>
                 <li>Activity data fetched and converted to GPX format, processed locally</li>
+                <li>GPX files are cached locally on your device to avoid redundant downloads</li>
+                <li>Rate limit usage statistics stored locally to track API consumption</li>
             </ul>
         </li>
         <li><strong>Sharing:</strong>
@@ -114,10 +161,19 @@
         <li><strong>Retention:</strong>
             <ul>
                 <li>OAuth tokens stored until you revoke access</li>
-                <li>Activity data cached temporarily in device memory</li>
+                <li>Activity data cached locally on your device until you clear app data</li>
+                <li>Rate limit usage statistics reset when limit windows expire (15 minutes or 24 hours)</li>
             </ul>
         </li>
-        <li><strong>Control:</strong> You can revoke access anytime through Strava settings</li>
+        <li><strong>Control:</strong> You can revoke access anytime through Strava settings, which will invalidate stored OAuth tokens</li>
+        <li><strong>Limitations:</strong>
+            <ul>
+                <li>Due to Strava API rate limits, frequent syncing may require waiting periods</li>
+                <li>The App fetches activities from a configurable date range (default: last 30 days)</li>
+                <li>Maximum number of activities per sync is configurable to manage API usage</li>
+                <li>If you exceed Strava's global API rate limits (HTTP 429), the App will wait before retrying</li>
+            </ul>
+        </li>
     </ul>
 
     <h4>4. Network Data</h4>
@@ -219,8 +275,19 @@
     <ul>
         <li><strong>Purpose:</strong> Import activity data (optional feature)</li>
         <li><strong>Data Shared:</strong> OAuth authentication and activity data requests (subject to Strava API Agreement)</li>
+        <li><strong>OAuth Scopes:</strong> The App requests <code>read</code> (public profile) and <code>activity:read</code> (activity data) scopes</li>
+        <li><strong>API Rate Limits:</strong> The App respects Strava API rate limits:
+            <ul>
+                <li><strong>Current limits (as of December 27, 2025):</strong> 25 requests per 15 minutes (overall), 15 read requests per 15 minutes, 40 requests per day (overall), 30 read requests per day</li>
+                <li>Rate limits are enforced by the App to prevent exceeding Strava's API quotas</li>
+                <li>When limits are reached, the App automatically waits for the rate limit window to reset</li>
+                <li>Rate limit configuration is fetched from an encrypted online source and may be updated to reflect current Strava API policies</li>
+                <li>If the online source is unavailable, fallback default limits are used (30/80 overall, 20/60 read)</li>
+            </ul>
+        </li>
         <li><strong>Privacy Policy:</strong> <a href="https://www.strava.com/legal/privacy" target="_blank">Strava Privacy Policy</a></li>
         <li><strong>API Agreement:</strong> <a href="https://www.strava.com/legal/api" target="_blank">Strava API Agreement</a></li>
+        <li><strong>API Documentation:</strong> <a href="https://developers.strava.com/docs/reference/" target="_blank">Strava API Reference</a></li>
         <li><strong>Note:</strong> If Strava data originates from Garmin devices, attribution to Garmin may be required per Strava's terms.</li>
     </ul>
 
