@@ -1,10 +1,8 @@
-New Features:
-• More accurate distance calculations for all tracks, including long-distance activities.
-
 Improvements:
 • Optimized distance and centroid calculations for better performance on large GPX files.
 • Improved segment detection sensitivity for high-amplitude activities like alpine skiing.
 • Better map synchronization and boundary handling when zooming or panning linked charts.
+• More accurate distance calculations for all tracks, including long-distance activities.
 
 Bug Fixes:
 • Fixed minor inconsistencies between map and chart distance displays in certain edge cases.
