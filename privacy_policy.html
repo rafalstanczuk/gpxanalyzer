@@ -118,33 +118,13 @@
         </li>
         <li><strong>API Rate Limits:</strong>
             <ul>
-                <li>The App respects Strava API rate limits to ensure fair usage</li>
-                <li><strong>Current Rate Limits (as of December 27, 2025):</strong>
-                    <ul>
-                        <li>15-minute window: 25 requests overall, 15 read requests</li>
-                        <li>Daily window: 40 requests overall, 30 read requests</li>
-                    </ul>
-                </li>
-                <li><strong>Rate Limit Structure:</strong>
-                    <ul>
-                        <li><strong>15-minute Overall Limit:</strong> Maximum 25 total API requests per 15-minute rolling window</li>
-                        <li><strong>15-minute Read Limit:</strong> Maximum 15 read-type API requests per 15-minute rolling window</li>
-                        <li><strong>Daily Overall Limit:</strong> Maximum 40 total API requests per 24-hour rolling window</li>
-                        <li><strong>Daily Read Limit:</strong> Maximum 30 read-type API requests per 24-hour rolling window</li>
-                    </ul>
-                </li>
-                <li>Rate limits may be updated periodically to reflect current Strava API policies</li>
+                <li>The App respects Strava API rate limits (15-minute and daily windows) to ensure fair usage</li>
+                <li>Rate limits are fetched from a secure online source and may be updated periodically to reflect current Strava API policies</li>
                 <li>If the online source is unavailable, the App uses conservative fallback default limits</li>
                 <li>The App tracks API usage locally and automatically waits when limits are approached or exceeded</li>
-                <li>When rate limits are reached, the App will:
-                    <ul>
-                        <li>Display a notification informing you of the wait time</li>
-                        <li>Automatically wait for the rate limit window to reset before making additional requests</li>
-                        <li>Prevent further API calls until the limit window resets (15 minutes or 24 hours depending on the limit)</li>
-                    </ul>
-                </li>
+                <li>When rate limits are reached, the App will display a notification and automatically wait for the rate limit window to reset before making additional requests</li>
                 <li>Each sync operation uses at least 1 API request, plus additional requests for downloading activity streams</li>
-                <li>You will be informed of current API usage before starting a sync operation</li>
+                <li>You are informed of current API usage and rate limits before starting a sync operation</li>
             </ul>
         </li>
         <li><strong>Storage:</strong>
@@ -309,15 +289,7 @@
         <li><strong>Purpose:</strong> Import activity data (optional feature)</li>
         <li><strong>Data Shared:</strong> OAuth authentication and activity data requests (subject to Strava API Agreement)</li>
         <li><strong>OAuth Scopes:</strong> The App requests <code>read</code> (public profile) and <code>activity:read</code> (activity data) scopes</li>
-        <li><strong>API Rate Limits:</strong> The App respects Strava API rate limits:
-            <ul>
-                <li><strong>Current limits (as of December 27, 2025):</strong> 25 requests per 15 minutes (overall), 15 read requests per 15 minutes, 40 requests per day (overall), 30 read requests per day</li>
-                <li>Rate limits are enforced by the App to prevent exceeding Strava's API quotas</li>
-                <li>When limits are reached, the App automatically waits for the rate limit window to reset</li>
-                <li>Rate limit configuration may be updated periodically to reflect current Strava API policies</li>
-                <li>If the online source is unavailable, conservative fallback default limits are used</li>
-            </ul>
-        </li>
+        <li><strong>API Rate Limits:</strong> The App respects Strava API rate limits (15-minute and daily windows), enforced locally to prevent exceeding quotas. Rate limit configuration is fetched from a secure online source and may be updated periodically. When limits are reached, the App automatically waits for the window to reset.</li>
         <li><strong>Privacy Policy:</strong> <a href="https://www.strava.com/legal/privacy" target="_blank">Strava Privacy Policy</a></li>
         <li><strong>API Agreement:</strong> <a href="https://www.strava.com/legal/api" target="_blank">Strava API Agreement</a></li>
         <li><strong>API Documentation:</strong> <a href="https://developers.strava.com/docs/reference/" target="_blank">Strava API Reference</a></li>
