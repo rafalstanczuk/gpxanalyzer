@@ -1,0 +1,12 @@
+# Prevent certain Git operations
+* -export-ignore
+* -diff
+* -merge
+* -text
+
+# Mark all files as binary to prevent easy viewing
+*.html binary
+*.js binary
+*.css binary
+*.md binary
+*.txt binary

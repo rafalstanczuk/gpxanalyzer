@@ -1,0 +1,15 @@
+New Features:
+• Chart Configuration Settings - Customize segment detection parameters with a new settings dialog. Adjust sensitivity, smoothing, thresholds, and more to fine-tune how the app detects uphill and downhill segments in your tracks.
+• Per-Domain and Activity Customization - Settings are saved separately for time-based and distance-based views, and for different activity types (alpine skiing, trail running, etc.), so your preferences are remembered for each activity.
+• Real-Time Parameter Preview - See parameter values update in real-time as you adjust sliders, making it easy to find the perfect settings for your tracks.
+• Context-Sensitive Help - Tap the "?" button next to any setting to see detailed explanations of what each parameter does and how it affects segment detection.
+
+Improvements:
+• Enhanced segment detection accuracy with domain-aware statistics that prevent cross-domain data contamination.
+• Improved segment detection for high-amplitude activities like alpine skiing with better sensitivity and threshold controls.
+• Better distance calculations with more accurate geographic formulas, especially for long-distance activities.
+• Optimized performance for large GPX files with improved caching and data processing.
+• Improved stability with better handling of network interruptions when navigating between screens.
+• Smoother map interactions with optimized background processing.
+• Track names from GPX files are now displayed in the file list when available.
+• Refreshed map miniatures with new starting point markers for better visual identification.

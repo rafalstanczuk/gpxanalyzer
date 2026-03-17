@@ -1,0 +1,8 @@
+New Features:
+• Network availability checks before Strava operations
+
+Improvements:
+• Better error messages throughout the app
+
+Bug Fixes:
+• Fixed dialogs appearing incorrectly when switching screens or rotating device

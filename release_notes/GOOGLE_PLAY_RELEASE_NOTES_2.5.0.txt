@@ -1,0 +1,9 @@
+New Features:
+• Start and end markers on the map show the currently visible timespan from your charts.
+• Direction arrows on markers indicate the track direction for better orientation.
+• Animated pulsating markers replace static pins for better visibility and visual feedback.
+
+Improvements:
+• Improved map visualization with better boundary highlighting when zooming or panning charts.
+• Smoother animations and better visual feedback for the currently selected point on the map.
+

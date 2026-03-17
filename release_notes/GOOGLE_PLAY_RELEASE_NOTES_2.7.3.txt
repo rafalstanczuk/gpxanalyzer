@@ -1,0 +1,2 @@
+Improvements:
+• Optimisations to UI components to enable smooth handling of large datasets.

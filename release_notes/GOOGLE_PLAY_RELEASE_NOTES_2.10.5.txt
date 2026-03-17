@@ -1,0 +1,18 @@
+New Features:
+• Gradient Polyline - map track segments now display color gradients based on altitude or speed, with toolbar toggle controls.
+• Map Rotation - two-finger gesture to rotate the map freely.
+• Tappable Compass - shows current orientation, tap to reset north.
+• GPS Noise Smoothing - automatic smoothing of altitude and speed oscillations from GPS inaccuracy.
+• GPX Extension Speed - speed values from GPX extensions (e.g., Garmin) are now used when available.
+
+Bug Fixes:
+• Fixed crashes from concurrent map drawing and polyline updates during rapid chart scrolling.
+• Fixed stale overlay data when switching GPX files.
+• Fixed map camera position after rotation.
+• Fixed map and chart event state cleanup.
+
+Improvements:
+• Significantly faster gradient polyline rendering - color computation moved off the drawing thread.
+• Smoother map updates with throttled boundary recomputation during chart scrolling.
+• Better boundary polyline visibility with border-and-fill styling and dark mode support.
+• Improved map settings button layout.

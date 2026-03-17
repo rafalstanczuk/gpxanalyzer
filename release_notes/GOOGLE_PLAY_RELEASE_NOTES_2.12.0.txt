@@ -1,0 +1,16 @@
+New Features:
+• Drawing Mode - draw custom routes directly on the map by tapping to place, drag, and insert vertices, then fetch elevation profiles for your drawn path.
+• Elevation Profile on Map - a mini elevation chart appears on the map while drawing, showing altitude changes at a glance.
+• Join & Merge - connect your drawn route to the end of a loaded GPX track and save both as a single continuous file.
+• GPX Export - tap any file and choose Export to save it to any folder, SD card, or cloud provider via the system file picker.
+• Map Scale Bar - a new scale bar overlay on the map shows the current zoom distance for better orientation.
+• Activity Type Filter - filter your file list by activity type (run, bike, hike, ski) with a new multi-select chip group.
+
+Improvements:
+• Drag any vertex marker to fine-tune your drawn route; tap on a segment to insert a new point.
+• Undo and redo vertex placements while drawing for quick corrections.
+• Live distance pill near the last vertex shows total drawn route length in real time.
+• Export dialog remembers the last used directory and pre-fills a sanitized filename.
+• Improved nearest-point detection on map polylines for more accurate tap-to-select.
+• Better chip filter theme colors and activity type icons in the file list.
+• File selector migrated to Kotlin for improved reliability and maintainability.

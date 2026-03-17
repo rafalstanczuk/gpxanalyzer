@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<!--
+  COPYRIGHT NOTICE
+  © 2023-2026 Rafał Stańczuk. All Rights Reserved.
+
+  This file and all contents are protected by copyright law.
+  Unauthorized copying, distribution, modification, or use is strictly prohibited.
+
+  PROHIBITED ACTIVITIES:
+  - Automated scraping or crawling
+  - AI training data collection
+  - Unauthorized cloning or forking
+  - Reverse engineering
+  - Commercial use without license
+
+  For licensing inquiries: anddev0110@gmail.com
+  For copyright violations: anddev0110@gmail.com
+
+  This repository is actively monitored and protected by DMCA procedures.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GpxAnalyzer - Research-grade GPS track analysis for Android. Wavelet-based signal processing, synchronized multi-chart visualization, route drawing with elevation profiles, and Strava integration — all on-device.">
+    <title>GpxAnalyzer - Professional GPS Track Analysis</title>
+
+    <!-- Search Engine and AI Directives -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1, noai, noimageai">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1, noai, noimageai">
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1, noai, noimageai">
+    <meta name="GPTBot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="ChatGPT-User" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="CCBot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="anthropic-ai" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="Claude-Web" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="ClaudeBot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="PerplexityBot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="Applebot-Extended" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="Omgilibot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="FacebookBot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="Bytespider" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="Diffbot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="dataforseo" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="AhrefsBot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="SemrushBot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="Baiduspider" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="YandexBot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="ia_archiver" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="archive.org_bot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="Google-Extended" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="GoogleOther" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="Scrapy" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="Scraper" content="noindex, nofollow, noarchive, nosnippet">
+    <meta property="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1, noai, noimageai">
+    <meta name="X-Robots-Tag" content="index, follow, noai, noimageai">
+
+    <!-- Copyright Protection -->
+    <meta name="copyright" content="© 2023-2026 Rafał Stańczuk. All Rights Reserved.">
+    <meta name="author" content="Rafał Stańczuk">
+    <meta name="owner" content="Rafał Stańczuk">
+    <meta name="reply-to" content="anddev0110@gmail.com">
+    <meta name="rating" content="general">
+    <meta name="dcterms.rightsHolder" content="Rafał Stańczuk">
+    <meta name="dcterms.rights" content="© 2023-2026 Rafał Stańczuk. All Rights Reserved.">
+    <meta name="dcterms.license" content="Proprietary - All Rights Reserved">
+    <meta name="dcterms.accessRights" content="Restricted">
+
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/png" href="icons/ic_launcher-playstore.png">
+    <link rel="apple-touch-icon" href="icons/ic_launcher-playstore.png">
+    <link rel="canonical" href="https://rafalstanczuk.github.io/github_gpxanalyzer_page/">
+    <meta name="keywords" content="GpxAnalyzer, GPX analyzer, GPS track analysis, Android app, Strava integration, wavelet signal processing, route drawing, elevation profile, hiking GPX, cycling GPX, running GPX, skiing GPX, interactive maps, elevation charts, speed analysis, FFT noise reduction, multi-chart visualization, GPX export, activity type filtering, clean architecture">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="GpxAnalyzer - Professional GPS Track Analysis">
+    <meta property="og:description" content="Research-grade GPS track analysis for Android. Wavelet-based signal processing, synchronized multi-chart visualization, route drawing, and Strava sync.">
+    <meta property="og:image" content="icons/ic_launcher-playstore.png">
+    <meta property="og:url" content="https://rafalstanczuk.github.io/github_gpxanalyzer_page/">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="GpxAnalyzer - Professional GPS Track Analysis">
+    <meta name="twitter:description" content="Research-grade GPS track analysis for Android. Wavelet signal processing, multi-chart visualization, route drawing, and Strava sync.">
+    <meta name="twitter:image" content="icons/ic_launcher-playstore.png">
+
+    <!-- Fonts & Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Skip Navigation (a11y) -->
+    <a href="#main" class="skip-nav">Skip to content</a>
+
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <img src="icons/ic_launcher-playstore.png" alt="" class="logo-icon-img" width="36" height="36">
+                    <span class="logo-text">GpxAnalyzer</span>
+                </div>
+                <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+                    <span class="nav-toggle-bar"></span>
+                </button>
+                <div class="nav-links" id="nav-menu" role="menubar">
+                    <a href="#features" role="menuitem">Features</a>
+                    <a href="#code-quality" role="menuitem">Code Quality</a>
+                    <a href="#screenshots" role="menuitem">Screenshots</a>
+                    <a href="#download" role="menuitem">Download</a>
+                    <a href="#release-notes" role="menuitem">Release Notes</a>
+                    <a href="#tutorials" role="menuitem">Tutorials</a>
+                    <a href="#about" role="menuitem">About</a>
+                    <a href="#contact" role="menuitem">Contact</a>
+                    <a href="#support" role="menuitem">Support</a>
+                    <div class="nav-donation-links" aria-label="Support the developer">
+                        <a href="https://buycoffee.to/k4r4m84" target="_blank" rel="noopener noreferrer" class="donation-link" title="Support on BuyCoffee.to">
+                            <img src="icons/logo-buycoffee--dark.svg" alt="BuyCoffee.to" class="donation-icon" width="80" height="20">
+                        </a>
+                        <a href="https://buymeacoffee.com/k4r4m84" target="_blank" rel="noopener noreferrer" class="donation-link" title="Support on Buy Me a Coffee">
+                            <img src="icons/bmc-brand-logo.svg" alt="Buy Me a Coffee" class="donation-icon" width="80" height="20">
+                        </a>
+                    </div>
+                </div>
+                <div class="donation-links" aria-label="Support the developer">
+                    <a href="https://buycoffee.to/k4r4m84" target="_blank" rel="noopener noreferrer" class="donation-link" title="Support on BuyCoffee.to">
+                        <img src="icons/logo-buycoffee--dark.svg" alt="BuyCoffee.to" class="donation-icon" width="80" height="20">
+                    </a>
+                    <a href="https://buymeacoffee.com/k4r4m84" target="_blank" rel="noopener noreferrer" class="donation-link" title="Support on Buy Me a Coffee">
+                        <img src="icons/bmc-brand-logo.svg" alt="Buy Me a Coffee" class="donation-icon" width="80" height="20">
+                    </a>
+                </div>
+            </div>
+            <div class="nav-overlay" aria-hidden="true"></div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main">
+
+        <!-- Hero Section -->
+        <section class="hero" aria-label="Introduction">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="app-icon-large">
+                        <img src="icons/ic_launcher-playstore.png" alt="GpxAnalyzer App Icon" class="app-icon-img" width="120" height="120">
+                    </div>
+                    <h1 class="hero-title">Research-Grade GPS Analysis in Your Pocket</h1>
+                    <p class="hero-subtitle">Wavelet-based signal processing, synchronized multi-chart visualization, route drawing with elevation profiles, and Strava sync — all running locally on your Android device.</p>
+                    <div class="hero-stats" aria-label="Key highlights">
+                        <span class="hero-stat"><strong>100%</strong> On-Device Processing</span>
+                        <span class="hero-stat"><strong>10K+</strong> Trackpoints</span>
+                        <span class="hero-stat"><strong>15</strong> Architecture Modules</span>
+                        <span class="hero-stat"><strong>L1/L2/L3</strong> Caching</span>
+                        <span class="hero-stat"><strong>85-95%</strong> Noise Reduction</span>
+                    </div>
+                    <div class="hero-buttons">
+                        <a href="https://play.google.com/store/apps/details?id=com.rafalstanczuk.gpxanalyzer" class="google-play-badge-link" target="_blank" rel="noopener" aria-label="Get it on Google Play">
+                            <img src="icons/GetItOnGooglePlay_Badge_Web_color_English.svg" alt="Get it on Google Play" class="google-play-badge" width="180" height="54">
+                        </a>
+                        <a href="https://youtube.com/playlist?list=PLEoWUezHpM18GE4oh7LQ3NHar2RsD0XLB&si=zSvlQHUSoUNxTkK-" class="youtube-logo-link" target="_blank" rel="noopener noreferrer" aria-label="Watch Tutorial on YouTube">
+                            <img src="icons/WatchonYouTube-black-SVG.svg" alt="Watch on YouTube" class="youtube-logo" width="180" height="40">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features" aria-label="Features">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Powerful Features</h2>
+                    <p>From wavelet-based noise reduction to interactive route drawing — built for serious outdoor analysis</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card fade-in-up">
+                        <div class="feature-icon">
+                            <img src="icons/analytics.svg" alt="" class="icon-svg" aria-hidden="true">
+                        </div>
+                        <h3>Wavelet-Based Signal Processing</h3>
+                        <ul>
+                            <li>FFT-based frequency domain analysis with adaptive window sizing</li>
+                            <li>Multiple window functions: Triangular, Hanning, Gaussian</li>
+                            <li>85-95% GPS noise reduction with signal-to-noise ratio awareness</li>
+                            <li>Multi-stage derivative extrema detection for peaks and valleys</li>
+                            <li>Handles irregular GPS sampling intervals and data gaps</li>
+                            <li>Activity-aware configs: Alpine Skiing, Trail Running, and more</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card fade-in-up">
+                        <div class="feature-icon">
+                            <img src="icons/chart.svg" alt="" class="icon-svg" aria-hidden="true">
+                        </div>
+                        <h3>Multi-Chart Visualization</h3>
+                        <ul>
+                            <li>Three display modes: Single, Split, and Multi-Chart view</li>
+                            <li>Altitude, speed, trend boundaries, and scatter plots</li>
+                            <li>Dual domain support: Time-based and Distance-based analysis</li>
+                            <li>Cross-chart selection sync — tap one, all update</li>
+                            <li>Pinch-to-zoom, pan, and custom marker tooltips</li>
+                            <li>8 adjustable segment detection parameters via settings dialog</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card fade-in-up">
+                        <div class="feature-icon">
+                            <img src="icons/map.svg" alt="" class="icon-svg" aria-hidden="true">
+                        </div>
+                        <h3>Interactive Mapping</h3>
+                        <ul>
+                            <li>Real-time chart-to-map and map-to-chart synchronization</li>
+                            <li>Gradient color-coded polylines for speed, altitude, and segments</li>
+                            <li>Two-finger map rotation with tappable compass reset</li>
+                            <li>Animated pulsating markers with geographic bearing arrows</li>
+                            <li>Haversine nearest-point detection with 30dp screen threshold</li>
+                            <li>Scale bar overlay and automatic night mode</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card fade-in-up">
+                        <div class="feature-icon">
+                            <img src="icons/draw.svg" alt="" class="icon-svg" aria-hidden="true">
+                        </div>
+                        <h3>Drawing Mode & Route Creation</h3>
+                        <ul>
+                            <li>Tap the map to place draggable numbered vertex markers</li>
+                            <li>Tap on segments to insert new vertices between existing ones</li>
+                            <li>Undo/redo vertex placements with live distance pill overlay</li>
+                            <li>Real-time elevation profile mini-chart on the map canvas</li>
+                            <li>Join drawn route to an existing GPX track and save as one file</li>
+                            <li>Elevation API integration for drawn paths</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card fade-in-up">
+                        <div class="feature-icon">
+                            <img src="icons/files.svg" alt="" class="icon-svg" aria-hidden="true">
+                        </div>
+                        <h3>Multi-Source File Management</h3>
+                        <ul>
+                            <li>Import from device storage (MediaStore + recursive scan) or Strava</li>
+                            <li>Activity type filtering: hike, bike, run, ski via chip group</li>
+                            <li>Date-range filters: 7/14/30 days, this/last month, or custom range</li>
+                            <li>Sort by date, name, or size — ascending or descending</li>
+                            <li>Automatic reverse geocoding and map thumbnail generation</li>
+                            <li>GPX export via SAF with filename sanitization and directory memory</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card fade-in-up">
+                        <div class="feature-icon">
+                            <img src="icons/altitude.svg" alt="" class="icon-svg" aria-hidden="true">
+                        </div>
+                        <h3>Statistical Analysis</h3>
+                        <ul>
+                            <li>Dual-mode statistics: track-wide continuous and segment-based</li>
+                            <li>Altitude gain/loss, distance, speed, gradient, and duration</li>
+                            <li>Coherent trend segment identification (ascent, descent, flat)</li>
+                            <li>Accuracy metadata propagation through all calculations</li>
+                            <li>Domain-isolated cumulative stats preventing cross-domain contamination</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card fade-in-up">
+                        <div class="feature-icon">
+                            <img src="icons/speed.svg" alt="" class="icon-svg" aria-hidden="true">
+                        </div>
+                        <h3>Performance & Architecture</h3>
+                        <ul>
+                            <li>15-module clean architecture with strict dependency inversion</li>
+                            <li>L1/L2/L3 multi-level caching with LRU eviction and lazy evaluation</li>
+                            <li>Domain-isolated multi-level cache with per-slot isolation</li>
+                            <li>RxJava async pipelines on dedicated I/O and computation thread pools</li>
+                            <li>O(n) off-main-thread polyline color computation</li>
+                            <li>Edge-to-edge display and tablet layout optimization</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card fade-in-up">
+                        <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48" fill="currentColor" aria-hidden="true"><path d="M480-80q-84 0-157-31t-127-85q-54-54-85-127T80-480q0-83.73 31-156.86Q142-710 196-764t127-85q73-31 157-31 83.73 0 156.86 31Q710-818 764-764t85 127.14q31 73.13 31 156.86 0 84-31 157t-85 127q-54 54-127.14 85Q563.73-80 480-80Zm0-60q142 0 241-99.5T820-480q0-142-99-241t-241-99q-141 0-240.5 99T140-480q0 141 99.5 240.5T480-140Zm0-340Z"/></svg>
+                        </div>
+                        <h3>Privacy & Security</h3>
+                        <ul>
+                            <li>All GPX data processed locally — nothing leaves your device</li>
+                            <li>Secure handling of all sensitive data</li>
+                            <li>Minimum app version enforcement with automatic update prompts</li>
+                            <li>Mandatory privacy policy acceptance flow with update detection</li>
+                            <li>GDPR-compliant, no tracking, no data collection</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Strava Developer Program -->
+                <div class="strava-program-inline fade-in-up">
+                    <div class="strava-program-inline-text">
+                        <h3>Strava Developer Program</h3>
+                        <ul>
+                            <li>Full OAuth 2.0 with automatic 6-hour token refresh cycles</li>
+                            <li>Scope validation ensuring read and activity:read permissions</li>
+                            <li>Cache-aware sync: only new activities downloaded, cached ones merged from DB</li>
+                            <li>Dynamic rate limit management with server-managed configuration</li>
+                            <li>Smart queue with per-user quota enforcement (15m and daily limits)</li>
+                            <li>60-80% API call reduction via intelligent file + database dual caching</li>
+                        </ul>
+                        <div class="strava-program-pills">
+                            <span class="strava-program-pill">OAuth 2.0</span>
+                            <span class="strava-program-pill">Auto token refresh</span>
+                            <span class="strava-program-pill">Smart rate limiting</span>
+                            <span class="strava-program-pill">Dual-layer cache</span>
+                            <span class="strava-program-pill">60-80% fewer API calls</span>
+                        </div>
+                    </div>
+                    <div class="strava-program-image">
+                        <img src="other/StravaDevelopmentProgram.png" alt="Strava Development Program badge" loading="lazy" width="400" height="300">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Code Quality Section -->
+        <section id="code-quality" class="code-quality" aria-label="Code quality">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Enterprise-Grade Code Quality</h2>
+                    <p>Managed by automated CI/CD pipelines ensuring the highest standards</p>
+                </div>
+                <div class="code-quality-content">
+                    <p class="code-quality-intro">Built as a 15-module clean architecture project with dependency injection, reactive pipelines, and strict layer separation. Every commit triggers a full CI/CD pipeline that runs unit tests, instrumentation tests on real devices, builds signed APK/AAB artifacts, and publishes GitHub releases automatically.</p>
+
+                    <div class="features-grid">
+                        <div class="feature-card fade-in-up">
+                            <div class="code-quality-image-wrapper">
+                                <img src="other/ci_cd_pipelines_online_to_manage_highest_quality.png" alt="CI/CD Pipeline Overview" class="code-quality-img" loading="lazy">
+                            </div>
+                            <h3>Automated CI/CD Pipeline</h3>
+                            <p>Complete workflow automation from code commit to release. The pipeline runs unit tests, instrumentation tests, builds signed APK and AAB files, and automatically creates GitHub releases.</p>
+                        </div>
+                        <div class="feature-card fade-in-up">
+                            <div class="code-quality-image-wrapper">
+                                <img src="other/unit_tests_reports_generation.png" alt="Unit Test Results" class="code-quality-img" loading="lazy">
+                            </div>
+                            <h3>Comprehensive Unit Testing</h3>
+                            <p>Extensive unit test coverage with 112+ tests across 24 test suites. All tests run automatically on every commit, ensuring code reliability.</p>
+                        </div>
+                        <div class="feature-card fade-in-up">
+                            <div class="code-quality-image-wrapper">
+                                <img src="other/instrumentation_tests.png" alt="Instrumentation Test Results" class="code-quality-img" loading="lazy">
+                            </div>
+                            <h3>Instrumentation Tests</h3>
+                            <p>Real device testing with 69+ instrumentation tests validating app behavior on actual Android devices across different versions and configurations.</p>
+                        </div>
+                    </div>
+
+                    <div class="code-quality-stats fade-in-up">
+                        <div class="code-quality-stat">
+                            <div class="code-quality-stat-number">112+</div>
+                            <div class="code-quality-stat-label">Unit Tests</div>
+                        </div>
+                        <div class="code-quality-stat">
+                            <div class="code-quality-stat-number">69+</div>
+                            <div class="code-quality-stat-label">Instrumentation Tests</div>
+                        </div>
+                        <div class="code-quality-stat">
+                            <div class="code-quality-stat-number">15</div>
+                            <div class="code-quality-stat-label">Gradle Modules</div>
+                        </div>
+                        <div class="code-quality-stat">
+                            <div class="code-quality-stat-number">24</div>
+                            <div class="code-quality-stat-label">Test Suites</div>
+                        </div>
+                        <div class="code-quality-stat">
+                            <div class="code-quality-stat-number">100%</div>
+                            <div class="code-quality-stat-label">CI/CD Automated</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screenshots Section -->
+        <section id="screenshots" class="screenshots" aria-label="Screenshots">
+            <div class="container">
+                <div class="section-header">
+                    <h2>See It In Action</h2>
+                    <p>Explore your GPS tracks with beautiful visualizations</p>
+                </div>
+                <div class="screenshots-grid">
+                    <!-- Dynamically populated from screenshots/index.txt -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Download Section -->
+        <section id="download" class="download" aria-label="Download">
+            <div class="container">
+                <div class="download-content">
+                    <div class="section-header">
+                        <h2>Get GpxAnalyzer</h2>
+                        <p>Available now on Google Play Store</p>
+                    </div>
+                    <div class="download-buttons">
+                        <a href="https://play.google.com/store/apps/details?id=com.rafalstanczuk.gpxanalyzer" class="google-play-badge-link" target="_blank" rel="noopener" aria-label="Get it on Google Play">
+                            <img src="icons/GetItOnGooglePlay_Badge_Web_color_English.svg" alt="Get it on Google Play" class="google-play-badge" width="200" height="60">
+                        </a>
+                    </div>
+                    <div class="download-info">
+                        <p>Free to download</p>
+                        <p>Privacy-focused</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Release Notes Section -->
+        <section id="release-notes" class="release-notes" aria-label="Release notes">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Release Notes</h2>
+                    <p>Stay updated with the latest improvements</p>
+                </div>
+                <div id="release-notes-container" class="release-notes-container">
+                    <div class="release-notes-loading">Loading release notes...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tutorials Section -->
+        <section id="tutorials" class="tutorials" aria-label="Tutorials">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Tutorials</h2>
+                    <p>Video guides for each major release</p>
+                </div>
+                <div id="tutorials-grid" class="tutorials-grid">
+                    <div class="tutorials-loading">Loading tutorials...</div>
+                </div>
+                <a href="https://youtube.com/playlist?list=PLEoWUezHpM18GE4oh7LQ3NHar2RsD0XLB&si=zSvlQHUSoUNxTkK-" class="tutorials-all-link fade-in-up" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg>
+                    View all playlists on YouTube
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about" aria-label="About">
+            <div class="container">
+                <div class="section-header">
+                    <h2>About GpxAnalyzer</h2>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>GpxAnalyzer is a professional Android application for GPS track analysis, built as a 15-module clean architecture project. It processes GPX files through a multi-stage pipeline — from FFT-based wavelet noise reduction through extrema detection to synchronized multi-chart and map visualization — all running entirely on your device.</p>
+
+                        <h3>Signal Processing Pipeline</h3>
+                        <p>Raw GPS data enters a wavelet-based noise reduction stage using adaptive window sizing computed via FFT frequency domain analysis. Multiple window functions (Triangular, Hanning, Gaussian) are applied based on signal characteristics. A multi-stage derivative analysis with amplitude thresholding then detects extrema — peaks, valleys, and trend segments — even across irregular sampling intervals. Activity-specific configurations (Alpine Skiing, Trail Running) adjust detection parameters automatically based on the selected activity type.</p>
+
+                        <h3>Dual-Domain Visualization</h3>
+                        <p>The chart system supports both time-based and distance-based domains, each with isolated cumulative statistics to prevent cross-domain data contamination. Three view modes (Single, Split, Multi) display altitude, speed, trend boundaries, and scatter plots. A settings dialog exposes 8 adjustable segment detection parameters with per-domain and per-activity-type persistence. All charts synchronize selections bidirectionally with the map — tap a point on any chart and the map pans to that location, or tap the map and all charts highlight the nearest trackpoint.</p>
+
+                        <h3>Route Drawing & Elevation Profiles</h3>
+                        <p>Drawing mode lets you create custom routes by tapping the map to place draggable numbered vertex markers. Tap on any drawn segment to insert a vertex between existing ones. A live distance pill shows total route length in real time, and a mini elevation chart overlays the map showing altitude changes for your drawn path. Drawn routes can be joined to the end of a loaded GPX track and saved as a single continuous file via the SAF document picker.</p>
+
+                        <h3>Interactive Mapping Engine</h3>
+                        <p>Built on OSMDroid, the map engine renders gradient color-coded polylines using a two-layer border+fill technique with O(n) color computation off the main thread. Map rotation uses two-finger gestures with a tappable compass overlay. Nearest-point detection runs Haversine distance calculations within a 30dp screen-space threshold. Animated pulsating boundary markers display geographic bearing arrows computed from adjacent trackpoint coordinates.</p>
+
+                        <h3>Strava Integration & Caching</h3>
+                        <p>Full OAuth 2.0 flow with automatic 6-hour token refresh cycles, scope validation, and fallback to in-app WebView. Cache-aware synchronization downloads only new activities; cached entries are merged from the database — reducing API calls by 60-80%. Rate limiting is managed dynamically with a smart queue that enforces per-user 15-minute and daily quotas with automatic waiting and recovery.</p>
+
+                        <h3>Architecture</h3>
+                        <p>A 15-module Gradle project with dependency injection, reactive pipelines, and strict layer separation. The architecture is organized into foundation, feature, and customized library layers — each with clearly defined responsibilities and boundaries. L1/L2/L3 multi-level caching with per-slot and domain isolation, reactive state management, and lifecycle-aware subscription handling ensure smooth performance across the entire app.</p>
+
+                        <h3>Privacy & Security</h3>
+                        <p>All GPX processing happens locally. Minimum version enforcement ensures users always run a supported release. A mandatory privacy policy acceptance flow runs at startup with update detection and offline caching. GDPR-compliant with zero data collection or tracking.</p>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <!-- Top band: branding + CTA -->
+            <div class="footer-hero" id="contact">
+                <div class="footer-hero-brand">
+                    <img src="icons/ic_launcher-playstore.png" alt="" class="footer-hero-icon" width="48" height="48">
+                    <div>
+                        <div class="footer-hero-name">GpxAnalyzer</div>
+                        <div class="footer-hero-tagline">Research-grade GPS track analysis for Android</div>
+                    </div>
+                </div>
+                <a href="https://play.google.com/store/apps/details?id=com.rafalstanczuk.gpxanalyzer" class="footer-play-badge" target="_blank" rel="noopener" aria-label="Get it on Google Play">
+                    <img src="icons/GetItOnGooglePlay_Badge_Web_color_English.svg" alt="Get it on Google Play" width="180" height="54">
+                </a>
+            </div>
+
+            <!-- Three columns -->
+            <div class="footer-columns">
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#code-quality">Code Quality</a></li>
+                        <li><a href="#screenshots">Screenshots</a></li>
+                        <li><a href="#tutorials">Tutorials</a></li>
+                        <li><a href="#release-notes">Release Notes</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#support">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Developer</h4>
+                    <p class="footer-dev-name">Rafał Stańczuk</p>
+                    <ul class="footer-dev-links">
+                        <li>
+                            <a href="mailto:anddev0110@gmail.com" class="footer-link-with-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 -960 960 960" width="18" fill="currentColor"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280 320-200v-80L480-520 160-720v80l320 200Z"/></svg>
+                                anddev0110@gmail.com
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/stanczuk/" target="_blank" rel="noopener" class="footer-logo-link" aria-label="LinkedIn Profile">
+                                <img src="icons/LI-Logo.png" alt="LinkedIn" class="footer-logo-img" width="80" height="21">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/rafalstanczuk" target="_blank" rel="noopener" class="footer-logo-link" aria-label="GitHub Profile">
+                                <img src="icons/GitHub_Logo_White.png" alt="GitHub" class="footer-logo-img" width="80" height="21">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://rafalstanczuk.github.io/rafalstanczuk/" target="_blank" rel="noopener" class="footer-link-with-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 -960 960 960" width="18" fill="currentColor"><path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm-40-82v-78q-33 0-56.5-23.5T360-320v-40L168-552q-3 18-5.5 36t-2.5 36q0 121 79.5 212T440-162Zm276-102q26-36 43-77.5t23-85.5H642q-18 37-44.5 67.5T540-306v84q26-14 48-36t30-44l58 38Zm-356-58q18-22 41-37.5t49-25.5q-12-23-17.5-48.5T427-486H242q7 47 29.5 87t88.5 57Zm80-158h80q0-33-10-63.5T480-600q-20 26-30 56.5T440-480Zm134 0h144q-7-47-29.5-87T600-624v36q0 33-8.5 62.5T574-480Z"/></svg>
+                                Portfolio
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy_policy.html" target="_blank" rel="noopener">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section" id="support">
+                    <h4>Support the Project</h4>
+                    <p class="footer-support-text">If you enjoy GpxAnalyzer, consider buying me a coffee!</p>
+                    <div class="footer-support-links">
+                        <a href="https://buycoffee.to/k4r4m84" target="_blank" rel="noopener noreferrer" class="footer-support-link" title="Support on BuyCoffee.to">
+                            <img src="icons/logo-buycoffee--dark.svg" alt="BuyCoffee.to" class="footer-support-icon" width="120" height="30">
+                        </a>
+                        <a href="https://buymeacoffee.com/k4r4m84" target="_blank" rel="noopener noreferrer" class="footer-support-link" title="Support on Buy Me a Coffee">
+                            <img src="icons/bmc-brand-logo.svg" alt="Buy Me a Coffee" class="footer-support-icon" width="120" height="30">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom bar -->
+            <div class="footer-bottom">
+                <p>&copy; 2023-2026 Rafał Stańczuk. All rights reserved.</p>
+                <div class="strava-attribution">
+                    <img src="icons/api_logo_pwrdBy_strava_stack_orange.svg" alt="Powered by Strava" class="strava-logo" width="100" height="32">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- YouTube Video Modal -->
+    <div id="video-modal" class="video-modal" role="dialog" aria-modal="true" aria-label="Video player">
+        <div class="video-modal-backdrop"></div>
+        <div class="video-modal-dialog">
+            <div class="video-modal-header">
+                <span class="video-modal-title" id="video-modal-title"></span>
+                <button class="video-modal-close" id="video-modal-close" aria-label="Close video">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+                </button>
+            </div>
+            <div class="video-modal-body">
+                <div class="video-modal-wrapper">
+                    <iframe id="video-modal-iframe" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screenshot Lightbox Modal -->
+    <div id="screenshot-modal" class="screenshot-modal" role="dialog" aria-modal="true" aria-label="Screenshot viewer">
+        <div class="screenshot-modal-topbar">
+            <div class="screenshot-modal-description" id="screenshot-modal-description"></div>
+            <button class="screenshot-modal-close" aria-label="Close">
+                <img src="icons/ic_close.svg" alt="" class="screenshot-modal-close-icon" aria-hidden="true">
+            </button>
+        </div>
+        <div class="screenshot-modal-container">
+            <button class="screenshot-modal-nav screenshot-modal-nav-left" id="screenshot-modal-prev" aria-label="Previous screenshot">
+                <img src="icons/arrow_back.svg" alt="" class="screenshot-modal-nav-icon" aria-hidden="true">
+            </button>
+            <img class="screenshot-modal-content" id="screenshot-modal-img" alt="Screenshot">
+            <button class="screenshot-modal-nav screenshot-modal-nav-right" id="screenshot-modal-next" aria-label="Next screenshot">
+                <img src="icons/arrow_forward.svg" alt="" class="screenshot-modal-nav-icon" aria-hidden="true">
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

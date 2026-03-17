@@ -1,0 +1,20 @@
+New Features:
+• Immediate file saving prevents data loss during processing
+• Enhanced error messages for better user understanding
+• Automatic file refresh fills in missing miniatures and location names
+• Swipe down on file list to manually refresh
+• Loading indicators show when files are being processed
+
+Improvements:
+• More reliable file processing and better error handling
+• Faster file list loading when offline
+• Improved geocoding reliability with automatic retries
+• Reduced duplicate network error notifications
+• Better empty state handling
+
+Bug Fixes:
+• Fixed potential data loss during GPX file processing
+• Fixed offline miniature generation hanging
+• Fixed geocoded location names not appearing in file list
+• Fixed duplicate network error messages
+• Fixed duplicate empty list notifications

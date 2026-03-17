@@ -1,0 +1,6 @@
+New Features:
+• Multi-select files in the file picker and bulk import from local storage
+• Swipe to delete files with a confirmation dialog
+• Date picker for configuring the Strava activity sync time range
+• Visual state highlighting for selected and processed items
+• Predefined and custom date range filters for the file list

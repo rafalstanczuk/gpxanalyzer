@@ -1,0 +1,13 @@
+.claude/
+local/
+__pycache__/
+
+!LICENSE
+!COPYRIGHT
+!TERMS_OF_USE.md
+!README.md
+!DMCA.md
+!.gitattributes
+!.github/
+!.nojekyll
+

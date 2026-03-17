@@ -1,0 +1,2 @@
+Bug Fixes:
+• Fixed GitHub CI Strava pipelines

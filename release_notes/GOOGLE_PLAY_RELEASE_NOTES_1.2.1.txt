@@ -1,0 +1,9 @@
+Bug Fixes:
+• Fixed button state management in file selector
+• Improved file picker handling for local file selection
+• Resolved button state reset issues after operations complete
+
+Improvements:
+• Enhanced file selector with better progress feedback
+• Optimized file cache management for faster loading
+• Improved code architecture for better maintainability

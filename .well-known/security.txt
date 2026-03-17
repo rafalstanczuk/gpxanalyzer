@@ -1,0 +1,33 @@
+Contact: mailto:anddev0110@gmail.com
+Expires: 2026-12-31T23:59:59.000Z
+Preferred-Languages: en, pl
+Canonical: https://rafalstanczuk.github.io/github_gpxanalyzer_page/.well-known/security.txt
+
+# Security Policy
+# This repository and website are protected by copyright law.
+# Unauthorized access, scraping, cloning, or use for AI training is prohibited.
+
+# Copyright Notice
+# © 2023-2025 Rafał Stańczuk. All Rights Reserved.
+
+# Prohibited Activities
+# - Automated scraping or crawling
+# - AI training data collection
+# - Unauthorized cloning or forking
+# - Reverse engineering
+# - Commercial use without license
+
+# Reporting Security Issues
+# If you discover a security vulnerability, please report it responsibly to:
+# Email: anddev0110@gmail.com
+
+# Reporting Copyright Violations
+# If you encounter unauthorized copies or use of this content:
+# Email: anddev0110@gmail.com
+# Include: URL, evidence, date observed
+
+# Legal Enforcement
+# This repository is actively monitored and protected by:
+# - Copyright law
+# - DMCA procedures
+# - Legal action when necessary
