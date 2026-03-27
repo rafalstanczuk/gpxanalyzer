@@ -546,6 +546,17 @@ body.menu-open { overflow: hidden; }
   background: var(--md-sys-color-primary);
   opacity: 0.7;
 }
+.feature-card ul li:has(.li-icon)::before { display: none; }
+.feature-card ul li:has(.li-icon) { padding-left: 1.6rem; }
+.li-icon {
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  width: 16px;
+  height: 16px;
+  opacity: 0.75;
+  filter: brightness(0) invert(0.78) sepia(1) saturate(1.2) hue-rotate(100deg);
+}
 
 /* Strava inline block */
 .strava-program-inline {

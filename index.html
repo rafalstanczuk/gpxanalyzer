@@ -225,12 +225,26 @@
                         </div>
                         <h3>Drawing Mode & Route Creation</h3>
                         <ul>
-                            <li>Tap the map to place draggable numbered vertex markers</li>
-                            <li>Tap on segments to insert new vertices between existing ones</li>
-                            <li>Undo/redo vertex placements with live distance pill overlay</li>
-                            <li>Real-time elevation profile mini-chart on the map canvas</li>
-                            <li>Join drawn route to an existing GPX track and save as one file</li>
-                            <li>Elevation API integration for drawn paths</li>
+                            <li><img src="icons/gesture.svg" alt="" class="li-icon" aria-hidden="true">Tap-to-place vertices or freehand draw with automatic stroke simplification</li>
+                            <li><img src="icons/smoothing.svg" alt="" class="li-icon" aria-hidden="true">Catmull-Rom spline smoothing with adjustable tension and detail sliders</li>
+                            <li><img src="icons/settings_tune.svg" alt="" class="li-icon" aria-hidden="true">Drawing Tools dialog for curve smoothing, freehand, and elevation sampling settings</li>
+                            <li><img src="icons/undo.svg" alt="" class="li-icon" aria-hidden="true">Undo/redo vertex placements with live distance pill overlay</li>
+                            <li><img src="icons/elevation.svg" alt="" class="li-icon" aria-hidden="true">Real-time elevation profile mini-chart on the map canvas</li>
+                            <li><img src="icons/join.svg" alt="" class="li-icon" aria-hidden="true">Join drawn route to an existing GPX track and save as one file</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card fade-in-up">
+                        <div class="feature-icon">
+                            <img src="icons/layers.svg" alt="" class="icon-svg" aria-hidden="true">
+                        </div>
+                        <h3>Heatmap Overlay & Elevation Data</h3>
+                        <ul>
+                            <li><img src="icons/density.svg" alt="" class="li-icon" aria-hidden="true">Color-coded grid overlay showing density or mean elevation per cell</li>
+                            <li><img src="icons/heatmap.svg" alt="" class="li-icon" aria-hidden="true">Dynamic grid adapts to zoom level with stable rendering during pan</li>
+                            <li><img src="icons/layers.svg" alt="" class="li-icon" aria-hidden="true">Source filter cycle: All Sources, API Only, or GPX File Only</li>
+                            <li><img src="icons/elevation.svg" alt="" class="li-icon" aria-hidden="true">Elevation data strategy: API, cached-only, or cache-first with live stats</li>
+                            <li><img src="icons/file_import.svg" alt="" class="li-icon" aria-hidden="true">Auto-import elevation data from GPX files into local cache</li>
+                            <li><img src="icons/info.svg" alt="" class="li-icon" aria-hidden="true">On-map legend with gradient bar, statistics, and source label</li>
                         </ul>
                     </div>
                     <div class="feature-card fade-in-up">
@@ -457,7 +471,10 @@
                         <p>The chart system supports both time-based and distance-based domains, each with isolated cumulative statistics to prevent cross-domain data contamination. Three view modes (Single, Split, Multi) display altitude, speed, trend boundaries, and scatter plots. A settings dialog exposes 8 adjustable segment detection parameters with per-domain and per-activity-type persistence. All charts synchronize selections bidirectionally with the map — tap a point on any chart and the map pans to that location, or tap the map and all charts highlight the nearest trackpoint.</p>
 
                         <h3>Route Drawing & Elevation Profiles</h3>
-                        <p>Drawing mode lets you create custom routes by tapping the map to place draggable numbered vertex markers. Tap on any drawn segment to insert a vertex between existing ones. A live distance pill shows total route length in real time, and a mini elevation chart overlays the map showing altitude changes for your drawn path. Drawn routes can be joined to the end of a loaded GPX track and saved as a single continuous file via the SAF document picker.</p>
+                        <p>Drawing mode supports both tap-to-place and freehand input — draw routes by dragging across the map with automatic stroke simplification. Catmull-Rom spline smoothing turns sharp vertex-to-vertex segments into smooth curves with adjustable tension and detail. The Drawing Tools dialog provides unified controls for curve smoothing, freehand simplification, and elevation sampling step, each with contextual help. A live distance pill shows total route length, and a mini elevation chart overlays the map. Drawn routes can be joined to a loaded GPX track and saved as one file.</p>
+
+                        <h3>Heatmap Overlay & Elevation Data</h3>
+                        <p>A grid-based spatial visualization layer colors geographic cells by point density or mean elevation. The grid adapts to zoom level with stable rendering during pan and zoom. Four overlay control buttons toggle the heatmap, data point markers, density/elevation metric, and source filter (All Sources, API Only, GPX File Only). Elevation Settings let you choose between API-only, cached-only, or cache-first fetch strategies, with live cache statistics and auto-import of elevation data from GPX files into the local cache.</p>
 
                         <h3>Interactive Mapping Engine</h3>
                         <p>Built on OSMDroid, the map engine renders gradient color-coded polylines using a two-layer border+fill technique with O(n) color computation off the main thread. Map rotation uses two-finger gestures with a tappable compass overlay. Nearest-point detection runs Haversine distance calculations within a 30dp screen-space threshold. Animated pulsating boundary markers display geographic bearing arrows computed from adjacent trackpoint coordinates.</p>

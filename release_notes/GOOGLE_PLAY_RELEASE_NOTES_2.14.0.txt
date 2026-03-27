@@ -1,0 +1,16 @@
+New Features:
+• Freehand Drawing — draw routes by dragging across the map; strokes are automatically simplified when you lift your finger.
+• Bézier Curve Smoothing — smooth your drawn routes with adjustable tension and detail sliders in the new Drawing Tools dialog.
+• Heatmap Overlay — visualize cached elevation data on the map as a color-coded grid, switchable between density and elevation coloring with source filtering.
+• Elevation Settings — choose your elevation fetch strategy (API, cached, or cache-first), view cache statistics, and toggle auto-import of elevation data from GPX files.
+• Drawing Tools Dialog — unified settings for curve smoothing, freehand simplification, and elevation sampling step, each with contextual help.
+
+Improvements:
+• Heatmap grid adapts to zoom level with stable rendering during pan and zoom.
+• Elevation fetch supports progress preview, real-time updates, cancellation, and batch delivery.
+• All drawing and elevation settings persist across app restarts.
+• New on-map heatmap legend with color gradient, statistics, and source label.
+
+Bug Fixes:
+• Fixed freehand stroke cancellation when a second finger touches mid-stroke.
+• Added safety checks for screen-to-geo coordinate conversions to prevent edge-case crashes.
