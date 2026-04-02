@@ -1,0 +1,17 @@
+New Features:
+• Multi-Format Support — import and export 7 track file formats: GPX, KML, KMZ, TCX, FIT, GeoJSON, and CSV with automatic data field mapping.
+• Format Compatibility Matrix — interactive dialog showing which data fields survive when converting between formats, with data loss warnings.
+• Export Format Selector — choose your target format with descriptions, remembered preferences, and auto-sanitized filenames.
+• File Format Filter — filter your file list by format type using chips in the file selector with multi-select and persistent preferences.
+• System "Open With" — open KML, KMZ, TCX, FIT, GeoJSON, and CSV files directly from any file manager, not just GPX.
+• Data Source Attribution — Garmin and Suunto logos displayed automatically when viewing files from those platforms.
+• Extended Sensor Data — 18+ fields including heart rate, cadence, power, temperature, running dynamics, and more preserved across conversions.
+
+Improvements:
+• Full round-trip parsers for GPX extensions, TCX activities, FIT records, KML/KMZ tracks, GeoJSON features, and CSV.
+• Export remembers last selected format across app restarts.
+• File discovery automatically scans for all supported extensions.
+• Better file type detection with MIME type and extension matching.
+
+Bug Fixes:
+• Fixed export handling of unsupported extension fields — gracefully dropped instead of failing silently.

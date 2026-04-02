@@ -266,6 +266,219 @@
   });
 
   // ============================================================
+  // 5b. PDF CAROUSEL MODAL
+  // ============================================================
+  const pdfModal       = document.getElementById('pdf-modal');
+  const pdfCanvas      = document.getElementById('pdf-modal-canvas');
+  const pdfTitle       = document.getElementById('pdf-modal-title');
+  const pdfPageInd     = document.getElementById('pdf-modal-page-indicator');
+  const pdfCloseBtn    = document.getElementById('pdf-modal-close');
+  const pdfPrevBtn     = document.getElementById('pdf-modal-prev');
+  const pdfNextBtn     = document.getElementById('pdf-modal-next');
+  const pdfDotsEl      = document.getElementById('pdf-modal-dots');
+  const pdfBackdrop    = pdfModal ? pdfModal.querySelector('.pdf-modal-backdrop') : null;
+  const pdfCanvasWrap  = document.getElementById('pdf-modal-canvas-wrapper');
+
+  let pdfDoc = null, pdfPage = 1, pdfTotal = 0, pdfRendering = false;
+  let pdfZoom = 0;
+  const PDF_ZOOM_STEPS = [1, 1.25, 1.5, 2.0, 2.5, 3.0];
+  const pdfZoomInBtn  = document.getElementById('pdf-modal-zoom-in');
+  const pdfZoomOutBtn = document.getElementById('pdf-modal-zoom-out');
+  const pdfZoomLevel  = document.getElementById('pdf-modal-zoom-level');
+  let pdfFitScale = 1; // cached fit-to-container base scale
+
+  function computeFitScale(pageViewport) {
+    // Temporarily reset canvas so wrapper reports its true available size
+    const prevW = pdfCanvas.style.width;
+    const prevH = pdfCanvas.style.height;
+    pdfCanvas.style.width = '0';
+    pdfCanvas.style.height = '0';
+    const wrapRect = pdfCanvasWrap.getBoundingClientRect();
+    pdfCanvas.style.width = prevW;
+    pdfCanvas.style.height = prevH;
+    const availW = wrapRect.width || 600;
+    const availH = wrapRect.height || 700;
+    return Math.min(availW / pageViewport.width, availH / pageViewport.height);
+  }
+
+  function renderPdfPage(num) {
+    if (!pdfDoc || pdfRendering) return;
+    pdfRendering = true;
+    pdfDoc.getPage(num).then(page => {
+      const viewport0 = page.getViewport({ scale: 1 });
+      pdfFitScale = computeFitScale(viewport0);
+      const scale = pdfFitScale * PDF_ZOOM_STEPS[pdfZoom];
+      const dpr = window.devicePixelRatio || 1;
+
+      const viewport = page.getViewport({ scale: scale * dpr });
+
+      const offscreen = document.createElement('canvas');
+      offscreen.width = viewport.width;
+      offscreen.height = viewport.height;
+      const offCtx = offscreen.getContext('2d');
+      offCtx.fillStyle = '#ffffff';
+      offCtx.fillRect(0, 0, viewport.width, viewport.height);
+
+      page.render({ canvasContext: offCtx, viewport: viewport }).promise.then(() => {
+        pdfCanvas.width = viewport.width;
+        pdfCanvas.height = viewport.height;
+        pdfCanvas.style.width = (viewport.width / dpr) + 'px';
+        pdfCanvas.style.height = (viewport.height / dpr) + 'px';
+        const ctx = pdfCanvas.getContext('2d');
+        ctx.drawImage(offscreen, 0, 0);
+
+        pdfRendering = false;
+        pdfPage = num;
+        updatePdfControls();
+      });
+    });
+  }
+
+  function pdfZoomIn() {
+    if (pdfZoom < PDF_ZOOM_STEPS.length - 1 && !pdfRendering) {
+      pdfZoom++;
+      renderPdfPage(pdfPage);
+    }
+  }
+  function pdfZoomOut() {
+    if (pdfZoom > 0 && !pdfRendering) {
+      pdfZoom--;
+      renderPdfPage(pdfPage);
+    }
+  }
+
+  function updatePdfControls() {
+    pdfPageInd.textContent = `${pdfPage} / ${pdfTotal}`;
+    pdfPrevBtn.style.display = pdfPage > 1 ? 'flex' : 'none';
+    pdfNextBtn.style.display = pdfPage < pdfTotal ? 'flex' : 'none';
+    // Zoom label & button states
+    if (pdfZoomLevel) pdfZoomLevel.textContent = pdfZoom === 0 ? 'Fit' : `${Math.round(PDF_ZOOM_STEPS[pdfZoom] * 100)}%`;
+    if (pdfZoomOutBtn) pdfZoomOutBtn.disabled = pdfZoom <= 0;
+    if (pdfZoomInBtn) pdfZoomInBtn.disabled = pdfZoom >= PDF_ZOOM_STEPS.length - 1;
+    if (pdfCanvasWrap) pdfCanvasWrap.style.cursor = pdfZoom > 0 ? 'grab' : '';
+    // Update dots
+    if (pdfDotsEl) {
+      pdfDotsEl.innerHTML = '';
+      for (let i = 1; i <= pdfTotal; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'pdf-modal-dot' + (i === pdfPage ? ' active' : '');
+        dot.setAttribute('aria-label', `Page ${i}`);
+        dot.addEventListener('click', () => { if (!pdfRendering) renderPdfPage(i); });
+        pdfDotsEl.appendChild(dot);
+      }
+    }
+  }
+
+  function openPdfModal(url, title) {
+    if (!pdfModal || typeof pdfjsLib === 'undefined') return;
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+    pdfTitle.textContent = title || '';
+    document.body.style.overflow = 'hidden';
+    pdfModal.classList.add('show');
+    pdfCloseBtn.focus();
+
+    // Reset state
+    pdfPage = 1;
+    pdfTotal = 0;
+    pdfDoc = null;
+    pdfZoom = 0;
+    pdfPageInd.textContent = '';
+    pdfDotsEl.innerHTML = '';
+    pdfCanvas.width = 0;
+    pdfCanvas.height = 0;
+
+    pdfjsLib.getDocument(url).promise.then(doc => {
+      pdfDoc = doc;
+      pdfTotal = doc.numPages;
+      renderPdfPage(1);
+    });
+  }
+
+  function closePdfModal() {
+    if (!pdfModal) return;
+    pdfModal.classList.remove('show');
+    document.body.style.overflow = '';
+    pdfDoc = null;
+  }
+
+  if (pdfCloseBtn) pdfCloseBtn.addEventListener('click', closePdfModal);
+  if (pdfBackdrop) pdfBackdrop.addEventListener('click', closePdfModal);
+  if (pdfPrevBtn) pdfPrevBtn.addEventListener('click', () => { if (pdfPage > 1 && !pdfRendering) renderPdfPage(pdfPage - 1); });
+  if (pdfNextBtn) pdfNextBtn.addEventListener('click', () => { if (pdfPage < pdfTotal && !pdfRendering) renderPdfPage(pdfPage + 1); });
+  if (pdfZoomInBtn) pdfZoomInBtn.addEventListener('click', pdfZoomIn);
+  if (pdfZoomOutBtn) pdfZoomOutBtn.addEventListener('click', pdfZoomOut);
+
+  // Keyboard navigation
+  document.addEventListener('keydown', e => {
+    if (!pdfModal || !pdfModal.classList.contains('show')) return;
+    if (e.key === 'Escape') closePdfModal();
+    else if (e.key === 'ArrowLeft' && pdfPage > 1) renderPdfPage(pdfPage - 1);
+    else if (e.key === 'ArrowRight' && pdfPage < pdfTotal) renderPdfPage(pdfPage + 1);
+  });
+
+  // Click-to-navigate: left half = prev, right half = next (only at fit zoom)
+  if (pdfCanvas) {
+    pdfCanvas.addEventListener('click', e => {
+      if (pdfRendering || pdfZoom > 0) return;
+      const rect = pdfCanvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      if (x < rect.width / 2) {
+        if (pdfPage > 1) renderPdfPage(pdfPage - 1);
+      } else {
+        if (pdfPage < pdfTotal) renderPdfPage(pdfPage + 1);
+      }
+    });
+    pdfCanvas.style.cursor = 'pointer';
+  }
+
+  // Click-drag panning when zoomed in
+  if (pdfCanvasWrap) {
+    let dragging = false, dragStartX = 0, dragStartY = 0, scrollStartX = 0, scrollStartY = 0;
+    pdfCanvasWrap.addEventListener('mousedown', e => {
+      if (pdfZoom <= 0) return;
+      dragging = true;
+      dragStartX = e.clientX;
+      dragStartY = e.clientY;
+      scrollStartX = pdfCanvasWrap.scrollLeft;
+      scrollStartY = pdfCanvasWrap.scrollTop;
+      pdfCanvasWrap.style.cursor = 'grabbing';
+      e.preventDefault();
+    });
+    window.addEventListener('mousemove', e => {
+      if (!dragging) return;
+      pdfCanvasWrap.scrollLeft = scrollStartX - (e.clientX - dragStartX);
+      pdfCanvasWrap.scrollTop = scrollStartY - (e.clientY - dragStartY);
+    });
+    window.addEventListener('mouseup', () => {
+      if (!dragging) return;
+      dragging = false;
+      pdfCanvasWrap.style.cursor = pdfZoom > 0 ? 'grab' : '';
+    });
+  }
+
+  // Touch swipe support for PDF carousel
+  if (pdfCanvasWrap) {
+    let touchStartX = 0;
+    pdfCanvasWrap.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+    pdfCanvasWrap.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 50) {
+        if (dx < 0 && pdfPage < pdfTotal) renderPdfPage(pdfPage + 1);
+        else if (dx > 0 && pdfPage > 1) renderPdfPage(pdfPage - 1);
+      }
+    }, { passive: true });
+  }
+
+  // Re-render on resize to keep canvas fitting
+  let pdfResizeTimer;
+  window.addEventListener('resize', () => {
+    if (!pdfModal || !pdfModal.classList.contains('show') || !pdfDoc) return;
+    clearTimeout(pdfResizeTimer);
+    pdfResizeTimer = setTimeout(() => renderPdfPage(pdfPage), 150);
+  });
+
+  // ============================================================
   // 6. RELEASE NOTES — load from index.txt only (no brute-force)
   // ============================================================
   async function loadReleaseNotes() {
@@ -302,33 +515,54 @@
         return 0;
       });
 
-      // Check for YouTube links
+      // Check for YouTube links and PDF links
       const enriched = await Promise.all(notes.map(async note => {
-        const paths = [
+        const ytPaths = [
           `release_notes/Youtube_Tutorial_Link_${note.version}.txt`,
           `local/release_notes/Youtube_Tutorial_Link_${note.version}.txt`
         ];
         let youtubeLink = null;
-        for (const p of paths) {
+        for (const p of ytPaths) {
           try { const r = await fetch(p); if (r.ok) { const t = (await r.text()).trim(); if (t) { youtubeLink = t; break; } } } catch {}
         }
-        return { ...note, youtubeLink };
+
+        let pdfLink = null;
+        if (!youtubeLink) {
+          const pdfPaths = [
+            `release_notes/Pdf_Link_${note.version}.txt`,
+            `local/release_notes/Pdf_Link_${note.version}.txt`
+          ];
+          for (const p of pdfPaths) {
+            try { const r = await fetch(p); if (r.ok) { const t = (await r.text()).trim(); if (t) { pdfLink = `release_notes/${t}`; break; } } } catch {}
+          }
+        }
+
+        return { ...note, youtubeLink, pdfLink };
       }));
 
       // Render
       container.innerHTML = enriched.map((note, i) => renderNote(note, i === 0)).join('');
       container.dataset.loaded = 'true';
 
-      // Accordion toggle + YouTube modal buttons
+      // Accordion toggle + YouTube modal / PDF modal buttons
       container.querySelectorAll('.release-note-header').forEach(header => {
         header.addEventListener('click', e => {
-          // If clicking the YouTube button, open video modal instead of toggling
+          // YouTube button
           const ytBtn = e.target.closest('.youtube-logo-link-release-notes');
           if (ytBtn) {
             e.stopPropagation();
             const url = ytBtn.dataset.youtube;
             const ver = ytBtn.dataset.version;
             if (url) openVideoModal(url, `Tutorial — Version ${ver}`);
+            return;
+          }
+          // PDF button
+          const pdfBtn = e.target.closest('.pdf-preview-btn-release-notes');
+          if (pdfBtn) {
+            e.stopPropagation();
+            const pdfUrl = pdfBtn.dataset.pdf;
+            const ver = pdfBtn.dataset.version;
+            if (pdfUrl) openPdfModal(pdfUrl, `Slides — Version ${ver}`);
             return;
           }
           header.closest('.release-note-item').classList.toggle('open');
@@ -378,6 +612,11 @@
     if (note.youtubeLink) {
       html += `<button class="youtube-logo-link-release-notes" data-youtube="${escapeHtml(note.youtubeLink)}" data-version="${escapeHtml(note.version)}" aria-label="Watch Tutorial" type="button">`;
       html += `<img src="icons/WatchonYouTube-black-SVG.svg" alt="Watch on YouTube" class="youtube-logo-release-notes">`;
+      html += `</button>`;
+    } else if (note.pdfLink) {
+      html += `<button class="pdf-preview-btn-release-notes" data-pdf="${escapeHtml(note.pdfLink)}" data-version="${escapeHtml(note.version)}" aria-label="View PDF Tutorial" type="button">`;
+      html += `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="pdf-icon-release-notes" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9.5 8.5c0 .83-.67 1.5-1.5 1.5H7v2H5.5V9H8c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V9H13c.83 0 1.5.67 1.5 1.5v3zm4-3H17v1h1.5V13H17v2h-1.5V9h3v1.5zM7 11.5h1v-1H7v1zM13 13h1v-3h-1v3z"/></svg>`;
+      html += `<span class="pdf-btn-label">View Slides</span>`;
       html += `</button>`;
     }
     html += `</div>`;

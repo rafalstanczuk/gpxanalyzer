@@ -90,6 +90,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
 </head>
 <body>
     <!-- Skip Navigation (a11y) -->
@@ -599,6 +600,41 @@
                     <iframe id="video-modal-iframe" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- PDF Carousel Modal -->
+    <div id="pdf-modal" class="pdf-modal" role="dialog" aria-modal="true" aria-label="PDF preview">
+        <div class="pdf-modal-backdrop"></div>
+        <div class="pdf-modal-dialog">
+            <div class="pdf-modal-header">
+                <span class="pdf-modal-title" id="pdf-modal-title"></span>
+                <span class="pdf-modal-page-indicator" id="pdf-modal-page-indicator"></span>
+                <div class="pdf-modal-zoom-controls">
+                    <button class="pdf-modal-zoom-btn" id="pdf-modal-zoom-out" aria-label="Zoom out">
+                        <span class="pdf-modal-zoom-icon pdf-modal-zoom-icon--out" aria-hidden="true"></span>
+                    </button>
+                    <span class="pdf-modal-zoom-level" id="pdf-modal-zoom-level">Fit</span>
+                    <button class="pdf-modal-zoom-btn" id="pdf-modal-zoom-in" aria-label="Zoom in">
+                        <span class="pdf-modal-zoom-icon pdf-modal-zoom-icon--in" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <button class="pdf-modal-close" id="pdf-modal-close" aria-label="Close PDF preview">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+                </button>
+            </div>
+            <div class="pdf-modal-body">
+                <button class="pdf-modal-nav pdf-modal-prev" id="pdf-modal-prev" aria-label="Previous page">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32" fill="currentColor"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg>
+                </button>
+                <div class="pdf-modal-canvas-wrapper" id="pdf-modal-canvas-wrapper">
+                    <canvas id="pdf-modal-canvas"></canvas>
+                </div>
+                <button class="pdf-modal-nav pdf-modal-next" id="pdf-modal-next" aria-label="Next page">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32" fill="currentColor"><path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/></svg>
+                </button>
+            </div>
+            <div class="pdf-modal-dots" id="pdf-modal-dots"></div>
         </div>
     </div>
 
