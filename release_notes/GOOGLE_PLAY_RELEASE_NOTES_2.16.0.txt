@@ -1,0 +1,16 @@
+New Features:
+• Terrain Tile Elevation — offline altitude from cached AWS tiles, ~5m resolution
+• Blind Spot Overlay — red polygons showing where elevation data is missing
+• 5 Fetch Strategies — auto, tile-only, API-only, cache-first, cache-only
+• Cache Compression — merge nearby points with live preview
+• Tile Boundary Overlay — visualize cached tile coverage on the map
+• Background Tile Prefetch — downloads survive app restarts
+
+Improvements:
+• 450x faster cache writes via spatial indexing
+• Three-layer cache with sub-millisecond repeat lookups
+• Graceful offline degradation — partial data preserved when API unreachable
+• Offline-first defaults
+
+Bug Fixes:
+• Fixed silent offline failures, R8 overlay dispatch, cache-first logic, threading issues
