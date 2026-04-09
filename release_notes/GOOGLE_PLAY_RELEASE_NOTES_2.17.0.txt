@@ -1,0 +1,18 @@
+New Features:
+• Multi-Zoom Tile Fallback — no more missing elevation in areas with satellite data gaps. The app automatically fills gaps from wider-area tiles, with no quality loss.
+• Color-Coded Tile Boundaries — see which zoom level each cached tile belongs to: blue (z15), orange (z14), red (z13). New "Tiles by zoom (z) level" legend with tile count and area per zoom.
+• Per-Zoom Cache Management — view how many tiles are cached at each zoom level, clear specific zoom levels you no longer need.
+• Faster Elevation Loading — elevation points are now buffered and saved in the background, keeping the UI smooth during large fetches.
+• Smart Blank Tile Tracking — empty tiles (data gaps) are remembered so they're never downloaded twice.
+
+Improvements:
+• Corrected resolution labels — all zoom levels use the same ~30m accuracy from the same satellite source data.
+• Legend now reliably shows all tile types visible on the map.
+• Tile overlay only renders tiles in the visible area for smoother map panning.
+• Elevation loading up to 83 seconds faster by resolving gaps from cached tiles instead of slow API calls.
+
+Bug Fixes:
+• Fixed third zoom level (z13) not appearing in the legend.
+• Fixed legend not updating after new fallback tiles are fetched.
+• Fixed corrupt tiles causing repeated loading failures.
+• Fixed elevation source label in drawing dialog not matching the active setting.

@@ -1,5 +1,5 @@
 New Features:
-• Terrain Tile Elevation — offline altitude from cached AWS tiles, ~5m resolution
+• Terrain Tile Elevation — offline altitude from cached AWS tiles, ~30m SRTM source resolution
 • Blind Spot Overlay — red polygons showing where elevation data is missing
 • 5 Fetch Strategies — auto, tile-only, API-only, cache-first, cache-only
 • Cache Compression — merge nearby points with live preview
