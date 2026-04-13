@@ -22,7 +22,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="GpxAnalyzer - Research-grade GPS track analysis for Android. Wavelet-based signal processing, synchronized multi-chart visualization, route drawing with elevation profiles, and Strava integration — all on-device.">
+    <meta name="description" content="GpxAnalyzer - Research-grade GPS track analysis for Android. Wavelet-based signal processing, synchronized multi-chart visualization, route drawing with elevation profiles, offline terrain tile elevation, multi-format file conversion, and Strava integration — all on-device.">
     <title>GpxAnalyzer - Professional GPS Track Analysis</title>
 
     <!-- Search Engine and AI Directives -->
@@ -70,19 +70,19 @@
     <link rel="icon" type="image/png" href="icons/ic_launcher-playstore.png">
     <link rel="apple-touch-icon" href="icons/ic_launcher-playstore.png">
     <link rel="canonical" href="https://rafalstanczuk.github.io/github_gpxanalyzer_page/">
-    <meta name="keywords" content="GpxAnalyzer, GPX analyzer, GPS track analysis, Android app, Strava integration, wavelet signal processing, route drawing, elevation profile, hiking GPX, cycling GPX, running GPX, skiing GPX, interactive maps, elevation charts, speed analysis, FFT noise reduction, multi-chart visualization, GPX export, activity type filtering, clean architecture">
+    <meta name="keywords" content="GpxAnalyzer, GPX analyzer, GPS track analysis, Android app, Strava integration, wavelet signal processing, route drawing, elevation profile, hiking GPX, cycling GPX, running GPX, skiing GPX, interactive maps, elevation charts, speed analysis, FFT noise reduction, multi-chart visualization, GPX export, KML converter, TCX converter, FIT file, GeoJSON, CSV import, file format conversion, terrain tiles, offline elevation, heatmap overlay, activity type filtering, clean architecture">
 
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="GpxAnalyzer - Professional GPS Track Analysis">
-    <meta property="og:description" content="Research-grade GPS track analysis for Android. Wavelet-based signal processing, synchronized multi-chart visualization, route drawing, and Strava sync.">
+    <meta property="og:description" content="Research-grade GPS track analysis for Android. Wavelet-based signal processing, synchronized multi-chart visualization, route drawing with elevation profiles, offline terrain tile elevation, multi-format file conversion, and Strava sync.">
     <meta property="og:image" content="icons/ic_launcher-playstore.png">
     <meta property="og:url" content="https://rafalstanczuk.github.io/github_gpxanalyzer_page/">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="GpxAnalyzer - Professional GPS Track Analysis">
-    <meta name="twitter:description" content="Research-grade GPS track analysis for Android. Wavelet signal processing, multi-chart visualization, route drawing, and Strava sync.">
+    <meta name="twitter:description" content="Research-grade GPS track analysis for Android. Wavelet signal processing, multi-chart visualization, route drawing with elevation profiles, offline terrain tile elevation, multi-format file conversion, and Strava sync.">
     <meta name="twitter:image" content="icons/ic_launcher-playstore.png">
 
     <!-- Fonts & Styles -->
@@ -150,7 +150,7 @@
                         <img src="icons/ic_launcher-playstore.png" alt="GpxAnalyzer App Icon" class="app-icon-img" width="120" height="120">
                     </div>
                     <h1 class="hero-title">Research-Grade GPS Analysis in Your Pocket</h1>
-                    <p class="hero-subtitle">Wavelet-based signal processing, synchronized multi-chart visualization, route drawing with elevation profiles, and Strava sync — all running locally on your Android device.</p>
+                    <p class="hero-subtitle">Wavelet-based signal processing, synchronized multi-chart visualization, route drawing with elevation profiles, offline terrain tile elevation, multi-format file conversion, and Strava sync — all running locally on your Android device.</p>
                     <div class="hero-stats" aria-label="Key highlights">
                         <span class="hero-stat"><strong>100%</strong> On-Device Processing</span>
                         <span class="hero-stat"><strong>10K+</strong> Trackpoints</span>
@@ -242,25 +242,25 @@
                         <ul>
                             <li><img src="icons/density.svg" alt="" class="li-icon" aria-hidden="true">Color-coded grid overlay showing density or mean elevation per cell</li>
                             <li><img src="icons/heatmap.svg" alt="" class="li-icon" aria-hidden="true">Dynamic grid adapts to zoom level with stable rendering during pan</li>
-                            <li><img src="icons/layers.svg" alt="" class="li-icon" aria-hidden="true">Source filter cycle: All Sources, API Only, or GPX File Only</li>
-                            <li><img src="icons/elevation.svg" alt="" class="li-icon" aria-hidden="true">Elevation data strategy: API, cached-only, or cache-first with live stats</li>
-                            <li><img src="icons/file_import.svg" alt="" class="li-icon" aria-hidden="true">Auto-import elevation data from GPX files into local cache</li>
-                            <li><img src="icons/info.svg" alt="" class="li-icon" aria-hidden="true">On-map legend with gradient bar, statistics, and source label</li>
+                            <li><img src="icons/layers.svg" alt="" class="li-icon" aria-hidden="true">4-state source filter: All Sources, API, GPX Track, or Terrain Tile</li>
+                            <li><img src="icons/elevation.svg" alt="" class="li-icon" aria-hidden="true">Offline elevation via AWS Terrain Tiles (~30m resolution) with 3-layer cache</li>
+                            <li><img src="icons/file_import.svg" alt="" class="li-icon" aria-hidden="true">Multi-zoom tile fallback cascade (z15 → z14 → z13) fills all data voids</li>
+                            <li><img src="icons/info.svg" alt="" class="li-icon" aria-hidden="true">Tile boundary overlay, blind spot detection with red polygon warnings, and per-zoom cache management</li>
                         </ul>
                     </div>
                     <div class="feature-card fade-in-up">
                         <div class="feature-icon">
                             <img src="icons/files.svg" alt="" class="icon-svg" aria-hidden="true">
                         </div>
-                        <h3>Multi-Source File Management</h3>
+                        <h3>Multi-Format File Management</h3>
                         <ul>
-                            <li>Import GPX, TCX, KML, GeoJSON, FIT, and CSV from device storage or Strava</li>
-                            <li>European CSV auto-detection: semicolons and comma decimals handled transparently</li>
-                            <li>Activity type filtering: hike, bike, run, ski via chip group</li>
+                            <li>Import GPX, TCX, KML, KMZ, GeoJSON, FIT, and CSV with multi-file selection</li>
+                            <li>Android "Open With" integration — tap any track file to open it directly</li>
+                            <li>Convert between formats with automatic field mapping for 18+ data fields</li>
+                            <li>Compatibility matrix shows exactly what each format keeps before export</li>
+                            <li>Activity type and format filtering with persistent preferences</li>
                             <li>Date-range filters: 7/14/30 days, this/last month, or custom range</li>
-                            <li>Sort by date, name, or size — ascending or descending</li>
-                            <li>Automatic reverse geocoding and map thumbnail generation</li>
-                            <li>GPX export via SAF with filename sanitization and directory memory</li>
+                            <li>Automatic reverse geocoding, map thumbnails, and sort by date/name/size</li>
                         </ul>
                     </div>
                     <div class="feature-card fade-in-up">
@@ -398,7 +398,7 @@
             <div class="container">
                 <div class="section-header">
                     <h2>See It In Action</h2>
-                    <p>Explore your GPS tracks with beautiful visualizations</p>
+                    <p>From heatmap overlays and terrain tiles to multi-format conversion and synchronized charts</p>
                 </div>
                 <div class="screenshots-grid">
                     <!-- Dynamically populated from screenshots/index.txt -->
@@ -465,7 +465,7 @@
                 </div>
                 <div class="about-content">
                     <div class="about-text">
-                        <p>GpxAnalyzer is a professional Android application for GPS track analysis, built as a 17-module clean architecture project. It processes GPX files through a multi-stage pipeline — from FFT-based wavelet noise reduction through extrema detection to synchronized multi-chart and map visualization — all running entirely on your device.</p>
+                        <p>GpxAnalyzer is a professional Android application for GPS track analysis, built as a 17-module clean architecture project. It processes GPX, KML, TCX, FIT, GeoJSON, KMZ, and CSV files through a multi-stage pipeline — from FFT-based wavelet noise reduction through extrema detection to synchronized multi-chart and map visualization, offline terrain tile elevation, spatial heatmap overlays, and format conversion with full field compatibility awareness — all running entirely on your device.</p>
 
                         <h3>Signal Processing Pipeline</h3>
                         <p>Raw GPS data enters a wavelet-based noise reduction stage using adaptive window sizing computed via FFT frequency domain analysis. Multiple window functions (Triangular, Hanning, Gaussian) are applied based on signal characteristics. A multi-stage derivative analysis with amplitude thresholding then detects extrema — peaks, valleys, and trend segments — even across irregular sampling intervals. Activity-specific configurations (Alpine Skiing, Trail Running) adjust detection parameters automatically based on the selected activity type.</p>
@@ -477,7 +477,10 @@
                         <p>Drawing mode supports both tap-to-place and freehand input — draw routes by dragging across the map with automatic stroke simplification. Catmull-Rom spline smoothing turns sharp vertex-to-vertex segments into smooth curves with adjustable tension and detail. The Drawing Tools dialog provides unified controls for curve smoothing, freehand simplification, and elevation sampling step, each with contextual help. A live distance pill shows total route length, and a mini elevation chart overlays the map. Drawn routes can be joined to a loaded GPX track and saved as one file.</p>
 
                         <h3>Heatmap Overlay & Elevation Data</h3>
-                        <p>A grid-based spatial visualization layer colors geographic cells by point density or mean elevation. The grid adapts to zoom level with stable rendering during pan and zoom. Four overlay control buttons toggle the heatmap, data point markers, density/elevation metric, and source filter (All Sources, API Only, GPX File Only). Elevation Settings let you choose between API-only, cached-only, or cache-first fetch strategies, with live cache statistics and auto-import of elevation data from GPX files into the local cache.</p>
+                        <p>A grid-based spatial visualization layer colors geographic cells by point density or mean elevation. The grid adapts to zoom level with stable rendering during pan and zoom. Four overlay control buttons toggle the heatmap, data point markers, density/elevation metric, and a 4-state source filter (All Sources, API, GPX Track, Terrain Tile). Elevation data is fetched offline from AWS Terrain Tiles at ~30m SRTM resolution, decoded from RGB pixel channels on-device, and stored in a three-layer cache (in-memory LRU → Room database → cloud). A multi-zoom tile fallback cascade (z15 → z14 → z13) fills satellite data voids with zero API fallbacks needed. Tile boundary overlays visualize cached coverage, blind spot detection highlights gaps with red polygon warnings, and background prefetch via WorkManager expands coverage as you explore. Per-zoom cache management shows tile counts by zoom level with selective clearing and compression.</p>
+
+                        <h3>Multi-Format File Conversion</h3>
+                        <p>GpxAnalyzer opens GPX, KML, KMZ, TCX, FIT, GeoJSON, and CSV files — select multiple files at once or tap any track file to open it directly via Android's built-in "Open with" menu. Convert between formats with automatic field mapping for heart rate, cadence, power, temperature, and 18+ data fields. A visual compatibility matrix shows exactly which fields each format supports before you convert, and a data loss diagram highlights what gets dropped — no surprises on export. Format and activity type filtering with persistent preferences keeps your file list organized.</p>
 
                         <h3>Interactive Mapping Engine</h3>
                         <p>Built on OSMDroid, the map engine renders gradient color-coded polylines using a two-layer border+fill technique with O(n) color computation off the main thread. Map rotation uses two-finger gestures with a tappable compass overlay. Nearest-point detection runs Haversine distance calculations within a 30dp screen-space threshold. Animated pulsating boundary markers display geographic bearing arrows computed from adjacent trackpoint coordinates.</p>
