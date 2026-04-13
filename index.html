@@ -154,7 +154,7 @@
                     <div class="hero-stats" aria-label="Key highlights">
                         <span class="hero-stat"><strong>100%</strong> On-Device Processing</span>
                         <span class="hero-stat"><strong>10K+</strong> Trackpoints</span>
-                        <span class="hero-stat"><strong>15</strong> Architecture Modules</span>
+                        <span class="hero-stat"><strong>17</strong> Architecture Modules</span>
                         <span class="hero-stat"><strong>L1/L2/L3</strong> Caching</span>
                         <span class="hero-stat"><strong>85-95%</strong> Noise Reduction</span>
                     </div>
@@ -254,7 +254,8 @@
                         </div>
                         <h3>Multi-Source File Management</h3>
                         <ul>
-                            <li>Import from device storage (MediaStore + recursive scan) or Strava</li>
+                            <li>Import GPX, TCX, KML, GeoJSON, FIT, and CSV from device storage or Strava</li>
+                            <li>European CSV auto-detection: semicolons and comma decimals handled transparently</li>
                             <li>Activity type filtering: hike, bike, run, ski via chip group</li>
                             <li>Date-range filters: 7/14/30 days, this/last month, or custom range</li>
                             <li>Sort by date, name, or size — ascending or descending</li>
@@ -281,12 +282,13 @@
                         </div>
                         <h3>Performance & Architecture</h3>
                         <ul>
-                            <li>15-module clean architecture with strict dependency inversion</li>
+                            <li>17-module clean architecture with strict dependency inversion</li>
                             <li>L1/L2/L3 multi-level caching with LRU eviction and lazy evaluation</li>
                             <li>Domain-isolated multi-level cache with per-slot isolation</li>
                             <li>RxJava async pipelines on dedicated I/O and computation thread pools</li>
                             <li>O(n) off-main-thread polyline color computation</li>
-                            <li>Edge-to-edge display and tablet layout optimization</li>
+                            <li>Baseline profiles for faster startup, smoother scrolling, and chart rendering</li>
+                            <li>Edge-to-edge display on Android 15+ and tablet layout optimization</li>
                         </ul>
                     </div>
                     <div class="feature-card fade-in-up">
@@ -339,7 +341,7 @@
                     <p>Managed by automated CI/CD pipelines ensuring the highest standards</p>
                 </div>
                 <div class="code-quality-content">
-                    <p class="code-quality-intro">Built as a 15-module clean architecture project with dependency injection, reactive pipelines, and strict layer separation. Every commit triggers a full CI/CD pipeline that runs unit tests, instrumentation tests on real devices, builds signed APK/AAB artifacts, and publishes GitHub releases automatically.</p>
+                    <p class="code-quality-intro">Built as a 17-module clean architecture project with dependency injection, reactive pipelines, and strict layer separation. Every commit triggers a full CI/CD pipeline that runs unit tests, instrumentation tests on real devices, builds signed APK/AAB artifacts, and publishes GitHub releases automatically.</p>
 
                     <div class="features-grid">
                         <div class="feature-card fade-in-up">
@@ -375,7 +377,7 @@
                             <div class="code-quality-stat-label">Instrumentation Tests</div>
                         </div>
                         <div class="code-quality-stat">
-                            <div class="code-quality-stat-number">15</div>
+                            <div class="code-quality-stat-number">17</div>
                             <div class="code-quality-stat-label">Gradle Modules</div>
                         </div>
                         <div class="code-quality-stat">
@@ -463,7 +465,7 @@
                 </div>
                 <div class="about-content">
                     <div class="about-text">
-                        <p>GpxAnalyzer is a professional Android application for GPS track analysis, built as a 15-module clean architecture project. It processes GPX files through a multi-stage pipeline — from FFT-based wavelet noise reduction through extrema detection to synchronized multi-chart and map visualization — all running entirely on your device.</p>
+                        <p>GpxAnalyzer is a professional Android application for GPS track analysis, built as a 17-module clean architecture project. It processes GPX files through a multi-stage pipeline — from FFT-based wavelet noise reduction through extrema detection to synchronized multi-chart and map visualization — all running entirely on your device.</p>
 
                         <h3>Signal Processing Pipeline</h3>
                         <p>Raw GPS data enters a wavelet-based noise reduction stage using adaptive window sizing computed via FFT frequency domain analysis. Multiple window functions (Triangular, Hanning, Gaussian) are applied based on signal characteristics. A multi-stage derivative analysis with amplitude thresholding then detects extrema — peaks, valleys, and trend segments — even across irregular sampling intervals. Activity-specific configurations (Alpine Skiing, Trail Running) adjust detection parameters automatically based on the selected activity type.</p>
@@ -484,7 +486,7 @@
                         <p>Full OAuth 2.0 flow with automatic 6-hour token refresh cycles, scope validation, and fallback to in-app WebView. Cache-aware synchronization downloads only new activities; cached entries are merged from the database — reducing API calls by 60-80%. Rate limiting is managed dynamically with a smart queue that enforces per-user 15-minute and daily quotas with automatic waiting and recovery.</p>
 
                         <h3>Architecture</h3>
-                        <p>A 15-module Gradle project with dependency injection, reactive pipelines, and strict layer separation. The architecture is organized into foundation, feature, and customized library layers — each with clearly defined responsibilities and boundaries. L1/L2/L3 multi-level caching with per-slot and domain isolation, reactive state management, and lifecycle-aware subscription handling ensure smooth performance across the entire app.</p>
+                        <p>A 17-module Gradle project with dependency injection, reactive pipelines, and strict layer separation. The architecture is organized into foundation, feature, and customized library layers — each with clearly defined responsibilities and boundaries. L1/L2/L3 multi-level caching with per-slot and domain isolation, reactive state management, and lifecycle-aware subscription handling ensure smooth performance across the entire app.</p>
 
                         <h3>Privacy & Security</h3>
                         <p>All GPX processing happens locally. Minimum version enforcement ensures users always run a supported release. A mandatory privacy policy acceptance flow runs at startup with update detection and offline caching. GDPR-compliant with zero data collection or tracking.</p>

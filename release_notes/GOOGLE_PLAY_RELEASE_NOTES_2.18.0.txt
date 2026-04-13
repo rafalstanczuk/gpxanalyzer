@@ -1,0 +1,12 @@
+New Features:
+• European CSV Support — auto-detect and import files with semicolons and comma decimals.
+
+Improvements:
+• Faster startup, scrolling, and chart rendering thanks to baseline profiles.
+• Targets Android 16 with full edge-to-edge display and transparent system bars.
+• Cleaner analysis view with overlay controls moved to drawing mode.
+• Join Track toggle added to the Drawing Tools dialog.
+• CSV files now show activity start date in the file list.
+
+Bug Fixes:
+• Fixed CSV export and import on European locale devices.
