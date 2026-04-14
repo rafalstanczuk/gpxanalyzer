@@ -22,8 +22,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="GpxAnalyzer - Research-grade GPS track analysis for Android. Wavelet-based signal processing, synchronized multi-chart visualization, route drawing with elevation profiles, offline terrain tile elevation, multi-format file conversion, and Strava integration — all on-device.">
-    <title>GpxAnalyzer - Professional GPS Track Analysis</title>
+    <meta name="description" content="Free Android app for research-grade GPS track analysis. 85-95% noise reduction via wavelet signal processing, multi-chart visualization, route drawing, elevation profiles, and Strava sync. Download on Google Play.">
+    <title>GpxAnalyzer - Free GPS Track Analysis App for Android | Wavelet Signal Processing & Strava</title>
 
     <!-- Search Engine and AI Directives -->
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1, noai, noimageai">
@@ -52,7 +52,6 @@
     <meta name="GoogleOther" content="noindex, nofollow, noarchive, nosnippet">
     <meta name="Scrapy" content="noindex, nofollow, noarchive, nosnippet">
     <meta name="Scraper" content="noindex, nofollow, noarchive, nosnippet">
-    <meta property="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1, noai, noimageai">
     <meta name="X-Robots-Tag" content="index, follow, noai, noimageai">
 
     <!-- Copyright Protection -->
@@ -69,28 +68,60 @@
     <!-- Favicon and App Icons -->
     <link rel="icon" type="image/png" href="icons/ic_launcher-playstore.png">
     <link rel="apple-touch-icon" href="icons/ic_launcher-playstore.png">
-    <link rel="canonical" href="https://rafalstanczuk.github.io/github_gpxanalyzer_page/">
+    <link rel="canonical" href="https://rafalstanczuk.github.io/gpxanalyzer/">
     <meta name="keywords" content="GpxAnalyzer, GPX analyzer, GPS track analysis, Android app, Strava integration, wavelet signal processing, route drawing, elevation profile, hiking GPX, cycling GPX, running GPX, skiing GPX, interactive maps, elevation charts, speed analysis, FFT noise reduction, multi-chart visualization, GPX export, KML converter, TCX converter, FIT file, GeoJSON, CSV import, file format conversion, terrain tiles, offline elevation, heatmap overlay, activity type filtering, clean architecture">
 
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="GpxAnalyzer - Professional GPS Track Analysis">
-    <meta property="og:description" content="Research-grade GPS track analysis for Android. Wavelet-based signal processing, synchronized multi-chart visualization, route drawing with elevation profiles, offline terrain tile elevation, multi-format file conversion, and Strava sync.">
-    <meta property="og:image" content="icons/ic_launcher-playstore.png">
-    <meta property="og:url" content="https://rafalstanczuk.github.io/github_gpxanalyzer_page/">
+    <meta property="og:title" content="GpxAnalyzer - Free GPS Track Analysis App for Android">
+    <meta property="og:description" content="Research-grade GPS track analysis for Android. 85-95% noise reduction via wavelet signal processing, multi-chart visualization, route drawing with elevation profiles, Strava sync. Free on Google Play.">
+    <meta property="og:image" content="https://rafalstanczuk.github.io/gpxanalyzer/icons/ic_launcher-playstore.png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:url" content="https://rafalstanczuk.github.io/gpxanalyzer/">
+    <meta property="og:site_name" content="GpxAnalyzer">
+    <meta property="og:locale" content="en_US">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="GpxAnalyzer - Professional GPS Track Analysis">
-    <meta name="twitter:description" content="Research-grade GPS track analysis for Android. Wavelet signal processing, multi-chart visualization, route drawing with elevation profiles, offline terrain tile elevation, multi-format file conversion, and Strava sync.">
-    <meta name="twitter:image" content="icons/ic_launcher-playstore.png">
+    <meta name="twitter:title" content="GpxAnalyzer - Free GPS Track Analysis App for Android">
+    <meta name="twitter:description" content="Research-grade GPS track analysis for Android. 85-95% noise reduction via wavelet signal processing, multi-chart visualization, route drawing, elevation profiles, and Strava sync.">
+    <meta name="twitter:image" content="https://rafalstanczuk.github.io/gpxanalyzer/icons/ic_launcher-playstore.png">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "GpxAnalyzer",
+      "description": "Research-grade GPS track analysis app for Android with wavelet-based signal processing, multi-chart visualization, route drawing, elevation profiles, and Strava integration.",
+      "url": "https://rafalstanczuk.github.io/gpxanalyzer/",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.rafalstanczuk.gpxanalyzer",
+      "operatingSystem": "Android",
+      "applicationCategory": "SportsApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Rafał Stańczuk",
+        "url": "https://pl.linkedin.com/in/stanczuk"
+      },
+      "featureList": "Wavelet signal processing, FFT noise reduction, Multi-chart visualization, Route drawing, Elevation profiles, Strava integration, GPX/TCX/KML/FIT/GeoJSON conversion, Heatmap overlay, Offline terrain tiles",
+      "dateModified": "2026-04-14",
+      "image": "https://rafalstanczuk.github.io/gpxanalyzer/icons/ic_launcher-playstore.png"
+    }
+    </script>
 
     <!-- Fonts & Styles -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+    <meta name="theme-color" content="#0f1512">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer integrity="sha384-/1qUCSGwTur9vjf/z9lmu/eCUYbpOTgSjmpbMQZ1/CtX2v/WcAIKqRv+U1DUCG6e" crossorigin="anonymous"></script>
 </head>
 <body>
     <!-- Skip Navigation (a11y) -->
@@ -117,7 +148,7 @@
                     <a href="#about" role="menuitem">About</a>
                     <a href="#contact" role="menuitem">Contact</a>
                     <a href="#support" role="menuitem">Support</a>
-                    <div class="nav-donation-links" aria-label="Support the developer">
+                    <div class="nav-donation-links" role="group" aria-label="Support the developer">
                         <a href="https://buycoffee.to/k4r4m84" target="_blank" rel="noopener noreferrer" class="donation-link" title="Support on BuyCoffee.to">
                             <img src="icons/logo-buycoffee--dark.svg" alt="BuyCoffee.to" class="donation-icon" width="80" height="20">
                         </a>
@@ -126,7 +157,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="donation-links" aria-label="Support the developer">
+                <div class="donation-links" role="group" aria-label="Support the developer">
                     <a href="https://buycoffee.to/k4r4m84" target="_blank" rel="noopener noreferrer" class="donation-link" title="Support on BuyCoffee.to">
                         <img src="icons/logo-buycoffee--dark.svg" alt="BuyCoffee.to" class="donation-icon" width="80" height="20">
                     </a>
@@ -602,7 +633,7 @@
             </div>
             <div class="video-modal-body">
                 <div class="video-modal-wrapper">
-                    <iframe id="video-modal-iframe" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                    <iframe id="video-modal-iframe" title="Tutorial video" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
                 </div>
             </div>
         </div>
