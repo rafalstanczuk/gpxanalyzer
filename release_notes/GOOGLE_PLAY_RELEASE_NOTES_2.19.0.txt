@@ -1,0 +1,2 @@
+Improvements:
+• Removed Strava sync — Strava now requires a paid developer subscription for API access, and GpxAnalyzer remains completely free with no ads or subscriptions.

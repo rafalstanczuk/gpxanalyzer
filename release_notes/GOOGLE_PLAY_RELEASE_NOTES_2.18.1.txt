@@ -1,0 +1,2 @@
+Bug Fixes:
+• Fixed CSV files not opening correctly when shared from some apps.

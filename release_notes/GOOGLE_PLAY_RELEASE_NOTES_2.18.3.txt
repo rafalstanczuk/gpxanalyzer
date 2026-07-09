@@ -1,0 +1,6 @@
+Improvements:
+• First launch now centers the map on your country automatically.
+
+Bug Fixes:
+• Fixed GpxAnalyzer not appearing in the system "Open With" menu for some file formats.
+• Made chart view switching more reliable, including after screen rotation.

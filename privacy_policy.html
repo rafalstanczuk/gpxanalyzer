@@ -47,7 +47,7 @@
     <h1>Privacy Policy</h1>
 
     <div class="meta-info">
-        <p><strong>Effective Date:</strong> March 17, 2026</p>
+        <p><strong>Effective Date:</strong> July 9, 2026</p>
         <p><strong>Developer:</strong> Rafał Stańczuk</p>
         <p><strong>Contact:</strong> <a href="mailto:anddev0110@gmail.com">anddev0110@gmail.com</a></p>
     </div>
@@ -97,86 +97,21 @@
         <li><strong>Retention:</strong> In-memory data is cleared when the App is closed or when you load a different file. Cached geocoding and elevation results persist in local databases until you clear App data</li>
     </ul>
 
-    <h4>3. Strava Activity Data (Optional)</h4>
-    <ul>
-        <li><strong>What:</strong> Activity data from your Strava account (location, time, elevation, activity metadata)</li>
-        <li><strong>Why:</strong> To import and analyze your Strava activities</li>
-        <li><strong>How:</strong> Through OAuth 2.0 authentication with Strava API</li>
-        <li><strong>OAuth Scopes Requested:</strong>
-            <ul>
-                <li><code>read</code>: Access to your public profile information</li>
-                <li><code>activity:read</code>: Access to read your activity data</li>
-            </ul>
-        </li>
-        <li><strong>Data Fetched:</strong>
-            <ul>
-                <li>Activity list (activities from the last 30 days by default, configurable)</li>
-                <li>Activity streams (GPS coordinates, altitude, timestamps)</li>
-                <li>Activity metadata (type, distance, duration, elevation gain)</li>
-                <li>Only activities with GPS data are processed</li>
-            </ul>
-        </li>
-        <li><strong>API Rate Limits:</strong>
-            <ul>
-                <li>The App respects Strava API rate limits (15-minute and daily windows) to ensure fair usage</li>
-                <li>Rate limits are fetched from a secure online source and may be updated periodically to reflect current Strava API policies</li>
-                <li>If the online source is unavailable, the App uses conservative fallback default limits</li>
-                <li>The App tracks API usage locally and automatically waits when limits are approached or exceeded</li>
-                <li>When rate limits are reached, the App will display a notification and automatically wait for the rate limit window to reset before making additional requests</li>
-                <li>Each sync operation uses at least 1 API request, plus additional requests for downloading activity streams</li>
-                <li>You are informed of current API usage and rate limits before starting a sync operation</li>
-            </ul>
-        </li>
-        <li><strong>Storage:</strong>
-            <ul>
-                <li>OAuth tokens stored securely on your device (access tokens expire periodically and are automatically refreshed)</li>
-                <li>Activity data fetched and converted to GPX format, processed locally</li>
-                <li>GPX files are cached locally on your device to avoid redundant downloads</li>
-                <li>Rate limit usage statistics stored locally to track API consumption</li>
-            </ul>
-        </li>
-        <li><strong>Sharing:</strong>
-            <ul>
-                <li>Data is fetched from Strava API (subject to Strava's privacy policy)</li>
-                <li>Data is never shared with third parties beyond what is necessary for Strava API functionality</li>
-                <li>Data is only displayed to you (the authenticated user)</li>
-            </ul>
-        </li>
-        <li><strong>Retention:</strong>
-            <ul>
-                <li>OAuth tokens stored until you revoke access</li>
-                <li>Activity data cached locally on your device until you clear app data</li>
-                <li>Rate limit usage statistics reset when limit windows expire (15 minutes or 24 hours)</li>
-            </ul>
-        </li>
-        <li><strong>Control:</strong> You can revoke access anytime through Strava settings, which will invalidate stored OAuth tokens</li>
-        <li><strong>Limitations:</strong>
-            <ul>
-                <li>Due to Strava API rate limits, frequent syncing may require waiting periods</li>
-                <li>The App fetches activities from a configurable date range (default: last 30 days)</li>
-                <li>Maximum number of activities per sync is configurable to manage API usage</li>
-                <li>If you exceed Strava's global API rate limits, the App will wait before retrying</li>
-            </ul>
-        </li>
-    </ul>
-
-    <h4>4. Network Data</h4>
+    <h4>3. Network Data</h4>
     <ul>
         <li><strong>What:</strong> Internet connection required for:
             <ul>
-                <li>Strava API integration (when used)</li>
                 <li>OpenStreetMap tile downloads for map display</li>
                 <li>Open Topo Data elevation API requests (when fetching elevation profiles for drawn routes)</li>
                 <li>Android Geocoder requests (for resolving place names from GPS coordinates)</li>
                 <li>Fetching privacy policy updates and minimum supported application version information</li>
             </ul>
         </li>
-        <li><strong>Why:</strong> To fetch Strava activities, display map tiles, retrieve elevation data, resolve place names, check for privacy policy updates, and verify minimum supported app version requirements</li>
+        <li><strong>Why:</strong> To display map tiles, retrieve elevation data, resolve place names, check for privacy policy updates, and verify minimum supported app version requirements</li>
         <li><strong>How:</strong> Through INTERNET and ACCESS_NETWORK_STATE permissions</li>
         <li><strong>Storage:</strong> Map tiles cached locally by the map library. Elevation and geocoding results cached in local databases</li>
         <li><strong>Sharing:</strong>
             <ul>
-                <li>Strava API requests subject to Strava's privacy policy</li>
                 <li>OpenStreetMap tile requests subject to OpenStreetMap Foundation privacy policy</li>
                 <li>Open Topo Data elevation API requests transmit GPS coordinates over HTTPS (see Third-Party Services section)</li>
                 <li>Android Geocoder requests transmit GPS coordinates to Google's geocoding service (see Third-Party Services section)</li>
@@ -186,7 +121,7 @@
         <li><strong>Retention:</strong> Map tiles cached temporarily by the map library. Elevation and geocoding data cached in local databases until App data is cleared</li>
     </ul>
 
-    <h4>5. User-Drawn Route Data</h4>
+    <h4>4. User-Drawn Route Data</h4>
     <ul>
         <li><strong>What:</strong> GPS coordinates created by drawing routes directly on the map</li>
         <li><strong>Why:</strong> To create custom routes and fetch their elevation profiles</li>
@@ -196,7 +131,7 @@
         <li><strong>Retention:</strong> Saved locally in the App's internal storage until App data is cleared or the App is uninstalled. Drawn route data is excluded from Android cloud backups.</li>
     </ul>
 
-    <h4>6. GPX File Export</h4>
+    <h4>5. GPX File Export</h4>
     <ul>
         <li><strong>What:</strong> The App allows you to export GPX files to a location of your choice on your device</li>
         <li><strong>Why:</strong> To save processed or imported GPS data for use in other applications</li>
@@ -212,21 +147,18 @@
     <ul>
         <li><strong>Local Processing:</strong> All GPX data processing occurs locally on your device</li>
         <li><strong>Minimal Data Transmission:</strong> GPS coordinates are only transmitted to external services when strictly necessary: to the Open Topo Data API for elevation profiles (drawn routes only) and to Android's Geocoder for place name resolution. GPX file contents are never transmitted in full.</li>
-        <li><strong>Encrypted Communication:</strong> All network communication uses HTTPS (TLS encryption), including Strava API, Open Topo Data API, and GitHub Pages requests</li>
+        <li><strong>Encrypted Communication:</strong> All network communication uses HTTPS (TLS encryption), including Open Topo Data API and GitHub Pages requests</li>
         <li><strong>Verified Version Information:</strong> Privacy policy version information and minimum supported app version data are cryptographically secured to ensure the integrity and authenticity of version requirements and policy updates.</li>
-        <li><strong>Secure Token Storage:</strong> OAuth tokens are encrypted and stored locally on your device using Android's hardware-backed security mechanisms</li>
-        <li><strong>Backup Exclusions:</strong> Sensitive data (OAuth tokens, security credentials, authentication state) is explicitly excluded from Android cloud backups and is never uploaded to Google Drive. Only non-sensitive user preferences and rebuildable caches may be included in automatic backups.</li>
+        <li><strong>Backup Exclusions:</strong> Sensitive data (security credentials) is explicitly excluded from Android cloud backups and is never uploaded to Google Drive. Only non-sensitive user preferences and rebuildable caches may be included in automatic backups.</li>
         <li><strong>No Data Collection:</strong> The App does not collect analytics, usage statistics, or personal information</li>
     </ul>
 
     <h3>Data Retention</h3>
     <ul>
         <li><strong>GPX File Data:</strong> Track data is processed in memory and cleared when you close the App or load a different file. File metadata (names, sizes, geocoding results) is cached in a local database and persists until App data is cleared.</li>
-        <li><strong>Strava Data:</strong> Downloaded activities are cached as GPX files in the App's local cache directory. This cache persists across app restarts but may be cleared by the OS when device storage is low, or manually by clearing App data.</li>
         <li><strong>Elevation Data:</strong> Fetched elevation values are cached in a local database to avoid redundant API requests. Cached data persists until App data is cleared.</li>
         <li><strong>Geocoding Data:</strong> Reverse geocoding results (place names) are cached in a local database. Cached data persists until App data is cleared.</li>
         <li><strong>Drawn Routes:</strong> Saved as GPX files in the App's internal storage. These files persist until App data is cleared or the App is uninstalled.</li>
-        <li><strong>OAuth Tokens:</strong> Encrypted and stored on device until you revoke access through Strava settings or clear App data</li>
         <li><strong>Map Tiles:</strong> Cached by the map library, subject to library's cache management</li>
         <li><strong>User Preferences:</strong> Filter settings, sort options, map state, and chart layout preferences are stored locally on your device and persist until App data is cleared</li>
     </ul>
@@ -236,11 +168,10 @@
         <li><strong>No Account Required:</strong> The App does not require account creation, so there is no account data to delete</li>
         <li><strong>Clear App Data:</strong> You can delete all App data at any time by:
             <ul>
-                <li>Uninstalling the App (removes all local data including OAuth tokens)</li>
+                <li>Uninstalling the App (removes all local data)</li>
                 <li>Clearing App data through Android Settings</li>
             </ul>
         </li>
-        <li><strong>Revoke Strava Access:</strong> You can revoke Strava access at any time through Strava settings, which will invalidate stored OAuth tokens</li>
     </ul>
 
     <h2>App Updates and Version Management</h2>
@@ -284,18 +215,6 @@
         <li><strong>Privacy Policy:</strong> <a href="https://wiki.osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noopener">OpenStreetMap Foundation Privacy Policy</a></li>
     </ul>
 
-    <h3>Strava API</h3>
-    <ul>
-        <li><strong>Purpose:</strong> Import activity data (optional feature)</li>
-        <li><strong>Data Shared:</strong> OAuth authentication and activity data requests (subject to Strava API Agreement)</li>
-        <li><strong>OAuth Scopes:</strong> The App requests <code>read</code> (public profile) and <code>activity:read</code> (activity data) scopes</li>
-        <li><strong>API Rate Limits:</strong> The App respects Strava API rate limits (15-minute and daily windows), enforced locally to prevent exceeding quotas. Rate limit configuration is fetched from a secure online source and may be updated periodically. When limits are reached, the App automatically waits for the window to reset.</li>
-        <li><strong>Privacy Policy:</strong> <a href="https://www.strava.com/legal/privacy" target="_blank" rel="noopener">Strava Privacy Policy</a></li>
-        <li><strong>API Agreement:</strong> <a href="https://www.strava.com/legal/api" target="_blank" rel="noopener">Strava API Agreement</a></li>
-        <li><strong>API Documentation:</strong> <a href="https://developers.strava.com/docs/reference/" target="_blank" rel="noopener">Strava API Reference</a></li>
-        <li><strong>Note:</strong> If Strava data originates from Garmin devices, attribution to Garmin may be required per Strava's terms.</li>
-    </ul>
-
     <h3>Open Topo Data (Elevation API)</h3>
     <ul>
         <li><strong>Purpose:</strong> Fetching elevation data for GPS coordinates from user-drawn routes</li>
@@ -317,10 +236,10 @@
 
     <h3>GitHub Pages</h3>
     <ul>
-        <li><strong>Purpose:</strong> Hosting privacy policy version information, minimum supported app version data, and serving as the OAuth redirect endpoint for Strava authentication</li>
-        <li><strong>Data Shared:</strong> Requests for version information files (your IP address may be visible to GitHub servers). During Strava authentication, a temporary authorization code is passed through the GitHub Pages redirect URL.</li>
+        <li><strong>Purpose:</strong> Hosting privacy policy version information and minimum supported app version data</li>
+        <li><strong>Data Shared:</strong> Requests for version information files (your IP address may be visible to GitHub servers)</li>
         <li><strong>Privacy Policy:</strong> <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener">GitHub Privacy Statement</a></li>
-        <li><strong>Note:</strong> All version data is cryptographically secured to ensure integrity. The OAuth redirect only passes a temporary authorization code; no personal user data is transmitted through GitHub Pages.</li>
+        <li><strong>Note:</strong> All version data is cryptographically secured to ensure integrity. No personal user data is transmitted through GitHub Pages.</li>
     </ul>
 
     <h2>Permissions Used</h2>
@@ -337,7 +256,7 @@
         </li>
         <li><strong>Internet Permission (INTERNET):</strong>
             <ul>
-                <li><strong>Purpose:</strong> To connect to Strava API (when used), download OpenStreetMap tiles, fetch elevation data from Open Topo Data API, resolve place names via Android Geocoder, and fetch privacy policy version and minimum supported app version information from GitHub Pages</li>
+                <li><strong>Purpose:</strong> To download OpenStreetMap tiles, fetch elevation data from Open Topo Data API, resolve place names via Android Geocoder, and fetch privacy policy version and minimum supported app version information from GitHub Pages</li>
             </ul>
         </li>
         <li><strong>Network State Permission (ACCESS_NETWORK_STATE):</strong>
@@ -354,7 +273,6 @@
         <li><strong>No Tracking:</strong> The App does not track you or collect personal information</li>
         <li><strong>No Account Required:</strong> No registration or account creation needed</li>
         <li><strong>Delete Anytime:</strong> You can delete the App and all associated data at any time</li>
-        <li><strong>Revoke Access:</strong> You can revoke Strava access at any time through Strava settings</li>
     </ul>
 
     <h2>Children's Privacy</h2>
@@ -376,11 +294,10 @@
     <ul>
         <li>Google Play Developer Program Policies (<a href="https://support.google.com/googleplay/android-developer/answer/10144311" target="_blank" rel="noopener">User Data Policy</a>)</li>
         <li>Applicable privacy and data protection laws</li>
-        <li>Strava API Agreement requirements</li>
     </ul>
 
     <hr>
-    <p style="text-align: center; color: #666; font-size: 0.9em;"><em>Last Updated: March 17, 2026</em></p>
+    <p style="text-align: center; color: #666; font-size: 0.9em;"><em>Last Updated: July 9, 2026</em></p>
 
 </body>
 </html>

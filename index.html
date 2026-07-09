@@ -22,8 +22,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free Android app for research-grade GPS track analysis. 85-95% noise reduction via wavelet signal processing, multi-chart visualization, route drawing, elevation profiles, and Strava sync. Download on Google Play.">
-    <title>GpxAnalyzer - Free GPS Track Analysis App for Android | Wavelet Signal Processing & Strava</title>
+    <meta name="description" content="Free Android app for research-grade GPS track analysis. 85-95% noise reduction via wavelet signal processing, multi-chart visualization, route drawing, and elevation profiles. Download on Google Play.">
+    <title>GpxAnalyzer - Free GPS Track Analysis App for Android | Wavelet Signal Processing</title>
 
     <!-- Search Engine and AI Directives -->
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1, noai, noimageai">
@@ -69,12 +69,12 @@
     <link rel="icon" type="image/png" href="icons/ic_launcher-playstore.png">
     <link rel="apple-touch-icon" href="icons/ic_launcher-playstore.png">
     <link rel="canonical" href="https://rafalstanczuk.github.io/gpxanalyzer/">
-    <meta name="keywords" content="GpxAnalyzer, GPX analyzer, GPS track analysis, Android app, Strava integration, wavelet signal processing, route drawing, elevation profile, hiking GPX, cycling GPX, running GPX, skiing GPX, interactive maps, elevation charts, speed analysis, FFT noise reduction, multi-chart visualization, GPX export, KML converter, TCX converter, FIT file, GeoJSON, CSV import, file format conversion, terrain tiles, offline elevation, heatmap overlay, activity type filtering, clean architecture">
+    <meta name="keywords" content="GpxAnalyzer, GPX analyzer, GPS track analysis, Android app, wavelet signal processing, route drawing, elevation profile, hiking GPX, cycling GPX, running GPX, skiing GPX, interactive maps, elevation charts, speed analysis, FFT noise reduction, multi-chart visualization, GPX export, KML converter, TCX converter, FIT file, GeoJSON, CSV import, file format conversion, terrain tiles, offline elevation, heatmap overlay, activity type filtering, clean architecture">
 
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="GpxAnalyzer - Free GPS Track Analysis App for Android">
-    <meta property="og:description" content="Research-grade GPS track analysis for Android. 85-95% noise reduction via wavelet signal processing, multi-chart visualization, route drawing with elevation profiles, Strava sync. Free on Google Play.">
+    <meta property="og:description" content="Research-grade GPS track analysis for Android. 85-95% noise reduction via wavelet signal processing, multi-chart visualization, route drawing with elevation profiles. Free on Google Play.">
     <meta property="og:image" content="https://rafalstanczuk.github.io/gpxanalyzer/icons/ic_launcher-playstore.png">
     <meta property="og:image:width" content="512">
     <meta property="og:image:height" content="512">
@@ -85,7 +85,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="GpxAnalyzer - Free GPS Track Analysis App for Android">
-    <meta name="twitter:description" content="Research-grade GPS track analysis for Android. 85-95% noise reduction via wavelet signal processing, multi-chart visualization, route drawing, elevation profiles, and Strava sync.">
+    <meta name="twitter:description" content="Research-grade GPS track analysis for Android. 85-95% noise reduction via wavelet signal processing, multi-chart visualization, route drawing, and elevation profiles.">
     <meta name="twitter:image" content="https://rafalstanczuk.github.io/gpxanalyzer/icons/ic_launcher-playstore.png">
 
     <!-- Structured Data (JSON-LD) -->
@@ -94,7 +94,7 @@
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "GpxAnalyzer",
-      "description": "Research-grade GPS track analysis app for Android with wavelet-based signal processing, multi-chart visualization, route drawing, elevation profiles, and Strava integration.",
+      "description": "Research-grade GPS track analysis app for Android with wavelet-based signal processing, multi-chart visualization, route drawing, and elevation profiles.",
       "url": "https://rafalstanczuk.github.io/gpxanalyzer/",
       "downloadUrl": "https://play.google.com/store/apps/details?id=com.rafalstanczuk.gpxanalyzer",
       "operatingSystem": "Android",
@@ -109,7 +109,7 @@
         "name": "Rafał Stańczuk",
         "url": "https://pl.linkedin.com/in/stanczuk"
       },
-      "featureList": "Wavelet signal processing, FFT noise reduction, Multi-chart visualization, Route drawing, Elevation profiles, Strava integration, GPX/TCX/KML/FIT/GeoJSON conversion, Heatmap overlay, Offline terrain tiles",
+      "featureList": "Wavelet signal processing, FFT noise reduction, Multi-chart visualization, Route drawing, Elevation profiles, GPX/TCX/KML/FIT/GeoJSON conversion, Heatmap overlay, Offline terrain tiles",
       "dateModified": "2026-04-14",
       "image": "https://rafalstanczuk.github.io/gpxanalyzer/icons/ic_launcher-playstore.png"
     }
@@ -181,7 +181,7 @@
                         <img src="icons/ic_launcher-playstore.png" alt="GpxAnalyzer App Icon" class="app-icon-img" width="120" height="120">
                     </div>
                     <h1 class="hero-title">Research-Grade GPS Analysis in Your Pocket</h1>
-                    <p class="hero-subtitle">Wavelet-based signal processing, synchronized multi-chart visualization, route drawing with elevation profiles, offline terrain tile elevation, multi-format file conversion, and Strava sync — all running locally on your Android device.</p>
+                    <p class="hero-subtitle">Wavelet-based signal processing, synchronized multi-chart visualization, route drawing with elevation profiles, offline terrain tile elevation, and multi-format file conversion — all running locally on your Android device.</p>
                     <div class="hero-stats" aria-label="Key highlights">
                         <span class="hero-stat"><strong>100%</strong> On-Device Processing</span>
                         <span class="hero-stat"><strong>10K+</strong> Trackpoints</span>
@@ -335,30 +335,18 @@
                             <li>GDPR-compliant, no tracking, no data collection</li>
                         </ul>
                     </div>
-                </div>
-
-                <!-- Strava Developer Program -->
-                <div class="strava-program-inline fade-in-up">
-                    <div class="strava-program-inline-text">
-                        <h3>Strava Developer Program</h3>
-                        <ul>
-                            <li>Full OAuth 2.0 with automatic 6-hour token refresh cycles</li>
-                            <li>Scope validation ensuring read and activity:read permissions</li>
-                            <li>Cache-aware sync: only new activities downloaded, cached ones merged from DB</li>
-                            <li>Dynamic rate limit management with server-managed configuration</li>
-                            <li>Smart queue with per-user quota enforcement (15m and daily limits)</li>
-                            <li>60-80% API call reduction via intelligent file + database dual caching</li>
-                        </ul>
-                        <div class="strava-program-pills">
-                            <span class="strava-program-pill">OAuth 2.0</span>
-                            <span class="strava-program-pill">Auto token refresh</span>
-                            <span class="strava-program-pill">Smart rate limiting</span>
-                            <span class="strava-program-pill">Dual-layer cache</span>
-                            <span class="strava-program-pill">60-80% fewer API calls</span>
+                    <div class="feature-card feature-card--removed fade-in-up">
+                        <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48" fill="currentColor" aria-hidden="true"><path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-82q26-36 45-75t31-83H404q12 44 31 83t45 75Zm-104-16q-18-33-31.5-68.5T322-320H204q29 50 72.5 87t99.5 55Zm208 0q56-18 99.5-55t72.5-87H638q-9 38-22.5 73.5T584-178ZM170-400h136q-3-20-4.5-39.5T300-480q0-21 1.5-40.5T306-560H170q-5 20-7.5 39.5T160-480q0 21 2.5 40.5T170-400Zm216 0h188q3-20 4.5-39.5T580-480q0-21-1.5-40.5T574-560H386q-3 20-4.5 39.5T380-480q0 21 1.5 40.5T386-400Zm268 0h136q5-20 7.5-39.5T800-480q0-21-2.5-40.5T790-560H654q3 20 4.5 39.5T660-480q0 21-1.5 40.5T654-400Zm-16-240h118q-29-50-72.5-87T584-782q18 33 31.5 68.5T638-640Zm-234 0h152q-12-44-31-83t-45-75q-26 36-45 75t-31 83Zm-188 0h118q9-38 22.5-73.5T376-782q-56 18-99.5 55T204-640Z"/></svg>
                         </div>
-                    </div>
-                    <div class="strava-program-image">
-                        <img src="other/StravaDevelopmentProgram.png" alt="Strava Development Program badge" loading="lazy" width="400" height="300">
+                        <h3>Strava Sync — Removed</h3>
+                        <ul>
+                            <li>Strava introduced fees and paid subscription requirements for developers to access its API</li>
+                            <li>GpxAnalyzer is completely free with no ads, no subscriptions, and no in-app purchases</li>
+                            <li>Passing those costs on to users, or absorbing them indefinitely, isn't compatible with keeping the app free</li>
+                            <li>Strava sync has been removed; every other feature keeps working exactly as before</li>
+                            <li>All GPX, TCX, KML, FIT, GeoJSON, and CSV import/export tools remain fully supported</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -516,8 +504,8 @@
                         <h3>Interactive Mapping Engine</h3>
                         <p>Built on OSMDroid, the map engine renders gradient color-coded polylines using a two-layer border+fill technique with O(n) color computation off the main thread. Map rotation uses two-finger gestures with a tappable compass overlay. Nearest-point detection runs Haversine distance calculations within a 30dp screen-space threshold. Animated pulsating boundary markers display geographic bearing arrows computed from adjacent trackpoint coordinates.</p>
 
-                        <h3>Strava Integration & Caching</h3>
-                        <p>Full OAuth 2.0 flow with automatic 6-hour token refresh cycles, scope validation, and fallback to in-app WebView. Cache-aware synchronization downloads only new activities; cached entries are merged from the database — reducing API calls by 60-80%. Rate limiting is managed dynamically with a smart queue that enforces per-user 15-minute and daily quotas with automatic waiting and recovery.</p>
+                        <h3>Why Strava Sync Was Removed</h3>
+                        <p>GpxAnalyzer previously offered Strava sync via OAuth 2.0 with cache-aware activity downloads. Strava has since introduced fees and a paid subscription requirement for developers to access its API. GpxAnalyzer is, and will remain, completely free — no ads, no subscriptions, no in-app purchases — so Strava sync has been removed rather than pass those costs on to users. Every other import, conversion, and analysis feature is unaffected.</p>
 
                         <h3>Architecture</h3>
                         <p>A 17-module Gradle project with dependency injection, reactive pipelines, and strict layer separation. The architecture is organized into foundation, feature, and customized library layers — each with clearly defined responsibilities and boundaries. L1/L2/L3 multi-level caching with per-slot and domain isolation, reactive state management, and lifecycle-aware subscription handling ensure smooth performance across the entire app.</p>
@@ -614,9 +602,6 @@
             <!-- Bottom bar -->
             <div class="footer-bottom">
                 <p>&copy; 2023-2026 Rafał Stańczuk. All rights reserved.</p>
-                <div class="strava-attribution">
-                    <img src="icons/api_logo_pwrdBy_strava_stack_orange.svg" alt="Powered by Strava" class="strava-logo" width="100" height="32">
-                </div>
             </div>
         </div>
     </footer>

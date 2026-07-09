@@ -482,6 +482,14 @@ body.menu-open { overflow: hidden; }
   border-color: var(--md-sys-color-primary);
 }
 
+.feature-card--removed {
+  border-style: dashed;
+  background: var(--md-sys-color-surface);
+}
+.feature-card--removed .feature-icon {
+  color: var(--md-sys-color-on-surface-variant);
+}
+
 /* State layer */
 .feature-card::before {
   content: '';
@@ -557,91 +565,6 @@ body.menu-open { overflow: hidden; }
   height: 16px;
   opacity: 0.75;
   filter: brightness(0) invert(0.78) sepia(1) saturate(1.2) hue-rotate(100deg);
-}
-
-/* Strava inline block */
-.strava-program-inline {
-  margin-top: var(--space-10);
-  padding: var(--space-6);
-  background: var(--md-sys-color-surface-container);
-  border: 1px solid var(--md-sys-color-outline-variant);
-  border-radius: var(--md-sys-shape-lg);
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: var(--space-6);
-  align-items: center;
-  position: relative;
-  transition: transform var(--md-sys-motion-medium) var(--md-sys-motion-emphasized-decel),
-              box-shadow var(--md-sys-motion-medium) var(--md-sys-motion-emphasized-decel),
-              border-color var(--md-sys-motion-short) var(--md-sys-motion-standard);
-}
-.strava-program-inline:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--md-sys-elevation-3);
-  border-color: var(--md-sys-color-primary);
-}
-.strava-program-inline::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: var(--md-sys-shape-lg);
-  background: var(--md-sys-color-primary);
-  opacity: 0;
-  transition: opacity var(--md-sys-motion-short) var(--md-sys-motion-standard);
-  pointer-events: none;
-}
-.strava-program-inline:hover::before {
-  opacity: var(--md-sys-state-hover);
-}
-.strava-program-inline-text h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: var(--space-3);
-  color: var(--md-sys-color-on-surface);
-}
-.strava-program-inline-text ul {
-  list-style: none;
-  padding: 0;
-  color: var(--md-sys-color-on-surface-variant);
-}
-.strava-program-inline-text ul li {
-  padding-left: 1.25rem;
-  position: relative;
-  margin-bottom: var(--space-2);
-}
-.strava-program-inline-text ul li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.6em;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--md-sys-color-primary);
-  opacity: 0.7;
-}
-.strava-program-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  margin-top: var(--space-4);
-}
-.strava-program-pill {
-  background: var(--md-sys-color-surface-container-high);
-  border: 1px solid var(--md-sys-color-outline-variant);
-  color: var(--md-sys-color-on-surface-variant);
-  padding: var(--space-1) var(--space-3);
-  border-radius: var(--md-sys-shape-full);
-  font-size: 0.8125rem;
-  font-weight: 500;
-}
-.strava-program-image {
-  border-radius: var(--md-sys-shape-md);
-  overflow: hidden;
-}
-.strava-program-image img {
-  width: 100%;
-  border-radius: var(--md-sys-shape-md);
 }
 
 /* ============================================================
@@ -1562,8 +1485,6 @@ body.menu-open { overflow: hidden; }
   color: var(--md-sys-color-on-surface-variant);
 }
 
-.strava-logo { width: 100px; height: auto; opacity: 0.8; }
-
 /* ============================================================
    SCREENSHOT LIGHTBOX (uses <dialog>)
    ============================================================ */
@@ -1728,9 +1649,6 @@ body.menu-open { overflow: hidden; }
     margin-top: var(--space-2);
   }
 
-  .strava-program-inline {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* Mobile */

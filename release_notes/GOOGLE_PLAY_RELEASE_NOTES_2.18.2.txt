@@ -1,0 +1,2 @@
+Bug Fixes:
+• Fixed the app hanging on first launch after accepting the privacy policy.
