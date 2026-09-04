@@ -1,14 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://rafalstanczuk.github.io/gpxanalyzer/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://gpxanalyzer.app/</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://gpxanalyzer.app/icons/og-image.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gpxanalyzer.app/icons/ic_launcher-playstore.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gpxanalyzer.app/screenshots/slide1_tile_boundaries_multi_zoom_overview.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gpxanalyzer.app/screenshots/slide3_elevation_settings_cache_stats.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gpxanalyzer.app/screenshots/Day_Mode_Tiles_coverage_on_and_elevation_heatmap_on_from_encoded_points_from_cached_tiles.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gpxanalyzer.app/screenshots/Zoomed_in_map_and_tiles_coverage_with_cached_points_data_heatmap.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gpxanalyzer.app/screenshots/Offline_Visual_Fallback_On_Requesting_not_Cached_Area_2_Area_Overlays.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gpxanalyzer.app/screenshots/Elevation_Settings_Dialog_with_new_strategies.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gpxanalyzer.app/screenshots/All_sources_filter.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gpxanalyzer.app/screenshots/New_More_Intuitive_Icons.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gpxanalyzer.app/screenshots/slide1_multi_format_import.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gpxanalyzer.app/screenshots/slide2_system_open_with.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gpxanalyzer.app/screenshots/slide5_compatibility_matrix.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gpxanalyzer.app/screenshots/slide1_drawing_waypoints.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gpxanalyzer.app/screenshots/slide3_density_13k.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gpxanalyzer.app/screenshots/slide5_elevation_api.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gpxanalyzer.app/screenshots/Screenshot_20260222_134132.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gpxanalyzer.app/other/ci_cd_pipelines_online_to_manage_highest_quality.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gpxanalyzer.app/other/unit_tests_reports_generation.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gpxanalyzer.app/other/instrumentation_tests.png</image:loc>
+    </image:image>
   </url>
   <url>
-    <loc>https://rafalstanczuk.github.io/gpxanalyzer/privacy_policy.html</loc>
-    <lastmod>2026-04-14</lastmod>
+    <loc>https://gpxanalyzer.app/privacy_policy.html</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

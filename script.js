@@ -97,6 +97,12 @@
   // ============================================================
   let screenshotItems = [];
 
+  // Fallback alt text derived from the file name (replaced by the .md title once loaded)
+  function humanizeName(name) {
+    if (/^Screenshot_\d+/.test(name)) return 'app screenshot';
+    return name.replace(/^slide\d+_/, '').replace(/_/g, ' ').replace(/\s+/g, ' ').trim();
+  }
+
   async function buildScreenshots() {
     const grid = document.querySelector('.screenshots-grid');
     if (!grid) return;
@@ -117,7 +123,7 @@
 
         const img = document.createElement('img');
         img.src = `screenshots/${name}.png`;
-        img.alt = 'GpxAnalyzer Screenshot';
+        img.alt = `GpxAnalyzer screenshot: ${humanizeName(name)}`;
         img.className = 'screenshot-img';
         img.loading = 'lazy';
 
@@ -148,12 +154,15 @@
         const md = await r.text();
         const lines = md.split('\n').map(l => l.trim()).filter(Boolean);
         const titleIdx = lines.findIndex(l => l.startsWith('#'));
+        const title = titleIdx >= 0 ? lines[titleIdx].replace(/^#+\s*/, '').trim() : '';
         let text = '';
         if (titleIdx >= 0 && lines.length > titleIdx + 1) {
           text = lines.slice(titleIdx + 1).join(' ').trim();
         }
         if (!text && lines.length) text = lines[0].replace(/^#\s*/, '').trim();
         if (text) { div.textContent = text; } else { div.remove(); }
+        const img = item.querySelector('img');
+        if (img && title) img.alt = `GpxAnalyzer screenshot: ${title}`;
       } catch {
         div.remove();
       }

@@ -15,7 +15,7 @@ By viewing this repository, you agree to the following:
 - ❌ **DO NOT** use for AI training or machine learning
 - ❌ **DO NOT** modify, redistribute, or commercialize
 - ❌ **DO NOT** remove copyright notices
-- ✅ **ONLY** view the public website: https://rafalstanczuk.github.io/github_gpxanalyzer_page/
+- ✅ **ONLY** view the public website: https://gpxanalyzer.app/
 
 ## 📄 Legal Documents
 

@@ -1,33 +1,74 @@
-# robots.txt - GpxAnalyzer Landing Page
+# robots.txt - GpxAnalyzer (https://gpxanalyzer.app/)
 # © 2023-2026 Rafał Stańczuk. All Rights Reserved.
-# Search engines allowed. AI training and scraping prohibited.
+# Search engines and link-preview crawlers allowed. AI training and scraping prohibited.
 
-# Allow major search engines
+# ---- Google (Googlebot-Image/Video/News and Google-InspectionTool inherit this group) ----
 User-agent: Googlebot
 Allow: /
-Disallow: /local/
 
+# Google Play Store link checker (does not inherit the Googlebot group)
+User-agent: Storebot-Google
+Allow: /
+
+# ---- Bing / Microsoft ----
 User-agent: Bingbot
 Allow: /
-Disallow: /local/
 
+User-agent: BingPreview
+Allow: /
+
+# ---- Other search engines ----
 User-agent: DuckDuckBot
 Allow: /
-Disallow: /local/
 
 User-agent: Applebot
 Allow: /
-Disallow: /local/
 
 User-agent: Slurp
 Allow: /
-Disallow: /local/
 
-# Block AI training bots
+# ---- Social / messaging link previews (Open Graph cards) ----
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: Slackbot
+Allow: /
+
+User-agent: Slackbot-LinkExpanding
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+User-agent: Discordbot
+Allow: /
+
+User-agent: Pinterestbot
+Allow: /
+
+User-agent: redditbot
+Allow: /
+
+User-agent: Mastodon
+Allow: /
+
+# ---- Block AI training bots ----
 User-agent: GPTBot
 Disallow: /
 
 User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: OAI-SearchBot
 Disallow: /
 
 User-agent: CCBot
@@ -51,6 +92,9 @@ Disallow: /
 User-agent: GoogleOther
 Disallow: /
 
+User-agent: Google-CloudVertexBot
+Disallow: /
+
 User-agent: Bytespider
 Disallow: /
 
@@ -63,10 +107,13 @@ Disallow: /
 User-agent: FacebookBot
 Disallow: /
 
+User-agent: meta-externalagent
+Disallow: /
+
 User-agent: Applebot-Extended
 Disallow: /
 
-# Block SEO scrapers
+# ---- Block SEO scrapers ----
 User-agent: AhrefsBot
 Disallow: /
 
@@ -82,14 +129,14 @@ Disallow: /
 User-agent: YandexBot
 Disallow: /
 
-# Block archiving bots
+# ---- Block archiving bots ----
 User-agent: ia_archiver
 Disallow: /
 
 User-agent: archive.org_bot
 Disallow: /
 
-# Block generic scrapers
+# ---- Block generic scrapers ----
 User-agent: Scrapy
 Disallow: /
 
@@ -102,9 +149,9 @@ Disallow: /
 User-agent: python-requests
 Disallow: /
 
-# Default: block unknown bots
+# ---- Default: block unknown bots ----
 User-agent: *
 Disallow: /
 
-# Sitemap
-Sitemap: https://rafalstanczuk.github.io/gpxanalyzer/sitemap.xml
+# ---- Sitemap (must be on the canonical host) ----
+Sitemap: https://gpxanalyzer.app/sitemap.xml

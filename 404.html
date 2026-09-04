@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!--
+  © 2023-2026 Rafał Stańczuk. All Rights Reserved.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found – GpxAnalyzer</title>
+    <meta name="robots" content="noindex, follow">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <meta name="theme-color" content="#0f1512">
+    <style>
+        .notfound {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: var(--space-16) var(--space-6);
+        }
+        .notfound-content { max-width: 560px; }
+        .notfound-code {
+            font-size: clamp(4rem, 12vw, 7rem);
+            font-weight: 700;
+            line-height: 1;
+            color: var(--md-sys-color-primary);
+            letter-spacing: -0.04em;
+            margin-bottom: var(--space-4);
+        }
+        .notfound h1 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 600;
+            margin-bottom: var(--space-3);
+        }
+        .notfound p {
+            color: var(--md-sys-color-on-surface-variant);
+            margin-bottom: var(--space-8);
+        }
+        .notfound-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-3);
+            justify-content: center;
+        }
+        .notfound-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: var(--space-3) var(--space-5);
+            border-radius: var(--md-sys-shape-full);
+            border: 1px solid var(--md-sys-color-outline-variant);
+            background: var(--md-sys-color-surface-container);
+            color: var(--md-sys-color-on-surface);
+            font-weight: 500;
+            text-decoration: none;
+        }
+        .notfound-links a.primary {
+            background: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+            border-color: transparent;
+        }
+        .notfound-links a:hover { text-decoration: none; opacity: 0.9; }
+    </style>
+</head>
+<body>
+    <nav class="navbar" aria-label="Main navigation">
+        <div class="container">
+            <div class="nav-content">
+                <a href="/" class="logo" aria-label="GpxAnalyzer home">
+                    <img src="/icons/ic_launcher-playstore.png" alt="" class="logo-icon-img" width="36" height="36">
+                    <span class="logo-text">GpxAnalyzer</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="notfound">
+        <div class="notfound-content">
+            <div class="notfound-code" aria-hidden="true">404</div>
+            <h1>This page could not be found</h1>
+            <p>The link may be outdated or the page may have moved. GpxAnalyzer lives at gpxanalyzer.app, and everything about the app is on the home page.</p>
+            <div class="notfound-links">
+                <a href="/" class="primary">Go to the home page</a>
+                <a href="/#features">Features</a>
+                <a href="/#download">Download</a>
+                <a href="/#faq">FAQ</a>
+                <a href="/privacy_policy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

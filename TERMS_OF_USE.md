@@ -22,7 +22,7 @@ By accessing this repository, you agree that you will NOT:
 ## PERMISSIONS
 
 You may:
-- View the public-facing website (https://rafalstanczuk.github.io/github_gpxanalyzer_page/)
+- View the public-facing website (https://gpxanalyzer.app/)
 - Use the website for personal, non-commercial purposes only
 
 ## ENFORCEMENT

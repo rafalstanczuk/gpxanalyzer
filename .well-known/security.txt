@@ -1,7 +1,7 @@
 Contact: mailto:anddev0110@gmail.com
-Expires: 2026-12-31T23:59:59.000Z
+Expires: 2027-12-31T23:59:59.000Z
 Preferred-Languages: en, pl
-Canonical: https://rafalstanczuk.github.io/github_gpxanalyzer_page/.well-known/security.txt
+Canonical: https://gpxanalyzer.app/.well-known/security.txt
 
 # Security Policy
 # This repository and website are protected by copyright law.

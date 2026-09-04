@@ -22,8 +22,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free Android app for research-grade GPS track analysis. 85-95% noise reduction via wavelet signal processing, multi-chart visualization, route drawing, and elevation profiles. Download on Google Play.">
-    <title>GpxAnalyzer - Free GPS Track Analysis App for Android | Wavelet Signal Processing</title>
+    <title>GpxAnalyzer – Free GPX Track Analysis App for Android</title>
+    <meta name="description" content="Free Android app for GPX track analysis: elevation profiles, speed charts, GPS noise reduction, route drawing and GPX/TCX/KML/FIT/GeoJSON conversion. No ads.">
+    <meta name="application-name" content="GpxAnalyzer">
 
     <!-- Search Engine and AI Directives -->
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1, noai, noimageai">
@@ -52,7 +53,6 @@
     <meta name="GoogleOther" content="noindex, nofollow, noarchive, nosnippet">
     <meta name="Scrapy" content="noindex, nofollow, noarchive, nosnippet">
     <meta name="Scraper" content="noindex, nofollow, noarchive, nosnippet">
-    <meta name="X-Robots-Tag" content="index, follow, noai, noimageai">
 
     <!-- Copyright Protection -->
     <meta name="copyright" content="© 2023-2026 Rafał Stańczuk. All Rights Reserved.">
@@ -66,52 +66,202 @@
     <meta name="dcterms.accessRights" content="Restricted">
 
     <!-- Favicon and App Icons -->
-    <link rel="icon" type="image/png" href="icons/ic_launcher-playstore.png">
-    <link rel="apple-touch-icon" href="icons/ic_launcher-playstore.png">
-    <link rel="canonical" href="https://rafalstanczuk.github.io/gpxanalyzer/">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+
+    <!-- Canonical URL (custom domain is the single indexable origin) -->
+    <link rel="canonical" href="https://gpxanalyzer.app/">
+    <link rel="sitemap" type="application/xml" href="sitemap.xml">
     <meta name="keywords" content="GpxAnalyzer, GPX analyzer, GPS track analysis, Android app, wavelet signal processing, route drawing, elevation profile, hiking GPX, cycling GPX, running GPX, skiing GPX, interactive maps, elevation charts, speed analysis, FFT noise reduction, multi-chart visualization, GPX export, KML converter, TCX converter, FIT file, GeoJSON, CSV import, file format conversion, terrain tiles, offline elevation, heatmap overlay, activity type filtering, clean architecture">
 
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="GpxAnalyzer - Free GPS Track Analysis App for Android">
-    <meta property="og:description" content="Research-grade GPS track analysis for Android. 85-95% noise reduction via wavelet signal processing, multi-chart visualization, route drawing with elevation profiles. Free on Google Play.">
-    <meta property="og:image" content="https://rafalstanczuk.github.io/gpxanalyzer/icons/ic_launcher-playstore.png">
-    <meta property="og:image:width" content="512">
-    <meta property="og:image:height" content="512">
-    <meta property="og:url" content="https://rafalstanczuk.github.io/gpxanalyzer/">
+    <meta property="og:title" content="GpxAnalyzer – Free GPX Track Analysis App for Android">
+    <meta property="og:description" content="Research-grade GPS track analysis for Android: wavelet noise reduction, synchronized elevation and speed charts, route drawing with elevation profiles, offline terrain elevation and GPX/TCX/KML/FIT/GeoJSON conversion. Free on Google Play.">
+    <meta property="og:image" content="https://gpxanalyzer.app/icons/og-image.png">
+    <meta property="og:image:secure_url" content="https://gpxanalyzer.app/icons/og-image.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="GpxAnalyzer app icon with the tagline: Free GPX Track Analysis for Android">
+    <meta property="og:url" content="https://gpxanalyzer.app/">
     <meta property="og:site_name" content="GpxAnalyzer">
     <meta property="og:locale" content="en_US">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="GpxAnalyzer - Free GPS Track Analysis App for Android">
-    <meta name="twitter:description" content="Research-grade GPS track analysis for Android. 85-95% noise reduction via wavelet signal processing, multi-chart visualization, route drawing, and elevation profiles.">
-    <meta name="twitter:image" content="https://rafalstanczuk.github.io/gpxanalyzer/icons/ic_launcher-playstore.png">
+    <meta name="twitter:title" content="GpxAnalyzer – Free GPX Track Analysis App for Android">
+    <meta name="twitter:description" content="Research-grade GPS track analysis for Android: wavelet noise reduction, synchronized elevation and speed charts, route drawing, offline terrain elevation and multi-format conversion. Free, no ads.">
+    <meta name="twitter:image" content="https://gpxanalyzer.app/icons/og-image.png">
+    <meta name="twitter:image:alt" content="GpxAnalyzer app icon with the tagline: Free GPX Track Analysis for Android">
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "GpxAnalyzer",
-      "description": "Research-grade GPS track analysis app for Android with wavelet-based signal processing, multi-chart visualization, route drawing, and elevation profiles.",
-      "url": "https://rafalstanczuk.github.io/gpxanalyzer/",
-      "downloadUrl": "https://play.google.com/store/apps/details?id=com.rafalstanczuk.gpxanalyzer",
-      "operatingSystem": "Android",
-      "applicationCategory": "SportsApplication",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "Rafał Stańczuk",
-        "url": "https://pl.linkedin.com/in/stanczuk"
-      },
-      "featureList": "Wavelet signal processing, FFT noise reduction, Multi-chart visualization, Route drawing, Elevation profiles, GPX/TCX/KML/FIT/GeoJSON conversion, Heatmap overlay, Offline terrain tiles",
-      "dateModified": "2026-04-14",
-      "image": "https://rafalstanczuk.github.io/gpxanalyzer/icons/ic_launcher-playstore.png"
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://gpxanalyzer.app/#author",
+          "name": "Rafał Stańczuk",
+          "url": "https://stanczuk.it/",
+          "email": "mailto:anddev0110@gmail.com",
+          "sameAs": [
+            "https://www.linkedin.com/in/stanczuk/",
+            "https://github.com/rafalstanczuk"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://gpxanalyzer.app/#website",
+          "url": "https://gpxanalyzer.app/",
+          "name": "GpxAnalyzer",
+          "description": "Official website of GpxAnalyzer, a free Android app for GPX track analysis.",
+          "inLanguage": "en",
+          "publisher": { "@id": "https://gpxanalyzer.app/#author" }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://gpxanalyzer.app/#webpage",
+          "url": "https://gpxanalyzer.app/",
+          "name": "GpxAnalyzer – Free GPX Track Analysis App for Android",
+          "description": "Free Android app for GPX track analysis: elevation profiles, speed charts, GPS noise reduction, route drawing and GPX/TCX/KML/FIT/GeoJSON conversion. No ads.",
+          "isPartOf": { "@id": "https://gpxanalyzer.app/#website" },
+          "about": { "@id": "https://gpxanalyzer.app/#app" },
+          "primaryImageOfPage": {
+            "@type": "ImageObject",
+            "url": "https://gpxanalyzer.app/icons/og-image.png",
+            "width": 1200,
+            "height": 630
+          },
+          "inLanguage": "en",
+          "dateModified": "2026-09-04"
+        },
+        {
+          "@type": ["SoftwareApplication", "MobileApplication"],
+          "@id": "https://gpxanalyzer.app/#app",
+          "name": "GpxAnalyzer",
+          "alternateName": "GPX Analyzer",
+          "description": "Research-grade GPS track analysis app for Android with wavelet-based noise reduction, synchronized multi-chart and map visualization, route drawing with elevation profiles, offline terrain elevation and GPX, TCX, KML, KMZ, FIT, GeoJSON and CSV import, export and conversion.",
+          "url": "https://gpxanalyzer.app/",
+          "installUrl": "https://play.google.com/store/apps/details?id=com.rafalstanczuk.gpxanalyzer",
+          "downloadUrl": "https://play.google.com/store/apps/details?id=com.rafalstanczuk.gpxanalyzer",
+          "operatingSystem": "Android",
+          "applicationCategory": "SportsApplication",
+          "applicationSubCategory": "GPS track analysis",
+          "softwareVersion": "2.19.0",
+          "isAccessibleForFree": true,
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+          },
+          "author": { "@id": "https://gpxanalyzer.app/#author" },
+          "publisher": { "@id": "https://gpxanalyzer.app/#author" },
+          "image": "https://gpxanalyzer.app/icons/ic_launcher-playstore.png",
+          "screenshot": [
+            "https://gpxanalyzer.app/screenshots/Screenshot_20260222_134132.png",
+            "https://gpxanalyzer.app/screenshots/slide1_drawing_waypoints.png",
+            "https://gpxanalyzer.app/screenshots/slide1_multi_format_import.png",
+            "https://gpxanalyzer.app/screenshots/Day_Mode_Tiles_coverage_on_and_elevation_heatmap_on_from_encoded_points_from_cached_tiles.png"
+          ],
+          "featureList": [
+            "Wavelet-based GPS noise reduction (85-95%)",
+            "Synchronized elevation, speed and gradient charts",
+            "Interactive map with chart-to-map selection sync",
+            "Route drawing with live elevation profile",
+            "Heatmap overlay and offline terrain elevation",
+            "GPX, TCX, KML, KMZ, FIT, GeoJSON and CSV import, export and conversion",
+            "Track and segment statistics",
+            "100% on-device processing, no tracking"
+          ],
+          "keywords": "GPX analyzer, GPX viewer, GPS track analysis, elevation profile, GPX to KML, GPX to TCX, FIT to GPX, Android",
+          "inLanguage": "en",
+          "dateModified": "2026-09-04"
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://gpxanalyzer.app/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is GpxAnalyzer?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "GpxAnalyzer is a free Android app for analyzing recorded GPS tracks from hiking, running, cycling, skiing and other outdoor activities. It opens GPX and other track files, removes GPS noise, and shows elevation, speed and gradient charts synchronized with an interactive map, all processed on your device."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Which GPS file formats can I open and convert?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "You can import GPX, TCX, KML, KMZ, FIT, GeoJSON and CSV files, open them straight from other apps with Android's \"Open with\" menu, and convert between formats. A compatibility matrix shows which fields such as heart rate, cadence, power and temperature each format keeps before you export."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does GpxAnalyzer work offline?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. All track processing, charts and statistics run on your device without a connection. Map imagery and terrain elevation tiles are downloaded the first time you view an area and cached, so previously viewed areas keep working offline."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is GpxAnalyzer free? Does it have ads or subscriptions?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "GpxAnalyzer is completely free on Google Play with no ads, no subscriptions and no in-app purchases. If you find it useful, you can support development with an optional donation."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does the app track my location or collect personal data?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. GpxAnalyzer does not request location permissions and never tracks where you are. It only reads the track files you choose to open, and nothing is uploaded or shared. There is no analytics or advertising SDK, and the app is GDPR-compliant. See the privacy policy for details."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does the GPS noise reduction work?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Raw GPS points are cleaned with wavelet-based signal processing that adapts its smoothing window to each track using frequency analysis. This removes roughly 85 to 95 percent of GPS jitter while preserving real peaks, valleys and climb or descent segments. Presets for activities such as trail running and alpine skiing tune the detection automatically."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I draw my own route and see its elevation profile?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Tap to place points or draw freehand on the map, smooth the line with adjustable curve settings, and watch the distance and a live elevation profile update as you draw. A drawn route can be joined to an existing track and saved as a single GPX file."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does GpxAnalyzer sync with Strava?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Strava sync was removed because Strava now charges developers for API access, and GpxAnalyzer is committed to staying free. You can export any Strava activity as a GPX file and open it in GpxAnalyzer, and every import, conversion and analysis feature still works."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Which Android versions does GpxAnalyzer support?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "GpxAnalyzer runs on Android 9 or newer, on both phones and tablets, and uses edge-to-edge display on Android 15 and later. It is available on Google Play."
+              }
+            }
+          ]
+        }
+      ]
     }
     </script>
 
@@ -131,10 +281,10 @@
     <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="container">
             <div class="nav-content">
-                <div class="logo">
+                <a href="./" class="logo" aria-label="GpxAnalyzer home">
                     <img src="icons/ic_launcher-playstore.png" alt="" class="logo-icon-img" width="36" height="36">
                     <span class="logo-text">GpxAnalyzer</span>
-                </div>
+                </a>
                 <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
                     <span class="nav-toggle-bar"></span>
                 </button>
@@ -178,14 +328,14 @@
             <div class="container">
                 <div class="hero-content">
                     <div class="app-icon-large">
-                        <img src="icons/ic_launcher-playstore.png" alt="GpxAnalyzer App Icon" class="app-icon-img" width="120" height="120">
+                        <img src="icons/ic_launcher-playstore.png" alt="GpxAnalyzer app icon" class="app-icon-img" width="120" height="120" fetchpriority="high">
                     </div>
-                    <h1 class="hero-title">Research-Grade GPS Analysis in Your Pocket</h1>
+                    <h1 class="hero-title">Research-Grade GPX Track Analysis for Android</h1>
                     <p class="hero-subtitle">Wavelet-based signal processing, synchronized multi-chart visualization, route drawing with elevation profiles, offline terrain tile elevation, and multi-format file conversion — all running locally on your Android device.</p>
                     <div class="hero-stats" aria-label="Key highlights">
                         <span class="hero-stat"><strong>100%</strong> On-Device Processing</span>
                         <span class="hero-stat"><strong>10K+</strong> Trackpoints</span>
-                        <span class="hero-stat"><strong>17</strong> Architecture Modules</span>
+                        <span class="hero-stat"><strong>19</strong> Architecture Modules</span>
                         <span class="hero-stat"><strong>L1/L2/L3</strong> Caching</span>
                         <span class="hero-stat"><strong>85-95%</strong> Noise Reduction</span>
                     </div>
@@ -313,7 +463,7 @@
                         </div>
                         <h3>Performance & Architecture</h3>
                         <ul>
-                            <li>17-module clean architecture with strict dependency inversion</li>
+                            <li>19-module clean architecture with strict dependency inversion</li>
                             <li>L1/L2/L3 multi-level caching with LRU eviction and lazy evaluation</li>
                             <li>Domain-isolated multi-level cache with per-slot isolation</li>
                             <li>RxJava async pipelines on dedicated I/O and computation thread pools</li>
@@ -360,7 +510,7 @@
                     <p>Managed by automated CI/CD pipelines ensuring the highest standards</p>
                 </div>
                 <div class="code-quality-content">
-                    <p class="code-quality-intro">Built as a 17-module clean architecture project with dependency injection, reactive pipelines, and strict layer separation. Every commit triggers a full CI/CD pipeline that runs unit tests, instrumentation tests on real devices, builds signed APK/AAB artifacts, and publishes GitHub releases automatically.</p>
+                    <p class="code-quality-intro">Built as a 19-module clean architecture project with dependency injection, reactive pipelines, and strict layer separation. Every commit triggers a full CI/CD pipeline that runs unit tests, instrumentation tests on real devices, builds signed APK/AAB artifacts, and publishes GitHub releases automatically.</p>
 
                     <div class="features-grid">
                         <div class="feature-card fade-in-up">
@@ -396,7 +546,7 @@
                             <div class="code-quality-stat-label">Instrumentation Tests</div>
                         </div>
                         <div class="code-quality-stat">
-                            <div class="code-quality-stat-number">17</div>
+                            <div class="code-quality-stat-number">19</div>
                             <div class="code-quality-stat-label">Gradle Modules</div>
                         </div>
                         <div class="code-quality-stat">
@@ -484,7 +634,7 @@
                 </div>
                 <div class="about-content">
                     <div class="about-text">
-                        <p>GpxAnalyzer is a professional Android application for GPS track analysis, built as a 17-module clean architecture project. It processes GPX, KML, TCX, FIT, GeoJSON, KMZ, and CSV files through a multi-stage pipeline — from FFT-based wavelet noise reduction through extrema detection to synchronized multi-chart and map visualization, offline terrain tile elevation, spatial heatmap overlays, and format conversion with full field compatibility awareness — all running entirely on your device.</p>
+                        <p>GpxAnalyzer is a professional Android application for GPS track analysis, built as a 19-module clean architecture project. It processes GPX, KML, TCX, FIT, GeoJSON, KMZ, and CSV files through a multi-stage pipeline — from FFT-based wavelet noise reduction through extrema detection to synchronized multi-chart and map visualization, offline terrain tile elevation, spatial heatmap overlays, and format conversion with full field compatibility awareness — all running entirely on your device.</p>
 
                         <h3>Signal Processing Pipeline</h3>
                         <p>Raw GPS data enters a wavelet-based noise reduction stage using adaptive window sizing computed via FFT frequency domain analysis. Multiple window functions (Triangular, Hanning, Gaussian) are applied based on signal characteristics. A multi-stage derivative analysis with amplitude thresholding then detects extrema — peaks, valleys, and trend segments — even across irregular sampling intervals. Activity-specific configurations (Alpine Skiing, Trail Running) adjust detection parameters automatically based on the selected activity type.</p>
@@ -508,12 +658,78 @@
                         <p>GpxAnalyzer previously offered Strava sync via OAuth 2.0 with cache-aware activity downloads. Strava has since introduced fees and a paid subscription requirement for developers to access its API. GpxAnalyzer is, and will remain, completely free — no ads, no subscriptions, no in-app purchases — so Strava sync has been removed rather than pass those costs on to users. Every other import, conversion, and analysis feature is unaffected.</p>
 
                         <h3>Architecture</h3>
-                        <p>A 17-module Gradle project with dependency injection, reactive pipelines, and strict layer separation. The architecture is organized into foundation, feature, and customized library layers — each with clearly defined responsibilities and boundaries. L1/L2/L3 multi-level caching with per-slot and domain isolation, reactive state management, and lifecycle-aware subscription handling ensure smooth performance across the entire app.</p>
+                        <p>A 19-module Gradle project with dependency injection, reactive pipelines, and strict layer separation. The architecture is organized into foundation, feature, and customized library layers — each with clearly defined responsibilities and boundaries. L1/L2/L3 multi-level caching with per-slot and domain isolation, reactive state management, and lifecycle-aware subscription handling ensure smooth performance across the entire app.</p>
 
                         <h3>Privacy & Security</h3>
                         <p>All GPX processing happens locally. Minimum version enforcement ensures users always run a supported release. A mandatory privacy policy acceptance flow runs at startup with update detection and offline caching. GDPR-compliant with zero data collection or tracking.</p>
 
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="faq" aria-labelledby="faq-heading">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="faq-heading">Frequently Asked Questions</h2>
+                    <p>Quick answers about GPX analysis, supported formats, privacy, and offline use</p>
+                </div>
+                <div class="faq-list">
+                    <details class="faq-item" open>
+                        <summary>What is GpxAnalyzer?</summary>
+                        <div class="faq-answer">
+                            <p>GpxAnalyzer is a free Android app for analyzing recorded GPS tracks from hiking, running, cycling, skiing and other outdoor activities. It opens GPX and other track files, removes GPS noise, and shows elevation, speed and gradient charts synchronized with an interactive map, all processed on your device.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Which GPS file formats can I open and convert?</summary>
+                        <div class="faq-answer">
+                            <p>You can import GPX, TCX, KML, KMZ, FIT, GeoJSON and CSV files, open them straight from other apps with Android's "Open with" menu, and convert between formats. A compatibility matrix shows which fields such as heart rate, cadence, power and temperature each format keeps before you export.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Does GpxAnalyzer work offline?</summary>
+                        <div class="faq-answer">
+                            <p>Yes. All track processing, charts and statistics run on your device without a connection. Map imagery and terrain elevation tiles are downloaded the first time you view an area and cached, so previously viewed areas keep working offline.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Is GpxAnalyzer free? Does it have ads or subscriptions?</summary>
+                        <div class="faq-answer">
+                            <p>GpxAnalyzer is completely free on Google Play with no ads, no subscriptions and no in-app purchases. If you find it useful, you can support development with an optional donation.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Does the app track my location or collect personal data?</summary>
+                        <div class="faq-answer">
+                            <p>No. GpxAnalyzer does not request location permissions and never tracks where you are. It only reads the track files you choose to open, and nothing is uploaded or shared. There is no analytics or advertising SDK, and the app is GDPR-compliant. See the <a href="privacy_policy.html">privacy policy</a> for details.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>How does the GPS noise reduction work?</summary>
+                        <div class="faq-answer">
+                            <p>Raw GPS points are cleaned with wavelet-based signal processing that adapts its smoothing window to each track using frequency analysis. This removes roughly 85 to 95 percent of GPS jitter while preserving real peaks, valleys and climb or descent segments. Presets for activities such as trail running and alpine skiing tune the detection automatically.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Can I draw my own route and see its elevation profile?</summary>
+                        <div class="faq-answer">
+                            <p>Yes. Tap to place points or draw freehand on the map, smooth the line with adjustable curve settings, and watch the distance and a live elevation profile update as you draw. A drawn route can be joined to an existing track and saved as a single GPX file.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Does GpxAnalyzer sync with Strava?</summary>
+                        <div class="faq-answer">
+                            <p>Strava sync was removed because Strava now charges developers for API access, and GpxAnalyzer is committed to staying free. You can export any Strava activity as a GPX file and open it in GpxAnalyzer, and every import, conversion and analysis feature still works.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Which Android versions does GpxAnalyzer support?</summary>
+                        <div class="faq-answer">
+                            <p>GpxAnalyzer runs on Android 9 or newer, on both phones and tablets, and uses edge-to-edge display on Android 15 and later. It is available on Google Play.</p>
+                        </div>
+                    </details>
                 </div>
             </div>
         </section>
@@ -540,7 +756,7 @@
             <!-- Three columns -->
             <div class="footer-columns">
                 <div class="footer-section">
-                    <h4>Navigation</h4>
+                    <h3>Navigation</h3>
                     <ul>
                         <li><a href="#features">Features</a></li>
                         <li><a href="#code-quality">Code Quality</a></li>
@@ -548,11 +764,12 @@
                         <li><a href="#tutorials">Tutorials</a></li>
                         <li><a href="#release-notes">Release Notes</a></li>
                         <li><a href="#about">About</a></li>
+                        <li><a href="#faq">FAQ</a></li>
                         <li><a href="#support">Support</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Developer</h4>
+                    <h3>Developer</h3>
                     <p class="footer-dev-name">Rafał Stańczuk</p>
                     <ul class="footer-dev-links">
                         <li>
@@ -572,7 +789,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="https://rafalstanczuk.github.io/rafalstanczuk/" target="_blank" rel="noopener" class="footer-link-with-icon">
+                            <a href="https://stanczuk.it/" target="_blank" rel="noopener" class="footer-link-with-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 -960 960 960" width="18" fill="currentColor"><path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm-40-82v-78q-33 0-56.5-23.5T360-320v-40L168-552q-3 18-5.5 36t-2.5 36q0 121 79.5 212T440-162Zm276-102q26-36 43-77.5t23-85.5H642q-18 37-44.5 67.5T540-306v84q26-14 48-36t30-44l58 38Zm-356-58q18-22 41-37.5t49-25.5q-12-23-17.5-48.5T427-486H242q7 47 29.5 87t88.5 57Zm80-158h80q0-33-10-63.5T480-600q-20 26-30 56.5T440-480Zm134 0h144q-7-47-29.5-87T600-624v36q0 33-8.5 62.5T574-480Z"/></svg>
                                 Portfolio
                             </a>
@@ -580,13 +797,13 @@
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Legal</h4>
+                    <h3>Legal</h3>
                     <ul>
                         <li><a href="privacy_policy.html" target="_blank" rel="noopener">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div class="footer-section" id="support">
-                    <h4>Support the Project</h4>
+                    <h3>Support the Project</h3>
                     <p class="footer-support-text">If you enjoy GpxAnalyzer, consider buying me a coffee!</p>
                     <div class="footer-support-links">
                         <a href="https://buycoffee.to/k4r4m84" target="_blank" rel="noopener noreferrer" class="footer-support-link" title="Support on BuyCoffee.to">
