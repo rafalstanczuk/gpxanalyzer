@@ -22,8 +22,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GpxAnalyzer – Free GPX Track Analysis App for Android</title>
-    <meta name="description" content="Free Android app for GPX track analysis: elevation profiles, speed charts, GPS noise reduction, route drawing and GPX/TCX/KML/FIT/GeoJSON conversion. No ads.">
+    <title>GpxAnalyzer – Free GPX Viewer & Track Analyzer for Android</title>
+    <meta name="description" content="Free offline GPX viewer & analyzer for Android: elevation profiles, speed charts, GPS smoothing, route drawing, GPX/TCX/KML/FIT/GeoJSON converter. No ads.">
     <meta name="application-name" content="GpxAnalyzer">
 
     <!-- Search Engine and AI Directives -->
@@ -71,16 +71,31 @@
     <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="192x192" href="icons/favicon-192x192.png">
     <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.webmanifest">
 
     <!-- Canonical URL (custom domain is the single indexable origin) -->
     <link rel="canonical" href="https://gpxanalyzer.app/">
+    <!-- i18n:alternates -->
+    <link rel="alternate" hreflang="en" href="https://gpxanalyzer.app/">
+    <link rel="alternate" hreflang="pl" href="https://gpxanalyzer.app/pl/">
+    <link rel="alternate" hreflang="de" href="https://gpxanalyzer.app/de/">
+    <link rel="alternate" hreflang="fr" href="https://gpxanalyzer.app/fr/">
+    <link rel="alternate" hreflang="es" href="https://gpxanalyzer.app/es/">
+    <link rel="alternate" hreflang="it" href="https://gpxanalyzer.app/it/">
+    <link rel="alternate" hreflang="x-default" href="https://gpxanalyzer.app/">
+    <meta property="og:locale:alternate" content="pl_PL">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="it_IT">
+    <!-- /i18n:alternates -->
     <link rel="sitemap" type="application/xml" href="sitemap.xml">
     <meta name="keywords" content="GpxAnalyzer, GPX analyzer, GPS track analysis, Android app, wavelet signal processing, route drawing, elevation profile, hiking GPX, cycling GPX, running GPX, skiing GPX, interactive maps, elevation charts, speed analysis, FFT noise reduction, multi-chart visualization, GPX export, KML converter, TCX converter, FIT file, GeoJSON, CSV import, file format conversion, terrain tiles, offline elevation, heatmap overlay, activity type filtering, clean architecture">
 
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="GpxAnalyzer – Free GPX Track Analysis App for Android">
-    <meta property="og:description" content="Research-grade GPS track analysis for Android: wavelet noise reduction, synchronized elevation and speed charts, route drawing with elevation profiles, offline terrain elevation and GPX/TCX/KML/FIT/GeoJSON conversion. Free on Google Play.">
+    <meta property="og:title" content="GpxAnalyzer – Free GPX Viewer & Track Analyzer for Android">
+    <meta property="og:description" content="Free offline GPX viewer & analyzer for Android: elevation profiles, speed charts, GPS smoothing, route drawing, GPX/TCX/KML/FIT/GeoJSON converter. No ads.">
     <meta property="og:image" content="https://gpxanalyzer.app/icons/og-image.png">
     <meta property="og:image:secure_url" content="https://gpxanalyzer.app/icons/og-image.png">
     <meta property="og:image:type" content="image/png">
@@ -93,8 +108,8 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="GpxAnalyzer – Free GPX Track Analysis App for Android">
-    <meta name="twitter:description" content="Research-grade GPS track analysis for Android: wavelet noise reduction, synchronized elevation and speed charts, route drawing, offline terrain elevation and multi-format conversion. Free, no ads.">
+    <meta name="twitter:title" content="GpxAnalyzer – Free GPX Viewer & Track Analyzer for Android">
+    <meta name="twitter:description" content="Free offline GPX viewer & analyzer for Android: elevation profiles, speed charts, GPS smoothing, route drawing, GPX/TCX/KML/FIT/GeoJSON converter. No ads.">
     <meta name="twitter:image" content="https://gpxanalyzer.app/icons/og-image.png">
     <meta name="twitter:image:alt" content="GpxAnalyzer app icon with the tagline: Free GPX Track Analysis for Android">
 
@@ -105,8 +120,9 @@
       "@graph": [
         {
           "@type": "Person",
-          "@id": "https://gpxanalyzer.app/#author",
+          "@id": "https://stanczuk.it/#person",
           "name": "Rafał Stańczuk",
+          "alternateName": "Rafal Stanczuk",
           "url": "https://stanczuk.it/",
           "email": "mailto:anddev0110@gmail.com",
           "sameAs": [
@@ -121,27 +137,48 @@
           "name": "GpxAnalyzer",
           "description": "Official website of GpxAnalyzer, a free Android app for GPX track analysis.",
           "inLanguage": "en",
-          "publisher": { "@id": "https://gpxanalyzer.app/#author" }
+          "publisher": {
+            "@id": "https://stanczuk.it/#person"
+          },
+          "alternateName": [
+            "GPX Analyzer"
+          ]
         },
         {
           "@type": "WebPage",
           "@id": "https://gpxanalyzer.app/#webpage",
           "url": "https://gpxanalyzer.app/",
-          "name": "GpxAnalyzer – Free GPX Track Analysis App for Android",
-          "description": "Free Android app for GPX track analysis: elevation profiles, speed charts, GPS noise reduction, route drawing and GPX/TCX/KML/FIT/GeoJSON conversion. No ads.",
-          "isPartOf": { "@id": "https://gpxanalyzer.app/#website" },
-          "about": { "@id": "https://gpxanalyzer.app/#app" },
+          "name": "GpxAnalyzer – Free GPX Viewer & Track Analyzer for Android",
+          "description": "Free offline GPX viewer & analyzer for Android: elevation profiles, speed charts, GPS smoothing, route drawing, GPX/TCX/KML/FIT/GeoJSON converter. No ads.",
+          "isPartOf": {
+            "@id": "https://gpxanalyzer.app/#website"
+          },
+          "about": {
+            "@id": "https://gpxanalyzer.app/#app"
+          },
           "primaryImageOfPage": {
             "@type": "ImageObject",
             "url": "https://gpxanalyzer.app/icons/og-image.png",
             "width": 1200,
-            "height": 630
+            "height": 630,
+            "creator": {
+              "@id": "https://stanczuk.it/#person"
+            },
+            "copyrightNotice": "© 2026 Rafał Stańczuk",
+            "creditText": "GpxAnalyzer"
           },
           "inLanguage": "en",
-          "dateModified": "2026-09-04"
+          "datePublished": "2026-03-17T13:10:24+01:00",
+          "dateModified": "2026-09-16T10:30:00+02:00",
+          "video": {
+            "@id": "https://gpxanalyzer.app/#tutorial-video"
+          }
         },
         {
-          "@type": ["SoftwareApplication", "MobileApplication"],
+          "@type": [
+            "SoftwareApplication",
+            "MobileApplication"
+          ],
           "@id": "https://gpxanalyzer.app/#app",
           "name": "GpxAnalyzer",
           "alternateName": "GPX Analyzer",
@@ -160,11 +197,15 @@
             "priceCurrency": "USD",
             "availability": "https://schema.org/InStock"
           },
-          "author": { "@id": "https://gpxanalyzer.app/#author" },
-          "publisher": { "@id": "https://gpxanalyzer.app/#author" },
+          "author": {
+            "@id": "https://stanczuk.it/#person"
+          },
+          "publisher": {
+            "@id": "https://stanczuk.it/#person"
+          },
           "image": "https://gpxanalyzer.app/icons/ic_launcher-playstore.png",
           "screenshot": [
-            "https://gpxanalyzer.app/screenshots/Screenshot_20260222_134132.png",
+            "https://gpxanalyzer.app/screenshots/speed-colored-track-map-with-elevation-profile-chart.png",
             "https://gpxanalyzer.app/screenshots/slide1_drawing_waypoints.png",
             "https://gpxanalyzer.app/screenshots/slide1_multi_format_import.png",
             "https://gpxanalyzer.app/screenshots/Day_Mode_Tiles_coverage_on_and_elevation_heatmap_on_from_encoded_points_from_cached_tiles.png"
@@ -181,85 +222,31 @@
           ],
           "keywords": "GPX analyzer, GPX viewer, GPS track analysis, elevation profile, GPX to KML, GPX to TCX, FIT to GPX, Android",
           "inLanguage": "en",
-          "dateModified": "2026-09-04"
+          "dateModified": "2026-09-16T10:30:00+02:00"
         },
         {
-          "@type": "FAQPage",
-          "@id": "https://gpxanalyzer.app/#faq",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "What is GpxAnalyzer?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "GpxAnalyzer is a free Android app for analyzing recorded GPS tracks from hiking, running, cycling, skiing and other outdoor activities. It opens GPX and other track files, removes GPS noise, and shows elevation, speed and gradient charts synchronized with an interactive map, all processed on your device."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Which GPS file formats can I open and convert?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "You can import GPX, TCX, KML, KMZ, FIT, GeoJSON and CSV files, open them straight from other apps with Android's \"Open with\" menu, and convert between formats. A compatibility matrix shows which fields such as heart rate, cadence, power and temperature each format keeps before you export."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Does GpxAnalyzer work offline?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. All track processing, charts and statistics run on your device without a connection. Map imagery and terrain elevation tiles are downloaded the first time you view an area and cached, so previously viewed areas keep working offline."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Is GpxAnalyzer free? Does it have ads or subscriptions?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "GpxAnalyzer is completely free on Google Play with no ads, no subscriptions and no in-app purchases. If you find it useful, you can support development with an optional donation."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Does the app track my location or collect personal data?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "No. GpxAnalyzer does not request location permissions and never tracks where you are. It only reads the track files you choose to open, and nothing is uploaded or shared. There is no analytics or advertising SDK, and the app is GDPR-compliant. See the privacy policy for details."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How does the GPS noise reduction work?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Raw GPS points are cleaned with wavelet-based signal processing that adapts its smoothing window to each track using frequency analysis. This removes roughly 85 to 95 percent of GPS jitter while preserving real peaks, valleys and climb or descent segments. Presets for activities such as trail running and alpine skiing tune the detection automatically."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Can I draw my own route and see its elevation profile?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. Tap to place points or draw freehand on the map, smooth the line with adjustable curve settings, and watch the distance and a live elevation profile update as you draw. A drawn route can be joined to an existing track and saved as a single GPX file."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Does GpxAnalyzer sync with Strava?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Strava sync was removed because Strava now charges developers for API access, and GpxAnalyzer is committed to staying free. You can export any Strava activity as a GPX file and open it in GpxAnalyzer, and every import, conversion and analysis feature still works."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Which Android versions does GpxAnalyzer support?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "GpxAnalyzer runs on Android 9 or newer, on both phones and tablets, and uses edge-to-edge display on Android 15 and later. It is available on Google Play."
-              }
-            }
-          ]
+          "@type": "VideoObject",
+          "@id": "https://gpxanalyzer.app/#tutorial-video",
+          "name": "GpxAnalyzer tutorial: color-gradient track by altitude and speed, map rotation (v2.10.5)",
+          "description": "GpxAnalyzer 2.10.5 tutorial for Android: map track segments colored by altitude or speed as a gradient polyline, plus map rotation. Part of the official GpxAnalyzer tutorial playlists.",
+          "thumbnailUrl": [
+            "https://i.ytimg.com/vi/7-dHXg4Kop0/hqdefault.jpg"
+          ],
+          "uploadDate": "2026-02-13T05:11:25-08:00",
+          "duration": "PT1M31S",
+          "contentUrl": "https://www.youtube.com/watch?v=7-dHXg4Kop0",
+          "embedUrl": "https://www.youtube.com/embed/7-dHXg4Kop0?list=PLEoWUezHpM18F08j7hJE1Mmx_nMMUgbOp",
+          "inLanguage": "en",
+          "isFamilyFriendly": true,
+          "author": {
+            "@id": "https://stanczuk.it/#person"
+          },
+          "publisher": {
+            "@id": "https://stanczuk.it/#person"
+          },
+          "about": {
+            "@id": "https://gpxanalyzer.app/#app"
+          }
         }
       ]
     }
@@ -307,6 +294,19 @@
                         </a>
                     </div>
                 </div>
+                <!-- i18n:switcher -->
+                <details class="lang-menu" id="lang-menu">
+                    <summary class="lang-menu-summary" title="Language"><img src="/icons/flags/gb.svg" alt="" width="20" height="15" class="lang-flag" decoding="async"><span class="lang-code">EN</span><span class="lang-menu-label">Language</span></summary>
+                    <ul class="lang-menu-list">
+                        <li><a class="lang-option is-current" href="/" hreflang="en" lang="en" aria-current="page"><img src="/icons/flags/gb.svg" alt="" width="20" height="15" class="lang-flag" loading="lazy" decoding="async"><span>English</span></a></li>
+                        <li><a class="lang-option" href="/pl/" hreflang="pl" lang="pl"><img src="/icons/flags/pl.svg" alt="" width="20" height="15" class="lang-flag" loading="lazy" decoding="async"><span>Polski</span></a></li>
+                        <li><a class="lang-option" href="/de/" hreflang="de" lang="de"><img src="/icons/flags/de.svg" alt="" width="20" height="15" class="lang-flag" loading="lazy" decoding="async"><span>Deutsch</span></a></li>
+                        <li><a class="lang-option" href="/fr/" hreflang="fr" lang="fr"><img src="/icons/flags/fr.svg" alt="" width="20" height="15" class="lang-flag" loading="lazy" decoding="async"><span>Français</span></a></li>
+                        <li><a class="lang-option" href="/es/" hreflang="es" lang="es"><img src="/icons/flags/es.svg" alt="" width="20" height="15" class="lang-flag" loading="lazy" decoding="async"><span>Español</span></a></li>
+                        <li><a class="lang-option" href="/it/" hreflang="it" lang="it"><img src="/icons/flags/it.svg" alt="" width="20" height="15" class="lang-flag" loading="lazy" decoding="async"><span>Italiano</span></a></li>
+                    </ul>
+                </details>
+                <!-- /i18n:switcher -->
                 <div class="donation-links" role="group" aria-label="Support the developer">
                     <a href="https://buycoffee.to/k4r4m84" target="_blank" rel="noopener noreferrer" class="donation-link" title="Support on BuyCoffee.to">
                         <img src="icons/logo-buycoffee--dark.svg" alt="BuyCoffee.to" class="donation-icon" width="80" height="20">
@@ -330,8 +330,8 @@
                     <div class="app-icon-large">
                         <img src="icons/ic_launcher-playstore.png" alt="GpxAnalyzer app icon" class="app-icon-img" width="120" height="120" fetchpriority="high">
                     </div>
-                    <h1 class="hero-title">Research-Grade GPX Track Analysis for Android</h1>
-                    <p class="hero-subtitle">Wavelet-based signal processing, synchronized multi-chart visualization, route drawing with elevation profiles, offline terrain tile elevation, and multi-format file conversion — all running locally on your Android device.</p>
+                    <h1 class="hero-title">Free GPX Viewer &amp; Track Analyzer for Android</h1>
+                    <p class="hero-subtitle">Research-grade GPX track analysis: wavelet-based GPS smoothing, synchronized elevation and speed charts, route drawing with elevation profiles, offline terrain elevation, and GPX/TCX/KML/FIT/GeoJSON conversion — all running locally on your Android device.</p>
                     <div class="hero-stats" aria-label="Key highlights">
                         <span class="hero-stat"><strong>100%</strong> On-Device Processing</span>
                         <span class="hero-stat"><strong>10K+</strong> Trackpoints</span>
@@ -361,7 +361,7 @@
                 <div class="features-grid">
                     <div class="feature-card fade-in-up">
                         <div class="feature-icon">
-                            <img src="icons/analytics.svg" alt="" class="icon-svg" aria-hidden="true">
+                            <img src="icons/analytics.svg" alt="" class="icon-svg" aria-hidden="true" width="48" height="48">
                         </div>
                         <h3>Wavelet-Based Signal Processing</h3>
                         <ul>
@@ -375,7 +375,7 @@
                     </div>
                     <div class="feature-card fade-in-up">
                         <div class="feature-icon">
-                            <img src="icons/chart.svg" alt="" class="icon-svg" aria-hidden="true">
+                            <img src="icons/chart.svg" alt="" class="icon-svg" aria-hidden="true" width="48" height="48">
                         </div>
                         <h3>Multi-Chart Visualization</h3>
                         <ul>
@@ -389,7 +389,7 @@
                     </div>
                     <div class="feature-card fade-in-up">
                         <div class="feature-icon">
-                            <img src="icons/map.svg" alt="" class="icon-svg" aria-hidden="true">
+                            <img src="icons/map.svg" alt="" class="icon-svg" aria-hidden="true" width="48" height="48">
                         </div>
                         <h3>Interactive Mapping</h3>
                         <ul>
@@ -403,35 +403,35 @@
                     </div>
                     <div class="feature-card fade-in-up">
                         <div class="feature-icon">
-                            <img src="icons/draw.svg" alt="" class="icon-svg" aria-hidden="true">
+                            <img src="icons/draw.svg" alt="" class="icon-svg" aria-hidden="true" width="48" height="48">
                         </div>
                         <h3>Drawing Mode & Route Creation</h3>
                         <ul>
-                            <li><img src="icons/gesture.svg" alt="" class="li-icon" aria-hidden="true">Tap-to-place vertices or freehand draw with automatic stroke simplification</li>
-                            <li><img src="icons/smoothing.svg" alt="" class="li-icon" aria-hidden="true">Catmull-Rom spline smoothing with adjustable tension and detail sliders</li>
-                            <li><img src="icons/settings_tune.svg" alt="" class="li-icon" aria-hidden="true">Drawing Tools dialog for curve smoothing, freehand, and elevation sampling settings</li>
-                            <li><img src="icons/undo.svg" alt="" class="li-icon" aria-hidden="true">Undo/redo vertex placements with live distance pill overlay</li>
-                            <li><img src="icons/elevation.svg" alt="" class="li-icon" aria-hidden="true">Real-time elevation profile mini-chart on the map canvas</li>
-                            <li><img src="icons/join.svg" alt="" class="li-icon" aria-hidden="true">Join drawn route to an existing GPX track and save as one file</li>
+                            <li><img src="icons/gesture.svg" alt="" class="li-icon" aria-hidden="true" width="16" height="16">Tap-to-place vertices or freehand draw with automatic stroke simplification</li>
+                            <li><img src="icons/smoothing.svg" alt="" class="li-icon" aria-hidden="true" width="16" height="16">Catmull-Rom spline smoothing with adjustable tension and detail sliders</li>
+                            <li><img src="icons/settings_tune.svg" alt="" class="li-icon" aria-hidden="true" width="16" height="16">Drawing Tools dialog for curve smoothing, freehand, and elevation sampling settings</li>
+                            <li><img src="icons/undo.svg" alt="" class="li-icon" aria-hidden="true" width="16" height="16">Undo/redo vertex placements with live distance pill overlay</li>
+                            <li><img src="icons/elevation.svg" alt="" class="li-icon" aria-hidden="true" width="16" height="16">Real-time elevation profile mini-chart on the map canvas</li>
+                            <li><img src="icons/join.svg" alt="" class="li-icon" aria-hidden="true" width="16" height="16">Join drawn route to an existing GPX track and save as one file</li>
                         </ul>
                     </div>
                     <div class="feature-card fade-in-up">
                         <div class="feature-icon">
-                            <img src="icons/layers.svg" alt="" class="icon-svg" aria-hidden="true">
+                            <img src="icons/layers.svg" alt="" class="icon-svg" aria-hidden="true" width="48" height="48">
                         </div>
                         <h3>Heatmap Overlay & Elevation Data</h3>
                         <ul>
-                            <li><img src="icons/density.svg" alt="" class="li-icon" aria-hidden="true">Color-coded grid overlay showing density or mean elevation per cell</li>
-                            <li><img src="icons/heatmap.svg" alt="" class="li-icon" aria-hidden="true">Dynamic grid adapts to zoom level with stable rendering during pan</li>
-                            <li><img src="icons/layers.svg" alt="" class="li-icon" aria-hidden="true">4-state source filter: All Sources, API, GPX Track, or Terrain Tile</li>
-                            <li><img src="icons/elevation.svg" alt="" class="li-icon" aria-hidden="true">Offline elevation via AWS Terrain Tiles (~30m resolution) with 3-layer cache</li>
-                            <li><img src="icons/file_import.svg" alt="" class="li-icon" aria-hidden="true">Multi-zoom tile fallback cascade (z15 → z14 → z13) fills all data voids</li>
-                            <li><img src="icons/info.svg" alt="" class="li-icon" aria-hidden="true">Tile boundary overlay, blind spot detection with red polygon warnings, and per-zoom cache management</li>
+                            <li><img src="icons/density.svg" alt="" class="li-icon" aria-hidden="true" width="16" height="16">Color-coded grid overlay showing density or mean elevation per cell</li>
+                            <li><img src="icons/heatmap.svg" alt="" class="li-icon" aria-hidden="true" width="16" height="16">Dynamic grid adapts to zoom level with stable rendering during pan</li>
+                            <li><img src="icons/layers.svg" alt="" class="li-icon" aria-hidden="true" width="16" height="16">4-state source filter: All Sources, API, GPX Track, or Terrain Tile</li>
+                            <li><img src="icons/elevation.svg" alt="" class="li-icon" aria-hidden="true" width="16" height="16">Offline elevation via AWS Terrain Tiles (~30m resolution) with 3-layer cache</li>
+                            <li><img src="icons/file_import.svg" alt="" class="li-icon" aria-hidden="true" width="16" height="16">Multi-zoom tile fallback cascade (z15 → z14 → z13) fills all data voids</li>
+                            <li><img src="icons/info.svg" alt="" class="li-icon" aria-hidden="true" width="16" height="16">Tile boundary overlay, blind spot detection with red polygon warnings, and per-zoom cache management</li>
                         </ul>
                     </div>
                     <div class="feature-card fade-in-up">
                         <div class="feature-icon">
-                            <img src="icons/files.svg" alt="" class="icon-svg" aria-hidden="true">
+                            <img src="icons/files.svg" alt="" class="icon-svg" aria-hidden="true" width="48" height="48">
                         </div>
                         <h3>Multi-Format File Management</h3>
                         <ul>
@@ -446,7 +446,7 @@
                     </div>
                     <div class="feature-card fade-in-up">
                         <div class="feature-icon">
-                            <img src="icons/altitude.svg" alt="" class="icon-svg" aria-hidden="true">
+                            <img src="icons/altitude.svg" alt="" class="icon-svg" aria-hidden="true" width="48" height="48">
                         </div>
                         <h3>Statistical Analysis</h3>
                         <ul>
@@ -459,7 +459,7 @@
                     </div>
                     <div class="feature-card fade-in-up">
                         <div class="feature-icon">
-                            <img src="icons/speed.svg" alt="" class="icon-svg" aria-hidden="true">
+                            <img src="icons/speed.svg" alt="" class="icon-svg" aria-hidden="true" width="48" height="48">
                         </div>
                         <h3>Performance & Architecture</h3>
                         <ul>
@@ -515,21 +515,21 @@
                     <div class="features-grid">
                         <div class="feature-card fade-in-up">
                             <div class="code-quality-image-wrapper">
-                                <img src="other/ci_cd_pipelines_online_to_manage_highest_quality.png" alt="CI/CD Pipeline Overview" class="code-quality-img" loading="lazy">
+                                <img src="other/ci_cd_pipelines_online_to_manage_highest_quality.png" alt="CI/CD Pipeline Overview" class="code-quality-img" loading="lazy" width="1404" height="279">
                             </div>
                             <h3>Automated CI/CD Pipeline</h3>
                             <p>Complete workflow automation from code commit to release. The pipeline runs unit tests, instrumentation tests, builds signed APK and AAB files, and automatically creates GitHub releases.</p>
                         </div>
                         <div class="feature-card fade-in-up">
                             <div class="code-quality-image-wrapper">
-                                <img src="other/unit_tests_reports_generation.png" alt="Unit Test Results" class="code-quality-img" loading="lazy">
+                                <img src="other/unit_tests_reports_generation.png" alt="Unit Test Results" class="code-quality-img" loading="lazy" width="620" height="258">
                             </div>
                             <h3>Comprehensive Unit Testing</h3>
                             <p>Extensive unit test coverage with 1119+ tests across 164 test suites. All tests run automatically on every commit, ensuring code reliability.</p>
                         </div>
                         <div class="feature-card fade-in-up">
                             <div class="code-quality-image-wrapper">
-                                <img src="other/instrumentation_tests.png" alt="Instrumentation Test Results" class="code-quality-img" loading="lazy">
+                                <img src="other/instrumentation_tests.png" alt="Instrumentation Test Results" class="code-quality-img" loading="lazy" width="426" height="227">
                             </div>
                             <h3>Instrumentation Tests</h3>
                             <p>Real device testing with 69+ instrumentation tests validating app behavior on actual Android devices across different versions and configurations.</p>
@@ -616,6 +616,12 @@
                     <h2>Tutorials</h2>
                     <p>Video guides for each major release</p>
                 </div>
+                <div class="tutorial-featured fade-in-up">
+                    <div class="tutorial-video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/7-dHXg4Kop0?list=PLEoWUezHpM18F08j7hJE1Mmx_nMMUgbOp" title="GpxAnalyzer tutorial: color-gradient track by altitude and speed, map rotation (v2.10.5)" loading="lazy" allowfullscreen allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    </div>
+                    <p class="tutorial-featured-caption">Featured tutorial (v2.10.5): the map track colored by altitude or speed, plus map rotation. Every release below has its own playlist.</p>
+                </div>
                 <div id="tutorials-grid" class="tutorials-grid">
                     <div class="tutorials-loading">Loading tutorials...</div>
                 </div>
@@ -683,7 +689,7 @@
                         </div>
                     </details>
                     <details class="faq-item">
-                        <summary>Which GPS file formats can I open and convert?</summary>
+                        <summary>Which GPS file formats can I open, and can I convert GPX to KML, TCX, FIT or GeoJSON?</summary>
                         <div class="faq-answer">
                             <p>You can import GPX, TCX, KML, KMZ, FIT, GeoJSON and CSV files, open them straight from other apps with Android's "Open with" menu, and convert between formats. A compatibility matrix shows which fields such as heart rate, cadence, power and temperature each format keeps before you export.</p>
                         </div>
@@ -728,6 +734,18 @@
                         <summary>Which Android versions does GpxAnalyzer support?</summary>
                         <div class="faq-answer">
                             <p>GpxAnalyzer runs on Android 9 or newer, on both phones and tablets, and uses edge-to-edge display on Android 15 and later. It is available on Google Play.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>How do I open a GPX file on Android, and what app do I need?</summary>
+                        <div class="faq-answer">
+                            <p>Install GpxAnalyzer from Google Play, then open the .gpx file from your file manager, email or messaging app using Android's "Open with" menu and pick GpxAnalyzer — or import it from inside the app. The track appears on the map with synchronized elevation and speed charts. GPX exports from GPS watches, phones and web services all work, as do TCX, KML, KMZ, FIT, GeoJSON and CSV files.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Does GpxAnalyzer show the elevation profile of a GPX track?</summary>
+                        <div class="faq-answer">
+                            <p>Yes. Every track gets an elevation profile chart synchronized with the map, alongside speed and gradient charts and per-track statistics. Tapping a point on a chart highlights the same spot on the map. When a recording has no usable altitude data, elevation can be taken from offline terrain tiles instead.</p>
                         </div>
                     </details>
                 </div>
@@ -789,9 +807,9 @@
                             </a>
                         </li>
                         <li>
-                            <a href="https://stanczuk.it/" target="_blank" rel="noopener" class="footer-link-with-icon">
+                            <a href="https://stanczuk.it/" target="_blank" rel="me noopener" class="footer-link-with-icon" title="Rafał Stańczuk – Senior Android Engineer">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 -960 960 960" width="18" fill="currentColor"><path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm-40-82v-78q-33 0-56.5-23.5T360-320v-40L168-552q-3 18-5.5 36t-2.5 36q0 121 79.5 212T440-162Zm276-102q26-36 43-77.5t23-85.5H642q-18 37-44.5 67.5T540-306v84q26-14 48-36t30-44l58 38Zm-356-58q18-22 41-37.5t49-25.5q-12-23-17.5-48.5T427-486H242q7 47 29.5 87t88.5 57Zm80-158h80q0-33-10-63.5T480-600q-20 26-30 56.5T440-480Zm134 0h144q-7-47-29.5-87T600-624v36q0 33-8.5 62.5T574-480Z"/></svg>
-                                Portfolio
+                                Developer: Rafał Stańczuk
                             </a>
                         </li>
                     </ul>
@@ -881,20 +899,20 @@
         <div class="screenshot-modal-topbar">
             <div class="screenshot-modal-description" id="screenshot-modal-description"></div>
             <button class="screenshot-modal-close" aria-label="Close">
-                <img src="icons/ic_close.svg" alt="" class="screenshot-modal-close-icon" aria-hidden="true">
+                <img src="icons/ic_close.svg" alt="" class="screenshot-modal-close-icon" aria-hidden="true" width="24" height="24">
             </button>
         </div>
         <div class="screenshot-modal-container">
             <button class="screenshot-modal-nav screenshot-modal-nav-left" id="screenshot-modal-prev" aria-label="Previous screenshot">
-                <img src="icons/arrow_back.svg" alt="" class="screenshot-modal-nav-icon" aria-hidden="true">
+                <img src="icons/arrow_back.svg" alt="" class="screenshot-modal-nav-icon" aria-hidden="true" width="24" height="24">
             </button>
             <img class="screenshot-modal-content" id="screenshot-modal-img" alt="Screenshot">
             <button class="screenshot-modal-nav screenshot-modal-nav-right" id="screenshot-modal-next" aria-label="Next screenshot">
-                <img src="icons/arrow_forward.svg" alt="" class="screenshot-modal-nav-icon" aria-hidden="true">
+                <img src="icons/arrow_forward.svg" alt="" class="screenshot-modal-nav-icon" aria-hidden="true" width="24" height="24">
             </button>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

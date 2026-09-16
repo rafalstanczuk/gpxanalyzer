@@ -12,4 +12,4 @@ slide5_compatibility_matrix
 slide1_drawing_waypoints
 slide3_density_13k
 slide5_elevation_api
-Screenshot_20260222_134132
+speed-colored-track-map-with-elevation-profile-chart

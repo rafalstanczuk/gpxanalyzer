@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+
+<!--
+  COPYRIGHT NOTICE
+  © 2023-2026 Rafał Stańczuk. All Rights Reserved.
+
+  This file and all contents are protected by copyright law.
+  Unauthorized copying, distribution, modification, or use is strictly prohibited.
+
+  PROHIBITED ACTIVITIES:
+  - Automated scraping or crawling
+  - AI training data collection
+  - Unauthorized cloning or forking
+  - Reverse engineering
+  - Commercial use without license
+
+  For licensing inquiries: anddev0110@gmail.com
+  For copyright violations: anddev0110@gmail.com
+
+  This repository is actively monitored and protected by DMCA procedures.
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GpxAnalyzer – visor y analizador GPX gratis para Android</title>
+<meta content="Visor GPX gratis sin conexión para Android: perfil de elevación, velocidad, suavizado GPS, dibujo de rutas, conversor GPX/TCX/KML/FIT. Sin anuncios." name="description"/>
+<meta content="GpxAnalyzer" name="application-name"/>
+<!-- Search Engine and AI Directives -->
+<meta content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1, noai, noimageai" name="robots"/>
+<meta content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1, noai, noimageai" name="googlebot"/>
+<meta content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1, noai, noimageai" name="bingbot"/>
+<meta content="noindex, nofollow, noarchive, nosnippet" name="GPTBot"/>
+<meta content="noindex, nofollow, noarchive, nosnippet" name="ChatGPT-User"/>
+<meta content="noindex, nofollow, noarchive, nosnippet" name="CCBot"/>
+<meta content="noindex, nofollow, noarchive, nosnippet" name="anthropic-ai"/>
+<meta content="noindex, nofollow, noarchive, nosnippet" name="Claude-Web"/>
+<meta content="noindex, nofollow, noarchive, nosnippet" name="ClaudeBot"/>
+<meta content="noindex, nofollow, noarchive, nosnippet" name="PerplexityBot"/>
+<meta content="noindex, nofollow, noarchive, nosnippet" name="Applebot-Extended"/>
+<meta content="noindex, nofollow, noarchive, nosnippet" name="Omgilibot"/>
+<meta content="noindex, nofollow, noarchive, nosnippet" name="FacebookBot"/>
+<meta content="noindex, nofollow, noarchive, nosnippet" name="Bytespider"/>
+<meta content="noindex, nofollow, noarchive, nosnippet" name="Diffbot"/>
+<meta content="noindex, nofollow, noarchive, nosnippet" name="dataforseo"/>
+<meta content="noindex, nofollow, noarchive, nosnippet" name="AhrefsBot"/>
+<meta content="noindex, nofollow, noarchive, nosnippet" name="SemrushBot"/>
+<meta content="noindex, nofollow, noarchive, nosnippet" name="Baiduspider"/>
+<meta content="noindex, nofollow, noarchive, nosnippet" name="YandexBot"/>
+<meta content="noindex, nofollow, noarchive, nosnippet" name="ia_archiver"/>
+<meta content="noindex, nofollow, noarchive, nosnippet" name="archive.org_bot"/>
+<meta content="noindex, nofollow, noarchive, nosnippet" name="Google-Extended"/>
+<meta content="noindex, nofollow, noarchive, nosnippet" name="GoogleOther"/>
+<meta content="noindex, nofollow, noarchive, nosnippet" name="Scrapy"/>
+<meta content="noindex, nofollow, noarchive, nosnippet" name="Scraper"/>
+<!-- Copyright Protection -->
+<meta content="© 2023-2026 Rafał Stańczuk. All Rights Reserved." name="copyright"/>
+<meta content="Rafał Stańczuk" name="author"/>
+<meta content="Rafał Stańczuk" name="owner"/>
+<meta content="anddev0110@gmail.com" name="reply-to"/>
+<meta content="general" name="rating"/>
+<meta content="Rafał Stańczuk" name="dcterms.rightsHolder"/>
+<meta content="© 2023-2026 Rafał Stańczuk. All Rights Reserved." name="dcterms.rights"/>
+<meta content="Proprietary - All Rights Reserved" name="dcterms.license"/>
+<meta content="Restricted" name="dcterms.accessRights"/>
+<!-- Favicon and App Icons -->
+<link href="/favicon.ico" rel="icon" sizes="any"/>
+<link href="/icons/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="/icons/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="/icons/favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
+<link href="/icons/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="/manifest.webmanifest" rel="manifest"/>
+<!-- Canonical URL (custom domain is the single indexable origin) -->
+<link href="https://gpxanalyzer.app/es/" rel="canonical"/>
+<!-- i18n:alternates -->
+<link href="https://gpxanalyzer.app/" hreflang="en" rel="alternate"/>
+<link href="https://gpxanalyzer.app/pl/" hreflang="pl" rel="alternate"/>
+<link href="https://gpxanalyzer.app/de/" hreflang="de" rel="alternate"/>
+<link href="https://gpxanalyzer.app/fr/" hreflang="fr" rel="alternate"/>
+<link href="https://gpxanalyzer.app/es/" hreflang="es" rel="alternate"/>
+<link href="https://gpxanalyzer.app/it/" hreflang="it" rel="alternate"/>
+<link href="https://gpxanalyzer.app/" hreflang="x-default" rel="alternate"/>
+<meta content="en_US" property="og:locale:alternate"/>
+<meta content="pl_PL" property="og:locale:alternate"/>
+<meta content="de_DE" property="og:locale:alternate"/>
+<meta content="fr_FR" property="og:locale:alternate"/>
+<meta content="it_IT" property="og:locale:alternate"/>
+<!-- /i18n:alternates -->
+<link href="/sitemap.xml" rel="sitemap" type="application/xml"/>
+<meta content="GpxAnalyzer, GPX analyzer, GPS track analysis, Android app, wavelet signal processing, route drawing, elevation profile, hiking GPX, cycling GPX, running GPX, skiing GPX, interactive maps, elevation charts, speed analysis, FFT noise reduction, multi-chart visualization, GPX export, KML converter, TCX converter, FIT file, GeoJSON, CSV import, file format conversion, terrain tiles, offline elevation, heatmap overlay, activity type filtering, clean architecture" name="keywords"/>
+<!-- Open Graph / Social Media -->
+<meta content="website" property="og:type"/>
+<meta content="GpxAnalyzer – visor y analizador GPX gratis para Android" property="og:title"/>
+<meta content="Visor GPX gratis sin conexión para Android: perfil de elevación, velocidad, suavizado GPS, dibujo de rutas, conversor GPX/TCX/KML/FIT. Sin anuncios." property="og:description"/>
+<meta content="https://gpxanalyzer.app/icons/og-image.png" property="og:image"/>
+<meta content="https://gpxanalyzer.app/icons/og-image.png" property="og:image:secure_url"/>
+<meta content="image/png" property="og:image:type"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="Icono de la app GpxAnalyzer con el eslogan: análisis gratuito de tracks GPX para Android" property="og:image:alt"/>
+<meta content="https://gpxanalyzer.app/es/" property="og:url"/>
+<meta content="GpxAnalyzer" property="og:site_name"/>
+<meta content="es_ES" property="og:locale"/>
+<!-- Twitter Card -->
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="GpxAnalyzer – visor y analizador GPX gratis para Android" name="twitter:title"/>
+<meta content="Visor GPX gratis sin conexión para Android: perfil de elevación, velocidad, suavizado GPS, dibujo de rutas, conversor GPX/TCX/KML/FIT. Sin anuncios." name="twitter:description"/>
+<meta content="https://gpxanalyzer.app/icons/og-image.png" name="twitter:image"/>
+<meta content="Icono de la app GpxAnalyzer con el eslogan: análisis gratuito de tracks GPX para Android" name="twitter:image:alt"/>
+<!-- Structured Data (JSON-LD) -->
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://stanczuk.it/#person",
+          "name": "Rafał Stańczuk",
+          "alternateName": "Rafal Stanczuk",
+          "url": "https://stanczuk.it/",
+          "email": "mailto:anddev0110@gmail.com",
+          "sameAs": [
+            "https://www.linkedin.com/in/stanczuk/",
+            "https://github.com/rafalstanczuk"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://gpxanalyzer.app/#website",
+          "url": "https://gpxanalyzer.app/",
+          "name": "GpxAnalyzer",
+          "description": "Official website of GpxAnalyzer, a free Android app for GPX track analysis.",
+          "inLanguage": "en",
+          "publisher": {
+            "@id": "https://stanczuk.it/#person"
+          },
+          "alternateName": [
+            "GPX Analyzer"
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://gpxanalyzer.app/es/#webpage",
+          "url": "https://gpxanalyzer.app/es/",
+          "name": "GpxAnalyzer – visor y analizador GPX gratis para Android",
+          "description": "Visor GPX gratis sin conexión para Android: perfil de elevación, velocidad, suavizado GPS, dibujo de rutas, conversor GPX/TCX/KML/FIT. Sin anuncios.",
+          "isPartOf": {
+            "@id": "https://gpxanalyzer.app/#website"
+          },
+          "about": {
+            "@id": "https://gpxanalyzer.app/#app"
+          },
+          "primaryImageOfPage": {
+            "@type": "ImageObject",
+            "url": "https://gpxanalyzer.app/icons/og-image.png",
+            "width": 1200,
+            "height": 630,
+            "creator": {
+              "@id": "https://stanczuk.it/#person"
+            },
+            "copyrightNotice": "© 2026 Rafał Stańczuk",
+            "creditText": "GpxAnalyzer"
+          },
+          "inLanguage": "es",
+          "datePublished": "2026-03-17T13:10:24+01:00",
+          "dateModified": "2026-09-16T10:30:00+02:00",
+          "video": {
+            "@id": "https://gpxanalyzer.app/#tutorial-video"
+          }
+        },
+        {
+          "@type": [
+            "SoftwareApplication",
+            "MobileApplication"
+          ],
+          "@id": "https://gpxanalyzer.app/#app",
+          "name": "GpxAnalyzer",
+          "alternateName": "GPX Analyzer",
+          "description": "Research-grade GPS track analysis app for Android with wavelet-based noise reduction, synchronized multi-chart and map visualization, route drawing with elevation profiles, offline terrain elevation and GPX, TCX, KML, KMZ, FIT, GeoJSON and CSV import, export and conversion.",
+          "url": "https://gpxanalyzer.app/",
+          "installUrl": "https://play.google.com/store/apps/details?id=com.rafalstanczuk.gpxanalyzer",
+          "downloadUrl": "https://play.google.com/store/apps/details?id=com.rafalstanczuk.gpxanalyzer",
+          "operatingSystem": "Android",
+          "applicationCategory": "SportsApplication",
+          "applicationSubCategory": "GPS track analysis",
+          "softwareVersion": "2.19.0",
+          "isAccessibleForFree": true,
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+          },
+          "author": {
+            "@id": "https://stanczuk.it/#person"
+          },
+          "publisher": {
+            "@id": "https://stanczuk.it/#person"
+          },
+          "image": "https://gpxanalyzer.app/icons/ic_launcher-playstore.png",
+          "screenshot": [
+            "https://gpxanalyzer.app/screenshots/speed-colored-track-map-with-elevation-profile-chart.png",
+            "https://gpxanalyzer.app/screenshots/slide1_drawing_waypoints.png",
+            "https://gpxanalyzer.app/screenshots/slide1_multi_format_import.png",
+            "https://gpxanalyzer.app/screenshots/Day_Mode_Tiles_coverage_on_and_elevation_heatmap_on_from_encoded_points_from_cached_tiles.png"
+          ],
+          "featureList": [
+            "Wavelet-based GPS noise reduction (85-95%)",
+            "Synchronized elevation, speed and gradient charts",
+            "Interactive map with chart-to-map selection sync",
+            "Route drawing with live elevation profile",
+            "Heatmap overlay and offline terrain elevation",
+            "GPX, TCX, KML, KMZ, FIT, GeoJSON and CSV import, export and conversion",
+            "Track and segment statistics",
+            "100% on-device processing, no tracking"
+          ],
+          "keywords": "GPX analyzer, GPX viewer, GPS track analysis, elevation profile, GPX to KML, GPX to TCX, FIT to GPX, Android",
+          "inLanguage": "en",
+          "dateModified": "2026-09-16T10:30:00+02:00"
+        },
+        {
+          "@type": "VideoObject",
+          "@id": "https://gpxanalyzer.app/#tutorial-video",
+          "name": "Tutorial de GpxAnalyzer: track con degradado de color por altitud y velocidad, rotación del mapa (v2.10.5)",
+          "description": "GpxAnalyzer 2.10.5 tutorial for Android: map track segments colored by altitude or speed as a gradient polyline, plus map rotation. Part of the official GpxAnalyzer tutorial playlists.",
+          "thumbnailUrl": [
+            "https://i.ytimg.com/vi/7-dHXg4Kop0/hqdefault.jpg"
+          ],
+          "uploadDate": "2026-02-13T05:11:25-08:00",
+          "duration": "PT1M31S",
+          "contentUrl": "https://www.youtube.com/watch?v=7-dHXg4Kop0",
+          "embedUrl": "https://www.youtube.com/embed/7-dHXg4Kop0?list=PLEoWUezHpM18F08j7hJE1Mmx_nMMUgbOp",
+          "inLanguage": "en",
+          "isFamilyFriendly": true,
+          "author": {
+            "@id": "https://stanczuk.it/#person"
+          },
+          "publisher": {
+            "@id": "https://stanczuk.it/#person"
+          },
+          "about": {
+            "@id": "https://gpxanalyzer.app/#app"
+          }
+        }
+      ]
+    }
+  </script>
+<!-- Fonts & Styles -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="/styles.css" rel="stylesheet"/>
+<meta content="#0f1512" name="theme-color"/>
+<script crossorigin="anonymous" defer="" integrity="sha384-/1qUCSGwTur9vjf/z9lmu/eCUYbpOTgSjmpbMQZ1/CtX2v/WcAIKqRv+U1DUCG6e" src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+<body>
+<!-- Skip Navigation (a11y) -->
+<a class="skip-nav" href="#main">Saltar al contenido</a>
+<!-- Navigation -->
+<nav aria-label="Navegación principal" class="navbar" role="navigation">
+<div class="container">
+<div class="nav-content">
+<a aria-label="Inicio de GpxAnalyzer" class="logo" href="/es/">
+<img alt="" class="logo-icon-img" height="36" src="/icons/ic_launcher-playstore.png" width="36"/>
+<span class="logo-text">GpxAnalyzer</span>
+</a>
+<button aria-controls="nav-menu" aria-expanded="false" aria-label="Mostrar u ocultar la navegación" class="nav-toggle">
+<span class="nav-toggle-bar"></span>
+</button>
+<div class="nav-links" id="nav-menu" role="menubar">
+<a href="#features" role="menuitem">Funciones</a>
+<a href="#code-quality" role="menuitem">Calidad del código</a>
+<a href="#screenshots" role="menuitem">Capturas de pantalla</a>
+<a href="#download" role="menuitem">Descargar</a>
+<a href="#release-notes" role="menuitem">Notas de la versión</a>
+<a href="#tutorials" role="menuitem">Tutoriales</a>
+<a href="#about" role="menuitem">Acerca de</a>
+<a href="#contact" role="menuitem">Contacto</a>
+<a href="#support" role="menuitem">Apoyar</a>
+<div aria-label="Apoyar al desarrollador" class="nav-donation-links" role="group">
+<a class="donation-link" href="https://buycoffee.to/k4r4m84" rel="noopener noreferrer" target="_blank" title="Apoyar en BuyCoffee.to">
+<img alt="BuyCoffee.to" class="donation-icon" height="20" src="/icons/logo-buycoffee--dark.svg" width="80"/>
+</a>
+<a class="donation-link" href="https://buymeacoffee.com/k4r4m84" rel="noopener noreferrer" target="_blank" title="Apoyar en Buy Me a Coffee">
+<img alt="Buy Me a Coffee" class="donation-icon" height="20" src="/icons/bmc-brand-logo.svg" width="80"/>
+</a>
+</div>
+</div>
+<!-- i18n:switcher -->
+<details class="lang-menu" id="lang-menu">
+<summary class="lang-menu-summary" title="Idioma"><img alt="" class="lang-flag" decoding="async" height="15" src="/icons/flags/es.svg" width="20"/><span class="lang-code">ES</span><span class="lang-menu-label">Idioma</span></summary>
+<ul class="lang-menu-list">
+<li><a class="lang-option" href="/" hreflang="en" lang="en"><img alt="" class="lang-flag" decoding="async" height="15" loading="lazy" src="/icons/flags/gb.svg" width="20"/><span>English</span></a></li>
+<li><a class="lang-option" href="/pl/" hreflang="pl" lang="pl"><img alt="" class="lang-flag" decoding="async" height="15" loading="lazy" src="/icons/flags/pl.svg" width="20"/><span>Polski</span></a></li>
+<li><a class="lang-option" href="/de/" hreflang="de" lang="de"><img alt="" class="lang-flag" decoding="async" height="15" loading="lazy" src="/icons/flags/de.svg" width="20"/><span>Deutsch</span></a></li>
+<li><a class="lang-option" href="/fr/" hreflang="fr" lang="fr"><img alt="" class="lang-flag" decoding="async" height="15" loading="lazy" src="/icons/flags/fr.svg" width="20"/><span>Français</span></a></li>
+<li><a aria-current="page" class="lang-option is-current" href="/es/" hreflang="es" lang="es"><img alt="" class="lang-flag" decoding="async" height="15" loading="lazy" src="/icons/flags/es.svg" width="20"/><span>Español</span></a></li>
+<li><a class="lang-option" href="/it/" hreflang="it" lang="it"><img alt="" class="lang-flag" decoding="async" height="15" loading="lazy" src="/icons/flags/it.svg" width="20"/><span>Italiano</span></a></li>
+</ul>
+</details>
+<!-- /i18n:switcher -->
+<div aria-label="Apoyar al desarrollador" class="donation-links" role="group">
+<a class="donation-link" href="https://buycoffee.to/k4r4m84" rel="noopener noreferrer" target="_blank" title="Apoyar en BuyCoffee.to">
+<img alt="BuyCoffee.to" class="donation-icon" height="20" src="/icons/logo-buycoffee--dark.svg" width="80"/>
+</a>
+<a class="donation-link" href="https://buymeacoffee.com/k4r4m84" rel="noopener noreferrer" target="_blank" title="Apoyar en Buy Me a Coffee">
+<img alt="Buy Me a Coffee" class="donation-icon" height="20" src="/icons/bmc-brand-logo.svg" width="80"/>
+</a>
+</div>
+</div>
+<div aria-hidden="true" class="nav-overlay"></div>
+</div>
+</nav>
+<!-- Main Content -->
+<main id="main">
+<!-- Hero Section -->
+<section aria-label="Introducción" class="hero">
+<div class="container">
+<div class="hero-content">
+<div class="app-icon-large">
+<img alt="Icono de la app GpxAnalyzer" class="app-icon-img" fetchpriority="high" height="120" src="/icons/ic_launcher-playstore.png" width="120"/>
+</div>
+<h1 class="hero-title">Visor y analizador de tracks GPX gratis para Android</h1>
+<p class="hero-subtitle">Análisis de tracks GPX de nivel investigación: suavizado GPS con wavelets, gráficas de altitud y velocidad sincronizadas, dibujo de rutas con perfil de elevación, elevación del terreno sin conexión y conversión GPX/TCX/KML/FIT/GeoJSON — todo en local en tu dispositivo Android.</p>
+<div aria-label="Puntos clave" class="hero-stats">
+<span class="hero-stat"><strong>100%</strong> de procesamiento en el dispositivo</span>
+<span class="hero-stat"><strong>10K+</strong> puntos de track</span>
+<span class="hero-stat"><strong>19</strong> módulos de arquitectura</span>
+<span class="hero-stat"><strong>L1/L2/L3</strong> Caché</span>
+<span class="hero-stat"><strong>85-95%</strong> de reducción de ruido</span>
+</div>
+<div class="hero-buttons">
+<a aria-label="Disponible en Google Play" class="google-play-badge-link" href="https://play.google.com/store/apps/details?id=com.rafalstanczuk.gpxanalyzer" rel="noopener" target="_blank">
+<img alt="Disponible en Google Play" class="google-play-badge" height="54" src="/icons/GetItOnGooglePlay_Badge_Web_color_English.svg" width="180"/>
+</a>
+<a aria-label="Ver el tutorial en YouTube" class="youtube-logo-link" href="https://youtube.com/playlist?list=PLEoWUezHpM18GE4oh7LQ3NHar2RsD0XLB&amp;si=zSvlQHUSoUNxTkK-" rel="noopener noreferrer" target="_blank">
+<img alt="Ver en YouTube" class="youtube-logo" height="40" src="/icons/WatchonYouTube-black-SVG.svg" width="180"/>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Section -->
+<section aria-label="Funciones" class="features" id="features">
+<div class="container">
+<div class="section-header">
+<h2>Funciones potentes</h2>
+<p>De la reducción de ruido con wavelets al dibujo interactivo de rutas — hecho para el análisis outdoor en serio</p>
+</div>
+<div class="features-grid">
+<div class="feature-card fade-in-up">
+<div class="feature-icon">
+<img alt="" aria-hidden="true" class="icon-svg" height="48" src="/icons/analytics.svg" width="48"/>
+</div>
+<h3>Procesamiento de señal con wavelets</h3>
+<ul>
+<li>Análisis en el dominio de la frecuencia (FFT) con tamaño de ventana adaptativo</li>
+<li>Varias funciones de ventana: triangular, Hanning, gaussiana</li>
+<li>Reducción del ruido GPS del 85–95 % teniendo en cuenta la relación señal/ruido</li>
+<li>Detección de extremos en varias etapas mediante derivadas, para picos y valles</li>
+<li>Gestiona intervalos de muestreo GPS irregulares y huecos en los datos</li>
+<li>Configuraciones según la actividad: esquí alpino, trail running y más</li>
+</ul>
+</div>
+<div class="feature-card fade-in-up">
+<div class="feature-icon">
+<img alt="" aria-hidden="true" class="icon-svg" height="48" src="/icons/chart.svg" width="48"/>
+</div>
+<h3>Visualización multigráfica</h3>
+<ul>
+<li>Tres modos de vista: simple, dividida y multigráfica</li>
+<li>Altitud, velocidad, límites de tendencia y diagramas de dispersión</li>
+<li>Dos dominios: análisis en función del tiempo y de la distancia</li>
+<li>Selección sincronizada entre gráficas — toca una y todas se actualizan</li>
+<li>Zoom con pinza, desplazamiento y tooltips de marcador personalizados</li>
+<li>8 parámetros ajustables de detección de segmentos en el diálogo de ajustes</li>
+</ul>
+</div>
+<div class="feature-card fade-in-up">
+<div class="feature-icon">
+<img alt="" aria-hidden="true" class="icon-svg" height="48" src="/icons/map.svg" width="48"/>
+</div>
+<h3>Mapa interactivo</h3>
+<ul>
+<li>Sincronización en tiempo real entre gráfica y mapa en ambos sentidos</li>
+<li>Polilíneas con degradado de color por velocidad, altitud y segmentos</li>
+<li>Rotación del mapa con dos dedos y brújula táctil para restablecerla</li>
+<li>Marcadores animados y pulsantes con flechas de rumbo geográfico</li>
+<li>Detección del punto más cercano (Haversine) con umbral de 30 dp en pantalla</li>
+<li>Barra de escala y modo noche automático</li>
+</ul>
+</div>
+<div class="feature-card fade-in-up">
+<div class="feature-icon">
+<img alt="" aria-hidden="true" class="icon-svg" height="48" src="/icons/draw.svg" width="48"/>
+</div>
+<h3>Modo dibujo &amp; creación de rutas</h3>
+<ul>
+<li><img alt="" aria-hidden="true" class="li-icon" height="16" src="/icons/gesture.svg" width="16"/>Coloca vértices con un toque o dibuja a mano alzada con simplificación automática del trazo</li>
+<li><img alt="" aria-hidden="true" class="li-icon" height="16" src="/icons/smoothing.svg" width="16"/>Suavizado con splines de Catmull-Rom con deslizadores de tensión y detalle</li>
+<li><img alt="" aria-hidden="true" class="li-icon" height="16" src="/icons/settings_tune.svg" width="16"/>Diálogo Herramientas de dibujo para el suavizado de curvas, el trazo libre y el muestreo de elevación</li>
+<li><img alt="" aria-hidden="true" class="li-icon" height="16" src="/icons/undo.svg" width="16"/>Deshacer/rehacer la colocación de vértices con etiqueta de distancia en vivo</li>
+<li><img alt="" aria-hidden="true" class="li-icon" height="16" src="/icons/elevation.svg" width="16"/>Minigráfica del perfil de elevación en tiempo real sobre el mapa</li>
+<li><img alt="" aria-hidden="true" class="li-icon" height="16" src="/icons/join.svg" width="16"/>Une la ruta dibujada a un track GPX existente y guárdala como un solo archivo</li>
+</ul>
+</div>
+<div class="feature-card fade-in-up">
+<div class="feature-icon">
+<img alt="" aria-hidden="true" class="icon-svg" height="48" src="/icons/layers.svg" width="48"/>
+</div>
+<h3>Capa de mapa de calor &amp; datos de elevación</h3>
+<ul>
+<li><img alt="" aria-hidden="true" class="li-icon" height="16" src="/icons/density.svg" width="16"/>Cuadrícula coloreada que muestra la densidad o la elevación media por celda</li>
+<li><img alt="" aria-hidden="true" class="li-icon" height="16" src="/icons/heatmap.svg" width="16"/>Cuadrícula dinámica adaptada al nivel de zoom con renderizado estable al desplazar</li>
+<li><img alt="" aria-hidden="true" class="li-icon" height="16" src="/icons/layers.svg" width="16"/>Filtro de fuentes de 4 estados: todas las fuentes, API, track GPX o tesela de terreno</li>
+<li><img alt="" aria-hidden="true" class="li-icon" height="16" src="/icons/elevation.svg" width="16"/>Elevación sin conexión mediante AWS Terrain Tiles (resolución ~30 m) con caché de 3 niveles</li>
+<li><img alt="" aria-hidden="true" class="li-icon" height="16" src="/icons/file_import.svg" width="16"/>Cascada de respaldo multizoom (z15 → z14 → z13) que rellena todos los vacíos de datos</li>
+<li><img alt="" aria-hidden="true" class="li-icon" height="16" src="/icons/info.svg" width="16"/>Capa de límites de teselas, detección de puntos ciegos con avisos en polígonos rojos y gestión de caché por zoom</li>
+</ul>
+</div>
+<div class="feature-card fade-in-up">
+<div class="feature-icon">
+<img alt="" aria-hidden="true" class="icon-svg" height="48" src="/icons/files.svg" width="48"/>
+</div>
+<h3>Gestión de archivos multiformato</h3>
+<ul>
+<li>Importa GPX, TCX, KML, KMZ, GeoJSON, FIT y CSV con selección múltiple</li>
+<li>Integración con «Abrir con» de Android — toca cualquier archivo de track para abrirlo directamente</li>
+<li>Conversión entre formatos con mapeo automático de más de 18 campos de datos</li>
+<li>La matriz de compatibilidad muestra exactamente qué conserva cada formato antes de exportar</li>
+<li>Filtrado por tipo de actividad y formato con preferencias guardadas</li>
+<li>Filtros por fechas: 7/14/30 días, este mes/el mes pasado o rango personalizado</li>
+<li>Geocodificación inversa automática, miniaturas de mapa y orden por fecha/nombre/tamaño</li>
+</ul>
+</div>
+<div class="feature-card fade-in-up">
+<div class="feature-icon">
+<img alt="" aria-hidden="true" class="icon-svg" height="48" src="/icons/altitude.svg" width="48"/>
+</div>
+<h3>Análisis estadístico</h3>
+<ul>
+<li>Estadísticas en dos modos: continuas para todo el track y por segmentos</li>
+<li>Desnivel positivo/negativo, distancia, velocidad, pendiente y duración</li>
+<li>Identificación coherente de segmentos de tendencia (subida, bajada, llano)</li>
+<li>Propagación de los metadatos de precisión por todos los cálculos</li>
+<li>Estadísticas acumuladas aisladas por dominio — sin contaminación entre dominios</li>
+</ul>
+</div>
+<div class="feature-card fade-in-up">
+<div class="feature-icon">
+<img alt="" aria-hidden="true" class="icon-svg" height="48" src="/icons/speed.svg" width="48"/>
+</div>
+<h3>Rendimiento &amp; arquitectura</h3>
+<ul>
+<li>Arquitectura limpia de 19 módulos con inversión estricta de dependencias</li>
+<li>Caché multinivel L1/L2/L3 con expulsión LRU y evaluación perezosa</li>
+<li>Caché multinivel aislada por dominio y por ranura</li>
+<li>Pipelines asíncronos RxJava en pools de hilos dedicados de E/S y cálculo</li>
+<li>Cálculo del color de las polilíneas en O(n) fuera del hilo principal</li>
+<li>Perfiles base (baseline) para un arranque más rápido, desplazamiento más fluido y renderizado de gráficas</li>
+<li>Pantalla de borde a borde en Android 15+ y diseño optimizado para tablets</li>
+</ul>
+</div>
+<div class="feature-card fade-in-up">
+<div class="feature-icon">
+<svg aria-hidden="true" fill="currentColor" height="48" viewbox="0 -960 960 960" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M480-80q-84 0-157-31t-127-85q-54-54-85-127T80-480q0-83.73 31-156.86Q142-710 196-764t127-85q73-31 157-31 83.73 0 156.86 31Q710-818 764-764t85 127.14q31 73.13 31 156.86 0 84-31 157t-85 127q-54 54-127.14 85Q563.73-80 480-80Zm0-60q142 0 241-99.5T820-480q0-142-99-241t-241-99q-141 0-240.5 99T140-480q0 141 99.5 240.5T480-140Zm0-340Z"></path></svg>
+</div>
+<h3>Privacidad &amp; seguridad</h3>
+<ul>
+<li>Todos los datos GPX se procesan en local — nada sale de tu dispositivo</li>
+<li>Tratamiento seguro de todos los datos sensibles</li>
+<li>Versión mínima obligatoria con avisos automáticos de actualización</li>
+<li>Aceptación obligatoria de la política de privacidad con detección de cambios</li>
+<li>Cumple el RGPD, sin rastreo, sin recopilación de datos</li>
+</ul>
+</div>
+<div class="feature-card feature-card--removed fade-in-up">
+<div class="feature-icon">
+<svg aria-hidden="true" fill="currentColor" height="48" viewbox="0 -960 960 960" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-82q26-36 45-75t31-83H404q12 44 31 83t45 75Zm-104-16q-18-33-31.5-68.5T322-320H204q29 50 72.5 87t99.5 55Zm208 0q56-18 99.5-55t72.5-87H638q-9 38-22.5 73.5T584-178ZM170-400h136q-3-20-4.5-39.5T300-480q0-21 1.5-40.5T306-560H170q-5 20-7.5 39.5T160-480q0 21 2.5 40.5T170-400Zm216 0h188q3-20 4.5-39.5T580-480q0-21-1.5-40.5T574-560H386q-3 20-4.5 39.5T380-480q0 21 1.5 40.5T386-400Zm268 0h136q5-20 7.5-39.5T800-480q0-21-2.5-40.5T790-560H654q3 20 4.5 39.5T660-480q0 21-1.5 40.5T654-400Zm-16-240h118q-29-50-72.5-87T584-782q18 33 31.5 68.5T638-640Zm-234 0h152q-12-44-31-83t-45-75q-26 36-45 75t-31 83Zm-188 0h118q9-38 22.5-73.5T376-782q-56 18-99.5 55T204-640Z"></path></svg>
+</div>
+<h3>Sincronización con Strava — eliminada</h3>
+<ul>
+<li>Strava introdujo tarifas y una suscripción de pago para que los desarrolladores accedan a su API</li>
+<li>GpxAnalyzer es totalmente gratis, sin anuncios, suscripciones ni compras integradas</li>
+<li>Trasladar esos costes a los usuarios, o asumirlos indefinidamente, no es compatible con mantener la app gratis</li>
+<li>La sincronización con Strava se ha eliminado; todas las demás funciones siguen funcionando exactamente igual</li>
+<li>Todas las herramientas de importación/exportación GPX, TCX, KML, FIT, GeoJSON y CSV siguen totalmente soportadas</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Code Quality Section -->
+<section aria-label="Calidad del código" class="code-quality" id="code-quality">
+<div class="container">
+<div class="section-header">
+<h2>Calidad de código de nivel empresarial</h2>
+<p>Pipelines CI/CD automatizados que garantizan los estándares más altos</p>
+</div>
+<div class="code-quality-content">
+<p class="code-quality-intro">Construida como proyecto de arquitectura limpia de 19 módulos con inyección de dependencias, pipelines reactivos y separación estricta de capas. Cada commit lanza un pipeline CI/CD completo que ejecuta pruebas unitarias, pruebas de instrumentación en dispositivos reales, genera artefactos APK/AAB firmados y publica releases en GitHub automáticamente.</p>
+<div class="features-grid">
+<div class="feature-card fade-in-up">
+<div class="code-quality-image-wrapper">
+<img alt="Vista general del pipeline CI/CD" class="code-quality-img" height="279" loading="lazy" src="/other/ci_cd_pipelines_online_to_manage_highest_quality.png" width="1404"/>
+</div>
+<h3>Pipeline CI/CD automatizado</h3>
+<p>Automatización completa del flujo, del commit a la release. El pipeline ejecuta pruebas unitarias y de instrumentación, genera archivos APK y AAB firmados y crea releases en GitHub automáticamente.</p>
+</div>
+<div class="feature-card fade-in-up">
+<div class="code-quality-image-wrapper">
+<img alt="Resultados de las pruebas unitarias" class="code-quality-img" height="258" loading="lazy" src="/other/unit_tests_reports_generation.png" width="620"/>
+</div>
+<h3>Pruebas unitarias exhaustivas</h3>
+<p>Amplia cobertura con más de 1119 pruebas unitarias en 164 suites. Todas las pruebas se ejecutan automáticamente en cada commit, garantizando la fiabilidad del código.</p>
+</div>
+<div class="feature-card fade-in-up">
+<div class="code-quality-image-wrapper">
+<img alt="Resultados de las pruebas de instrumentación" class="code-quality-img" height="227" loading="lazy" src="/other/instrumentation_tests.png" width="426"/>
+</div>
+<h3>Pruebas de instrumentación</h3>
+<p>Pruebas en dispositivos reales: más de 69 pruebas de instrumentación validan el comportamiento de la app en dispositivos Android físicos de distintas versiones y configuraciones.</p>
+</div>
+</div>
+<div class="code-quality-stats fade-in-up">
+<div class="code-quality-stat">
+<div class="code-quality-stat-number">1119+</div>
+<div class="code-quality-stat-label">pruebas unitarias</div>
+</div>
+<div class="code-quality-stat">
+<div class="code-quality-stat-number">69+</div>
+<div class="code-quality-stat-label">Pruebas de instrumentación</div>
+</div>
+<div class="code-quality-stat">
+<div class="code-quality-stat-number">19</div>
+<div class="code-quality-stat-label">módulos Gradle</div>
+</div>
+<div class="code-quality-stat">
+<div class="code-quality-stat-number">164</div>
+<div class="code-quality-stat-label">suites de pruebas</div>
+</div>
+<div class="code-quality-stat">
+<div class="code-quality-stat-number">100%</div>
+<div class="code-quality-stat-label">CI/CD automatizado</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Screenshots Section -->
+<section aria-label="Capturas de pantalla" class="screenshots" id="screenshots">
+<div class="container">
+<div class="section-header">
+<h2>Véala en acción</h2>
+<p>De las capas de mapa de calor y teselas de terreno a la conversión multiformato y las gráficas sincronizadas</p>
+</div>
+<div class="screenshots-grid">
+<!-- Dynamically populated from screenshots/index.txt -->
+</div>
+</div>
+</section>
+<!-- Download Section -->
+<section aria-label="Descargar" class="download" id="download">
+<div class="container">
+<div class="download-content">
+<div class="section-header">
+<h2>Consigue GpxAnalyzer</h2>
+<p>Ya disponible en Google Play Store</p>
+</div>
+<div class="download-buttons">
+<a aria-label="Disponible en Google Play" class="google-play-badge-link" href="https://play.google.com/store/apps/details?id=com.rafalstanczuk.gpxanalyzer" rel="noopener" target="_blank">
+<img alt="Disponible en Google Play" class="google-play-badge" height="60" src="/icons/GetItOnGooglePlay_Badge_Web_color_English.svg" width="200"/>
+</a>
+</div>
+<div class="download-info">
+<p>Descarga gratuita</p>
+<p>Centrada en la privacidad</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Release Notes Section -->
+<section aria-label="Notas de la versión" class="release-notes" id="release-notes">
+<div class="container">
+<div class="section-header">
+<h2>Notas de la versión</h2>
+<p>Mantente al día de las últimas mejoras</p>
+</div>
+<div class="release-notes-container" id="release-notes-container">
+<div class="release-notes-loading">Cargando notas de la versión...</div>
+</div>
+</div>
+</section>
+<!-- Tutorials Section -->
+<section aria-label="Tutoriales" class="tutorials" id="tutorials">
+<div class="container">
+<div class="section-header">
+<h2>Tutoriales</h2>
+<p>Guías en vídeo para cada versión importante</p>
+</div>
+<div class="tutorial-featured fade-in-up">
+<div class="tutorial-video-wrapper">
+<iframe allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/7-dHXg4Kop0?list=PLEoWUezHpM18F08j7hJE1Mmx_nMMUgbOp" title="Tutorial de GpxAnalyzer: track con degradado de color por altitud y velocidad, rotación del mapa (v2.10.5)"></iframe>
+</div>
+<p class="tutorial-featured-caption">Tutorial destacado (v2.10.5): el track coloreado en el mapa por altitud o velocidad, más la rotación del mapa. Cada versión de abajo tiene su propia lista de reproducción.</p>
+</div>
+<div class="tutorials-grid" id="tutorials-grid">
+<div class="tutorials-loading">Cargando tutoriales...</div>
+</div>
+<a class="tutorials-all-link fade-in-up" href="https://youtube.com/playlist?list=PLEoWUezHpM18GE4oh7LQ3NHar2RsD0XLB&amp;si=zSvlQHUSoUNxTkK-" rel="noopener noreferrer" target="_blank">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"></path></svg>
+                    Ver todas las listas en YouTube
+                </a>
+</div>
+</section>
+<!-- About Section -->
+<section aria-label="Acerca de" class="about" id="about">
+<div class="container">
+<div class="section-header">
+<h2>Acerca de GpxAnalyzer</h2>
+</div>
+<div class="about-content">
+<div class="about-text">
+<p>GpxAnalyzer es una aplicación Android profesional para el análisis de tracks GPS, construida como proyecto de arquitectura limpia de 19 módulos. Procesa archivos GPX, KML, TCX, FIT, GeoJSON, KMZ y CSV en un pipeline de varias etapas — desde la reducción de ruido con wavelets basada en FFT y la detección de extremos hasta la visualización sincronizada multigráfica y en mapa, la elevación del terreno sin conexión mediante teselas, las capas espaciales de mapa de calor y la conversión de formatos con plena conciencia de la compatibilidad de campos — todo ello íntegramente en tu dispositivo.</p>
+<h3>Pipeline de procesamiento de señal</h3>
+<p>Los datos GPS en bruto entran en una etapa de reducción de ruido con wavelets que usa un tamaño de ventana adaptativo calculado mediante análisis FFT en el dominio de la frecuencia. Se aplican varias funciones de ventana (triangular, Hanning, gaussiana) según las características de la señal. A continuación, un análisis de derivadas en varias etapas con umbral de amplitud detecta los extremos — picos, valles y segmentos de tendencia — incluso con intervalos de muestreo irregulares. Las configuraciones por actividad (esquí alpino, trail running) ajustan automáticamente los parámetros de detección según el tipo de actividad elegido.</p>
+<h3>Visualización en dos dominios</h3>
+<p>El sistema de gráficas admite tanto el dominio del tiempo como el de la distancia, cada uno con estadísticas acumuladas aisladas para evitar la contaminación entre dominios. Tres modos de vista (simple, dividida, múltiple) muestran altitud, velocidad, límites de tendencia y diagramas de dispersión. Un diálogo de ajustes expone 8 parámetros ajustables de detección de segmentos, guardados por dominio y por tipo de actividad. Todas las gráficas sincronizan la selección con el mapa en ambos sentidos — toca un punto en cualquier gráfica y el mapa se desplaza hasta esa ubicación, o toca el mapa y todas las gráficas resaltan el punto de track más cercano.</p>
+<h3>Dibujo de rutas &amp; perfiles de elevación</h3>
+<p>El modo dibujo admite tanto colocar puntos con un toque como dibujar a mano alzada — arrastra el dedo por el mapa y el trazo se simplifica automáticamente. El suavizado con splines de Catmull-Rom convierte los segmentos angulosos entre vértices en curvas suaves con tensión y detalle ajustables. El diálogo Herramientas de dibujo reúne los controles de suavizado de curvas, simplificación del trazo libre y paso de muestreo de elevación, cada uno con ayuda contextual. Una etiqueta de distancia en vivo muestra la longitud total de la ruta y una minigráfica de elevación se superpone al mapa. Las rutas dibujadas pueden unirse a un track GPX cargado y guardarse como un solo archivo.</p>
+<h3>Capa de mapa de calor &amp; datos de elevación</h3>
+<p>Una capa de visualización espacial basada en cuadrícula colorea las celdas geográficas según la densidad de puntos o la elevación media. La cuadrícula se adapta al nivel de zoom con un renderizado estable al desplazar y ampliar. Cuatro botones de control alternan el mapa de calor, los marcadores de puntos de datos, la métrica densidad/elevación y un filtro de fuentes de 4 estados (todas las fuentes, API, track GPX, tesela de terreno). Los datos de elevación se obtienen sin conexión de AWS Terrain Tiles con resolución SRTM de ~30 m, se decodifican en el dispositivo a partir de los canales RGB de los píxeles y se guardan en una caché de tres niveles (LRU en memoria → base de datos Room → nube). Una cascada de respaldo multizoom (z15 → z14 → z13) rellena los vacíos de los datos satelitales sin necesidad de recurrir a ninguna API. Las capas de límites de teselas visualizan la cobertura en caché, la detección de puntos ciegos resalta los huecos con polígonos rojos de aviso, y la precarga en segundo plano mediante WorkManager amplía la cobertura a medida que exploras. La gestión de caché por zoom muestra el número de teselas por nivel, con borrado selectivo y compresión.</p>
+<h3>Conversión de archivos multiformato</h3>
+<p>GpxAnalyzer abre archivos GPX, KML, KMZ, TCX, FIT, GeoJSON y CSV — selecciona varios a la vez o toca cualquier archivo de track para abrirlo directamente desde el menú «Abrir con» de Android. Convierte entre formatos con mapeo automático de frecuencia cardíaca, cadencia, potencia, temperatura y más de 18 campos de datos. Una matriz de compatibilidad visual muestra exactamente qué campos admite cada formato antes de convertir, y un diagrama de pérdida de datos resalta lo que se descarta — sin sorpresas al exportar. El filtrado por formato y tipo de actividad, con preferencias guardadas, mantiene tu lista de archivos ordenada.</p>
+<h3>Motor de mapas interactivo</h3>
+<p>Construido sobre OSMDroid, el motor de mapas dibuja polilíneas con degradado de color mediante una técnica de dos capas (borde + relleno) y un cálculo de color en O(n) fuera del hilo principal. La rotación del mapa se hace con gestos de dos dedos y una brújula superpuesta táctil. La detección del punto más cercano calcula distancias de Haversine dentro de un umbral de 30 dp en el espacio de pantalla. Unos marcadores de límite animados y pulsantes muestran flechas de rumbo geográfico calculadas a partir de las coordenadas de los puntos de track adyacentes.</p>
+<h3>Por qué se eliminó la sincronización con Strava</h3>
+<p>GpxAnalyzer ofrecía antes sincronización con Strava mediante OAuth 2.0 con descarga de actividades consciente de la caché. Desde entonces Strava ha introducido tarifas y una suscripción de pago para que los desarrolladores accedan a su API. GpxAnalyzer es, y seguirá siendo, totalmente gratis — sin anuncios, suscripciones ni compras integradas —, así que la sincronización con Strava se ha eliminado en lugar de trasladar esos costes a los usuarios. El resto de funciones de importación, conversión y análisis no se ven afectadas.</p>
+<h3>Arquitectura</h3>
+<p>Un proyecto Gradle de 19 módulos con inyección de dependencias, pipelines reactivos y separación estricta de capas. La arquitectura se organiza en capas de base, funcionalidades y bibliotecas personalizadas — cada una con responsabilidades y límites claramente definidos. La caché multinivel L1/L2/L3 con aislamiento por ranura y por dominio, la gestión reactiva del estado y el manejo de suscripciones consciente del ciclo de vida garantizan un rendimiento fluido en toda la app.</p>
+<h3>Privacidad &amp; seguridad</h3>
+<p>Todo el procesamiento GPX se realiza en local. La versión mínima obligatoria garantiza que los usuarios siempre ejecuten una versión soportada. Al iniciar se ejecuta una aceptación obligatoria de la política de privacidad con detección de cambios y caché sin conexión. Cumple el RGPD, sin recopilación de datos ni rastreo.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section aria-labelledby="faq-heading" class="faq" id="faq">
+<div class="container">
+<div class="section-header">
+<h2 id="faq-heading">Preguntas frecuentes</h2>
+<p>Respuestas rápidas sobre análisis GPX, formatos admitidos, privacidad y uso sin conexión</p>
+</div>
+<div class="faq-list">
+<details class="faq-item" open="">
+<summary>¿Qué es GpxAnalyzer?</summary>
+<div class="faq-answer">
+<p>GpxAnalyzer es una app Android gratuita para analizar tracks GPS grabados en senderismo, running, ciclismo, esquí y otras actividades al aire libre. Abre archivos GPX y otros archivos de track, elimina el ruido GPS y muestra gráficas de altitud, velocidad y pendiente sincronizadas con un mapa interactivo, todo procesado en tu dispositivo.</p>
+</div>
+</details>
+<details class="faq-item">
+<summary>¿Qué formatos de archivo GPS puedo abrir y puedo convertir GPX a KML, TCX, FIT o GeoJSON?</summary>
+<div class="faq-answer">
+<p>Puedes importar archivos GPX, TCX, KML, KMZ, FIT, GeoJSON y CSV, abrirlos directamente desde otras apps con el menú «Abrir con» de Android y convertir entre formatos. Una matriz de compatibilidad muestra antes de exportar qué campos, como frecuencia cardíaca, cadencia, potencia y temperatura, conserva cada formato.</p>
+</div>
+</details>
+<details class="faq-item">
+<summary>¿GpxAnalyzer funciona sin conexión?</summary>
+<div class="faq-answer">
+<p>Sí. Todo el procesamiento de tracks, las gráficas y las estadísticas se ejecutan en tu dispositivo sin conexión. Las imágenes del mapa y las teselas de elevación del terreno se descargan la primera vez que ves una zona y se guardan en caché, así que las zonas ya vistas siguen funcionando sin conexión.</p>
+</div>
+</details>
+<details class="faq-item">
+<summary>¿GpxAnalyzer es gratis? ¿Tiene anuncios o suscripciones?</summary>
+<div class="faq-answer">
+<p>GpxAnalyzer es totalmente gratis en Google Play, sin anuncios, suscripciones ni compras integradas. Si te resulta útil, puedes apoyar su desarrollo con una donación opcional.</p>
+</div>
+</details>
+<details class="faq-item">
+<summary>¿La app rastrea mi ubicación o recopila datos personales?</summary>
+<div class="faq-answer">
+<p>No. GpxAnalyzer no solicita permisos de ubicación y nunca rastrea dónde estás. Solo lee los archivos de track que decides abrir, y nada se sube ni se comparte. No hay SDK de analítica ni de publicidad, y la app cumple el RGPD. Consulta la <a href="/privacy_policy.html">política de privacidad</a> para más detalles.</p>
+</div>
+</details>
+<details class="faq-item">
+<summary>¿Cómo funciona la reducción del ruido GPS?</summary>
+<div class="faq-answer">
+<p>Los puntos GPS en bruto se limpian con procesamiento de señal con wavelets que adapta su ventana de suavizado a cada track mediante análisis de frecuencia. Esto elimina aproximadamente entre el 85 y el 95 por ciento del temblor GPS conservando los picos, valles y tramos de subida o bajada reales. Los ajustes predefinidos para actividades como el trail running o el esquí alpino afinan la detección automáticamente.</p>
+</div>
+</details>
+<details class="faq-item">
+<summary>¿Puedo dibujar mi propia ruta y ver su perfil de elevación?</summary>
+<div class="faq-answer">
+<p>Sí. Toca para colocar puntos o dibuja a mano alzada en el mapa, suaviza la línea con los ajustes de curva y observa cómo la distancia y el perfil de elevación en vivo se actualizan mientras dibujas. Una ruta dibujada puede unirse a un track existente y guardarse como un único archivo GPX.</p>
+</div>
+</details>
+<details class="faq-item">
+<summary>¿GpxAnalyzer se sincroniza con Strava?</summary>
+<div class="faq-answer">
+<p>La sincronización con Strava se eliminó porque Strava ahora cobra a los desarrolladores por el acceso a su API y GpxAnalyzer se compromete a seguir siendo gratis. Puedes exportar cualquier actividad de Strava como archivo GPX y abrirla en GpxAnalyzer; todas las funciones de importación, conversión y análisis siguen funcionando.</p>
+</div>
+</details>
+<details class="faq-item">
+<summary>¿Qué versiones de Android admite GpxAnalyzer?</summary>
+<div class="faq-answer">
+<p>GpxAnalyzer funciona en Android 9 o posterior, tanto en teléfonos como en tablets, y usa pantalla de borde a borde en Android 15 y posteriores. Está disponible en Google Play.</p>
+</div>
+</details>
+<details class="faq-item">
+<summary>¿Cómo abro un archivo GPX en Android y qué app necesito?</summary>
+<div class="faq-answer">
+<p>Instala GpxAnalyzer desde Google Play y luego abre el archivo .gpx desde tu gestor de archivos, correo o app de mensajería con el menú «Abrir con» de Android y elige GpxAnalyzer — o impórtalo desde dentro de la app. El track aparece en el mapa con gráficas de altitud y velocidad sincronizadas. Funcionan las exportaciones GPX de relojes GPS, teléfonos y servicios web, así como los archivos TCX, KML, KMZ, FIT, GeoJSON y CSV.</p>
+</div>
+</details>
+<details class="faq-item">
+<summary>¿GpxAnalyzer muestra el perfil de elevación de un track GPX?</summary>
+<div class="faq-answer">
+<p>Sí. Cada track tiene una gráfica de perfil de elevación sincronizada con el mapa, junto con gráficas de velocidad y pendiente y estadísticas por track. Al tocar un punto de una gráfica se resalta el mismo lugar en el mapa. Cuando una grabación no tiene datos de altitud utilizables, la elevación puede tomarse de las teselas de terreno sin conexión.</p>
+</div>
+</details>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="footer" role="contentinfo">
+<div class="container">
+<!-- Top band: branding + CTA -->
+<div class="footer-hero" id="contact">
+<div class="footer-hero-brand">
+<img alt="" class="footer-hero-icon" height="48" src="/icons/ic_launcher-playstore.png" width="48"/>
+<div>
+<div class="footer-hero-name">GpxAnalyzer</div>
+<div class="footer-hero-tagline">Análisis de tracks GPS de nivel investigación para Android</div>
+</div>
+</div>
+<a aria-label="Disponible en Google Play" class="footer-play-badge" href="https://play.google.com/store/apps/details?id=com.rafalstanczuk.gpxanalyzer" rel="noopener" target="_blank">
+<img alt="Disponible en Google Play" height="54" src="/icons/GetItOnGooglePlay_Badge_Web_color_English.svg" width="180"/>
+</a>
+</div>
+<!-- Three columns -->
+<div class="footer-columns">
+<div class="footer-section">
+<h3>Navegación</h3>
+<ul>
+<li><a href="#features">Funciones</a></li>
+<li><a href="#code-quality">Calidad del código</a></li>
+<li><a href="#screenshots">Capturas de pantalla</a></li>
+<li><a href="#tutorials">Tutoriales</a></li>
+<li><a href="#release-notes">Notas de la versión</a></li>
+<li><a href="#about">Acerca de</a></li>
+<li><a href="#faq">FAQ</a></li>
+<li><a href="#support">Apoyar</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h3>Desarrollador</h3>
+<p class="footer-dev-name">Rafał Stańczuk</p>
+<ul class="footer-dev-links">
+<li>
+<a class="footer-link-with-icon" href="mailto:anddev0110@gmail.com">
+<svg fill="currentColor" height="18" viewbox="0 -960 960 960" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280 320-200v-80L480-520 160-720v80l320 200Z"></path></svg>
+                                anddev0110@gmail.com
+                            </a>
+</li>
+<li>
+<a aria-label="Perfil de LinkedIn" class="footer-logo-link" href="https://www.linkedin.com/in/stanczuk/" rel="noopener" target="_blank">
+<img alt="LinkedIn" class="footer-logo-img" height="21" src="/icons/LI-Logo.png" width="80"/>
+</a>
+</li>
+<li>
+<a aria-label="Perfil de GitHub" class="footer-logo-link" href="https://github.com/rafalstanczuk" rel="noopener" target="_blank">
+<img alt="GitHub" class="footer-logo-img" height="21" src="/icons/GitHub_Logo_White.png" width="80"/>
+</a>
+</li>
+<li>
+<a class="footer-link-with-icon" href="https://stanczuk.it/" rel="me noopener" target="_blank" title="Rafał Stańczuk – Senior Android Engineer">
+<svg fill="currentColor" height="18" viewbox="0 -960 960 960" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm-40-82v-78q-33 0-56.5-23.5T360-320v-40L168-552q-3 18-5.5 36t-2.5 36q0 121 79.5 212T440-162Zm276-102q26-36 43-77.5t23-85.5H642q-18 37-44.5 67.5T540-306v84q26-14 48-36t30-44l58 38Zm-356-58q18-22 41-37.5t49-25.5q-12-23-17.5-48.5T427-486H242q7 47 29.5 87t88.5 57Zm80-158h80q0-33-10-63.5T480-600q-20 26-30 56.5T440-480Zm134 0h144q-7-47-29.5-87T600-624v36q0 33-8.5 62.5T574-480Z"></path></svg>
+                                Desarrollador: Rafał Stańczuk
+                            </a>
+</li>
+</ul>
+</div>
+<div class="footer-section">
+<h3>Legal</h3>
+<ul>
+<li><a href="/privacy_policy.html" rel="noopener" target="_blank">Política de privacidad</a></li>
+</ul>
+</div>
+<div class="footer-section" id="support">
+<h3>Apoya el proyecto</h3>
+<p class="footer-support-text">Si te gusta GpxAnalyzer, ¡invítame a un café!</p>
+<div class="footer-support-links">
+<a class="footer-support-link" href="https://buycoffee.to/k4r4m84" rel="noopener noreferrer" target="_blank" title="Apoyar en BuyCoffee.to">
+<img alt="BuyCoffee.to" class="footer-support-icon" height="30" src="/icons/logo-buycoffee--dark.svg" width="120"/>
+</a>
+<a class="footer-support-link" href="https://buymeacoffee.com/k4r4m84" rel="noopener noreferrer" target="_blank" title="Apoyar en Buy Me a Coffee">
+<img alt="Buy Me a Coffee" class="footer-support-icon" height="30" src="/icons/bmc-brand-logo.svg" width="120"/>
+</a>
+</div>
+</div>
+</div>
+<!-- Bottom bar -->
+<div class="footer-bottom">
+<p>© 2023-2026 Rafał Stańczuk. Todos los derechos reservados.</p>
+</div>
+</div>
+</footer>
+<!-- YouTube Video Modal -->
+<div aria-label="Reproductor de vídeo" aria-modal="true" class="video-modal" id="video-modal" role="dialog">
+<div class="video-modal-backdrop"></div>
+<div class="video-modal-dialog">
+<div class="video-modal-header">
+<span class="video-modal-title" id="video-modal-title"></span>
+<button aria-label="Cerrar vídeo" class="video-modal-close" id="video-modal-close">
+<svg fill="currentColor" height="24" viewbox="0 -960 960 960" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"></path></svg>
+</button>
+</div>
+<div class="video-modal-body">
+<div class="video-modal-wrapper">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" id="video-modal-iframe" title="Vídeo del tutorial"></iframe>
+</div>
+</div>
+</div>
+</div>
+<!-- PDF Carousel Modal -->
+<div aria-label="Vista previa del PDF" aria-modal="true" class="pdf-modal" id="pdf-modal" role="dialog">
+<div class="pdf-modal-backdrop"></div>
+<div class="pdf-modal-dialog">
+<div class="pdf-modal-header">
+<span class="pdf-modal-title" id="pdf-modal-title"></span>
+<span class="pdf-modal-page-indicator" id="pdf-modal-page-indicator"></span>
+<div class="pdf-modal-zoom-controls">
+<button aria-label="Alejar" class="pdf-modal-zoom-btn" id="pdf-modal-zoom-out">
+<span aria-hidden="true" class="pdf-modal-zoom-icon pdf-modal-zoom-icon--out"></span>
+</button>
+<span class="pdf-modal-zoom-level" id="pdf-modal-zoom-level">Ajustar</span>
+<button aria-label="Acercar" class="pdf-modal-zoom-btn" id="pdf-modal-zoom-in">
+<span aria-hidden="true" class="pdf-modal-zoom-icon pdf-modal-zoom-icon--in"></span>
+</button>
+</div>
+<button aria-label="Cerrar la vista previa del PDF" class="pdf-modal-close" id="pdf-modal-close">
+<svg fill="currentColor" height="24" viewbox="0 -960 960 960" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"></path></svg>
+</button>
+</div>
+<div class="pdf-modal-body">
+<button aria-label="Página anterior" class="pdf-modal-nav pdf-modal-prev" id="pdf-modal-prev">
+<svg fill="currentColor" height="32" viewbox="0 -960 960 960" width="32" xmlns="http://www.w3.org/2000/svg"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"></path></svg>
+</button>
+<div class="pdf-modal-canvas-wrapper" id="pdf-modal-canvas-wrapper">
+<canvas id="pdf-modal-canvas"></canvas>
+</div>
+<button aria-label="Página siguiente" class="pdf-modal-nav pdf-modal-next" id="pdf-modal-next">
+<svg fill="currentColor" height="32" viewbox="0 -960 960 960" width="32" xmlns="http://www.w3.org/2000/svg"><path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"></path></svg>
+</button>
+</div>
+<div class="pdf-modal-dots" id="pdf-modal-dots"></div>
+</div>
+</div>
+<!-- Screenshot Lightbox Modal -->
+<div aria-label="Visor de capturas de pantalla" aria-modal="true" class="screenshot-modal" id="screenshot-modal" role="dialog">
+<div class="screenshot-modal-topbar">
+<div class="screenshot-modal-description" id="screenshot-modal-description"></div>
+<button aria-label="Cerrar" class="screenshot-modal-close">
+<img alt="" aria-hidden="true" class="screenshot-modal-close-icon" height="24" src="/icons/ic_close.svg" width="24"/>
+</button>
+</div>
+<div class="screenshot-modal-container">
+<button aria-label="Captura anterior" class="screenshot-modal-nav screenshot-modal-nav-left" id="screenshot-modal-prev">
+<img alt="" aria-hidden="true" class="screenshot-modal-nav-icon" height="24" src="/icons/arrow_back.svg" width="24"/>
+</button>
+<img alt="Captura de pantalla" class="screenshot-modal-content" id="screenshot-modal-img"/>
+<button aria-label="Captura siguiente" class="screenshot-modal-nav screenshot-modal-nav-right" id="screenshot-modal-next">
+<img alt="" aria-hidden="true" class="screenshot-modal-nav-icon" height="24" src="/icons/arrow_forward.svg" width="24"/>
+</button>
+</div>
+</div>
+<script defer="" src="/script.js"></script>
+</body>
+</html>

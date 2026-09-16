@@ -108,7 +108,7 @@
     if (!grid) return;
 
     try {
-      const resp = await fetch('screenshots/index.txt');
+      const resp = await fetch('/screenshots/index.txt');
       if (!resp.ok) return;
       const text = await resp.text();
       const names = text.split('\n').map(l => l.trim()).filter(Boolean);
@@ -118,11 +118,11 @@
       names.forEach(name => {
         const item = document.createElement('div');
         item.className = 'screenshot-item fade-in-up';
-        item.dataset.screenshot = `screenshots/${name}.png`;
-        item.dataset.descriptionMd = `screenshots/${name}.md`;
+        item.dataset.screenshot = `/screenshots/${name}.png`;
+        item.dataset.descriptionMd = `/screenshots/${name}.md`;
 
         const img = document.createElement('img');
-        img.src = `screenshots/${name}.png`;
+        img.src = `/screenshots/${name}.png`;
         img.alt = `GpxAnalyzer screenshot: ${humanizeName(name)}`;
         img.className = 'screenshot-img';
         img.loading = 'lazy';
@@ -496,11 +496,11 @@
 
     try {
       // Load from index.txt
-      const indexResp = await fetch('release_notes/index.txt');
+      const indexResp = await fetch('/release_notes/index.txt');
       if (!indexResp.ok) throw new Error('No index');
       const indexText = await indexResp.text();
       const files = indexText.split('\n').map(l => l.trim()).filter(l => l.endsWith('.txt'))
-        .map(l => l.startsWith('release_notes/') ? l : `release_notes/${l}`);
+        .map(l => l.startsWith('release_notes/') ? `/${l}` : `/release_notes/${l}`);
 
       if (!files.length) { container.innerHTML = '<div class="release-notes-loading">No release notes found.</div>'; return; }
 
@@ -527,8 +527,8 @@
       // Check for YouTube links and PDF links
       const enriched = await Promise.all(notes.map(async note => {
         const ytPaths = [
-          `release_notes/Youtube_Tutorial_Link_${note.version}.txt`,
-          `local/release_notes/Youtube_Tutorial_Link_${note.version}.txt`
+          `/release_notes/Youtube_Tutorial_Link_${note.version}.txt`,
+          `/local/release_notes/Youtube_Tutorial_Link_${note.version}.txt`
         ];
         let youtubeLink = null;
         for (const p of ytPaths) {
@@ -538,11 +538,11 @@
         let pdfLink = null;
         if (!youtubeLink) {
           const pdfPaths = [
-            `release_notes/Pdf_Link_${note.version}.txt`,
-            `local/release_notes/Pdf_Link_${note.version}.txt`
+            `/release_notes/Pdf_Link_${note.version}.txt`,
+            `/local/release_notes/Pdf_Link_${note.version}.txt`
           ];
           for (const p of pdfPaths) {
-            try { const r = await fetch(p); if (r.ok) { const t = (await r.text()).trim(); if (t) { pdfLink = `release_notes/${t}`; break; } } } catch {}
+            try { const r = await fetch(p); if (r.ok) { const t = (await r.text()).trim(); if (t) { pdfLink = `/release_notes/${t}`; break; } } } catch {}
           }
         }
 
@@ -665,7 +665,7 @@
     if (!grid || grid.dataset.loaded === 'true') return;
 
     try {
-      const indexResp = await fetch('release_notes/index.txt');
+      const indexResp = await fetch('/release_notes/index.txt');
       if (!indexResp.ok) throw new Error('No index');
       const indexText = await indexResp.text();
 
@@ -685,8 +685,8 @@
       // Fetch YouTube links for each version
       const tutorials = (await Promise.all(unique.map(async version => {
         const paths = [
-          `release_notes/Youtube_Tutorial_Link_${version}.txt`,
-          `local/release_notes/Youtube_Tutorial_Link_${version}.txt`
+          `/release_notes/Youtube_Tutorial_Link_${version}.txt`,
+          `/local/release_notes/Youtube_Tutorial_Link_${version}.txt`
         ];
         for (const p of paths) {
           try {
@@ -708,7 +708,7 @@
       grid.innerHTML = tutorials.map(t => {
         const embedUrl = youtubeEmbedUrl(t.url);
         if (!embedUrl) return '';
-        return `<div class="tutorial-card fade-in-up" data-video-url="${escapeHtml(t.url)}" data-video-title="Tutorial — Version ${escapeHtml(t.version)}" role="button" tabindex="0" aria-label="Play tutorial for version ${escapeHtml(t.version)}">
+        return `<a class="tutorial-card fade-in-up" href="${escapeHtml(t.url)}" target="_blank" rel="noopener" data-video-url="${escapeHtml(t.url)}" data-video-title="Tutorial — Version ${escapeHtml(t.version)}" aria-label="Play tutorial playlist for version ${escapeHtml(t.version)}">
           <div class="tutorial-video-wrapper tutorial-thumbnail">
             <div class="tutorial-play-overlay">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 48" width="68" height="48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.63-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#212121" fill-opacity=".8"/><path d="M45 24 27 14v20" fill="#fff"/></svg>
@@ -718,17 +718,14 @@
             <span class="tutorial-card-version">Version ${escapeHtml(t.version)}</span>
             <span class="tutorial-card-badge">Playlist</span>
           </div>
-        </div>`;
+        </a>`;
       }).join('');
 
       // Attach click handlers to tutorial cards
       grid.querySelectorAll('.tutorial-card[data-video-url]').forEach(card => {
-        function handleOpen() {
+        card.addEventListener('click', e => {
+          e.preventDefault(); // plain link for crawlers / no-JS; JS users get the in-page player
           openVideoModal(card.dataset.videoUrl, card.dataset.videoTitle);
-        }
-        card.addEventListener('click', handleOpen);
-        card.addEventListener('keydown', e => {
-          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleOpen(); }
         });
       });
 
@@ -759,6 +756,13 @@
     } catch {
       grid.innerHTML = '<div class="tutorials-loading">Could not load tutorials.</div>';
     }
+  }
+
+  // Language switcher: close the <details> dropdown on outside click / Escape
+  const langMenu = document.getElementById('lang-menu');
+  if (langMenu) {
+    document.addEventListener('click', e => { if (langMenu.open && !langMenu.contains(e.target)) langMenu.open = false; });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && langMenu.open) { langMenu.open = false; langMenu.querySelector('summary').focus(); } });
   }
 
   // Lazy-load tutorials

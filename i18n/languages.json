@@ -1,0 +1,8 @@
+[
+  {"code": "en", "hreflang": "en", "og_locale": "en_US", "native": "English",  "flag": "gb", "path": "/",    "switcher_label": "Language"},
+  {"code": "pl", "hreflang": "pl", "og_locale": "pl_PL", "native": "Polski",   "flag": "pl", "path": "/pl/", "switcher_label": "Język"},
+  {"code": "de", "hreflang": "de", "og_locale": "de_DE", "native": "Deutsch",  "flag": "de", "path": "/de/", "switcher_label": "Sprache"},
+  {"code": "fr", "hreflang": "fr", "og_locale": "fr_FR", "native": "Français", "flag": "fr", "path": "/fr/", "switcher_label": "Langue"},
+  {"code": "es", "hreflang": "es", "og_locale": "es_ES", "native": "Español",  "flag": "es", "path": "/es/", "switcher_label": "Idioma"},
+  {"code": "it", "hreflang": "it", "og_locale": "it_IT", "native": "Italiano", "flag": "it", "path": "/it/", "switcher_label": "Lingua"}
+]
