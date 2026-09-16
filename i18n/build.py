@@ -176,8 +176,19 @@ def translate_jsonld(soup, L, strings):
         body = json.dumps(d, indent=2, ensure_ascii=False)
         sc.string = '\n' + '\n'.join((indent + l) if l else l for l in body.split('\n')) + '\n' + indent[:-2]
 
+UI_KEYS = ['screenshotAlt', 'appScreenshot', 'fit', 'page', 'noReleaseNotes', 'releaseNotesError', 'version', 'watchTutorial',
+           'watchOnYouTube', 'viewPdfTutorial', 'viewSlides', 'tutorialVersion', 'slidesVersion', 'noTutorials', 'tutorialsError',
+           'playTutorial', 'playlist', 'newFeatures', 'bugFixes', 'improvements']  # keep in sync with I18N defaults in script.js
+
+def caption_problems(L):
+    """Every screenshot listed in screenshots/index.txt needs screenshots/<name>.<lang>.md (title line + description)."""
+    names = [l.strip() for l in (ROOT / 'screenshots' / 'index.txt').read_text(encoding='utf-8').splitlines() if l.strip()]
+    return [n for n in names if not (ROOT / 'screenshots' / f'{n}.{L["code"]}.md').exists()]
+
 def build_lang(source_text, L, strict):
-    strings = json.loads((ROOT / 'i18n' / f'{L["code"]}.json').read_text(encoding='utf-8'))['strings']
+    data = json.loads((ROOT / 'i18n' / f'{L["code"]}.json').read_text(encoding='utf-8'))
+    strings = data['strings']
+    ui = data.get('ui', {})
     text = fill_markers(source_text, L['code'])
     soup = BeautifulSoup(text, 'html.parser')
     missing, bad_tags = [], []
@@ -212,18 +223,39 @@ def build_lang(source_text, L, strict):
     if ogl:
         ogl['content'] = L['og_locale']  # og:locale:alternate tags come from the i18n:alternates marker block
     translate_jsonld(soup, L, strings)
+    main_script = soup.find('script', src=re.compile(r'script\.js$'))
+    if main_script and ui:  # runtime UI labels for script.js (captions, release-note and tutorial labels)
+        tag = soup.new_tag('script')
+        tag.string = 'window.GPX_I18N = ' + json.dumps(ui, ensure_ascii=False) + ';'
+        main_script.insert_before(tag)
+    if L.get('og_image'):  # language-specific Open Graph image (meta tags + JSON-LD)
+        en_og = f'{SITE}/icons/og-image.png'; new_og = f'{SITE}{L["og_image"]}'
+        for m in soup.find_all('meta'):
+            if m.get('content') == en_og:
+                m['content'] = new_og
+        for sc in soup.find_all('script', type='application/ld+json'):
+            sc.string = sc.string.replace(en_og, new_og)
+    if L.get('play_badge'):  # official localized Google Play badge for this language
+        for img in soup.find_all('img', src=re.compile(r'GetItOnGooglePlay_Badge')):
+            img['src'] = L['play_badge']
     absolutize(soup, L['path'])
     out_dir = ROOT / L['path'].strip('/')
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / 'index.html').write_text(str(soup), encoding='utf-8')
     dedup = lambda xs: list(dict.fromkeys(xs))
     missing, bad_tags = dedup(missing), dedup(bad_tags)
-    print(f'[{L["code"]}] wrote {L["path"]}index.html | missing: {len(missing)} | tag mismatch: {len(bad_tags)}')
+    missing_ui = [k for k in UI_KEYS if k not in ui]
+    missing_caps = caption_problems(L)
+    print(f'[{L["code"]}] wrote {L["path"]}index.html | missing: {len(missing)} | tag mismatch: {len(bad_tags)} | ui keys missing: {len(missing_ui)} | caption files missing: {len(missing_caps)}')
+    for k in missing_ui[:10]:
+        print('    UI     :', k)
+    for k in missing_caps[:10]:
+        print('    CAPTION:', k)
     for k in missing[:15]:
         print('    MISSING:', k[:110])
     for k in bad_tags[:15]:
         print('    TAGS   :', k[:110])
-    return not missing and not bad_tags
+    return not missing and not bad_tags and not missing_ui and not missing_caps
 
 def update_sitemap():
     p = ROOT / 'sitemap.xml'
@@ -240,7 +272,8 @@ def update_sitemap():
     for L in LANGS:
         if L['path'] == '/':
             continue
-        block += (f'\n  <url>\n    <loc>{SITE}{L["path"]}</loc>{alts}\n    <lastmod>{lastmod}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.9</priority>\n  </url>')
+        img = f'\n    <image:image>\n      <image:loc>{SITE}{L["og_image"]}</image:loc>\n    </image:image>' if L.get('og_image') else ''
+        block += (f'\n  <url>\n    <loc>{SITE}{L["path"]}</loc>{alts}\n    <lastmod>{lastmod}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.9</priority>{img}\n  </url>')
     block += '\n  <!-- i18n:end -->'
     if '<!-- i18n:start -->' in x:
         x = re.sub(r'<!-- i18n:start -->.*?<!-- i18n:end -->', block, x, flags=re.S)

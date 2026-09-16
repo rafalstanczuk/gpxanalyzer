@@ -94,6 +94,9 @@
     <lastmod>2026-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://gpxanalyzer.app/icons/og-image-pl.png</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://gpxanalyzer.app/de/</loc>
@@ -107,6 +110,9 @@
     <lastmod>2026-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://gpxanalyzer.app/icons/og-image-de.png</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://gpxanalyzer.app/fr/</loc>
@@ -120,6 +126,9 @@
     <lastmod>2026-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://gpxanalyzer.app/icons/og-image-fr.png</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://gpxanalyzer.app/es/</loc>
@@ -133,6 +142,9 @@
     <lastmod>2026-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://gpxanalyzer.app/icons/og-image-es.png</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://gpxanalyzer.app/it/</loc>
@@ -146,6 +158,9 @@
     <lastmod>2026-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://gpxanalyzer.app/icons/og-image-it.png</image:loc>
+    </image:image>
   </url>
   <!-- i18n:end -->
 </urlset>

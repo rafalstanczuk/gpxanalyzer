@@ -5,6 +5,32 @@
 (function () {
   'use strict';
 
+  // Runtime UI strings. Language pages define window.GPX_I18N (see i18n/build.py); English is the default.
+  const LANG = (document.documentElement.lang || 'en').toLowerCase().split('-')[0];
+  const I18N = Object.assign({
+    screenshotAlt: 'GpxAnalyzer screenshot: {title}',
+    appScreenshot: 'app screenshot',
+    fit: 'Fit',
+    page: 'Page {n}',
+    noReleaseNotes: 'No release notes found.',
+    releaseNotesError: 'Error loading release notes.',
+    version: 'Version {v}',
+    watchTutorial: 'Watch Tutorial',
+    watchOnYouTube: 'Watch on YouTube',
+    viewPdfTutorial: 'View PDF Tutorial',
+    viewSlides: 'View Slides',
+    tutorialVersion: 'Tutorial — Version {v}',
+    slidesVersion: 'Slides — Version {v}',
+    noTutorials: 'No tutorials available yet.',
+    tutorialsError: 'Could not load tutorials.',
+    playTutorial: 'Play tutorial playlist for version {v}',
+    playlist: 'Playlist',
+    newFeatures: 'New Features',
+    bugFixes: 'Bug Fixes',
+    improvements: 'Improvements'
+  }, window.GPX_I18N || {});
+  const tr = (key, vars) => String(I18N[key]).replace(/\{(\w+)\}/g, (m, k) => (vars && vars[k] !== undefined) ? vars[k] : m);
+
   // ---- DOM refs ----
   const navbar     = document.querySelector('.navbar');
   const navToggle  = document.querySelector('.nav-toggle');
@@ -99,7 +125,7 @@
 
   // Fallback alt text derived from the file name (replaced by the .md title once loaded)
   function humanizeName(name) {
-    if (/^Screenshot_\d+/.test(name)) return 'app screenshot';
+    if (/^Screenshot_\d+/.test(name)) return I18N.appScreenshot;
     return name.replace(/^slide\d+_/, '').replace(/_/g, ' ').replace(/\s+/g, ' ').trim();
   }
 
@@ -119,11 +145,12 @@
         const item = document.createElement('div');
         item.className = 'screenshot-item fade-in-up';
         item.dataset.screenshot = `/screenshots/${name}.png`;
-        item.dataset.descriptionMd = `/screenshots/${name}.md`;
+        item.dataset.descriptionMd = LANG === 'en' ? `/screenshots/${name}.md` : `/screenshots/${name}.${LANG}.md`;
+        item.dataset.descriptionMdFallback = `/screenshots/${name}.md`;
 
         const img = document.createElement('img');
         img.src = `/screenshots/${name}.png`;
-        img.alt = `GpxAnalyzer screenshot: ${humanizeName(name)}`;
+        img.alt = tr('screenshotAlt', { title: humanizeName(name) });
         img.className = 'screenshot-img';
         img.loading = 'lazy';
 
@@ -149,7 +176,10 @@
       const div = item.querySelector('.screenshot-description');
       if (!mdPath || !div) return;
       try {
-        const r = await fetch(mdPath);
+        let r = await fetch(mdPath);
+        if (!r.ok && item.dataset.descriptionMdFallback && item.dataset.descriptionMdFallback !== mdPath) {
+          r = await fetch(item.dataset.descriptionMdFallback); // no translation yet: fall back to English
+        }
         if (!r.ok) throw new Error();
         const md = await r.text();
         const lines = md.split('\n').map(l => l.trim()).filter(Boolean);
@@ -162,7 +192,7 @@
         if (!text && lines.length) text = lines[0].replace(/^#\s*/, '').trim();
         if (text) { div.textContent = text; } else { div.remove(); }
         const img = item.querySelector('img');
-        if (img && title) img.alt = `GpxAnalyzer screenshot: ${title}`;
+        if (img && title) img.alt = tr('screenshotAlt', { title });
       } catch {
         div.remove();
       }
@@ -361,7 +391,7 @@
     pdfPrevBtn.style.display = pdfPage > 1 ? 'flex' : 'none';
     pdfNextBtn.style.display = pdfPage < pdfTotal ? 'flex' : 'none';
     // Zoom label & button states
-    if (pdfZoomLevel) pdfZoomLevel.textContent = pdfZoom === 0 ? 'Fit' : `${Math.round(PDF_ZOOM_STEPS[pdfZoom] * 100)}%`;
+    if (pdfZoomLevel) pdfZoomLevel.textContent = pdfZoom === 0 ? I18N.fit : `${Math.round(PDF_ZOOM_STEPS[pdfZoom] * 100)}%`;
     if (pdfZoomOutBtn) pdfZoomOutBtn.disabled = pdfZoom <= 0;
     if (pdfZoomInBtn) pdfZoomInBtn.disabled = pdfZoom >= PDF_ZOOM_STEPS.length - 1;
     if (pdfCanvasWrap) pdfCanvasWrap.style.cursor = pdfZoom > 0 ? 'grab' : '';
@@ -371,7 +401,7 @@
       for (let i = 1; i <= pdfTotal; i++) {
         const dot = document.createElement('button');
         dot.className = 'pdf-modal-dot' + (i === pdfPage ? ' active' : '');
-        dot.setAttribute('aria-label', `Page ${i}`);
+        dot.setAttribute('aria-label', tr('page', { n: i }));
         dot.addEventListener('click', () => { if (!pdfRendering) renderPdfPage(i); });
         pdfDotsEl.appendChild(dot);
       }
@@ -502,7 +532,7 @@
       const files = indexText.split('\n').map(l => l.trim()).filter(l => l.endsWith('.txt'))
         .map(l => l.startsWith('release_notes/') ? `/${l}` : `/release_notes/${l}`);
 
-      if (!files.length) { container.innerHTML = '<div class="release-notes-loading">No release notes found.</div>'; return; }
+      if (!files.length) { container.innerHTML = `<div class="release-notes-loading">${escapeHtml(I18N.noReleaseNotes)}</div>`; return; }
 
       // Fetch contents
       const notes = (await Promise.all(files.map(async fp => {
@@ -515,7 +545,7 @@
         } catch { return null; }
       }))).filter(Boolean);
 
-      if (!notes.length) { container.innerHTML = '<div class="release-notes-loading">No release notes found.</div>'; return; }
+      if (!notes.length) { container.innerHTML = `<div class="release-notes-loading">${escapeHtml(I18N.noReleaseNotes)}</div>`; return; }
 
       // Sort newest first
       notes.sort((a, b) => {
@@ -562,7 +592,7 @@
             e.stopPropagation();
             const url = ytBtn.dataset.youtube;
             const ver = ytBtn.dataset.version;
-            if (url) openVideoModal(url, `Tutorial — Version ${ver}`);
+            if (url) openVideoModal(url, tr('tutorialVersion', { v: ver }));
             return;
           }
           // PDF button
@@ -571,7 +601,7 @@
             e.stopPropagation();
             const pdfUrl = pdfBtn.dataset.pdf;
             const ver = pdfBtn.dataset.version;
-            if (pdfUrl) openPdfModal(pdfUrl, `Slides — Version ${ver}`);
+            if (pdfUrl) openPdfModal(pdfUrl, tr('slidesVersion', { v: ver }));
             return;
           }
           header.closest('.release-note-item').classList.toggle('open');
@@ -585,7 +615,7 @@
       });
 
     } catch {
-      container.innerHTML = '<div class="release-notes-loading">Error loading release notes.</div>';
+      container.innerHTML = `<div class="release-notes-loading">${escapeHtml(I18N.releaseNotesError)}</div>`;
     }
   }
 
@@ -617,25 +647,26 @@
     const openClass = defaultOpen ? ' open' : '';
     let html = `<div class="release-note-item${openClass}">`;
     html += `<div class="release-note-header">`;
-    html += `<div class="release-note-version">Version ${escapeHtml(note.version)}</div>`;
+    html += `<div class="release-note-version">${escapeHtml(tr('version', { v: note.version }))}</div>`;
     if (note.youtubeLink) {
-      html += `<button class="youtube-logo-link-release-notes" data-youtube="${escapeHtml(note.youtubeLink)}" data-version="${escapeHtml(note.version)}" aria-label="Watch Tutorial" type="button">`;
-      html += `<img src="icons/WatchonYouTube-black-SVG.svg" alt="Watch on YouTube" class="youtube-logo-release-notes">`;
+      html += `<button class="youtube-logo-link-release-notes" data-youtube="${escapeHtml(note.youtubeLink)}" data-version="${escapeHtml(note.version)}" aria-label="${escapeHtml(I18N.watchTutorial)}" type="button">`;
+      html += `<img src="/icons/WatchonYouTube-black-SVG.svg" alt="${escapeHtml(I18N.watchOnYouTube)}" class="youtube-logo-release-notes">`;
       html += `</button>`;
     } else if (note.pdfLink) {
-      html += `<button class="pdf-preview-btn-release-notes" data-pdf="${escapeHtml(note.pdfLink)}" data-version="${escapeHtml(note.version)}" aria-label="View PDF Tutorial" type="button">`;
+      html += `<button class="pdf-preview-btn-release-notes" data-pdf="${escapeHtml(note.pdfLink)}" data-version="${escapeHtml(note.version)}" aria-label="${escapeHtml(I18N.viewPdfTutorial)}" type="button">`;
       html += `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="pdf-icon-release-notes" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9.5 8.5c0 .83-.67 1.5-1.5 1.5H7v2H5.5V9H8c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V9H13c.83 0 1.5.67 1.5 1.5v3zm4-3H17v1h1.5V13H17v2h-1.5V9h3v1.5zM7 11.5h1v-1H7v1zM13 13h1v-3h-1v3z"/></svg>`;
-      html += `<span class="pdf-btn-label">View Slides</span>`;
+      html += `<span class="pdf-btn-label">${escapeHtml(I18N.viewSlides)}</span>`;
       html += `</button>`;
     }
     html += `</div>`;
     html += `<div class="release-note-content">`;
 
     const order = ['New Features', 'Bug Fixes', 'Improvements'];
+    const sectionLabel = { 'New Features': I18N.newFeatures, 'Bug Fixes': I18N.bugFixes, 'Improvements': I18N.improvements };
     order.forEach(key => {
       if (sections[key].length) {
         const cls = key.toLowerCase().replace(/\s+/g, '-');
-        html += `<h4 data-section="${cls}">${key}</h4><ul>`;
+        html += `<h4 data-section="${cls}">${escapeHtml(sectionLabel[key] || key)}</h4><ul>`;
         sections[key].forEach(item => { html += `<li>${escapeHtml(item)}</li>`; });
         html += `</ul>`;
       }
@@ -701,22 +732,22 @@
       }))).filter(Boolean);
 
       if (!tutorials.length) {
-        grid.innerHTML = '<div class="tutorials-loading">No tutorials available yet.</div>';
+        grid.innerHTML = `<div class="tutorials-loading">${escapeHtml(I18N.noTutorials)}</div>`;
         return;
       }
 
       grid.innerHTML = tutorials.map(t => {
         const embedUrl = youtubeEmbedUrl(t.url);
         if (!embedUrl) return '';
-        return `<a class="tutorial-card fade-in-up" href="${escapeHtml(t.url)}" target="_blank" rel="noopener" data-video-url="${escapeHtml(t.url)}" data-video-title="Tutorial — Version ${escapeHtml(t.version)}" aria-label="Play tutorial playlist for version ${escapeHtml(t.version)}">
+        return `<a class="tutorial-card fade-in-up" href="${escapeHtml(t.url)}" target="_blank" rel="noopener" data-video-url="${escapeHtml(t.url)}" data-video-title="${escapeHtml(tr('tutorialVersion', { v: t.version }))}" aria-label="${escapeHtml(tr('playTutorial', { v: t.version }))}">
           <div class="tutorial-video-wrapper tutorial-thumbnail">
             <div class="tutorial-play-overlay">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 48" width="68" height="48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.63-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#212121" fill-opacity=".8"/><path d="M45 24 27 14v20" fill="#fff"/></svg>
             </div>
           </div>
           <div class="tutorial-card-label">
-            <span class="tutorial-card-version">Version ${escapeHtml(t.version)}</span>
-            <span class="tutorial-card-badge">Playlist</span>
+            <span class="tutorial-card-version">${escapeHtml(tr('version', { v: t.version }))}</span>
+            <span class="tutorial-card-badge">${escapeHtml(I18N.playlist)}</span>
           </div>
         </a>`;
       }).join('');
@@ -754,7 +785,7 @@
       grid.dataset.loaded = 'true';
       observeFadeElements();
     } catch {
-      grid.innerHTML = '<div class="tutorials-loading">Could not load tutorials.</div>';
+      grid.innerHTML = `<div class="tutorials-loading">${escapeHtml(I18N.tutorialsError)}</div>`;
     }
   }
 

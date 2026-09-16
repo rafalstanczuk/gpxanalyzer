@@ -220,5 +220,27 @@
     "Research-grade GPS track analysis for Android": "Analisi di tracce GPS di livello scientifico per Android",
     "Developer: Rafał Stańczuk": "Sviluppatore: Rafał Stańczuk",
     "Fit": "Adatta"
+  },
+  "ui": {
+    "screenshotAlt": "Screenshot di GpxAnalyzer: {title}",
+    "appScreenshot": "screenshot dell'app",
+    "fit": "Adatta",
+    "page": "Pagina {n}",
+    "noReleaseNotes": "Nessuna nota di rilascio trovata.",
+    "releaseNotesError": "Errore nel caricamento delle note di rilascio.",
+    "version": "Versione {v}",
+    "watchTutorial": "Guarda il tutorial",
+    "watchOnYouTube": "Guarda su YouTube",
+    "viewPdfTutorial": "Guarda il tutorial PDF",
+    "viewSlides": "Guarda le slide",
+    "tutorialVersion": "Tutorial — versione {v}",
+    "slidesVersion": "Slide — versione {v}",
+    "noTutorials": "Nessun tutorial ancora disponibile.",
+    "tutorialsError": "Impossibile caricare i tutorial.",
+    "playTutorial": "Riproduci la playlist del tutorial per la versione {v}",
+    "playlist": "Playlist",
+    "newFeatures": "Nuove funzionalità",
+    "bugFixes": "Correzioni di bug",
+    "improvements": "Miglioramenti"
   }
 }
