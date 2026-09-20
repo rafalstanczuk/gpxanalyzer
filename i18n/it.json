@@ -219,7 +219,8 @@
     "View all playlists on YouTube": "Guarda tutte le playlist su YouTube",
     "Research-grade GPS track analysis for Android": "Analisi di tracce GPS di livello scientifico per Android",
     "Developer: Rafał Stańczuk": "Sviluppatore: Rafał Stańczuk",
-    "Fit": "Adatta"
+    "Fit": "Adatta",
+    "<a href=\"image-license.html\" rel=\"noopener\" target=\"_blank\">Image licence</a>": "<a href=\"image-license.html\" rel=\"noopener\" target=\"_blank\">Licenza delle immagini</a>"
   },
   "ui": {
     "screenshotAlt": "Screenshot di GpxAnalyzer: {title}",

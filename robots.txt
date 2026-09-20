@@ -6,6 +6,12 @@
 User-agent: Googlebot
 Allow: /
 
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Google-InspectionTool
+Allow: /
+
 # Google Play Store link checker (does not inherit the Googlebot group)
 User-agent: Storebot-Google
 Allow: /
