@@ -220,7 +220,8 @@
     "Research-grade GPS track analysis for Android": "Análisis de tracks GPS de nivel investigación para Android",
     "Developer: Rafał Stańczuk": "Desarrollador: Rafał Stańczuk",
     "Fit": "Ajustar",
-    "<a href=\"image-license.html\" rel=\"noopener\" target=\"_blank\">Image licence</a>": "<a href=\"image-license.html\" rel=\"noopener\" target=\"_blank\">Licencia de imágenes</a>"
+    "<a href=\"image-license.html\" rel=\"noopener\" target=\"_blank\">Image licence</a>": "<a href=\"image-license.html\" rel=\"noopener\" target=\"_blank\">Licencia de imágenes</a>",
+    "Briskwire™ Lab": "Briskwire™ Lab"
   },
   "ui": {
     "screenshotAlt": "Captura de pantalla de GpxAnalyzer: {title}",
