@@ -190,7 +190,18 @@
           text = lines.slice(titleIdx + 1).join(' ').trim();
         }
         if (!text && lines.length) text = lines[0].replace(/^#\s*/, '').trim();
-        if (text) { div.textContent = text; } else { div.remove(); }
+        if (text) {
+          // Short title on its own line, then the one-line description
+          div.textContent = '';
+          if (title && title !== text) {
+            const titleEl = document.createElement('strong');
+            titleEl.className = 'screenshot-title';
+            titleEl.textContent = title;
+            div.appendChild(titleEl);
+          }
+          div.appendChild(document.createTextNode(text));
+          div.classList.remove('loading');
+        } else { div.remove(); }
         const img = item.querySelector('img');
         if (img && title) img.alt = tr('screenshotAlt', { title });
       } catch {
@@ -218,7 +229,7 @@
     modalImg.src = src;
 
     const descDiv = item.querySelector('.screenshot-description');
-    modalDesc.textContent = (descDiv && descDiv.textContent.trim()) ? descDiv.textContent : '';
+    modalDesc.replaceChildren(...(descDiv ? descDiv.cloneNode(true).childNodes : []));
 
     prevBtn.style.display = idx > 0 ? 'flex' : 'none';
     nextBtn.style.display = idx < screenshotItems.length - 1 ? 'flex' : 'none';

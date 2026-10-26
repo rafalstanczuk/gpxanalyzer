@@ -199,10 +199,12 @@
           },
           "image": "https://gpxanalyzer.app/icons/ic_launcher-playstore.png",
           "screenshot": [
-            "https://gpxanalyzer.app/screenshots/speed-colored-track-map-with-elevation-profile-chart.png",
-            "https://gpxanalyzer.app/screenshots/slide1_drawing_waypoints.png",
-            "https://gpxanalyzer.app/screenshots/slide1_multi_format_import.png",
-            "https://gpxanalyzer.app/screenshots/Day_Mode_Tiles_coverage_on_and_elevation_heatmap_on_from_encoded_points_from_cached_tiles.png"
+            "https://gpxanalyzer.app/screenshots/track_analysis_map_and_elevation_chart.png",
+            "https://gpxanalyzer.app/screenshots/route_drawing_and_drawing_tools.png",
+            "https://gpxanalyzer.app/screenshots/offline_elevation_heatmap.png",
+            "https://gpxanalyzer.app/screenshots/track_library_filters.png",
+            "https://gpxanalyzer.app/screenshots/terrain_tiles_and_elevation_settings.png",
+            "https://gpxanalyzer.app/screenshots/export_and_format_compatibility.png"
           ],
           "featureList": [
             "Wavelet-based GPS noise reduction (85-95%)",
@@ -270,8 +272,8 @@
 </button>
 <div class="nav-links" id="nav-menu" role="menubar">
 <a href="#features" role="menuitem">Funkcje</a>
-<a href="#code-quality" role="menuitem">Jakość kodu</a>
 <a href="#screenshots" role="menuitem">Zrzuty ekranu</a>
+<a href="#code-quality" role="menuitem">Jakość kodu</a>
 <a href="#download" role="menuitem">Pobierz</a>
 <a href="#release-notes" role="menuitem">Informacje o wydaniach</a>
 <a href="#tutorials" role="menuitem">Poradniki</a>
@@ -338,6 +340,12 @@
 <img alt="Obejrzyj na YouTube" class="youtube-logo" height="40" src="/icons/WatchonYouTube-black-SVG.svg" width="180"/>
 </a>
 </div>
+</div>
+<div class="hero-visual">
+<picture>
+<source srcset="/screenshots/hero_track_analysis.webp" type="image/webp"/>
+<img alt="GpxAnalyzer na Androidzie: ślad GPS na mapie z informacją o odcinku nad zsynchronizowanym wykresem wysokości" class="hero-screenshot" decoding="async" fetchpriority="high" height="1067" src="/screenshots/hero_track_analysis.png" width="600"/>
+</picture>
 </div>
 </div>
 </section>
@@ -491,6 +499,18 @@
 </div>
 </div>
 </section>
+<!-- Screenshots Section -->
+<section aria-label="Zrzuty ekranu" class="screenshots" id="screenshots">
+<div class="container">
+<div class="section-header">
+<h2>Zobacz w akcji</h2>
+<p>Od nakładek heatmapy i kafelków terenu po konwersję formatów i zsynchronizowane wykresy</p>
+</div>
+<div class="screenshots-grid">
+<!-- Dynamically populated from screenshots/index.txt -->
+</div>
+</div>
+</section>
 <!-- Code Quality Section -->
 <section aria-label="Jakość kodu" class="code-quality" id="code-quality">
 <div class="container">
@@ -545,18 +565,6 @@
 <div class="code-quality-stat-label">automatyzacji CI/CD</div>
 </div>
 </div>
-</div>
-</div>
-</section>
-<!-- Screenshots Section -->
-<section aria-label="Zrzuty ekranu" class="screenshots" id="screenshots">
-<div class="container">
-<div class="section-header">
-<h2>Zobacz w akcji</h2>
-<p>Od nakładek heatmapy i kafelków terenu po konwersję formatów i zsynchronizowane wykresy</p>
-</div>
-<div class="screenshots-grid">
-<!-- Dynamically populated from screenshots/index.txt -->
 </div>
 </div>
 </section>
@@ -745,8 +753,8 @@
 <h3>Nawigacja</h3>
 <ul>
 <li><a href="#features">Funkcje</a></li>
-<li><a href="#code-quality">Jakość kodu</a></li>
 <li><a href="#screenshots">Zrzuty ekranu</a></li>
+<li><a href="#code-quality">Jakość kodu</a></li>
 <li><a href="#tutorials">Poradniki</a></li>
 <li><a href="#release-notes">Informacje o wydaniach</a></li>
 <li><a href="#about">O aplikacji</a></li>

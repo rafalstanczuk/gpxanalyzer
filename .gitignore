@@ -1,5 +1,6 @@
 .claude/
 local/
+play_store/
 __pycache__/
 
 !LICENSE

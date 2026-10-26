@@ -11,7 +11,7 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://gpxanalyzer.app/es/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://gpxanalyzer.app/it/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://gpxanalyzer.app/"/>
-    <lastmod>2026-09-20</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -21,49 +21,25 @@
       <image:loc>https://gpxanalyzer.app/icons/ic_launcher-playstore.png</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://gpxanalyzer.app/screenshots/slide1_tile_boundaries_multi_zoom_overview.png</image:loc>
+      <image:loc>https://gpxanalyzer.app/screenshots/hero_track_analysis.png</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://gpxanalyzer.app/screenshots/slide3_elevation_settings_cache_stats.png</image:loc>
+      <image:loc>https://gpxanalyzer.app/screenshots/track_analysis_map_and_elevation_chart.png</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://gpxanalyzer.app/screenshots/Day_Mode_Tiles_coverage_on_and_elevation_heatmap_on_from_encoded_points_from_cached_tiles.png</image:loc>
+      <image:loc>https://gpxanalyzer.app/screenshots/route_drawing_and_drawing_tools.png</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://gpxanalyzer.app/screenshots/Zoomed_in_map_and_tiles_coverage_with_cached_points_data_heatmap.png</image:loc>
+      <image:loc>https://gpxanalyzer.app/screenshots/offline_elevation_heatmap.png</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://gpxanalyzer.app/screenshots/Offline_Visual_Fallback_On_Requesting_not_Cached_Area_2_Area_Overlays.png</image:loc>
+      <image:loc>https://gpxanalyzer.app/screenshots/track_library_filters.png</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://gpxanalyzer.app/screenshots/Elevation_Settings_Dialog_with_new_strategies.png</image:loc>
+      <image:loc>https://gpxanalyzer.app/screenshots/terrain_tiles_and_elevation_settings.png</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://gpxanalyzer.app/screenshots/All_sources_filter.png</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://gpxanalyzer.app/screenshots/New_More_Intuitive_Icons.png</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://gpxanalyzer.app/screenshots/slide1_multi_format_import.png</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://gpxanalyzer.app/screenshots/slide2_system_open_with.png</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://gpxanalyzer.app/screenshots/slide5_compatibility_matrix.png</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://gpxanalyzer.app/screenshots/slide1_drawing_waypoints.png</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://gpxanalyzer.app/screenshots/slide3_density_13k.png</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://gpxanalyzer.app/screenshots/slide5_elevation_api.png</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://gpxanalyzer.app/screenshots/speed-colored-track-map-with-elevation-profile-chart.png</image:loc>
+      <image:loc>https://gpxanalyzer.app/screenshots/export_and_format_compatibility.png</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://gpxanalyzer.app/other/ci_cd_pipelines_online_to_manage_highest_quality.png</image:loc>
@@ -97,7 +73,7 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://gpxanalyzer.app/es/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://gpxanalyzer.app/it/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://gpxanalyzer.app/"/>
-    <lastmod>2026-09-20</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -113,7 +89,7 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://gpxanalyzer.app/es/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://gpxanalyzer.app/it/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://gpxanalyzer.app/"/>
-    <lastmod>2026-09-20</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -129,7 +105,7 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://gpxanalyzer.app/es/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://gpxanalyzer.app/it/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://gpxanalyzer.app/"/>
-    <lastmod>2026-09-20</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -145,7 +121,7 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://gpxanalyzer.app/es/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://gpxanalyzer.app/it/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://gpxanalyzer.app/"/>
-    <lastmod>2026-09-20</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -161,7 +137,7 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://gpxanalyzer.app/es/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://gpxanalyzer.app/it/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://gpxanalyzer.app/"/>
-    <lastmod>2026-09-20</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>

@@ -205,10 +205,12 @@
           },
           "image": "https://gpxanalyzer.app/icons/ic_launcher-playstore.png",
           "screenshot": [
-            "https://gpxanalyzer.app/screenshots/speed-colored-track-map-with-elevation-profile-chart.png",
-            "https://gpxanalyzer.app/screenshots/slide1_drawing_waypoints.png",
-            "https://gpxanalyzer.app/screenshots/slide1_multi_format_import.png",
-            "https://gpxanalyzer.app/screenshots/Day_Mode_Tiles_coverage_on_and_elevation_heatmap_on_from_encoded_points_from_cached_tiles.png"
+            "https://gpxanalyzer.app/screenshots/track_analysis_map_and_elevation_chart.png",
+            "https://gpxanalyzer.app/screenshots/route_drawing_and_drawing_tools.png",
+            "https://gpxanalyzer.app/screenshots/offline_elevation_heatmap.png",
+            "https://gpxanalyzer.app/screenshots/track_library_filters.png",
+            "https://gpxanalyzer.app/screenshots/terrain_tiles_and_elevation_settings.png",
+            "https://gpxanalyzer.app/screenshots/export_and_format_compatibility.png"
           ],
           "featureList": [
             "Wavelet-based GPS noise reduction (85-95%)",
@@ -278,8 +280,8 @@
                 </button>
                 <div class="nav-links" id="nav-menu" role="menubar">
                     <a href="#features" role="menuitem">Features</a>
-                    <a href="#code-quality" role="menuitem">Code Quality</a>
                     <a href="#screenshots" role="menuitem">Screenshots</a>
+                    <a href="#code-quality" role="menuitem">Code Quality</a>
                     <a href="#download" role="menuitem">Download</a>
                     <a href="#release-notes" role="menuitem">Release Notes</a>
                     <a href="#tutorials" role="menuitem">Tutorials</a>
@@ -348,6 +350,12 @@
                             <img src="icons/WatchonYouTube-black-SVG.svg" alt="Watch on YouTube" class="youtube-logo" width="180" height="40">
                         </a>
                     </div>
+                </div>
+                <div class="hero-visual">
+                    <picture>
+                        <source srcset="screenshots/hero_track_analysis.webp" type="image/webp">
+                        <img src="screenshots/hero_track_analysis.png" alt="GpxAnalyzer on Android: a GPS track on the map with segment info, above a synchronized elevation chart" class="hero-screenshot" width="600" height="1067" fetchpriority="high" decoding="async">
+                    </picture>
                 </div>
             </div>
         </section>
@@ -503,6 +511,19 @@
             </div>
         </section>
 
+        <!-- Screenshots Section -->
+        <section id="screenshots" class="screenshots" aria-label="Screenshots">
+            <div class="container">
+                <div class="section-header">
+                    <h2>See It In Action</h2>
+                    <p>From heatmap overlays and terrain tiles to multi-format conversion and synchronized charts</p>
+                </div>
+                <div class="screenshots-grid">
+                    <!-- Dynamically populated from screenshots/index.txt -->
+                </div>
+            </div>
+        </section>
+
         <!-- Code Quality Section -->
         <section id="code-quality" class="code-quality" aria-label="Code quality">
             <div class="container">
@@ -559,19 +580,6 @@
                             <div class="code-quality-stat-label">CI/CD Automated</div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Screenshots Section -->
-        <section id="screenshots" class="screenshots" aria-label="Screenshots">
-            <div class="container">
-                <div class="section-header">
-                    <h2>See It In Action</h2>
-                    <p>From heatmap overlays and terrain tiles to multi-format conversion and synchronized charts</p>
-                </div>
-                <div class="screenshots-grid">
-                    <!-- Dynamically populated from screenshots/index.txt -->
                 </div>
             </div>
         </section>
@@ -778,8 +786,8 @@
                     <h3>Navigation</h3>
                     <ul>
                         <li><a href="#features">Features</a></li>
-                        <li><a href="#code-quality">Code Quality</a></li>
                         <li><a href="#screenshots">Screenshots</a></li>
+                        <li><a href="#code-quality">Code Quality</a></li>
                         <li><a href="#tutorials">Tutorials</a></li>
                         <li><a href="#release-notes">Release Notes</a></li>
                         <li><a href="#about">About</a></li>
