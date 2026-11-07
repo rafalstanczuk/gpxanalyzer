@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>GpxAnalyzer has moved to gpxanalyzer.app</title>
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  // Every old address under /gpxanalyzer/ goes to the same page on gpxanalyzer.app, without ".html"
+  // (gpxanalyzer.app serves /privacy_policy, not /privacy_policy.html).
+  var p = location.pathname.replace(/^\/gpxanalyzer/, '').replace(/index\.html$/, '').replace(/\.html$/, '');
+  location.replace('https://gpxanalyzer.app' + (p || '/') + location.search + location.hash);
+</script>
+<meta http-equiv="refresh" content="0; url=https://gpxanalyzer.app/">
+</head>
+<body>
+<p>GpxAnalyzer has moved to <a href="https://gpxanalyzer.app/">gpxanalyzer.app</a>.</p>
+</body>
+</html>
